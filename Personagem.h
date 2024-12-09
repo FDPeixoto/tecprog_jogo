@@ -1,14 +1,11 @@
 #pragma once
 #include "Entidade.h"
-class Personagem: public Entidade{
+class Personagem:public Entidade{
 protected:
   int num_vidas;
   int velocidade;
 public:
-  Personagem(int vidas = 5, int vel = 10){
-    num_vidas = vidas;
-    velocidade = vel;
-  }
+  Personagem();
   ~Personagem();
   salvarDataBuffer();
   virtual void mover();
