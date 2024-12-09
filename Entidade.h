@@ -1,5 +1,7 @@
 #pragma once
-  
+
+#include <iostream>
+
 #include "Ente.h"
 #include "Entidade.h"
 
@@ -8,7 +10,7 @@ class Entidade::Ente{
 protected:
   int x;
   int y;
-  //ostream buffer;
+  ostream buffer;
 
 public:
   Entidade(): Ente();

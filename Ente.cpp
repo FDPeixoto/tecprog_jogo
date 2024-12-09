@@ -1,8 +1,10 @@
 #include "Ente.h"
 
 class Ente{
-private:
+protected:
   int id;
+  //static *Gerenciador_Grafico pGG;
+  //*Figura pFig;
 
 public:
   static int id_global;
@@ -10,7 +12,10 @@ public:
     id = id_global;
     id_global++;
   }
-  virtual ~Ente(){}
+  virtual ~Ente(){
+    //pGG = NULL;
+    //pFig = NULL;
+  }
   virtual void executar() = 0;
   void desenhar(){}
 }
