@@ -3,8 +3,8 @@
 
 class Medievo {
     private:
-    Jogador* pJog1;
-    Jogador* pJog2;
+    Personagens::Jogador* pJog1;
+    Personagens::Jogador* pJog2;
     //Gerenciadores::Grafico GG;
 
     public:
@@ -13,7 +13,7 @@ class Medievo {
         pJog1=nullptr;
         pJog2=nullptr;
     }
-    void setJog(Jogador* p, int num){
+    void setJog(Personagens::Jogador* p, int num){
         if(p!=nullptr){
             if(num==1){
                 pJog1=p;

@@ -1,5 +1,6 @@
 #pragma once
 #include "Entidade.hpp"
+namespace Personagens{
 class Personagem:public Entidade{
 protected:
   int num_vidas;
@@ -11,3 +12,4 @@ public:
   virtual void mover();
   virtual void executar() = 0;
 };
+}

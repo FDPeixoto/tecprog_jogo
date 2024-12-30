@@ -1,5 +1,6 @@
 #pragma once
 #include "Entidade.hpp"
+namespace Personagens{
 class Jogador:public Entidade{
 protected:
   int pontos;
@@ -15,3 +16,4 @@ public:
   virtual void mover();
   virtual void executar() = 0;
 };
+}
