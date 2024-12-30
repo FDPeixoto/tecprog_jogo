@@ -1,4 +1,5 @@
 /.vscode
+/64 SFML-2.6.2
 *.dll
 *.exe
 *.o
