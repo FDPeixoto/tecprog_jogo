@@ -1,0 +1,30 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++.exe build active file",
+			"command": "C:\\mingw32\\bin\\gcc.exe",
+			"args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}/src/*.cpp",
+                "-I\"${workspaceFolder}\\SFML-2.6.2\\include\"",
+                "-I\"${workspaceFolder}\\include\"",
+                "-L\"${workspaceFolder}\\SFML-2.6.2\\lib\"",
+                "-o",
+                "-lsfml-graphics",
+                "-lsfml-system",
+                "-lsfml-window"
+            ],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compiler: C:\\mingw32\\bin\\gcc.exe"
+		}
+	]
+}
