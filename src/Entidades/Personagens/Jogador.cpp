@@ -1,5 +1,6 @@
 #pragma once
 #include "../include/Entidades/Personagens/Jogador.hpp"
+#include "Jogador.hpp"
  
  namespace Personagens{
   Jogador::Jogador(): Entidade(), pontos(0), numero_baixas(0), espada (false), magia (false), antidoto (false) 
@@ -44,10 +45,6 @@
     void Jogador::desenhar(sf::RenderWindow& window) {
         window.draw(retangulo);
     }
-    void Jogador::setCor(sf::Color c){
-      cor=c;
-      getRetangulo().setFillColor(c);
-    }
 
     sf::RectangleShape& Jogador::getRetangulo() {
         return retangulo;
@@ -58,4 +55,9 @@
   void Jogador::executar() {}
   void Jogador::salvar(){}
  }
- 
+
+ void Personagens::Jogador::setCor(sf::Color c)
+ {
+     cor=c;
+      getRetangulo().setFillColor(c);
+ }

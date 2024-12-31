@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Ente.hpp"
+#include "../Ente.hpp"
 #include <iostream>
 #include <sstream>  // Incluindo sstream para o uso de std::ostringstream
 

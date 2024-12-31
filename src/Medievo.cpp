@@ -48,9 +48,10 @@ namespace Personagens{
     void Jogador::desenhar(sf::RenderWindow& window) {
         window.draw(retangulo);
     }
-    void Jogador::setCor(sf::Color c){
+    /*void Jogador::setCor(sf::Color& c){
       cor=c;
-    }
+      getRetangulo().setFillColor(c);
+    }*/
 
     sf::RectangleShape& Jogador::getRetangulo() {
         return retangulo;
@@ -61,6 +62,12 @@ namespace Personagens{
   void Jogador::executar() {}
   void Jogador::salvar(){}
  }
+  void Personagens::Jogador::setCor(sf::Color c)
+ {
+     cor=c;
+      getRetangulo().setFillColor(c);
+ }
+
  Entidade::Entidade(): Ente() {}
   Entidade::~Entidade(){}
   void Entidade::setX(float pos){
