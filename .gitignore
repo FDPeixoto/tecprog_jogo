@@ -1,5 +1,6 @@
 /.vscode
 /64 SFML-2.6.2
+/mingw32
 *.dll
 *.exe
 *.o

@@ -1,16 +1,13 @@
 #pragma once
-#include "Personagem.hpp"
-class Personagem: public Entidade{
-protected:
-  int num_vidas;
-  int velocidade;
-public:
-  Personagem(int vidas = 5, int vel = 10){
-    num_vidas = vidas;
-    velocidade = vel;
+#include "../include/Entidades/Personagens/Personagem.hpp"
+namespace Personagens{
+    Personagem::Personagem(){
+    num_vidas = 5;
+    velocidade = 50.f;
   }
-  ~Personagem(){};
-  void salvarDataBuffer(){};
-  virtual void mover(){};
-  virtual void executar() {};
-};
+  Personagem::~Personagem(){};
+  void Personagem::salvarDataBuffer(){};
+  void Personagem::mover(){};
+  void Personagem::executar() {};
+  void Personagem::salvar(){};
+}

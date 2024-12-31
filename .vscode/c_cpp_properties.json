@@ -6,7 +6,7 @@
                 "C:\\Bru\\TecProg\\Teste0\\modelo-sfml-windows/**",
                 "C:\\mingw32\\include",
                 "C:\\SFML-2.6.2\\include",
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/include/**"
             ],
             "defines": [
                 "_DEBUG",

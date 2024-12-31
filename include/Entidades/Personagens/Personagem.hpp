@@ -1,5 +1,5 @@
 #pragma once
-#include "Entidade.hpp"
+#include "../include/Entidades/Entidade.hpp"
 namespace Personagens{
 class Personagem:public Entidade{
 protected:
@@ -11,5 +11,7 @@ public:
   void salvarDataBuffer();
   virtual void mover();
   virtual void executar() = 0;
+  virtual void salvar()=0;
+
 };
 }
