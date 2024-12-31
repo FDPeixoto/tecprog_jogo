@@ -30,6 +30,7 @@ public:
   void desenhar(sf::RenderWindow& window);
   sf::RectangleShape& getRetangulo();
   void salvarDataBuffer();
+  void setCor(sf::Color c);
   virtual void mover();
   virtual void executar();
   virtual void salvar();

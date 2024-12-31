@@ -44,6 +44,10 @@
     void Jogador::desenhar(sf::RenderWindow& window) {
         window.draw(retangulo);
     }
+    void Jogador::setCor(sf::Color c){
+      cor=c;
+      getRetangulo().setFillColor(c);
+    }
 
     sf::RectangleShape& Jogador::getRetangulo() {
         return retangulo;
@@ -54,3 +58,4 @@
   void Jogador::executar() {}
   void Jogador::salvar(){}
  }
+ 

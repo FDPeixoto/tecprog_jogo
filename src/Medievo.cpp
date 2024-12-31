@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 
+
 namespace Personagens{
   Jogador::Jogador(): Entidade(), pontos(0), numero_baixas(0), espada (false), magia (false), antidoto (false) 
   {
@@ -46,6 +47,9 @@ namespace Personagens{
 
     void Jogador::desenhar(sf::RenderWindow& window) {
         window.draw(retangulo);
+    }
+    void Jogador::setCor(sf::Color c){
+      cor=c;
     }
 
     sf::RectangleShape& Jogador::getRetangulo() {
@@ -133,6 +137,8 @@ private:
     jogador2->setX(200.f);
     jogador2->setY(475.f);
     jogador2->setTeclas(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W);
+
+    jogador2->setCor(sf::Color::Yellow);
     
     pJog1=jogador1;
     pJog2=jogador2;
