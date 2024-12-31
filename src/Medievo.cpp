@@ -131,7 +131,7 @@ private:
     Personagens::Jogador* jogador1=new Personagens::Jogador();
     jogador1->setX(375.f);
     jogador1->setY(475.f);
-    jogador1->setTeclas(sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Space);
+    jogador1->setTeclas(sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Up);
 
     Personagens::Jogador* jogador2=new Personagens::Jogador();
     jogador2->setX(200.f);
