@@ -1,5 +1,5 @@
 #pragma once
-#include "../include/Entidades/Entidade.hpp"
+#include "../Entidade.hpp"
 #include <SFML/Graphics.hpp>
 #include <cmath>
 namespace Personagens{

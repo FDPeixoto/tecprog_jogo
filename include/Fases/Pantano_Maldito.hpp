@@ -1,6 +1,6 @@
 #pragma once
 #include "Fase.hpp"
-#include "../Entidades/Entidade.hpp"
+//#include "../Entidades/Entidade.hpp"
 #include "../Entidades/Personagens/Jogador.hpp"
 
 namespace Fases{
