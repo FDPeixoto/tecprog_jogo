@@ -1,5 +1,7 @@
 # Ignorar configurações
 .vscode/
+64 SFML-2.6.2/
+mingw32/
 
 # Ignorar debug
 debug/
