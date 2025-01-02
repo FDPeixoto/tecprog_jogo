@@ -1,5 +1,4 @@
-#pragma once
-#include "../include/Entidades/Personagens/Personagem.hpp"
+#include "../../../include/Entidades/Personagens/Personagem.hpp"
 namespace Personagens{
     Personagem::Personagem(){
     num_vidas = 5;

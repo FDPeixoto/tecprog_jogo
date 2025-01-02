@@ -1,5 +1,5 @@
 #pragma once
-#include "../include/Entidades/Entidade.hpp"
+#include "../Entidade.hpp"
 namespace Personagens{
 class Personagem:public Entidade{
 protected:

@@ -1,6 +1,6 @@
-#include "../include/Entidades/Personagens/Jogador.hpp"
-#include "../include/Entidades/Personagens/Personagem.hpp"
-#include "../include/Entidades/Personagens/Inimigo.hpp"
+//#include "../include/Entidades/Personagens/Jogador.hpp"
+//#include "../include/Entidades/Personagens/Personagem.hpp"
+#include "../../../include/Entidades/Personagens/Inimigo.hpp"
 
 namespace Personagens{
  

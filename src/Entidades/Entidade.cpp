@@ -1,4 +1,4 @@
-#include "Entidade.hpp"
+#include "../../include/Entidades/Entidade.hpp"
 #include <iostream>
 #include <sstream>  // Incluindo sstream para o uso de std::ostringstream
 

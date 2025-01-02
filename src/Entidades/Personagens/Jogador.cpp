@@ -1,6 +1,4 @@
-#pragma once
-#include "../include/Entidades/Personagens/Jogador.hpp"
-#include "Jogador.hpp"
+#include "../../../include/Entidades/Personagens/Jogador.hpp"
  
  namespace Personagens{
   Jogador::Jogador(): Entidade(), pontos(0), numero_baixas(0), espada (false), magia (false), antidoto (false) 

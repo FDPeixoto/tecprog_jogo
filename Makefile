@@ -1,43 +1,19 @@
-CC = g++
+all: compile link execute
 
-BIN_DIR = bin
-SRC_DIR = src
-OBJ_DIR = obj
+compile:
+	g++ -c src/*.cpp src/Entidades/*.cpp src/Entidades/Personagens/*.cpp src/Entidades/Personagens/Jogador/*.cpp src/Entidades/Personagens/Inimigo/*.cpp src/Gerenciadores/*.cpp src/Listas/*.cpp src/Fases/*.cpp -I/SFML-2.6.2/include
 
-BIN = $(BIN_DIR)/Jogo
+link:
+	g++ *.o -Wall -o main -L"SFML-2.6.2/lib" -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 
-INCLUDEs = -Iinclude -I/SFML-2.6.2/include -Iinclude/Entidades -Iinclude/Fases -Iinclude/Gerenciadores -Iinclude/Listas -Iinclude/Personagens -Iinclude/Obstaculos
-CPPs = $(shell find $(SRC_DIR) -name '*.cpp')
-OBJs = $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(CPPs))
+execute: 
+	./main
+	cls
 
-CPPFLAGS = -g -Wall $(INCLUDEs)
-LDFLAGS = -L/SFML-2.6.2/include/
-LDLIBS = -lm -lsfml-graphics -lsfml-window -lsfml-system
+clear-windows:
+	del *.o
+	cls
 
-all: build $(BIN)
-
-$(BIN): $(OBJs) | $(BIN_DIR)
-	@echo '[Linking] $(BIN)'
-	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
-	@echo '============================ Finished building ============================'
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	@echo '[Compiling] $< -> $@'
-	mkdir -p $(dir $@)
-	$(CC) $(CPPFLAGS) -MMD -c $< -o $@
-
--include $(OBJs:.o=.d)
-
-$(BIN_DIR) $(OBJ_DIR):
-	mkdir -p $@
-
-build:
-	@echo '=============== Started building project using g++ compiler ==============='
-
-clean:
-	@echo '[Cleaning] Removing $(OBJ_DIR) and $(BIN_DIR)'
-	rm -r $(OBJ_DIR) $(BIN_DIR)
-
-rebuild: clean all
-
-.PHONY: all clean build rebuild
+clear-linux:
+	rm -rf *.o
+	clear
