@@ -1,7 +1,4 @@
-#pragma once
-
-#include "../include/Ente.hpp"
-#include "../include/Entidades/Entidade.hpp"
+#include "Entidade.hpp"
 #include <iostream>
 #include <sstream>  // Incluindo sstream para o uso de std::ostringstream
 

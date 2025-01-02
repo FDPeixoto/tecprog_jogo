@@ -1,7 +1,4 @@
 #include "../include/Medievo.hpp"
-#include "../include/Fases/Pantano_Maldito.hpp"
-//#include "../include/Entidades/Personagens/Jogador.hpp"
-//#include "Entidades/Entidade.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <cmath>
@@ -9,7 +6,7 @@
     float Medievo::distance(const sf::Vector2f& a, const sf::Vector2f& b) {
             return std::sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
     }
-    Medievo::Medievo(): pJog1(nullptr),pJog2(nullptr){
+    Medievo::Medievo(): pJog1(nullptr),pJog2(nullptr), primeiraFase(){
 
     }
     Medievo::~Medievo(){
@@ -23,7 +20,7 @@
         pJog2=nullptr;
     }
     void Medievo::executar(){
-
+        primeiraFase.executar();
     }
     void Medievo::setJog(Personagens::Jogador* p, int num){
         if(p!=nullptr){

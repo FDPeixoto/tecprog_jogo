@@ -1,6 +1,17 @@
-/.vscode
-/64 SFML-2.6.2
-/mingw32
-*.dll
-*.exe
+# Ignorar configurações
+.vscode/
+
+# Ignorar debug
+debug/
+
+# Ignorar binários e arquivos de saída
+bin/
+
+# Ignorar objetos de compilação
+obj/
+
+# Ignorar arquivos .d (dependências geradas)
+*.d
+
+# Ignorar outros arquivos específicos de compilação
 *.o

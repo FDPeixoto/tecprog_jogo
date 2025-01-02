@@ -5,6 +5,7 @@
 
 int main() {
     Medievo medievo;
+    medievo.executar();
 
     return 0;
 }
