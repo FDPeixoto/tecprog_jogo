@@ -1,6 +1,4 @@
-//#include "Entidades/Personagens/Jogador.hpp"
-class Jogador;
-//#include "Entidades/Entidade.hpp"
+#include "Entidades/Personagens/Jogador.hpp"
 #include "Fases/Pantano_Maldito.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>

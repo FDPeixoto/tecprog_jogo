@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <iostream>
-#include "Medievo.hpp"
+#include "../include/Medievo.hpp"
 
 int main() {
     Medievo medievo;

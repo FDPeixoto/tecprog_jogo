@@ -8,13 +8,6 @@
 			"args": [
                 "-fdiagnostics-color=always",
                 "-g",
-				"${workspaceFolder}/src/Medievo.cpp",
-				"${workspaceFolder}/src/Ente.cpp",
-				"${workspaceFolder}/src/Entidades/Entidade.cpp",
-				"${workspaceFolder}/src/Fases/Fase.cpp",
-				"${workspaceFolder}/src/Fases/Pantano_Maldito.cpp",
-				"${workspaceFolder}/src/Entidades/Personagens/Personagem.cpp",
-				"${workspaceFolder}/src/Entidades/Personagens/Jogador.cpp",
 				"${workspaceFolder}/src/**/*.cpp",
                 "-I\"${workspaceFolder}\\SFML-2.6.2\\include\"",
                 "-I\"${workspaceFolder}\\include\"",

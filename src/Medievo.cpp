@@ -1,4 +1,5 @@
 #include "../include/Medievo.hpp"
+#include "../include/Fases/Pantano_Maldito.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <cmath>
@@ -11,6 +12,7 @@
     }
     Medievo::~Medievo(){
         if(pJog1){
+            
             delete(pJog1);
         }
         if(pJog2){
