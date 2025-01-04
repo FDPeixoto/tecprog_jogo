@@ -1,4 +1,4 @@
-#include "../Gerenciadores/Colisao.hpp"
+#include "Gerenciadores/Colisao.hpp"
 
 namespace Fases{
     class Fase{

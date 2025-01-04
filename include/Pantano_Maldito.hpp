@@ -1,7 +1,8 @@
 #pragma once
 #include "Fase.hpp"
 //#include "../Entidades/Entidade.hpp"
-#include "../Entidades/Personagens/Jogador.hpp"
+#include "Jogador.hpp"
+
 
 namespace Fases{
     class Pantano_Maldito: public Fase{

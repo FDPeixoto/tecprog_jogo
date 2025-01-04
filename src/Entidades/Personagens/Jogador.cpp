@@ -1,7 +1,6 @@
 #include "../../../include/Entidades/Personagens/Jogador.hpp"
  
- namespace Personagens{
-  Jogador::Jogador(): Entidade(), pontos(0), numero_baixas(0), espada (false), magia (false), antidoto (false) 
+ Personagens::Jogador::Jogador(): Entidade(), pontos(0), numero_baixas(0), espada (false), magia (false), antidoto (false) 
   {
         retangulo.setSize(sf::Vector2f(50.f, 50.f));
         retangulo.setFillColor(sf::Color::Blue);
@@ -11,13 +10,13 @@
         pulando = false;
         puloForca= -std::sqrt(2 * 500.f * 2 * 50.f);//500.f eh a gravidade
   }
-  Jogador::~Jogador(){}
-  void Jogador::setTeclas( sf::Keyboard::Key esquerda, sf::Keyboard::Key direita, sf::Keyboard::Key pulo){
+  Personagens::Jogador::~Jogador(){}
+  void Personagens::Jogador::setTeclas( sf::Keyboard::Key esquerda, sf::Keyboard::Key direita, sf::Keyboard::Key pulo){
     teclaEsquerda=esquerda;
     teclaDireita=direita;
     teclaPulo=pulo;
   }
-  void Jogador::atualizar(float deltaTime, bool& noChao, sf::RectangleShape& plataforma, float gravidade) {
+  void Personagens::Jogador::atualizar(float deltaTime, bool& noChao, sf::RectangleShape& plataforma, float gravidade) {
         velocidadeY += gravidade * deltaTime;
         retangulo.move(0.f, velocidadeY * deltaTime);
 
@@ -40,20 +39,19 @@
         }
     }
 
-    void Jogador::desenhar(sf::RenderWindow& window) {
+    void Personagens::Jogador::desenhar(sf::RenderWindow& window) {
         window.draw(retangulo);
     }
 
-    sf::RectangleShape& Jogador::getRetangulo() {
+    sf::RectangleShape& Personagens::Jogador::getRetangulo() {
         return retangulo;
     }
 
-  void Jogador::salvarDataBuffer(){}
-  void Jogador::mover(){}
-  void Jogador::executar() {}
-  void Jogador::salvar(){}
- }
-
+  void Personagens::Jogador::salvarDataBuffer(){}
+  void Personagens::Jogador::mover(){}
+  void Personagens::Jogador::executar() {}
+  void Personagens::Jogador::salvar(){}
+ 
  void Personagens::Jogador::setCor(sf::Color c)
  {
      cor=c;
