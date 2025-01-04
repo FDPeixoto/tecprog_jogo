@@ -19,6 +19,8 @@ namespace Listas{
       void removerElemento(TL* elem);
       void limpar();
       void listar();
+      const int getTam():
+      TL* operator[](int pos);
   };
 
   template<class TL>
@@ -108,5 +110,23 @@ namespace Listas{
     }
     std::cout << "  Acabou a lista" << std::endl;
   }
+  template<class TL>
+  const int Lista<TL>::getTam(){
+  return (int)tam;
+  }
+
+  template<class TL>
+  TL* Lista<TL>::operator[](int pos){
+    if(pos >= (int)tam || pos < 0){
+      std::cout << "ERROR::Lista pos eh maior que o tamanho da lista" << std::endl;
+    exit(1);
+    }
+    Elemento<TL>* aux = pPrimeiro;
+    for(int i = 0; i < pos; i++){
+      aux = aux->getProx();
+    }
+    return aux->getElemento();
+ }
+
 
 }

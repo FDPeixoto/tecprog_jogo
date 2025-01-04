@@ -1,4 +1,5 @@
 #include "../../../include/Entidades/Personagens/Jogador.hpp"
+#include "stdafx.h"
  
  Personagens::Jogador::Jogador(): Entidade(), pontos(0), numero_baixas(0), espada (false), magia (false), antidoto (false) 
   {
@@ -17,6 +18,7 @@
     teclaPulo=pulo;
   }
   void Personagens::Jogador::atualizar(float deltaTime, bool& noChao, sf::RectangleShape& plataforma, float gravidade) {
+    
         velocidadeY += gravidade * deltaTime;
         retangulo.move(0.f, velocidadeY * deltaTime);
 

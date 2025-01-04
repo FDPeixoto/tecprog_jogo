@@ -1,9 +1,14 @@
 #include "Gerenciadores/Colisao.hpp"
+#include "../Listas/ListaEntidades.hpp"
 
 namespace Fases{
     class Fase{
         private:
         Gerenciadores::Colisao GC;
+
+        protected:
+        Listas::ListaEntidades* listaPersonagens;
+        Listas::ListaEntidades* listaObstaculos;
 
         protected:
         void criarInimFaceis();
