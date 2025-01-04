@@ -1,4 +1,4 @@
-#include "../include/Pantano_Maldito.hpp"
+#include "../include/Fases/Pantano_Maldito.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <cmath>
@@ -78,6 +78,7 @@ void Fases::Pantano_Maldito::criarObstaculos()
 }
 bool Fases::Pantano_Maldito::completou()
 {
+    return true;
 }
 const int Fases::Pantano_Maldito::getMaxInimMedios()
 {

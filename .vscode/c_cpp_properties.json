@@ -8,6 +8,7 @@
                 "C:\\SFML-2.6.2\\include",
                 "${workspaceFolder}/include/**",
                 "${workspaceFolder}/include/Gerenciadores/**",
+                "${workspaceFolder}/include/Fases/**",
                 "${workspaceFolder}/include/Entidades/**",
                 "${workspaceFolder}/include/Entidades/Personagens/**"
             ],
