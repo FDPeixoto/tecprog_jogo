@@ -1,2 +1,2 @@
-
-Referencia do Makefile: https://github.com/Giovanenero/JogoPlataforma2D-Jungle/blob/main/Makefile
+Inspirações do trabalho:
+https://github.com/Giovanenero/JogoPlataforma2D-Jungle/tree/main/Jungle%2B%2B
