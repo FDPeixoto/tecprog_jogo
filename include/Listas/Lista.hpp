@@ -1,132 +1,46 @@
 
 //O código do Giovani foi tulizado como inspiração: https://github.com/Giovanenero/JogoPlataforma2D-Jungle/blob/main/Jungle%2B%2B/include/Lista/Lista.hpp
 #pragma once
-#include "Elemento.hpp"
 #include <iostream>
 
 namespace Listas{
 
   template<class TL>
   class Lista{
-    private:
-      *Elemento<TL> pPrimeiro;
-      *Elemento<TL> pUltimo;
-      unsigned int tam;
-    public:
-      Lista();
-      ~Lista();
-      void incluir(TL* p);
-      void removerElemento(TL* elem);
-      void limpar();
-      void listar();
-      const int getTam():
-      TL* operator[](int pos);
+
+    //Classe elemento eh aninhada 
+    template<class TE>
+    class Elemento{
+      private:
+        TE* pInfo;
+        Elemento<TE>* pProx;
+      public:
+        Elemento(): pInfo(nullptr), pProx(nullptr){}
+        ~Elemento();
+        void incluir(TE* p){
+          if(p != nullptr){pInfo = p;}
+        }
+        void setProx(Elemento<TE>* pE){
+          if(pE != nullptr){pProx = pE;}
+        }
+        const Elemento<TE>* getProximo(){
+          return pProx;
+        }
+    };
+
+  Elemento<TL>* pAuxiliarPrimeiro; 
+  Elemento<TL>* pAuxiliarUltimo;   
+
+  private:
+    Elemento<TL>* pPrimeiro, pUltimo;
+  public:
+    /*
+    Lista();
+    ~Lista();
+    void incluir(TL* p);
+    void removerElemento(TL* elem);
+    void limpar();
+    void listar();
+    const int getTam(): */
   };
-
-  template<class TL>
-  Lista<TL>::Lista():
-  pInicio(nullptr), pUltimo(nullptr), tam(0)
-  {
-  }
-
-  template<class TL>
-  Lista<TL>::~Lista()
-  {
-   limpar();
-  }
-  
-  // Implementação da função incluir
-  template<class TL>
-  //void incluir(*TL p);
-  void Lista<TL>::incluir(TL* p) {
-    if(p==nullptr){
-        std::cout<<"ERROR: Nao pode inserir elemento nulo"<<std::endl;
-        exit(1);
-    }
-    Elemento<TL>* novoElemento = new Elemento<TL>(p);
-    if(novoElemento==nullptr){
-      std::cout << "ERROR::Elemento alocado eh null" << std::endl;
-        exit(1);
-    }
-    if (pUltimo != nullptr) {
-      pUltimo->proximo = novoElemento;
-    }
-    pUltimo = novoElemento;//O pUltimo eh null, posso inserir nesse local
-    if (pPrimeiro == nullptr) {
-      pPrimeiro = novoElemento;
-    }
-    tam++;
-  }
-  template<class TL>
-  void Lista<TL>::removerElemento(TL* elem) {
-    if(elem==nullptr){
-      std::cout << "ERROR::Elemento para remocao eh null" << std::endl;
-      exit(1);
-    }
-    Elemento<TL>* atual = pPrimeiro;
-    Elemento<TL>* anterior = nullptr;
-
-    while (atual != nullptr && atual->pInfo != elem) {
-      anterior = atual;
-      atual = atual->proximo;
-    }
-
-    if (atual != nullptr) {//achei o elemnto e a lista nao acabou
-      if (anterior != nullptr) {
-        anterior->proximo = atual->proximo;
-      } else {
-        pPrimeiro = atual->proximo;
-      }
-
-      if (atual == pUltimo) {
-        pUltimo = anterior;
-      }
-
-      delete atual;
-    }
-  }
-
-   template<class TL>
-  void Lista<TL>::limpar() {
-    Elemento<TL>* atual = pPrimeiro;
-    while (atual != nullptr) {
-      Elemento<TL>* temp = atual;
-      atual = atual->proximo;
-      delete temp;  
-    }
-    pPrimeiro = nullptr;
-    pUltimo = nullptr;
-  }
-
-  template<class TL>
-  void Lista<TL>::listar() {
-    Elemento<TL>* atual = pPrimeiro;
-    if(atual==nullptr){
-      std::cout << "  A lista esta vazia" << std::endl;
-    }
-    while (atual != nullptr) {
-      std::cout << *(atual->pInfo) << ",   ";
-      atual = atual->proximo;
-    }
-    std::cout << "  Acabou a lista" << std::endl;
-  }
-  template<class TL>
-  const int Lista<TL>::getTam(){
-  return (int)tam;
-  }
-
-  template<class TL>
-  TL* Lista<TL>::operator[](int pos){
-    if(pos >= (int)tam || pos < 0){
-      std::cout << "ERROR::Lista pos eh maior que o tamanho da lista" << std::endl;
-    exit(1);
-    }
-    Elemento<TL>* aux = pPrimeiro;
-    for(int i = 0; i < pos; i++){
-      aux = aux->getProx();
-    }
-    return aux->getElemento();
- }
-
-
 }

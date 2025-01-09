@@ -1,6 +1,5 @@
 #include "../include/Fases/Pantano_Maldito.hpp"
 #include "../../include/Listas/ListaEntidades.hpp"
-#include "../../include/Entidades/Entidade.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <cmath>
@@ -39,10 +38,6 @@ void Fases::Pantano_Maldito::executar()
     plataforma.setPosition(0.f, 550.f);
 
     sf::Clock clock;
-    listaPersonagens = new Listas::ListaEntidades();
-    //L1.incluir(static_cast<Entidade>(jogador1));
-    listaPersonagens->incluir(jogador1);
-    listaPersonagens->incluir(jogador2);
 
     while (window.isOpen()) {
         sf::Event event;
@@ -56,9 +51,8 @@ void Fases::Pantano_Maldito::executar()
         bool noChaoAzul = false;
         bool noChaoAmarelo = false;
 
-        /*jogador1->atualizar(deltaTime, noChaoAzul, plataforma, gravidade);
-        jogador2->atualizar(deltaTime, noChaoAmarelo, plataforma, gravidade);*/
-        listaPersonagens->executar();
+        jogador1->atualizar(deltaTime, noChaoAzul, plataforma, gravidade);
+        jogador2->atualizar(deltaTime, noChaoAmarelo, plataforma, gravidade);
 
         //inimigo.atualizar(deltaTime, jogadorAzul, jogadorAmarelo, plataforma);
 

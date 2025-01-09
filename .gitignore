@@ -3,6 +3,11 @@
 64 SFML-2.6.2/
 mingw32/
 
+# Ignorar os arquivos que modifiquei no meu computaro (Felipe Dias Peixoto)
+main.exe
+Makefile
+.vscode/c_cpp_properties.json
+
 # Ignorar debug
 debug/
 
