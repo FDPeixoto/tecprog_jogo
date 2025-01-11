@@ -1,47 +1,54 @@
 #include "ListaEntidades.hpp"
 
-
-Listas::ListaEntidades::ListaEntidades():
-objLEs()
-{
-}
-
-Listas::ListaEntidades::~ListaEntidades()
-{
-    objLEs.limpar();
-}
-
-void Listas::ListaEntidades::incluir(Entidade* entidade)
-{
-    objLEs.incluir(entidade);
-}
-
-void Listas::ListaEntidades::remover(Entidade *entidade)
-{
-    objLEs.removerElemento(entidade);
-}
-
+/*
 void Listas::ListaEntidades::executar()
 {
-int tam = objLEs.getTam();
+int tam = listaEnt.getTam();
     Entidade* aux = nullptr;
         for(int i = 0; i < tam; i++){
             
-            aux = objLEs.operator[](i);
+            aux = listaEnt.operator[](i);
             aux->executar();
                 
         }
 }
 
 const int Listas::ListaEntidades::getTam(){
-    return objLEs.getTam();
+    return listaEnt.getTam();
  }
 
  Entidade *Listas::ListaEntidades::operator[](int pos)
  {
-    return objLEs.operator[](pos);
+    return listaEnt.operator[](pos);
  }
 
 void Listas::ListaEntidades::limparLista(){
-    objLEs.limpar();
+    listaEnt.limpar();
+}*/
+
+Listas::ListaEntidades::ListaEntidades()
+{
 }
+
+Listas::ListaEntidades::~ListaEntidades()
+{
+}
+
+
+void Listas::ListaEntidades::incluirEntidade(Entidade *pEnte)
+{
+    if(pEnte != nullptr){
+        listaEnt.incluirElemento(pEnte);
+    }
+}
+
+void Listas::ListaEntidades::desenharEntidades(sf::RenderWindow& window){
+    Lista<Entidade>::Elemento<Entidade>* pEleAux = nullptr;
+    Entidade* pEntAux = nullptr;
+    pEleAux = listaEnt.getPrimeiro();
+    while (pEleAux != nullptr){
+        pEntAux = pEleAux->getInfo();
+        pEntAux->desenhar(window);
+        pEleAux = pEleAux->getProx();
+    }
+} 

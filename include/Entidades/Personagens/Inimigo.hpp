@@ -11,8 +11,8 @@ namespace Personagens{
         Inimigo();
         ~Inimigo();
         void salvarDataBuffer();
-        virtual void executar()=0;
-        virtual void danificar(Jogador* p);
+        //virtual void executar()=0;
+        //virtual void danificar(Jogador* p);
         void set_nivel_maldade(int n);
         const int get_nivel_maldade();
 

@@ -1,5 +1,4 @@
 #include "../include/Fases/Pantano_Maldito.hpp"
-#include "../../include/Listas/ListaEntidades.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <cmath>
@@ -31,11 +30,16 @@ void Fases::Pantano_Maldito::executar()
 
     jogador2->setCor(sf::Color::Yellow);
     
+    //Personagens::Inimigo* inimigo1 = new Personagens::Inimigo();
     //Inimigo inimigo(100.f, 100.f, 50.f, gravidade);
 
     sf::RectangleShape plataforma(sf::Vector2f(800.f, 50.f));
     plataforma.setFillColor(sf::Color::Green);
     plataforma.setPosition(0.f, 550.f);
+
+    Listas::ListaEntidades* conjuntoEntidades = new Listas::ListaEntidades; 
+    conjuntoEntidades->incluirEntidade(jogador1);
+    conjuntoEntidades->incluirEntidade(jogador2);
 
     sf::Clock clock;
 
@@ -58,8 +62,9 @@ void Fases::Pantano_Maldito::executar()
 
         window.clear();
         window.draw(plataforma);
-        jogador1->desenhar(window);
-        jogador2->desenhar(window);
+        conjuntoEntidades->desenharEntidades(window);
+        //jogador1->desenhar(window);
+        //jogador2->desenhar(window);
         //inimigo.desenhar(window);
         window.display();
     }

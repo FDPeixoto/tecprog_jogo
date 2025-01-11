@@ -9,7 +9,12 @@
   void Entidade::setY(float pos){
     y=pos;
   }
+
+  void Entidade::desenhar(sf::RenderWindow& window) {
+    window.draw(retangulo);
+  }
   Entidade::~Entidade(){};
   void Entidade::executar() {}
   void Entidade::salvar() {}
   void Entidade::salvarDataBuffer(){}
+  

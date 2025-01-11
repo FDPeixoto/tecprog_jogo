@@ -40,11 +40,6 @@
             pulando = !noChao;
         }
     }
-
-    void Personagens::Jogador::desenhar(sf::RenderWindow& window) {
-        window.draw(retangulo);
-    }
-
     sf::RectangleShape& Personagens::Jogador::getRetangulo() {
         return retangulo;
     }

@@ -4,16 +4,16 @@
 namespace Listas{
     class ListaEntidades{
         private:
-        Listas::Lista<Entidade> objLEs;
+        Lista<Entidade> listaEnt;
         
         public:
         ListaEntidades();
         ~ListaEntidades();
-        void incluir(Entidade* entidade);
-        void remover(Entidade* entidade);
+        void incluirEntidade(Entidade* pEnte);
+        void desenharEntidades(sf::RenderWindow& window);
+        void remover(Entidade* Ente);
         void executar();
         void limparLista();
-        const int getTam();
         Entidade* operator[](int pos);
     };
 }

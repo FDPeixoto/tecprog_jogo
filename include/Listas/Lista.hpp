@@ -7,37 +7,37 @@ namespace Listas{
 
   template<class TL>
   class Lista{
+    public:
+      //Classe elemento eh aninhada 
+      template<class TE>
+      class Elemento{
+        private:
+          TE* pInfo;
+          Elemento<TE>* pProx;
+          Elemento<TE>* pAnte;
+        public:
+          Elemento(): pInfo(nullptr), pProx(nullptr), pAnte(nullptr){}
 
-    //Classe elemento eh aninhada 
-    template<class TE>
-    class Elemento{
-      private:
-        TE* pInfo;
-        Elemento<TE>* pProx;
-        Elemento<TE>* pAnte;
-      public:
-        Elemento(): pInfo(nullptr), pProx(nullptr), pAnte(nullptr){}
+          Elemento(TE* info): pInfo(info), pProx(nullptr), pAnte(nullptr){}
+          
+          ~Elemento(){
+            pInfo = nullptr;
+            pProx = nullptr;
+            pAnte = nullptr;
+          }
 
-        Elemento(TE* info): pInfo(info), pProx(nullptr), pAnte(nullptr){}
-        
-        ~Elemento(){
-          pInfo = nullptr;
-          pProx = nullptr;
-          pAnte = nullptr;
-        }
+          void setInfo(TE* p){pInfo = p;}
+          
+          TE* getInfo(){return pInfo;}
 
-        void setInfo(TE* p){pInfo = p;}
-        
-        TE* getInfo(){return pInfo;}
+          void setProx(Elemento<TE>* pP){pProx = pP;}
+          
+          Elemento<TE>* getProx(){return pProx;}
 
-        void setProx(Elemento<TE>* pP){pProx = pP;}
-        
-        const Elemento<TE>* getProx(){return pProx;}
-
-        void setAnte(Elemento<TE>* pA){}
-        
-        const Elemento<TE>* getAnte(){return pAnte;}
-    };
+          void setAnte(Elemento<TE>* pA){}
+          
+          Elemento<TE>* getAnte(){return pAnte;}
+      };
 
   private:
     Elemento<TL>* pPrimeiro;
@@ -62,10 +62,6 @@ namespace Listas{
     Elemento<TL>* getAtual(){return pAtual;}
 
     Elemento<TL>* getTam(){return tam;}
-
-    void limpar(){
-      
-    }
 
     void incluirElemento(TL* pElemento){
       if (pElemento != nullptr)
