@@ -2,55 +2,33 @@
 
 #include "Matematica/CoordTL.h"
 #include <SFML/Graphics.hpp>
+#include "../../include/Listas/ListaEntidades.hpp"
+#include "../../include/Listas/Lista.hpp"
 
 #include <map>
 
-namespace Gerenciadores {
+namespace Gerenciadores{
+    class Grafico{
+        private:
+            sf::RenderWindow* janela;
+            sf::View panorama;   
 
-    class Grafico {
-    private:
-        sf::RenderWindow* window;
-        sf::View view;
-        std::map<const char*, sf::Texture*> mapTexturas;
-        std::map<const char*, sf::Font*> mapFontes;
-        
-        /* Singleton design pattern */
-        static Gerenciadores::Grafico* instancia;
-        Grafico();
-
-    public:
-        ~Grafico();
-
-        static Grafico* getInstancia();
-
-        void render(sf::RectangleShape* body);
-
-        void render(sf::Text* text);
-
-        void display();
-
-        void clear();
-
-        bool isWindowOpen() const;
-
-        void closeWindow();
-
-        void setWindowSize(/*Math::CoordU size*/);
-
-        Matematica::CoordU getWindowSize() const;
-
-        Matematica::CoordF getTopLeftPosition() const;
-
-        void centerView(Matematica::CoordF pos);
-
-        sf::Texture* loadTexture(const char* caminho);
-
-        sf::Font* loadFont(const char* caminho);
-
-        float updateDeltaTime();
-
-        sf::RenderWindow* getWindow() const;
+            //Singleton    
+            static Grafico* pGrafico;
+            Grafico();
+        public:
+            ~Grafico();
+            static Grafico* getGerenciadorGrafico(){
+                if(pGrafico == nullptr){
+                    return new Grafico();
+                }
+            }
+            sf::RenderWindow* getJanela();
+            void limparJanela();
+            void redimensionarJanela();
+            void mostrarJanela();
+            void desenharEntidade(sf::RectangleShape corpo);
+            void desenharListaEntidades(Listas::ListaEntidades *listaDeEntidades);
 
     };
-
-} // namespace Gerenciadores
+}
