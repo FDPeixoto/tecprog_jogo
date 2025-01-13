@@ -1,145 +1,56 @@
-/*#include "Gerenciadores/Grafico.h"
-
 #include <cstring>
 #include <iostream>
+
+#include "../../include/Gerenciadores/Grafico.hpp"
+#include "../../include/Entidades/Entidade.hpp"
+#include "../../include/Listas/ListaEntidades.hpp"
+#include "../../include/Listas/Lista.hpp"
 
 #define LARGURA 1280
 #define ALTURA 720
 
-namespace Gerenciadores {
 
-    /* Singleton design pattern - Only one instance will be created */
-    //Grafico* Grafico::instancia = nullptr;
+Gerenciadores::Grafico::Grafico(): 
+    janela(new sf::RenderWindow(sf::VideoMode(LARGURA, ALTURA), "Medievo++")),
+    panorama(sf::View(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(LARGURA, ALTURA)))
+    {}
 
-    /* Returns a pointer to the Graphics. */
-    //Grafico* Grafico::getInstancia() {
-      //  if (instancia == nullptr) {
-            //instancia = new Graphics();
-        //}
-        //return instancia;
-    //}
-
-    /*Grafico::Grafico() :
-    window(new sf::RenderWindow(sf::VideoMode(LARGURA, ALTURA), "Jogo", sf::Style::Titlebar | sf::Style::Close)),
-    view(sf::Vector2f(LARGURA/ 2, ALTURA/ 2), sf::Vector2f(LARGURA, ALTURA)),
-    MapaTexturas(),
-    fontsMap() { }
-
-    Grafico::~Grafico() {
-        std::map<const char*, sf::Texture*>::iterator it;
-
-        for (it = mapTexturas.begin(); it != mapTexturas.end(); ++it) {
-            delete (it->second);
-        }
-
-        delete (window);
+Gerenciadores::Grafico::~Grafico(){
+    if(janela != nullptr){
+        delete(janela);
+        janela = nullptr;
     }
+}
 
-    /* Give a pointer to a body and it will be drawn to the screen. */
-    /*void Grafico::render(sf::RectangleShape* body) {
-        window->draw(*body);
+Gerenciadores::Grafico* Gerenciadores::Grafico::getGerenciadorGrafico(){
+    if(pGrafico == nullptr){
+        pGrafico = new Grafico();
     }
+    return pGrafico;
+}
 
-    /* Give a pointer to a Text and it will be drawn to the screen */
-    /*void Grafico::render(sf::Text* text) {
-        window->draw(*text);
-    }
+sf::RenderWindow* Gerenciadores::Grafico::getJanela(){
+    return janela;
+}
 
-    /* Display everything that was drawn. */
-    /*void Grafico::display() {
-        if (isWindowOpen())
-            window->display();
-    }
+void Gerenciadores::Grafico::redimensionarJanela (){
+    float proporcaoJanela = float(janela->getSize().x) / float(janela->getSize().y);
+    panorama.setSize(LARGURA * proporcaoJanela, ALTURA);
+}
 
-    /* Clear the window to re-display stuff. */
-    /*void Grafico::clear() {
-        if (isWindowOpen())
-            window->clear();
-    }
+void Gerenciadores::Grafico::limparJanela(){
+    janela->clear();
+}
 
-    /* Returns if the window is open. */
-    /*bool Grafico::isWindowOpen() const {
-        return window->isOpen();
-    }
+void Gerenciadores::Grafico::mostrarJanela(){
+    janela->display();
+}
 
-    /* CAUTION: Call the close window function - SFML window will close. */
-    /*void Grafico::closeWindow() {
-        window->close();
-    }
+void Gerenciadores::Grafico::desenharEntidade(sf::RectangleShape corpo)
+{
+    janela->draw(corpo);
+}
 
-    /* Sets window size to its parameters */
-    /*void Grafico::setWindowSize(Matematica::CoordU size) {
-        window->setSize(sf::Vector2u(size.x, size.y));
-        view.setSize(size.x, size.y);
-        window->setView(view);
-    }
-
-    /* Returns the window size. */
-    /*Matematica::CoordU Grafico::getWindowSize() const {
-        return Math::CoordU(window->getSize().x, window->getSize().y);
-    }
-
-    /* Returns the top left position of screen. */
-    /*Matematica::CoordF Grafico::getTopLeftPosition() const {
-        return Math::CoordF(window->getView().getCenter().x - window->getSize().x / 2, window->getView().getCenter().y - window->getSize().y / 2);
-    }
-
-    /* Changes the view position. */
-    /*void Grafico::centerView(Matematica::CoordF pos) {
-        view.setCenter(sf::Vector2f(pos.x, pos.y));
-        window->setView(view);
-    }
-
-    /* Returns a texture to be used by an entity. */
-    /*sf::Texture* Grafico::loadTexture(const char* caminho) {
-        /* Tries to find an existing texture linked by the path to it. */
-        /*std::map<const char*, sf::Texture*>::iterator it = mapTexturas.begin();
-        while (it != mapTexturas.end()) {
-            if (!strcmp(it->first, caminho))
-                return it->second;
-            it++;
-        }
-
-        /* If not found, must load it. */
-        /*sf::Texture* tex = new sf::Texture();
-
-        if (!tex->loadFromFile(caminho)) {
-            std::cout << "ERRO ao carregar o caminho da textura " << path << std::endl;
-            exit(1);
-        }
-
-        maptexturas.insert(std::pair<const char*, sf::Texture*>(path, tex));
-
-        return tex;
-    }
-
-    /* Returns a font pointer to be used by texts. */
-    //sf::Font* Grafico::loadFont(const char* caminho) {
-        /* Tries to find an existing font linked by the path to it */
-        /*std::map<const char*, sf::Font*>::iterator it = fontsMap.begin();
-        while (it != fontsMap.end()) {
-            if (!strcmp(it->first, caminho))
-                return it->second;
-            it++;
-        }
-
-        /* If not found, must load it. */
-        /*sf::Font* font = new sf::Font();
-
-        if (!font->loadFromFile(caminho)) {
-            std::cout << "ERRO ao carregar a fonte " << caminho << std::endl;
-            exit(1);
-        }
-
-        fontsMap.insert(std::pair<const char*, sf::Font*>(caminho, font));
-
-        return font;
-    }
-
-    sf::RenderWindow* Graphics::getWindow() const {
-        return window;
-    }
-
-} // namespace Gerenciadores
-
-*/
+void Gerenciadores::Grafico::desenharListaEntidades(Listas::ListaEntidades *listaDeEntidades){
+    listaDeEntidades->desenharEntidades(*janela);
+}
