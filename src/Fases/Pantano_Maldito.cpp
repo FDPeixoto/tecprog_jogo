@@ -1,5 +1,5 @@
 #include "../include/Fases/Pantano_Maldito.hpp"
-#include "../include/Entidades/Personagens/Inimigos/Minion.hpp"
+#include "../../include/Entidades/Personagens/Inimigos/Minion.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <cmath>
@@ -24,12 +24,12 @@ void Fases::Pantano_Maldito::executar()
     //const float puloForca = -std::sqrt(2 * gravidade * 2 * 50.f);
 
     Personagens::Jogador* jogador1=new Personagens::Jogador();
-    jogador1->setX(375.f);
+    jogador1->setX(575.f);
     jogador1->setY(475.f);
     jogador1->setTeclas(sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Up);
 
     Personagens::Jogador* jogador2=new Personagens::Jogador();
-    jogador2->setX(200.f);
+    jogador2->setX(400.f);
     jogador2->setY(475.f);
     jogador2->setTeclas(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W);
 
@@ -41,7 +41,7 @@ void Fases::Pantano_Maldito::executar()
     conjuntoEntidades->incluirEntidade(jogador1);
     conjuntoEntidades->incluirEntidade(jogador2); 
 
-    for(int i=0; i<(int) Personagens::Inimigos::Minion::get_tam_grupo();i++){
+    //for(int i=0; i<(int) Personagens::Inimigos::Minion::get_tam_grupo();i++){
         Personagens::Inimigos::Minion* minion= new Personagens::Inimigos::Minion();
         
         minion->setX(posX);
@@ -49,7 +49,7 @@ void Fases::Pantano_Maldito::executar()
         //Já incluo os minions na lista
         conjuntoEntidades->incluirEntidade(minion);
         posX=posX+30;
-    }
+    //}
     
     //Personagens::Inimigo* inimigo1 = new Personagens::Inimigo();
     //Inimigo inimigo(100.f, 100.f, 50.f, gravidade);
@@ -76,12 +76,12 @@ void Fases::Pantano_Maldito::executar()
         jogador1->atualizar(deltaTime, noChaoAzul, plataforma, gravidade);
         jogador2->atualizar(deltaTime, noChaoAmarelo, plataforma, gravidade);
 
-        inimigo.atualizar(deltaTime, jogadorAzul, jogadorAmarelo, plataforma);
+        minion->atualizar(deltaTime, jogador1, jogador2, plataforma);
 
-        if (checkCollision(jogadorAzul.getRetangulo(), inimigo.getRetangulo()) || checkCollision(jogadorAmarelo.getRetangulo(), inimigo.getRetangulo())) {
+        /*if (checkCollision(jogador1->getRetangulo(), minion->getRetangulo()) || checkCollision(jogador2->getRetangulo(), minion->getRetangulo())) {
             std::cout << "Game Over!" << std::endl;
             window.close();
-        }
+        }*/
 
         window.clear();
         window.draw(plataforma);

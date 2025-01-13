@@ -14,10 +14,10 @@ namespace Personagens{
             void salvar();
             void salvarDataBuffer();
             void executar();
-            void atualizar(float deltaTime, Jogador& jogador1, Jogador& jogador2, sf::RectangleShape& plataforma);
+            void atualizar(float deltaTime, Jogador* jogador1, Jogador* jogador2, sf::RectangleShape& plataforma);
             static int get_tam_grupo();
-
+            sf::RectangleShape& getRetangulo();
         };
-        int Minion::tam_grupo=3;
+        //int Minion::tam_grupo=1;//Testando 1 minion por enquanto
     }
 }

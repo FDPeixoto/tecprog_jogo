@@ -1,4 +1,5 @@
-#include "Minion.hpp"
+#include "../../../../include/Entidades/Personagens/Inimigos/Minion.hpp"
+//include "Minion.hpp"
 
 float distance(const sf::Vector2f& a, const sf::Vector2f& b) {
     return std::sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
@@ -27,17 +28,17 @@ void Personagens::Inimigos::Minion::salvarDataBuffer()
 {
 }
 
-void Personagens::Inimigos::Minion::atualizar(float deltaTime, Jogador& jogador1, Jogador& jogador2, sf::RectangleShape& plataforma) 
+void Personagens::Inimigos::Minion::atualizar(float deltaTime, Jogador* jogador1, Jogador* jogador2, sf::RectangleShape& plataforma) 
 {
     // Calculando a distância entre o Minion e os jogadores
-    float dist1 = distance(retangulo.getPosition(), jogador1.getRetangulo().getPosition());
-    float dist2 = distance(retangulo.getPosition(), jogador2.getRetangulo().getPosition());
+    float dist1 = distance(retangulo.getPosition(), jogador1->getRetangulo().getPosition());
+    float dist2 = distance(retangulo.getPosition(), jogador2->getRetangulo().getPosition());
     
     // Escolhendo o jogador mais próximo
-    Jogador& alvo = (dist1 < dist2) ? jogador1 : jogador2;
+    Jogador* alvo = (dist1 < dist2) ? jogador1 : jogador2; //Jogador& alvo -->> Jogador* alvo
 
     // Calculando a direção do movimento (apenas no eixo X)
-    sf::Vector2f direcao = alvo.getRetangulo().getPosition() - retangulo.getPosition();
+    sf::Vector2f direcao = alvo->getRetangulo().getPosition() - retangulo.getPosition();
     float comprimento = std::sqrt(direcao.x * direcao.x + direcao.y * direcao.y);
 
     // Normalizando a direção para ter uma unidade em X
@@ -62,3 +63,10 @@ int Personagens::Inimigos::Minion::get_tam_grupo()
 {
     return tam_grupo;
 }
+
+sf::RectangleShape &Personagens::Inimigos::Minion::getRetangulo()
+{
+    return retangulo;
+}
+int Personagens::Inimigos::Minion::tam_grupo=1;
+

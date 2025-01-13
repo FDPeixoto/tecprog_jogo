@@ -10,7 +10,8 @@
                 "${workspaceFolder}/include/Gerenciadores/**",
                 "${workspaceFolder}/include/Fases/**",
                 "${workspaceFolder}/include/Entidades/**",
-                "${workspaceFolder}/include/Entidades/Personagens/**"
+                "${workspaceFolder}/include/Entidades/Personagens/**",
+                "${workspaceFolder}/include/Entidades/Personagens/Inimigos/**"
             ],
             "defines": [
                 "_DEBUG",
