@@ -30,7 +30,7 @@
         }
 
         if (sf::Keyboard::isKeyPressed(teclaEsquerda) && retangulo.getPosition().x > 0.f)
-            retangulo.move(-200.f * deltaTime, 0.f);
+            retangulo.move(-200.f * deltaTime, 0.f);//Parece que o -200 .f é  a velocidade do x, os parâmetros são (x,y)
         if (sf::Keyboard::isKeyPressed(teclaDireita) && retangulo.getPosition().x + retangulo.getSize().x < 800.f)
             retangulo.move(200.f * deltaTime, 0.f);
 

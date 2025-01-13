@@ -15,6 +15,7 @@ namespace Personagens{
         //virtual void danificar(Jogador* p);
         void set_nivel_maldade(int n);
         const int get_nivel_maldade();
+        virtual void executar()=0;
 
     };
 }

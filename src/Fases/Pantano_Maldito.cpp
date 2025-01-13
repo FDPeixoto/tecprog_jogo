@@ -1,7 +1,12 @@
 #include "../include/Fases/Pantano_Maldito.hpp"
+#include "../include/Entidades/Personagens/Inimigos/Minion.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <cmath>
+
+bool checkCollision(const sf::RectangleShape& rect1, const sf::RectangleShape& rect2) {
+    return rect1.getGlobalBounds().intersects(rect2.getGlobalBounds());
+}
 
 Fases::Pantano_Maldito::Pantano_Maldito(): maxInimMedios(1)
 {
@@ -29,6 +34,22 @@ void Fases::Pantano_Maldito::executar()
     jogador2->setTeclas(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W);
 
     jogador2->setCor(sf::Color::Yellow);
+
+    float posX=50.f;
+    float posY=50.f;
+    Listas::ListaEntidades* conjuntoEntidades = new Listas::ListaEntidades;
+    conjuntoEntidades->incluirEntidade(jogador1);
+    conjuntoEntidades->incluirEntidade(jogador2); 
+
+    for(int i=0; i<(int) Personagens::Inimigos::Minion::get_tam_grupo();i++){
+        Personagens::Inimigos::Minion* minion= new Personagens::Inimigos::Minion();
+        
+        minion->setX(posX);
+        minion->setY(posY);
+        //Já incluo os minions na lista
+        conjuntoEntidades->incluirEntidade(minion);
+        posX=posX+30;
+    }
     
     //Personagens::Inimigo* inimigo1 = new Personagens::Inimigo();
     //Inimigo inimigo(100.f, 100.f, 50.f, gravidade);
@@ -37,9 +58,6 @@ void Fases::Pantano_Maldito::executar()
     plataforma.setFillColor(sf::Color::Green);
     plataforma.setPosition(0.f, 550.f);
 
-    Listas::ListaEntidades* conjuntoEntidades = new Listas::ListaEntidades; 
-    conjuntoEntidades->incluirEntidade(jogador1);
-    conjuntoEntidades->incluirEntidade(jogador2);
 
     sf::Clock clock;
 
@@ -58,7 +76,12 @@ void Fases::Pantano_Maldito::executar()
         jogador1->atualizar(deltaTime, noChaoAzul, plataforma, gravidade);
         jogador2->atualizar(deltaTime, noChaoAmarelo, plataforma, gravidade);
 
-        //inimigo.atualizar(deltaTime, jogadorAzul, jogadorAmarelo, plataforma);
+        inimigo.atualizar(deltaTime, jogadorAzul, jogadorAmarelo, plataforma);
+
+        if (checkCollision(jogadorAzul.getRetangulo(), inimigo.getRetangulo()) || checkCollision(jogadorAmarelo.getRetangulo(), inimigo.getRetangulo())) {
+            std::cout << "Game Over!" << std::endl;
+            window.close();
+        }
 
         window.clear();
         window.draw(plataforma);
