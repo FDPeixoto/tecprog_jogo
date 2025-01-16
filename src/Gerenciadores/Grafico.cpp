@@ -10,6 +10,10 @@
 #define ALTURA 720
 
 
+
+namespace Gerenciadores{
+    Grafico* Grafico::pGrafico = nullptr;
+}
 Gerenciadores::Grafico::Grafico(): 
     janela(new sf::RenderWindow(sf::VideoMode(LARGURA, ALTURA), "Medievo++")),
     panorama(sf::View(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(LARGURA, ALTURA)))

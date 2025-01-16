@@ -18,11 +18,7 @@ namespace Gerenciadores{
             Grafico();
         public:
             ~Grafico();
-            static Grafico* getGerenciadorGrafico(){
-                if(pGrafico == nullptr){
-                    return new Grafico();
-                }
-            }
+            static Grafico* getGerenciadorGrafico();
             sf::RenderWindow* getJanela();
             void limparJanela();
             void redimensionarJanela();

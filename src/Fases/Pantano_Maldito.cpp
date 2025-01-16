@@ -43,9 +43,6 @@ void Fases::Pantano_Maldito::executar()
 
     //for(int i=0; i<(int) Personagens::Inimigos::Minion::get_tam_grupo();i++){
         Personagens::Inimigos::Minion* minion= new Personagens::Inimigos::Minion();
-        
-        minion->setX(posX);
-        minion->setY(posY);
         //Já incluo os minions na lista
         conjuntoEntidades->incluirEntidade(minion);
         posX=posX+30;
@@ -85,6 +82,7 @@ void Fases::Pantano_Maldito::executar()
 
         window.clear();
         window.draw(plataforma);
+        window.draw(minion->getRetangulo());
         conjuntoEntidades->desenharEntidades(window);
         //jogador1->desenhar(window);
         //jogador2->desenhar(window);

@@ -9,7 +9,7 @@ Personagens::Inimigos::Minion::Minion()
 {
     retangulo.setSize(sf::Vector2f(20.f, 20.f));
     retangulo.setFillColor(sf::Color::Red);
-    retangulo.setPosition(x, y);
+    retangulo.setPosition(200.f, 200.f);
     velocidade= 50.f;
 }
 
@@ -68,5 +68,11 @@ sf::RectangleShape &Personagens::Inimigos::Minion::getRetangulo()
 {
     return retangulo;
 }
+
+void Personagens::Inimigos::Minion::setCor(sf::Color c){
+     cor =c;
+      getRetangulo().setFillColor(c);
+ }
+
 int Personagens::Inimigos::Minion::tam_grupo=1;
 
