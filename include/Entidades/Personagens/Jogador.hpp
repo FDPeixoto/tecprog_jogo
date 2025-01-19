@@ -1,35 +1,30 @@
 #pragma once
-#include "../Entidade.hpp"
+#include "Personagem.hpp"
 
 #include <cmath>
-namespace Personagens{
-  class Jogador:public Entidade{
+namespace Entidades{
+  class Jogador: public Personagem{
   protected:
     int pontos;
     int numero_baixas;
     bool espada;
     bool magia;
     bool antidoto;
-    
-    float velocidadeY;
-    bool noChao;
     bool pulando;
 
     sf::Keyboard::Key teclaEsquerda;
     sf::Keyboard::Key teclaDireita;
     sf::Keyboard::Key teclaPulo;
-    float puloForca;
 
   public:
-    Jogador();
+    Jogador(const sf::Vector2f posicao);
     ~Jogador();
-    void setTeclas( sf::Keyboard::Key esquerda, sf::Keyboard::Key direita, sf::Keyboard::Key pulo);
+    void setTeclas(sf::Keyboard::Key esquerda, sf::Keyboard::Key direita, sf::Keyboard::Key pulo);
     void atualizar(float deltaTime, bool& noChao, sf::RectangleShape& plataforma, float gravidade);
     void salvarDataBuffer();
-    void setCor(sf::Color c);
     virtual void mover();
     virtual void executar();
     virtual void salvar();
-    sf::RectangleShape& getRetangulo();
+    void colisao(Entidade* outraEntidade, sf::Vector2f distancia = sf::Vector2f(0.0f, 0.0f));
   };
 }

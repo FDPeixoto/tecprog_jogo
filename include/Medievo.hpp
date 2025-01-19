@@ -1,8 +1,8 @@
 #pragma once
-class Jogador;
 
 #include "Fases/Pantano_Maldito.hpp"
 #include "../../include/Gerenciadores/Grafico.hpp"
+#include "Jogador.hpp"
 
 
 #include <iostream>
@@ -10,9 +10,9 @@ class Jogador;
 #include <cmath>
 class Medievo {
     private:
-    Personagens::Jogador* pJog1;
-    Personagens::Jogador* pJog2;
-    Fases::Pantano_Maldito primeiraFase;
+    Entidades::Jogador* pJog1;
+    Entidades::Jogador* pJog2;
+    //Fases::Pantano_Maldito primeiraFase;
     Gerenciadores::Grafico* pGerenciadorGrafico;
 
     public:
@@ -20,6 +20,5 @@ class Medievo {
     Medievo();
     ~Medievo();
     void executar();
-    void setJog(Personagens::Jogador* p, int num);
-
+    void setJog(Entidades::Jogador *p, int num);
 };

@@ -4,8 +4,11 @@
 #include <SFML/Graphics.hpp>
 #include "../../include/Listas/ListaEntidades.hpp"
 #include "../../include/Listas/Lista.hpp"
+#include "Entidade.hpp"
+#include "Entidades/Personagens/Jogador.hpp"
 
 #include <map>
+#include <Personagem.hpp>
 
 namespace Gerenciadores{
     class Grafico{
@@ -23,7 +26,7 @@ namespace Gerenciadores{
             void limparJanela();
             void redimensionarJanela();
             void mostrarJanela();
-            void desenharEntidade(sf::RectangleShape corpo);
+            void desenharCorpo(sf::RectangleShape corpo);
             void desenharListaEntidades(Listas::ListaEntidades *listaDeEntidades);
 
     };

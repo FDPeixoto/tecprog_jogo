@@ -2,13 +2,13 @@
 #include "Jogador.hpp"
 #include "Personagem.hpp"
 
-namespace Personagens{
+namespace Entidades{
     class Inimigo: public Personagem{
         protected:
         int nivel_maldade;
 
         public:
-        Inimigo();
+        Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao);
         ~Inimigo();
         void salvarDataBuffer();
         //virtual void executar()=0;

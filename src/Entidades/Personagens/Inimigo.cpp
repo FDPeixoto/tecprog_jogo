@@ -1,10 +1,9 @@
-//#include "../include/Entidades/Personagens/Jogador.hpp"
-//#include "../include/Entidades/Personagens/Personagem.hpp"
-#include "../../../include/Entidades/Personagens/Inimigo.hpp"
+#include "Inimigo.hpp"
+#include "stdafx.h"
 
-namespace Personagens{
+namespace Entidades{
  
-    Inimigo::Inimigo(): nivel_maldade(0){}
+    Inimigo::Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao): Personagem(tam, posicao, INIMIGO), nivel_maldade(0){}
     Inimigo::~Inimigo(){}
     void Inimigo::salvarDataBuffer(){}
     //void Inimigo::executar(){}

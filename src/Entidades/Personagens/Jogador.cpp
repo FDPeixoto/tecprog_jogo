@@ -1,23 +1,21 @@
-#include "../../../include/Entidades/Personagens/Jogador.hpp"
+#include "Jogador.hpp"
 #include "stdafx.h"
  
- Personagens::Jogador::Jogador(): Entidade(), pontos(0), numero_baixas(0), espada (false), magia (false), antidoto (false) 
-  {
-        retangulo.setSize(sf::Vector2f(50.f, 50.f));
-        retangulo.setFillColor(sf::Color::Blue);
-        retangulo.setPosition(x, y);
-        velocidadeY = 0.f;
-        noChao = false;
-        pulando = false;
-        puloForca= -std::sqrt(2 * 500.f * 2 * 50.f);//500.f eh a gravidade
-  }
-  Personagens::Jogador::~Jogador(){}
-  void Personagens::Jogador::setTeclas( sf::Keyboard::Key esquerda, sf::Keyboard::Key direita, sf::Keyboard::Key pulo){
+
+ namespace Entidades{
+    Jogador::Jogador(const sf::Vector2f posicao): 
+    Personagem(sf::Vector2f(JOGADORLARGURA, JOGADORALTURA) , posicao, JOGADOR), pontos(0), numero_baixas(0), espada (false), magia (false), antidoto (false){
+        setVelocidade(sf::Vector2f(0.1f, 0.1f));
+    }
+  Jogador::~Jogador(){}
+  void Jogador::setTeclas(sf::Keyboard::Key esquerda, sf::Keyboard::Key direita, sf::Keyboard::Key pulo){
     teclaEsquerda=esquerda;
     teclaDireita=direita;
     teclaPulo=pulo;
   }
-  void Personagens::Jogador::atualizar(float deltaTime, bool& noChao, sf::RectangleShape& plataforma, float gravidade) {
+
+  /*
+  void Jogador::atualizar(float deltaTime, bool& noChao, sf::RectangleShape& plataforma, float gravidade) {
     
         velocidadeY += gravidade * deltaTime;
         retangulo.move(0.f, velocidadeY * deltaTime);
@@ -39,18 +37,28 @@
             noChao = false;
             pulando = !noChao;
         }
-    }
-    sf::RectangleShape& Personagens::Jogador::getRetangulo() {
-        return retangulo;
-    }
+  }
+  */
 
-  void Personagens::Jogador::salvarDataBuffer(){}
-  void Personagens::Jogador::mover(){}
-  void Personagens::Jogador::executar() {}
-  void Personagens::Jogador::salvar(){}
- 
- void Personagens::Jogador::setCor(sf::Color c)
- {
-     cor=c;
-      getRetangulo().setFillColor(c);
+  void Jogador::salvarDataBuffer(){}
+  void Jogador::mover(){
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+        corpo.move(-velocidade.x, 0.f);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+        corpo.move(velocidade.x, 0.f);
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+        corpo.move(0.f, -velocidade.y);
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+        corpo.move(0.f, velocidade.y);
+    }
+  }
+  void Jogador::executar() {}
+  void Jogador::salvar(){}
+  void Jogador::colisao(Entidade *outraEntidade, sf::Vector2f distancia)
+  {
+  }
  }

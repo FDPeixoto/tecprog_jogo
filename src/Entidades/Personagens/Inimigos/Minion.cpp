@@ -1,11 +1,10 @@
-#include "../../../../include/Entidades/Personagens/Inimigos/Minion.hpp"
 //include "Minion.hpp"
-
+/*
 float distance(const sf::Vector2f& a, const sf::Vector2f& b) {
     return std::sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
 }
 
-Personagens::Inimigos::Minion::Minion()
+Entidades::Inimigos::Minion::Minion()
 {
     retangulo.setSize(sf::Vector2f(20.f, 20.f));
     retangulo.setFillColor(sf::Color::Red);
@@ -76,3 +75,4 @@ void Personagens::Inimigos::Minion::setCor(sf::Color c){
 
 int Personagens::Inimigos::Minion::tam_grupo=1;
 
+*/

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <cmath>
-
+/*
 bool checkCollision(const sf::RectangleShape& rect1, const sf::RectangleShape& rect2) {
     return rect1.getGlobalBounds().intersects(rect2.getGlobalBounds());
 }
@@ -78,7 +78,7 @@ void Fases::Pantano_Maldito::executar()
         /*if (checkCollision(jogador1->getRetangulo(), minion->getRetangulo()) || checkCollision(jogador2->getRetangulo(), minion->getRetangulo())) {
             std::cout << "Game Over!" << std::endl;
             window.close();
-        }*/
+        }
 
         window.clear();
         window.draw(plataforma);
@@ -112,3 +112,4 @@ const int Fases::Pantano_Maldito::getMaxInimMedios()
 {
     return maxInimMedios;
 }
+*/

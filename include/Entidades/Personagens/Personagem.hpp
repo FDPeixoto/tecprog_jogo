@@ -1,17 +1,17 @@
 #pragma once
-#include "../Entidade.hpp"
-namespace Personagens{
-class Personagem:public Entidade{
-protected:
-  int num_vidas;
-  int velocidade;
-public:
-  Personagem();
-  ~Personagem();
-  void salvarDataBuffer();
-  virtual void mover();
-  virtual void executar() = 0;
-  virtual void salvar()=0;
-
-};
+#include "Entidade.hpp"
+namespace Entidades{
+  class Personagem:public Entidade{
+  protected:
+    int num_vidas;
+    sf::Vector2f velocidade;
+    bool noChao;
+  public:
+    Personagem(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
+    ~Personagem();
+    virtual void mover() = 0;
+    virtual void executar() = 0;
+    virtual void salvar()= 0;
+    void setVelocidade(sf::Vector2f vel);
+  };
 }

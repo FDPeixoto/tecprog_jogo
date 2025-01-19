@@ -3,8 +3,6 @@
 
 namespace Fases{
     class Fase{
-        private:
-        Gerenciadores::Colisao GC;
 
         protected:
         Listas::ListaEntidades* listaPersonagens;

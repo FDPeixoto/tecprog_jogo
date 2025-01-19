@@ -1,11 +1,10 @@
-#include <cstring>
 #include <iostream>
 
 #include "../../include/Gerenciadores/Grafico.hpp"
 #include "../../include/Entidades/Entidade.hpp"
 #include "../../include/Listas/ListaEntidades.hpp"
 #include "../../include/Listas/Lista.hpp"
-
+#include "Grafico.hpp"
 #define LARGURA 1280
 #define ALTURA 720
 
@@ -50,11 +49,19 @@ void Gerenciadores::Grafico::mostrarJanela(){
     janela->display();
 }
 
-void Gerenciadores::Grafico::desenharEntidade(sf::RectangleShape corpo)
+void Gerenciadores::Grafico::desenharCorpo(sf::RectangleShape corpo)
 {
     janela->draw(corpo);
 }
 
+
 void Gerenciadores::Grafico::desenharListaEntidades(Listas::ListaEntidades *listaDeEntidades){
-    listaDeEntidades->desenharEntidades(*janela);
+    Listas::Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* pEleAux = nullptr;
+    Entidades::Entidade* pEntAux = nullptr;
+    pEleAux = listaDeEntidades->getListaEnt().getPrimeiro();
+    while (pEleAux != nullptr){
+        pEntAux = pEleAux->getInfo();
+        desenharCorpo(pEntAux->getCorpo());
+        pEleAux = pEleAux->getProx();
+    }
 }

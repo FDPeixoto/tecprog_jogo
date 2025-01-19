@@ -35,20 +35,14 @@ Listas::ListaEntidades::~ListaEntidades()
 }
 
 
-void Listas::ListaEntidades::incluirEntidade(Entidade *pEnte)
+void Listas::ListaEntidades::incluirEntidade(Entidades::Entidade *pEnte)
 {
     if(pEnte != nullptr){
         listaEnt.incluirElemento(pEnte);
     }
 }
 
-void Listas::ListaEntidades::desenharEntidades(sf::RenderWindow& window){
-    Lista<Entidade>::Elemento<Entidade>* pEleAux = nullptr;
-    Entidade* pEntAux = nullptr;
-    pEleAux = listaEnt.getPrimeiro();
-    while (pEleAux != nullptr){
-        pEntAux = pEleAux->getInfo();
-        pEntAux->desenhar(window);
-        pEleAux = pEleAux->getProx();
-    }
-} 
+Listas::Lista<Entidades::Entidade> Listas::ListaEntidades::getListaEnt()
+{
+    return listaEnt;
+}
