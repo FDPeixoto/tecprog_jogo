@@ -9,6 +9,6 @@
 #define DELTATIME 60.0f
 #define JOGADORALTURA 100.f
 #define JOGADORLARGURA 50.f
-#define JOGADOR 1
-#define INIMIGO 2
-#define OBSTACUlO 3
+#define IDJOGADOR 1
+#define IDINIMIGO 2
+#define IDOBSTACUlO 3

@@ -32,6 +32,10 @@ namespace Entidades{
     return tam;
   }
 
+  void Entidade::moverCorpo(sf::Vector2f posicao){
+    corpo.move(posicao);
+  }
+
   const sf::Vector2f Entidade::getPos()
   {
     return pos;

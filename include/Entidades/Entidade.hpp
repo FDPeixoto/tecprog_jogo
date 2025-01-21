@@ -28,6 +28,7 @@ namespace Entidades{
       const sf::Vector2f getPos();
       const int getID();
       const sf::Vector2f getTam();
-      virtual void colisao(Entidade* outraEntidade, sf::Vector2f distancia = sf::Vector2f(0.0f, 0.0f)) = 0;
+      void moverCorpo(sf::Vector2f posicao);
+      virtual void colisao(Entidade *outraEntidade, sf::Vector2f distancia = sf::Vector2f(0.0f, 0.0f)) = 0;
   };
 }

@@ -4,7 +4,7 @@
 
  namespace Entidades{
     Jogador::Jogador(const sf::Vector2f posicao): 
-    Personagem(sf::Vector2f(JOGADORLARGURA, JOGADORALTURA) , posicao, JOGADOR), pontos(0), numero_baixas(0), espada (false), magia (false), antidoto (false){
+    Personagem(sf::Vector2f(JOGADORLARGURA, JOGADORALTURA) , posicao, IDJOGADOR), pontos(0), numero_baixas(0), espada (false), magia (false), antidoto (false){
         setVelocidade(sf::Vector2f(0.1f, 0.1f));
     }
   Jogador::~Jogador(){}
@@ -43,13 +43,13 @@
   void Jogador::salvarDataBuffer(){}
   void Jogador::mover(){
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
+    if (sf::Keyboard::isKeyPressed(teclaEsquerda)){
         corpo.move(-velocidade.x, 0.f);
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
+    if (sf::Keyboard::isKeyPressed(teclaDireita)){
         corpo.move(velocidade.x, 0.f);
     }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+    if(sf::Keyboard::isKeyPressed(teclaPulo)){
         corpo.move(0.f, -velocidade.y);
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
@@ -58,7 +58,34 @@
   }
   void Jogador::executar() {}
   void Jogador::salvar(){}
+  //Checa a colisao entre o jogador e cada tipo de entidade
   void Jogador::colisao(Entidade *outraEntidade, sf::Vector2f distancia)
   {
+    int ID = outraEntidade->getID();
+    switch (ID)
+    {
+    case IDJOGADOR: //Verifica todos os casos de colisao entre jogadores. 
+        if(pos.x < outraEntidade->getPos().x){
+            moverCorpo(sf::Vector2f(-distancia.x / 2, 0.f));
+            outraEntidade->moverCorpo(sf::Vector2f(distancia.x / 2, 0.f));
+        } 
+        else{
+            moverCorpo(sf::Vector2f(distancia.x / 2, 0.f));
+            outraEntidade->moverCorpo(sf::Vector2f(-distancia.x / 2, 0.f));
+        }
+         
+        if(pos.y < outraEntidade->getPos().y){
+            moverCorpo(sf::Vector2f(0.f, -distancia.y / 2));
+            outraEntidade->moverCorpo(sf::Vector2f(0.f, distancia.y / 2));
+        }   
+        else{
+            moverCorpo(sf::Vector2f(0.f, +distancia.y / 2));
+            outraEntidade->moverCorpo(sf::Vector2f(0.f, -distancia.y / 2));
+        }
+        break;
+    
+    default:
+        break;
+    }
   }
  }

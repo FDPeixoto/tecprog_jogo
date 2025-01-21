@@ -3,7 +3,7 @@
 
 namespace Entidades{
  
-    Inimigo::Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao): Personagem(tam, posicao, INIMIGO), nivel_maldade(0){}
+    Inimigo::Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao): Personagem(tam, posicao, IDINIMIGO), nivel_maldade(0){}
     Inimigo::~Inimigo(){}
     void Inimigo::salvarDataBuffer(){}
     //void Inimigo::executar(){}
