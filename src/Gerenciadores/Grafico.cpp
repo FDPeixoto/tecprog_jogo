@@ -35,6 +35,9 @@ Gerenciadores::Grafico* Gerenciadores::Grafico::getGerenciadorGrafico(){
 sf::RenderWindow* Gerenciadores::Grafico::getJanela(){
     return janela;
 }
+void Gerenciadores::Grafico::fecharJanela(){
+    janela->close();
+}
 
 void Gerenciadores::Grafico::redimensionarJanela (){
     float proporcaoJanela = float(janela->getSize().x) / float(janela->getSize().y);
