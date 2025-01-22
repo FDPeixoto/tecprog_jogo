@@ -38,7 +38,7 @@ namespace Entidades{
 
   const sf::Vector2f Entidade::getPos()
   {
-    return pos;
+    return corpo.getPosition();
   }
 
   const int Entidade::getID(){

@@ -40,8 +40,8 @@
   }
   */
 
-  void Jogador::salvarDataBuffer(){}
-  void Jogador::mover(){
+    void Jogador::salvarDataBuffer(){}
+    void Jogador::mover(){
 
     if (sf::Keyboard::isKeyPressed(teclaEsquerda)){
         corpo.move(-velocidade.x, 0.f);
@@ -55,37 +55,12 @@
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
         corpo.move(0.f, velocidade.y);
     }
-  }
-  void Jogador::executar() {}
-  void Jogador::salvar(){}
-  //Checa a colisao entre o jogador e cada tipo de entidade
-  void Jogador::colisao(Entidade *outraEntidade, sf::Vector2f distancia)
-  {
-    int ID = outraEntidade->getID();
-    switch (ID)
-    {
-    case IDJOGADOR: //Verifica todos os casos de colisao entre jogadores. 
-        if(pos.x < outraEntidade->getPos().x){
-            moverCorpo(sf::Vector2f(-distancia.x / 2, 0.f));
-            outraEntidade->moverCorpo(sf::Vector2f(distancia.x / 2, 0.f));
-        } 
-        else{
-            moverCorpo(sf::Vector2f(distancia.x / 2, 0.f));
-            outraEntidade->moverCorpo(sf::Vector2f(-distancia.x / 2, 0.f));
-        }
-         
-        if(pos.y < outraEntidade->getPos().y){
-            moverCorpo(sf::Vector2f(0.f, -distancia.y / 2));
-            outraEntidade->moverCorpo(sf::Vector2f(0.f, distancia.y / 2));
-        }   
-        else{
-            moverCorpo(sf::Vector2f(0.f, +distancia.y / 2));
-            outraEntidade->moverCorpo(sf::Vector2f(0.f, -distancia.y / 2));
-        }
-        break;
-    
-    default:
-        break;
     }
-  }
- }
+    void Jogador::executar() {}
+    void Jogador::salvar(){}
+    //Checa a colisao entre o jogador e cada tipo de entidade
+    void Jogador::colisao(Entidade *outraEntidade, sf::Vector2f distancia)
+    { 
+
+    }
+}

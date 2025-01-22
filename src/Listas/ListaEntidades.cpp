@@ -1,7 +1,7 @@
 #include "ListaEntidades.hpp"
 
 namespace Listas{
-    ListaEntidades::ListaEntidades(): listaEnt()
+    ListaEntidades::ListaEntidades(): listaEnt(new Listas::Lista<Entidades::Entidade>())
     {
     }
 
@@ -13,11 +13,11 @@ namespace Listas{
     void ListaEntidades::incluirEntidade(Entidades::Entidade *pEnte)
     {
         if(pEnte != nullptr){
-            listaEnt.incluirElemento(pEnte);
+            listaEnt->incluirElemento(pEnte);
         }
     }
 
-    Lista<Entidades::Entidade> ListaEntidades::getListaEnt()
+    Lista<Entidades::Entidade>* ListaEntidades::getListaEnt()
     {
         return listaEnt;
     }

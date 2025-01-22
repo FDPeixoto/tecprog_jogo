@@ -13,7 +13,9 @@ class Medievo {
     Entidades::Jogador* pJog1;
     Entidades::Jogador* pJog2;
     //Fases::Pantano_Maldito primeiraFase;
+    Listas::ListaEntidades* listaDeEntidades;
     Gerenciadores::Grafico* pGerenciadorGrafico;
+    Gerenciadores::Colisao* pGerenciadorColisao;
 
     public:
     float distance(const sf::Vector2f& a, const sf::Vector2f& b);

@@ -58,7 +58,7 @@ void Gerenciadores::Grafico::desenharCorpo(sf::RectangleShape corpo)
 void Gerenciadores::Grafico::desenharListaEntidades(Listas::ListaEntidades *listaDeEntidades){
     Listas::Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* pEleAux = nullptr;
     Entidades::Entidade* pEntAux = nullptr;
-    pEleAux = listaDeEntidades->getListaEnt().getPrimeiro();
+    pEleAux = listaDeEntidades->getListaEnt()->getPrimeiro();
     while (pEleAux != nullptr){
         pEntAux = pEleAux->getInfo();
         desenharCorpo(pEntAux->getCorpo());

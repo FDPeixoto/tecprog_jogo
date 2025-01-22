@@ -4,7 +4,7 @@
 namespace Listas{
     class ListaEntidades{
         private:
-        Lista<Entidades::Entidade> listaEnt;
+        Lista<Entidades::Entidade>* listaEnt;
         
         public:
         ListaEntidades();
@@ -14,6 +14,6 @@ namespace Listas{
         void executar();
         void limparLista();
         Entidades::Entidade* operator[](int pos);
-        Lista<Entidades::Entidade> getListaEnt();
+        Lista<Entidades::Entidade>* getListaEnt();
     };
 }

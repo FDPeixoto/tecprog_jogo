@@ -1,14 +1,26 @@
-#include "../../include/Gerenciadores/Colisao.hpp"
+#include "Colisao.hpp"
 
 /*Codigo dos gerenciadores foi inspirado pelo monitor Giovani https://github.com/Giovanenero/JogoPlataforma2D-Jungle/blob/main/Jungle%2B%2B/src/Gerenciador/GerenciadorColisao.cpp */
 namespace Gerenciadores{
-    Colisao::Colisao(Listas::ListaEntidades* entidades): listaDeEntidades(entidades)
+    Colisao* Colisao::pColisao = nullptr;
+    Colisao::Colisao()
     {
     }
     Colisao::~Colisao()
     {
     }
-    const sf::Vector2f Colisao::calculaColisao(Entidades::Entidade *entidade1, Entidades::Entidade *entidade2)
+    Colisao *Colisao::getGerenciadorColisao()
+    {
+        if (pColisao == nullptr){
+            pColisao = new Colisao();
+        }
+        return pColisao;
+    }
+    void Colisao::setListaEntidades(Listas::ListaEntidades *entidades)
+    {
+        listaDeEntidades = entidades;
+    }
+    const sf::Vector2f Colisao::calculaColisao(Entidades::Entidade *entidade1, Entidades::Entidade *entidade2) 
     {
         sf::Vector2f pos1 = entidade1->getPos();
         sf::Vector2f pos2 = entidade2->getPos();
@@ -28,15 +40,17 @@ namespace Gerenciadores{
         Listas::Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* pElem2 = nullptr;
         Entidades::Entidade* pEnt1 = nullptr;
         Entidades::Entidade* pEnt2 = nullptr;
-        pElem1 = listaDeEntidades->getListaEnt().getPrimeiro();
+        pElem1 = listaDeEntidades->getListaEnt()->getPrimeiro();
         while (pElem1 != nullptr){
             pEnt1 = pElem1->getInfo();
             pElem2 = pElem1->getProx();
             while(pElem2 != nullptr){
                 pEnt2 = pElem2->getInfo();
                 sf::Vector2f distanciaEntreEntidades = calculaColisao(pEnt1, pEnt2);
-                if(distanciaEntreEntidades.x < 0.0f && distanciaEntreEntidades.y < 0.0f){
-                        pEnt1->colisao(pEnt2, distanciaEntreEntidades);
+                sf::FloatRect intersec = pEnt1->getCorpo().getGlobalBounds();
+                
+                if(intersec.intersects(pEnt2->getCorpo().getGlobalBounds())){
+                    pEnt1->colisao(pEnt2, distanciaEntreEntidades);
                 }
                 pElem2 = pElem2->getProx();
             }
@@ -44,7 +58,6 @@ namespace Gerenciadores{
             pElem1 = pElem1->getProx();
         }
     }
-
 }
 
 
