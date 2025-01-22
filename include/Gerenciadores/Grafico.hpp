@@ -23,6 +23,7 @@ namespace Gerenciadores{
             ~Grafico();
             static Grafico* getGerenciadorGrafico();
             sf::RenderWindow* getJanela();
+            void fecharJanela();
             void limparJanela();
             void redimensionarJanela();
             void mostrarJanela();
