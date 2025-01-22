@@ -54,14 +54,12 @@ void Gerenciadores::Grafico::desenharCorpo(sf::RectangleShape corpo)
     janela->draw(corpo);
 }
 
-
-void Gerenciadores::Grafico::desenharListaEntidades(Listas::ListaEntidades *listaDeEntidades){
-    Listas::Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* pEleAux = nullptr;
-    Entidades::Entidade* pEntAux = nullptr;
-    pEleAux = listaDeEntidades->getListaEnt()->getPrimeiro();
-    while (pEleAux != nullptr){
-        pEntAux = pEleAux->getInfo();
-        desenharCorpo(pEntAux->getCorpo());
-        pEleAux = pEleAux->getProx();
+void Gerenciadores::Grafico::desenharListaEntidades(Listas::ListaEntidades *listaMoveis, Listas::ListaEntidades *listaFixos)
+{
+    for(Listas::Lista<Entidades::Entidade*>::Iterator it = listaFixos->getListaEnt().inicio(); it != listaFixos->getListaEnt().fim(); ++it){
+        desenharCorpo((*(*it))->getCorpo());   
+    }
+    for(Listas::Lista<Entidades::Entidade*>::Iterator it = listaMoveis->getListaEnt().inicio(); it != listaMoveis->getListaEnt().fim(); ++it){
+        desenharCorpo((*(*it))->getCorpo());   
     }
 }

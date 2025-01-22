@@ -27,7 +27,6 @@ namespace Gerenciadores{
             void redimensionarJanela();
             void mostrarJanela();
             void desenharCorpo(sf::RectangleShape corpo);
-            void desenharListaEntidades(Listas::ListaEntidades *listaDeEntidades);
-
+            void desenharListaEntidades(Listas::ListaEntidades *listaMoveis, Listas::ListaEntidades *listaFixos);
     };
 }

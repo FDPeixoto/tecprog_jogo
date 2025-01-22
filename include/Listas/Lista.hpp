@@ -18,7 +18,7 @@ namespace Listas{
         public:
           Elemento(): pInfo(nullptr), pProx(nullptr), pAnte(nullptr){}
 
-          Elemento(TE* info): pInfo(info), pProx(nullptr), pAnte(nullptr){}
+          Elemento(TE* info): pInfo(info), pProx(nullptr), pAnte(nullptr) {}
           
           ~Elemento(){
             pInfo = nullptr;
@@ -34,34 +34,51 @@ namespace Listas{
           
           Elemento<TE>* getProx(){return pProx;}
 
-          void setAnte(Elemento<TE>* pA){}
-          
+          void setAnte(Elemento<TE>* pA){pAnte = pA;}   
+
           Elemento<TE>* getAnte(){return pAnte;}
       };
+      class Iterator{
+        private: 
+          Elemento<TL>* pAtual;
 
+        public:
+          Iterator(Elemento<TL>* elemento) : pAtual(elemento) {}
+
+          TL* operator*() const{
+            return pAtual->getInfo();
+          }
+
+          Iterator& operator++() {
+            pAtual = pAtual->getProx();
+            return *this;
+          }
+
+          Iterator operator++(int) {
+            Iterator aux = *this;
+            ++(*this);
+            return aux;
+          }
+
+          bool operator==(const Iterator& pOutro) const {
+            return pAtual == pOutro.pAtual;
+          }
+          bool operator!=(const Iterator& pOutro) const {
+            return !(*this == pOutro);
+          }
+
+      };
   private:
     Elemento<TL>* pPrimeiro;
-    Elemento<TL>* pAtual;
+    Elemento<TL>* pUltimo;
     int tam;
 
   public:
-    Lista(): pPrimeiro(nullptr), pAtual(nullptr){tam = 0;}
+    Lista(): pPrimeiro(nullptr), pUltimo(nullptr){tam = 0;}
     
     ~Lista(){
-      Elemento<TL>* aux = pPrimeiro;
-      while (aux != nullptr)
-      {
-        pPrimeiro = aux->getProx();
-        delete aux;
-        aux = pPrimeiro;
-      }
+      limpar();
     }
-
-    Elemento<TL>* getPrimeiro(){return pPrimeiro;}
-    
-    Elemento<TL>* getAtual(){return pAtual;}
-
-    Elemento<TL>* getTam(){return tam;}
 
     void incluirElemento(TL* pElemento){
       if (pElemento != nullptr)
@@ -69,20 +86,56 @@ namespace Listas{
         Elemento<TL>* pAux = new Elemento<TL>();
         pAux->setInfo(pElemento);
         pAux->setProx(nullptr);
-        pAux->setAnte(nullptr);
         if (pPrimeiro == nullptr)
         {
           pPrimeiro = pAux;
-          pAtual = pPrimeiro;		
+          pUltimo = pPrimeiro;
         }
         else
         {
-          pAtual->setProx( pAux);
-          pAux->setAnte( pAtual );
-          pAtual = pAux;
+          pUltimo->setProx(pAux);
+          pAux->setAnte(pUltimo);
+          pUltimo = pAux;
         }
         tam++;
       }
     }
+
+    void removerElemento(TL* pElemento){
+      Elemento<TL>* aux = pPrimeiro;
+      while(aux != nullptr && aux->getInfo() != pElemento){
+        aux = aux->getProx();
+      } 
+      if(aux != nullptr){
+        if(aux == pPrimeiro){
+          pPrimeiro = pPrimeiro->getProx();
+        }
+        else if(aux == pUltimo){
+          pUltimo = pUltimo->getAnte();
+        }
+        else{
+          aux->getAnte()->setProx(aux->getProx());
+          aux->getProx()->setAnte(aux->getAnte());
+        }
+        delete aux;
+        tam--;
+      }
+    }
+    void limpar(){
+      Elemento<TL>* aux = pPrimeiro;
+      while (aux != nullptr)
+      {
+        pPrimeiro = aux->getProx();
+        delete aux;
+        aux = pPrimeiro;
+      }
+      tam = 0;
+    }
+
+
+
+    Iterator inicio(){return Iterator(pPrimeiro);}
+    Iterator fim(){return Iterator(pUltimo);}
+    const int getTam(){return tam;}
   };
 }

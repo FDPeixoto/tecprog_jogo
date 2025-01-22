@@ -1,7 +1,7 @@
 #include "ListaEntidades.hpp"
 
 namespace Listas{
-    ListaEntidades::ListaEntidades(): listaEnt(new Listas::Lista<Entidades::Entidade>())
+    ListaEntidades::ListaEntidades(): listaEnt()
     {
     }
 
@@ -13,11 +13,23 @@ namespace Listas{
     void ListaEntidades::incluirEntidade(Entidades::Entidade *pEnte)
     {
         if(pEnte != nullptr){
-            listaEnt->incluirElemento(pEnte);
+            listaEnt.incluirElemento(&pEnte);
         }
     }
 
-    Lista<Entidades::Entidade>* ListaEntidades::getListaEnt()
+    void ListaEntidades::removerEntidade(Entidades::Entidade *pEnte)
+    {
+        if(pEnte != nullptr){
+            for(Lista<Entidades::Entidade*>::Iterator it = listaEnt.inicio(); it !=  listaEnt.fim(); it++){
+                if(**it == pEnte){
+                    listaEnt.removerElemento(&pEnte);
+                    break;
+                }
+            }
+        }
+    }
+
+    Lista<Entidades::Entidade*> ListaEntidades::getListaEnt()
     {
         return listaEnt;
     }

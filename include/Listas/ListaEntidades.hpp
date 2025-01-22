@@ -4,16 +4,17 @@
 namespace Listas{
     class ListaEntidades{
         private:
-        Lista<Entidades::Entidade>* listaEnt;
+        Lista<Entidades::Entidade*> listaEnt;
         
         public:
         ListaEntidades();
         ~ListaEntidades();
         void incluirEntidade(Entidades::Entidade* pEnte);
+        void removerEntidade(Entidades::Entidade* pEnte);
         void remover(Entidades::Entidade* Ente);
         void executar();
         void limparLista();
         Entidades::Entidade* operator[](int pos);
-        Lista<Entidades::Entidade>* getListaEnt();
+        Lista<Entidades::Entidade*> getListaEnt();
     };
 }

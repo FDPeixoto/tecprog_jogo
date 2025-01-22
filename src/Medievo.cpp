@@ -20,7 +20,6 @@ Medievo::~Medievo(){
     delete listaDeEntidades;
 }
 void Medievo::executar(){
-    pGerenciadorColisao->setListaEntidades(listaDeEntidades);
     sf::Clock clock;
     Entidades::Jogador* jogador1 = new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f));
     setJog(jogador1, 1);
@@ -45,7 +44,7 @@ void Medievo::executar(){
         pJog1->mover();
         pJog2->mover();
         pGerenciadorColisao->executar();
-        pGerenciadorGrafico->desenharListaEntidades(listaDeEntidades);
+
         pGerenciadorGrafico->getJanela()->display();
     }
 }

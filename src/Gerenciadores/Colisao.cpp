@@ -16,11 +16,15 @@ namespace Gerenciadores{
         }
         return pColisao;
     }
-    void Colisao::setListaEntidades(Listas::ListaEntidades *entidades)
+    void Colisao::setMoveis(Listas::ListaEntidades *moveis)
     {
-        listaDeEntidades = entidades;
+        listaMoveis = moveis;
     }
-    const sf::Vector2f Colisao::calculaColisao(Entidades::Entidade *entidade1, Entidades::Entidade *entidade2) 
+    void Colisao::setFixos(Listas::ListaEntidades *fixos)
+    {
+        listaFixos = fixos;
+    }
+    const sf::Vector2f Colisao::calculaColisao(Entidades::Entidade *entidade1, Entidades::Entidade *entidade2)
     {
         sf::Vector2f pos1 = entidade1->getPos();
         sf::Vector2f pos2 = entidade2->getPos();
@@ -36,23 +40,31 @@ namespace Gerenciadores{
         return sf::Vector2f(distanciaEntreCentros.x - somaMetadeRectangulo.x, distanciaEntreCentros.y - somaMetadeRectangulo.y);
     }
     void Colisao::executar(){
-        Listas::Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* pElem1 = nullptr;
-        Listas::Lista<Entidades::Entidade>::Elemento<Entidades::Entidade>* pElem2 = nullptr;
-        Entidades::Entidade* pEnt1 = nullptr;
-        Entidades::Entidade* pEnt2 = nullptr;
-        pElem1 = listaDeEntidades->getListaEnt()->getPrimeiro();
-        while (pElem1 != nullptr){
-            pEnt1 = pElem1->getInfo();
-            pElem2 = pElem1->getProx();
-            while(pElem2 != nullptr){
-                pEnt2 = pElem2->getInfo();
-                if(pEnt1->getCorpo().getGlobalBounds().intersects(pEnt2->getCorpo().getGlobalBounds())){
-                    pEnt1->colisao(pEnt2);
+        for(Listas::Lista<Entidades::Entidade*>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); ++it1){
+            if(it1 != nullptr){
+                for(Listas::Lista<Entidades::Entidade*>::Iterator it2 = listaMoveis->getListaEnt().inicio(); it2 != listaMoveis->getListaEnt().fim(); ++it2){
+                    if(it2 != nullptr){
+                        if(it2 != it1){
+                            if((*(*it1))->getCorpo().getGlobalBounds().intersects((*(*it2))->getCorpo().getGlobalBounds())){
+                                (*(*it1))->colisao(*(*it2));
+                            }
+                        }
+                    }
                 }
-                pElem2 = pElem2->getProx();
             }
-            
-            pElem1 = pElem1->getProx();
+        }
+        for(Listas::Lista<Entidades::Entidade*>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); ++it1){
+            if(it1 != nullptr){
+                for(Listas::Lista<Entidades::Entidade*>::Iterator it2 = listaFixos->getListaEnt().inicio(); it2 != listaFixos->getListaEnt().fim(); ++it2){
+                    if(it2 != nullptr){
+                        if(it2 != it1){
+                            if((*(*it1))->getCorpo().getGlobalBounds().intersects((*(*it2))->getCorpo().getGlobalBounds())){
+                                (*(*it1))->colisao(*(*it2));
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
