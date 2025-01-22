@@ -13,6 +13,7 @@
     teclaDireita=direita;
     teclaPulo=pulo;
   }
+  
 
   /*
   void Jogador::atualizar(float deltaTime, bool& noChao, sf::RectangleShape& plataforma, float gravidade) {

@@ -9,7 +9,6 @@ namespace Entidades{
         public:
         Minion();
         ~Minion();
-        void perseguir (Entidades::Jogador* p);
         void salvar();
         void salvarDataBuffer();
         void executar();
