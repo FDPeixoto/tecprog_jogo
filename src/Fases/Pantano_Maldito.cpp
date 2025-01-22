@@ -17,6 +17,7 @@ Fases::Pantano_Maldito::~Pantano_Maldito()
 }
 void Fases::Pantano_Maldito::executar()
 {
+    //pEvento->executar();
     sf::RenderWindow window(sf::VideoMode(800, 600), "Jogadores");
 
     const float gravidade = 500.f;

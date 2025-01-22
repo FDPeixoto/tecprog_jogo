@@ -11,6 +11,9 @@ namespace Entidades{
     bool magia;
     bool antidoto;
     bool pulando;
+    bool atacando;
+    bool andando;
+    bool paraEsquerda;
 
     sf::Keyboard::Key teclaEsquerda;
     sf::Keyboard::Key teclaDireita;
@@ -27,6 +30,9 @@ namespace Entidades{
     virtual void salvar();
     void colisao(Entidade* outraEntidade);
     void atualizar(float dt);
+    void andar(const bool paraEsquerda);
+    const bool getAndando() const;
+    void parar();
     void inicializar();   
   };
 }

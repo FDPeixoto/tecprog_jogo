@@ -6,6 +6,7 @@ namespace Entidades{
     int num_vidas;
     sf::Vector2f velocidade;
     bool noChao;
+
   public:
     Personagem(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
     ~Personagem();

@@ -67,6 +67,26 @@
             return;
         }
     void Jogador::atualizar(float dt){
+        //ou float dt=relogio.getElapsedTime().asSeconds();
+        //Andando só na horizontal por enquanto
+        float ds=velocidade.x*dt;//ou velocidadeFinal.x
+        if(paraEsquerda){
+          ds=ds*(-1);
+        }
+        corpo.move(ds,0.0f);
             return;
     }
+    void Jogador::andar(const bool paraEsquerda){
+        atacando = false;
+        andando = true;
+        this->paraEsquerda = paraEsquerda;
+            
+    }
+    void Jogador::parar(){
+        andando=false;
+    }
+    const bool Jogador::getAndando() const{
+        return andando;
+    }
+
 }
