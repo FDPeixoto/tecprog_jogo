@@ -31,6 +31,17 @@ void Gerenciadores::Evento::verificaTeclaPressionada(sf::Keyboard::Key tecla){
     else if(tecla==sf::Keyboard::Right){
         jog1->andar(false);
     }
+    else if(tecla==sf::Keyboard::Escape){
+        pGerenciadorGrafico->fecharJanela();
+    }
+}
+void Gerenciadores::Evento::verificaTeclaSolta(sf::Keyboard::Key tecla){
+    if( (tecla==sf::Keyboard::A)||(tecla==sf::Keyboard::D)){
+        jog2->parar();
+    }
+    if( (tecla==sf::Keyboard::Left)||(tecla==sf::Keyboard::Right)){
+        jog1->parar();
+    }
 }
 void Gerenciadores::Evento:executar(){
     sf::Event evento;
