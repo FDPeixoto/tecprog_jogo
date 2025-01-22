@@ -46,11 +46,8 @@ namespace Gerenciadores{
             pElem2 = pElem1->getProx();
             while(pElem2 != nullptr){
                 pEnt2 = pElem2->getInfo();
-                sf::Vector2f distanciaEntreEntidades = calculaColisao(pEnt1, pEnt2);
-                sf::FloatRect intersec = pEnt1->getCorpo().getGlobalBounds();
-                
-                if(intersec.intersects(pEnt2->getCorpo().getGlobalBounds())){
-                    pEnt1->colisao(pEnt2, distanciaEntreEntidades);
+                if(pEnt1->getCorpo().getGlobalBounds().intersects(pEnt2->getCorpo().getGlobalBounds())){
+                    pEnt1->colisao(pEnt2);
                 }
                 pElem2 = pElem2->getProx();
             }

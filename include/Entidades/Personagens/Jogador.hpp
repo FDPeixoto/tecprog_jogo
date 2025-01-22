@@ -25,6 +25,6 @@ namespace Entidades{
     virtual void mover();
     virtual void executar();
     virtual void salvar();
-    void colisao(Entidade* outraEntidade, sf::Vector2f distancia = sf::Vector2f(0.0f, 0.0f));
+    void colisao(Entidade* outraEntidade);
   };
 }

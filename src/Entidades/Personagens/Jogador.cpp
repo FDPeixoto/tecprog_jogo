@@ -58,9 +58,7 @@
     }
     void Jogador::executar() {}
     void Jogador::salvar(){}
-    //Checa a colisao entre o jogador e cada tipo de entidade
-    void Jogador::colisao(Entidade *outraEntidade, sf::Vector2f distancia)
-    { 
-
+    void Jogador::colisao(Entidade *outraEntidade)
+    {
     }
 }
