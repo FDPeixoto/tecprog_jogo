@@ -17,6 +17,8 @@ namespace Entidades{
             void set_nivel_maldade(int n);
             const int get_nivel_maldade();
             virtual void executar()=0;
+            void atualizar(float dt);
+            void inicializar();   
 
         };
     }

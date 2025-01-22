@@ -61,4 +61,11 @@
     void Jogador::colisao(Entidade *outraEntidade)
     {
     }
+    void Jogador::inicializar()
+        {
+            return;
+        }
+    void Jogador::atualizar(float dt){
+            return;
+    }
 }

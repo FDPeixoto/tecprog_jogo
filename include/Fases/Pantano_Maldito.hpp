@@ -2,7 +2,6 @@
 #include "Fase.hpp"
 //#include "../Entidades/Entidade.hpp"
 #include "Jogador.hpp"
-#include "Inimigo.hpp"
 #include "../../include/Listas/ListaEntidades.hpp"
 #include "../../include/Listas/Lista.hpp"
 

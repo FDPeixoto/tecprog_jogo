@@ -2,12 +2,8 @@
 #include <sstream>  // Incluindo sstream para o uso de std::ostringstream
 #include "Entidade.hpp"
 namespace Entidades{
-  
-  Entidade::Entidade()
-  {
-  }
 
-  Entidade::Entidade(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID): Ente(), corpo(sf::RectangleShape(tamanho)), pos(posicao), identificador(ID) {
+  Entidade::Entidade(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID): Ente(ID), corpo(sf::RectangleShape(tamanho)), pos(posicao) {
     corpo.setPosition(pos);
   }
 
@@ -36,12 +32,13 @@ namespace Entidades{
     corpo.move(posicao);
   }
 
+  void Entidade::renderizar()
+  {
+    return;
+  }
+
   const sf::Vector2f Entidade::getPos()
   {
     return corpo.getPosition();
-  }
-
-  const int Entidade::getID(){
-    return identificador;
   }
 }

@@ -13,10 +13,8 @@ namespace Entidades{
       sf::RectangleShape corpo;
       sf::Vector2f pos;
       sf::Vector2f tam;
-      int identificador;
 
     public:
-      Entidade();
       Entidade(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
       virtual ~Entidade();
       virtual void executar() = 0;
@@ -26,9 +24,11 @@ namespace Entidades{
       const sf::RectangleShape getCorpo();
       void setPos(sf::Vector2f posicao);
       const sf::Vector2f getPos();
-      const int getID();
       const sf::Vector2f getTam();
       void moverCorpo(sf::Vector2f posicao);
       virtual void colisao(Entidade *outraEntidade) = 0;
+      virtual void renderizar();
+      virtual void atualizar(float dt) = 0;
+      virtual void inicializar() = 0;   
   };
 }

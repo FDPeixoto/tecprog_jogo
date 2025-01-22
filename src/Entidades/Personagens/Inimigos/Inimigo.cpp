@@ -1,7 +1,7 @@
-#pragma once
-#include "Inimigo.hpp"
 #include "Jogador.hpp"
 #include "stdafx.h"
+#include <Inimigos/Inimigo.hpp>
+
 
 namespace Entidades{
     namespace Inimigos{
@@ -18,5 +18,13 @@ namespace Entidades{
         const int Inimigo:: get_nivel_maldade(){
             return (nivel_maldade);
         }
+        void Inimigo::inicializar()
+        {
+            return;
+        }
+        void Inimigo::atualizar(float dt){
+            return;
+        }
     }
+    
 }

@@ -1,9 +1,11 @@
-#include "../include/Ente.hpp"
+#include "Ente.hpp"
 
-  Ente::Ente(){}
+  Ente::Ente(int ID): id(ID){}
   Ente::~Ente(){
-    //pGG = NULL;
+      // pGG = NULL;
+      
     //pFig = NULL;
   }
   void Ente::executar() {};
   void Ente::desenhar(){};
+const int Ente::getID(){return id;}

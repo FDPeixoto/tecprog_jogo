@@ -26,5 +26,7 @@ namespace Entidades{
     virtual void executar();
     virtual void salvar();
     void colisao(Entidade* outraEntidade);
+    void atualizar(float dt);
+    void inicializar();   
   };
 }
