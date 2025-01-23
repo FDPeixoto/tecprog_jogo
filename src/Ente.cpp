@@ -1,5 +1,5 @@
 #include "Ente.hpp"
-
+  Ente::Ente(){}
   Ente::Ente(int ID): id(ID){}
   Ente::~Ente(){
       // pGG = NULL;

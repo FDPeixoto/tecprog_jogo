@@ -2,7 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <cmath>
-/*
+
 bool checkCollision(const sf::RectangleShape& rect1, const sf::RectangleShape& rect2) {
     return rect1.getGlobalBounds().intersects(rect2.getGlobalBounds());
 }
@@ -17,17 +17,18 @@ Fases::Pantano_Maldito::~Pantano_Maldito()
 }
 void Fases::Pantano_Maldito::executar()
 {
+    /*
     sf::RenderWindow window(sf::VideoMode(800, 600), "Jogadores");
 
     const float gravidade = 500.f;
     //const float puloForca = -std::sqrt(2 * gravidade * 2 * 50.f);
 
-    Personagens::Jogador* jogador1=new Personagens::Jogador();
+    Entidades::Jogador* jogador1=new Entidades::Jogador();
     jogador1->setX(575.f);
     jogador1->setY(475.f);
     jogador1->setTeclas(sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Up);
 
-    Personagens::Jogador* jogador2=new Personagens::Jogador();
+    Personagens::Jogador* jogador2=new Entidades::Jogador();
     jogador2->setX(400.f);
     jogador2->setY(475.f);
     jogador2->setTeclas(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W);
@@ -74,7 +75,7 @@ void Fases::Pantano_Maldito::executar()
 
         minion->atualizar(deltaTime, jogador1, jogador2, plataforma);
 
-        /*if (checkCollision(jogador1->getRetangulo(), minion->getRetangulo()) || checkCollision(jogador2->getRetangulo(), minion->getRetangulo())) {
+        if (checkCollision(jogador1->getRetangulo(), minion->getRetangulo()) || checkCollision(jogador2->getRetangulo(), minion->getRetangulo())) {
             std::cout << "Game Over!" << std::endl;
             window.close();
         }
@@ -82,26 +83,24 @@ void Fases::Pantano_Maldito::executar()
         window.clear();
         window.draw(plataforma);
         window.draw(minion->getRetangulo());
-        conjuntoEntidades->desenharEntidades(window);
         //jogador1->desenhar(window);
         //jogador2->desenhar(window);
         //inimigo.desenhar(window);
         window.display();
     }
-   
+   */
 }
 void Fases::Pantano_Maldito::criarInimMedios()
 {
 }
 void Fases::Pantano_Maldito::criarInimigos()
 {
-    criarInimFaceis();
-    criarInimMedios();
+    //criarInimFaceis();
+    //criarInimMedios();
 }
 void Fases::Pantano_Maldito::criarObstaculos()
 {
-    criarObstFaceis();
-    criarObstMedios();
+    //criarObstFaceis();
 }
 bool Fases::Pantano_Maldito::completou()
 {
@@ -111,4 +110,3 @@ const int Fases::Pantano_Maldito::getMaxInimMedios()
 {
     return maxInimMedios;
 }
-*/

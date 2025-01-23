@@ -1,78 +1,73 @@
-//include "Minion.hpp"
-/*
-float distance(const sf::Vector2f& a, const sf::Vector2f& b) {
-    return std::sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
-}
+#include <Minion.hpp>
 
-Entidades::Inimigos::Minion::Minion()
-{
-    retangulo.setSize(sf::Vector2f(20.f, 20.f));
-    retangulo.setFillColor(sf::Color::Red);
-    retangulo.setPosition(200.f, 200.f);
-    velocidade= 50.f;
-}
 
-Personagens::Inimigos::Minion::~Minion()
-{
-}
+namespace Entidades{
+    namespace Inimigos{
+        float distance(const sf::Vector2f& a, const sf::Vector2f& b) {
+            return std::sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+        }
 
-void Personagens::Inimigos::Minion::perseguir(Jogador *p)
-{
-}
-void Personagens::Inimigos::Minion::salvar()
-{
-}
+        Minion::Minion(const sf::Vector2f posicao): Inimigo(sf::Vector2f(50.f, 50.f), posicao)
+        {
+            velocidade = sf::Vector2f(50.f, 50.f);
+        }
 
-void Personagens::Inimigos::Minion::salvarDataBuffer()
-{
-}
+        Minion::~Minion()
+        {
+        }
 
-void Personagens::Inimigos::Minion::atualizar(float deltaTime, Jogador* jogador1, Jogador* jogador2, sf::RectangleShape& plataforma) 
-{
-    // Calculando a distância entre o Minion e os jogadores
-    float dist1 = distance(retangulo.getPosition(), jogador1->getRetangulo().getPosition());
-    float dist2 = distance(retangulo.getPosition(), jogador2->getRetangulo().getPosition());
-    
-    // Escolhendo o jogador mais próximo
-    Jogador* alvo = (dist1 < dist2) ? jogador1 : jogador2; //Jogador& alvo -->> Jogador* alvo
+        void Minion::perseguir(Jogador *p)
+        {
+        }
+        void Minion::salvar()
+        {
+        }
 
-    // Calculando a direção do movimento (apenas no eixo X)
-    sf::Vector2f direcao = alvo->getRetangulo().getPosition() - retangulo.getPosition();
-    float comprimento = std::sqrt(direcao.x * direcao.x + direcao.y * direcao.y);
+        void Minion::salvarDataBuffer()
+        {
+        }
 
-    // Normalizando a direção para ter uma unidade em X
-    if (comprimento != 0.f) {
-        direcao /= comprimento;
+        void Minion::atualizar(float deltaTime, Jogador* jogador1, Jogador* jogador2, sf::RectangleShape& plataforma) 
+        {
+            // Calculando a distância entre o Minion e os jogadores
+            float dist1 = distance(getCorpo().getPosition(), jogador1->getCorpo().getPosition());
+            float dist2 = distance(getCorpo().getPosition(), jogador2->getCorpo().getPosition());
+            
+            // Escolhendo o jogador mais próximo
+            Jogador* alvo = (dist1 < dist2) ? jogador1 : jogador2; //Jogador& alvo -->> Jogador* alvo
+
+            // Calculando a direção do movimento (apenas no eixo X)
+            sf::Vector2f direcao = alvo->getCorpo().getPosition() - getCorpo().getPosition();
+            float comprimento = std::sqrt(direcao.x * direcao.x + direcao.y * direcao.y);
+
+            // Normalizando a direção para ter uma unidade em X
+            if (comprimento != 0.f) {
+                direcao /= comprimento;
+            }
+            
+            // Movendo o Minion horizontalmente, sem alterar a posição Y
+            //getCorpo().move(direcao.x * velocidade * deltaTime, 0.f);//direção.x ser apenas para ver a direção, já que é unitário
+
+            // Verifica se o Minion está sobre a plataforma
+            if (getCorpo().getPosition().y + getCorpo().getSize().y >= plataforma.getPosition().y) {
+                //setPos(getCorpo().getPosition().x, plataforma.getPosition().y - getCorpo().getSize().y);
+            }
+        }
+
+        void Minion::executar()
+        {
+        }
+
+        int Minion::get_tam_grupo()
+        {
+            return tam_grupo;
+        }
+        void Minion::colisao(Entidade *outraEntidade)
+        {   return;
+        }
+        void Minion::mover()
+        {
+        }
+        int Minion::tam_grupo = 1;
     }
-    
-    // Movendo o Minion horizontalmente, sem alterar a posição Y
-    retangulo.move(direcao.x * velocidade * deltaTime, 0.f);//direção.x ser apenas para ver a direção, já que é unitário
-
-    // Verifica se o Minion está sobre a plataforma
-    if (retangulo.getPosition().y + retangulo.getSize().y >= plataforma.getPosition().y) {
-        retangulo.setPosition(retangulo.getPosition().x, plataforma.getPosition().y - retangulo.getSize().y);
-    }
 }
-
-void Personagens::Inimigos::Minion::executar()
-{
-}
-
-int Personagens::Inimigos::Minion::get_tam_grupo()
-{
-    return tam_grupo;
-}
-
-sf::RectangleShape &Personagens::Inimigos::Minion::getRetangulo()
-{
-    return retangulo;
-}
-
-void Personagens::Inimigos::Minion::setCor(sf::Color c){
-     cor =c;
-      getRetangulo().setFillColor(c);
- }
-
-int Personagens::Inimigos::Minion::tam_grupo=1;
-
-*/

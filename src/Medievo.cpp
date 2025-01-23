@@ -21,6 +21,8 @@ Medievo::~Medievo(){
 }
 void Medievo::executar(){
     sf::Clock clock;
+    float dt;
+
     Entidades::Jogador* jogador1 = new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f));
     setJog(jogador1, 1);
     pJog1->setCor(sf::Color::Blue);
@@ -35,6 +37,7 @@ void Medievo::executar(){
     listaDeEntidades->incluirEntidade(pJog2);
     
     while (pGerenciadorGrafico->getJanela()->isOpen()) {
+        
         sf::Event event;
         while (pGerenciadorGrafico->getJanela()->pollEvent(event)) {
             if (event.type == sf::Event::Closed)
