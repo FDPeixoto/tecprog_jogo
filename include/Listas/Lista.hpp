@@ -44,8 +44,8 @@ namespace Listas{
 
         public:
           Iterator(Elemento<TL>* elemento) : pAtual(elemento) {}
-
-          TL* operator*() const{
+          
+          TL* operator*(){
             return pAtual->getInfo();
           }
 
@@ -66,7 +66,7 @@ namespace Listas{
           bool operator!=(const Iterator& pOutro) const {
             return !(*this == pOutro);
           }
-
+          friend class Lista;
       };
   private:
     Elemento<TL>* pPrimeiro;
@@ -88,6 +88,7 @@ namespace Listas{
         pAux->setProx(nullptr);
         if (pPrimeiro == nullptr)
         {
+          pAux->setAnte(nullptr);
           pPrimeiro = pAux;
           pUltimo = pPrimeiro;
         }
@@ -135,7 +136,7 @@ namespace Listas{
 
 
     Iterator inicio(){return Iterator(pPrimeiro);}
-    Iterator fim(){return Iterator(pUltimo);}
+    Iterator fim(){return Iterator(nullptr);}
     const int getTam(){return tam;}
   };
 }

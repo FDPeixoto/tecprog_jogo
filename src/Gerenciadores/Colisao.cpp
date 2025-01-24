@@ -40,6 +40,7 @@ namespace Gerenciadores{
         return sf::Vector2f(distanciaEntreCentros.x - somaMetadeRectangulo.x, distanciaEntreCentros.y - somaMetadeRectangulo.y);
     }
     void Colisao::executar(){
+        /*
         for(Listas::Lista<Entidades::Entidade*>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); ++it1){
             if(it1 != nullptr){
                 for(Listas::Lista<Entidades::Entidade*>::Iterator it2 = listaMoveis->getListaEnt().inicio(); it2 != listaMoveis->getListaEnt().fim(); ++it2){
@@ -66,6 +67,7 @@ namespace Gerenciadores{
                 }
             }
         }
+        */
     }
 }
 

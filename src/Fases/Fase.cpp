@@ -29,9 +29,14 @@ namespace Fases{
     }
     void Fase::criarEspinho(const sf::Vector2f posicao)
     {
+        Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma(50.f, 50.f, posicao);
+        if(plataforma != nullptr){
+            listaObstaculos->incluirEntidade(plataforma);
+        }
     }
     void Fase::criarEntidade(char letra, const sf::Vector2f posicao)
     {
+        
     }
     void Fase::executar()
     {

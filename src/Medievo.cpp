@@ -33,8 +33,16 @@ void Medievo::executar(){
     pJog2->setCor(sf::Color::Red);
     pJog2->setTeclas(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W);
 
-    listaDeEntidades->incluirEntidade(pJog1);
-    listaDeEntidades->incluirEntidade(pJog2);
+    Listas::ListaEntidades* listaTeste = new Listas::ListaEntidades();
+    listaTeste->incluirEntidade(pJog1);
+
+    Listas::Lista<Entidades::Entidade>* listaEnt = new Listas::Lista<Entidades::Entidade>();
+    listaEnt->incluirElemento(pJog1);
+    listaEnt->incluirElemento(pJog2);
+
+    Listas::ListaEntidades* listaEntidades = new Listas::ListaEntidades();
+    listaEntidades->incluirEntidade(pJog1);
+    listaEntidades->incluirEntidade(pJog2);
     
     while (pGerenciadorGrafico->getJanela()->isOpen()) {
         
@@ -46,8 +54,14 @@ void Medievo::executar(){
         pGerenciadorGrafico->getJanela()->clear();
         pJog1->mover();
         pJog2->mover();
-        pGerenciadorColisao->executar();
-
+        
+        for(auto it = listaEntidades->getListaEnt().inicio(); it != listaEntidades->getListaEnt().fim(); it++){
+           if(*it != nullptr){
+               pGerenciadorGrafico->getJanela()->draw((*it)->getCorpo());
+           }
+        }
+        
+        //pGerenciadorGrafico->desenharListaEntidades(listaPersonagens, listaObstaculos);
         pGerenciadorGrafico->getJanela()->display();
     }
 }
