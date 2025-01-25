@@ -1,21 +1,22 @@
-#include "Evento.hpp"
+#include "../../include/Gerenciadores/Evento.hpp"
+#include "../../include/Gerenciadores/Grafico.hpp"
+
     /*Evento* GerenciadorEvento::pGerenciadorEvento = nullptr;
     Grafico* GerenciadorEvento::pGerenciadorGrafico = Grafico::getGerenciadorGrafico();
     Estado* GerenciadorEvento::pGerenciadorEstado = Estado::getGerenciadorEstado();*/
-Gerenciadores::Evento::Evento(){
-    pGerenciadorGrafico=getGerenciadorGrafico();
+//Gerenciadores::Evento::Evento(): pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()){}
+Gerenciadores::Evento::Evento(){}
 
-}
 Gerenciadores::Evento::~Evento(){
     pGerenciadorGrafico=nullptr;
     jog1=nullptr;
     jog2=nullptr;
 
 }
-void Gerenciadores::Evento::setJogador1(Entidades::Jogador jog){
+void Gerenciadores::Evento::setJogador1(Entidades::Jogador* jog){
     jog1=jog;
 }
-void Gerenciadores::Evento::setJogador2(Entidades::Jogador jog){
+void Gerenciadores::Evento::setJogador2(Entidades::Jogador* jog){
     jog2=jog;
 }
 void Gerenciadores::Evento::verificaTeclaPressionada(sf::Keyboard::Key tecla){
@@ -43,17 +44,17 @@ void Gerenciadores::Evento::verificaTeclaSolta(sf::Keyboard::Key tecla){
         jog1->parar();
     }
 }
-void Gerenciadores::Evento:executar(){
+void Gerenciadores::Evento::executar(){
     sf::Event evento;
     while(pGerenciadorGrafico->getJanela()->pollEvent(evento)){
-        if(evento.type==sf::Event::KeyPressed()){
+        if(evento.type==sf::Event::KeyPressed){
             verificaTeclaPressionada(evento.key.code);
         }
-        else if(evento.type==sf::Event::KeyRelease()){
+        else if(evento.type==sf::Event::KeyReleased){
             verificaTeclaSolta(evento.key.code);
         }
         else if(evento.type==sf::Event::Closed){
-            pGerenciadorGrafico->fecharJanela():
+            pGerenciadorGrafico->fecharJanela();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Entidades{
             protected:
             int nivel_maldade;
             int moveAleatorio;
-            Entidades::Jogador jog;
+            Entidades::Jogador* jog;
             sf::Clock relogio;
 
             public:
@@ -25,6 +25,7 @@ namespace Entidades{
             virtual void executar()=0;
             void atualizar(float dt);
             void inicializar();
+            void mover();
             virtual void moverAleatorio();
 
         };

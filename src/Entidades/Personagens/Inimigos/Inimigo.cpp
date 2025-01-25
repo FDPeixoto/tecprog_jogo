@@ -9,6 +9,7 @@ namespace Entidades{
     namespace Inimigos{
         Inimigo::Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao): Personagem(tam, posicao, IDINIMIGO), nivel_maldade(0){
             moveAleatorio=rand()%4;
+            jog=nullptr;
         }
         Inimigo::~Inimigo(){}
         void Inimigo::salvarDataBuffer(){}
@@ -30,7 +31,7 @@ namespace Entidades{
             return;
         }
         void Inimigo::mover(){
-            sf::Vector2f posJogador jog->getCorpo().getPosition();
+            sf::Vector2f posJogador=jog->getCorpo().getPosition();
             sf::Vector2f posInimigo= corpo.getPosition();
 
             if(fabs(posJogador.x-posInimigo.x>= RAIO_PERSEGUIR_X)||fabs(posJogador.y-posInimigo.y>=RAIO_PERSEGUIR_Y)){
