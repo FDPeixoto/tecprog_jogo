@@ -16,7 +16,13 @@ void Fases::Pantano_Maldito::executar()
 {
     pGerenciadorGrafico->getJanela()->clear();
     
-    for(auto it = listaPersonagens->getListaEnt().inicio(); it != listaPersonagens->getListaEnt().fim(); it++){
+    for(Listas::Lista<Entidades::Entidade>::Iterator it = listaPersonagens->getListaEnt().inicio(); it != listaPersonagens->getListaEnt().fim(); it++){
+        if(*it != nullptr){
+            pGerenciadorGrafico->getJanela()->draw((*it)->getCorpo());
+        }
+    }
+
+    for(Listas::Lista<Entidades::Entidade>::Iterator it = listaObstaculos->getListaEnt().inicio(); it != listaObstaculos->getListaEnt().fim(); it++){
         if(*it != nullptr){
             pGerenciadorGrafico->getJanela()->draw((*it)->getCorpo());
         }
