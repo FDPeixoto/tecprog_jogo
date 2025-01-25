@@ -20,50 +20,18 @@ Medievo::~Medievo(){
     delete listaDeEntidades;
 }
 void Medievo::executar(){
-    sf::Clock clock;
-    float dt;
-
-    Entidades::Jogador* jogador1 = new Entidades::Jogador(sf::Vector2f(0.0f, 0.0f));
-    setJog(jogador1, 1);
-    pJog1->setCor(sf::Color::Blue);
-    pJog1->setTeclas(sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Up);
-
-    Entidades::Jogador* jogador2 = new Entidades::Jogador(sf::Vector2f(200.0f, 0.0f));
-    setJog(jogador2, 2);
-    pJog2->setCor(sf::Color::Red);
-    pJog2->setTeclas(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W);
-
-    Listas::ListaEntidades* listaTeste = new Listas::ListaEntidades();
-    listaTeste->incluirEntidade(pJog1);
-
-    Listas::Lista<Entidades::Entidade>* listaEnt = new Listas::Lista<Entidades::Entidade>();
-    listaEnt->incluirElemento(pJog1);
-    listaEnt->incluirElemento(pJog2);
-
-    Listas::ListaEntidades* listaEntidades = new Listas::ListaEntidades();
-    listaEntidades->incluirEntidade(pJog1);
-    listaEntidades->incluirEntidade(pJog2);
-    
-    while (pGerenciadorGrafico->getJanela()->isOpen()) {
-        
+    while(pGerenciadorGrafico->getJanela()->isOpen()){
+        sf::Clock clock;
+        float dt;
         sf::Event event;
         while (pGerenciadorGrafico->getJanela()->pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 pGerenciadorGrafico->getJanela()->close();
         }
-        pGerenciadorGrafico->getJanela()->clear();
-        pJog1->mover();
-        pJog2->mover();
-        
-        for(auto it = listaEntidades->getListaEnt().inicio(); it != listaEntidades->getListaEnt().fim(); it++){
-           if(*it != nullptr){
-               pGerenciadorGrafico->getJanela()->draw((*it)->getCorpo());
-           }
-        }
-        
-        //pGerenciadorGrafico->desenharListaEntidades(listaPersonagens, listaObstaculos);
+        primeiraFase.executar();
         pGerenciadorGrafico->getJanela()->display();
     }
+    
 }
 void Medievo::setJog(Entidades::Jogador* p, int num){
     if(p!=nullptr){

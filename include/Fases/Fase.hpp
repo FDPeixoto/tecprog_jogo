@@ -1,4 +1,6 @@
+#pragma once
 #include "Gerenciadores/Colisao.hpp"
+#include "Gerenciadores/Grafico.hpp"
 #include "../Listas/ListaEntidades.hpp"
 
 namespace Fases{
@@ -7,7 +9,8 @@ namespace Fases{
         protected:
         Listas::ListaEntidades* listaPersonagens;
         Listas::ListaEntidades* listaObstaculos;
-        Gerenciadores::Colisao* pGerenciadorColisao;
+        Gerenciadores::Grafico* pGerenciadorGrafico;
+        int quantidadeJogadores;
 
         protected:
         void criarInimFaceis();
@@ -16,10 +19,12 @@ namespace Fases{
 
         public:
         Fase();
+        Fase(Gerenciadores::Colisao pColisao, Gerenciadores::Grafico pGrafico);
+        Fase(Gerenciadores::Grafico *pGrafico);
         ~Fase();
         void criarPlataformas();
         void gerenciarColisoes();
-        void executar();
+        virtual void executar() = 0;
         virtual void criarInimigos()=0;
         virtual void criarObstaculos()=0;
         virtual bool completou()=0;

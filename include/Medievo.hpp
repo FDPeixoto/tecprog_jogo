@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Fases/Pantano_Maldito.hpp"
+#include "Pantano_Maldito.hpp"
 #include "../../include/Gerenciadores/Grafico.hpp"
 #include "Jogador.hpp"
+#include "../../include/Gerenciadores/Colisao.hpp"
 
 
 #include <iostream>
@@ -12,7 +13,7 @@ class Medievo {
     private:
     Entidades::Jogador* pJog1;
     Entidades::Jogador* pJog2;
-    //Fases::Pantano_Maldito primeiraFase;
+    Fases::Pantano_Maldito primeiraFase;
     Listas::ListaEntidades* listaDeEntidades;
     Gerenciadores::Grafico* pGerenciadorGrafico;
     Gerenciadores::Colisao* pGerenciadorColisao;

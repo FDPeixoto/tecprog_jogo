@@ -5,13 +5,27 @@
 
 
 namespace Fases{
-    Fase::Fase(): Ente(){}
+    Fase::Fase(): Ente(), listaPersonagens(new Listas::ListaEntidades()), listaObstaculos(new Listas::ListaEntidades()), pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()){}
     Fase::~Fase(){}
     void Fase::criarJogador(const sf::Vector2f posicao){
-        Entidades::Jogador* jogador = new Entidades::Jogador(posicao);
-        if(jogador != nullptr){
-            listaPersonagens->incluirEntidade(jogador);
-        } 
+        if(quantidadeJogadores % 2 == 0){
+            Entidades::Jogador* jogador = new Entidades::Jogador(posicao);
+            jogador->setCor(sf::Color::Blue);
+            jogador->setTeclas(sf::Keyboard::Left, sf::Keyboard::Right, sf::Keyboard::Up);
+            if(jogador != nullptr){
+                listaPersonagens->incluirEntidade(jogador);
+            }
+            quantidadeJogadores++; 
+        }
+        else{
+            Entidades::Jogador* jogador = new Entidades::Jogador(posicao);
+            jogador->setCor(sf::Color::Green);
+            jogador->setTeclas(sf::Keyboard::A, sf::Keyboard::D, sf::Keyboard::W);
+            if(jogador != nullptr){
+                listaPersonagens->incluirEntidade(jogador);
+            }
+            quantidadeJogadores++;
+        }
     }
     void Fase::criarMinion(const sf::Vector2f posicao)
     {
@@ -37,9 +51,6 @@ namespace Fases{
     void Fase::criarEntidade(char letra, const sf::Vector2f posicao)
     {
         
-    }
-    void Fase::executar()
-    {
     }
     void Fase::desenhar()
     {
