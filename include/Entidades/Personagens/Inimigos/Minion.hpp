@@ -11,7 +11,6 @@ namespace Entidades{
             Minion();
             Minion(const sf::Vector2f posicao);
             ~Minion();
-            void perseguir (Entidades::Jogador* p);
             void salvar();
             void salvarDataBuffer();
             void executar();

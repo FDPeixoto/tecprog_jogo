@@ -14,31 +14,29 @@
     teclaPulo=pulo;
   }
 
-  /*
-  void Jogador::atualizar(float deltaTime, bool& noChao, sf::RectangleShape& plataforma, float gravidade) {
-    
-        velocidadeY += gravidade * deltaTime;
-        retangulo.move(0.f, velocidadeY * deltaTime);
-
-        if (retangulo.getPosition().y + retangulo.getSize().y >= plataforma.getPosition().y) {
-            retangulo.setPosition(retangulo.getPosition().x, plataforma.getPosition().y - retangulo.getSize().y);
-            velocidadeY = 0.f;
-            noChao = true;
-            pulando = false;
+      void Jogador::atualizar(float dt){
+        //ou float dt=relogio.getElapsedTime().asSeconds();
+        //Andando só na horizontal por enquanto
+        float ds=velocidade.x*dt;//ou velocidadeFinal.x
+        if(paraEsquerda){
+          ds=ds*(-1);
         }
+        corpo.move(ds,0.0f);
+            return;
+    }
+    void Jogador::andar(const bool paraEsquerda){
+        atacando = false;
+        andando = true;
+        this->paraEsquerda = paraEsquerda;
+            
+    }
+    void Jogador::parar(){
+        andando=false;
+    }
+    const bool Jogador::getAndando() const{
+        return andando;
+    }
 
-        if (sf::Keyboard::isKeyPressed(teclaEsquerda) && retangulo.getPosition().x > 0.f)
-            retangulo.move(-200.f * deltaTime, 0.f);//Parece que o -200 .f é  a velocidade do x, os parâmetros são (x,y)
-        if (sf::Keyboard::isKeyPressed(teclaDireita) && retangulo.getPosition().x + retangulo.getSize().x < 800.f)
-            retangulo.move(200.f * deltaTime, 0.f);
-
-        if (sf::Keyboard::isKeyPressed(teclaPulo) && (noChao || !pulando)) {
-            velocidadeY = puloForca;
-            noChao = false;
-            pulando = !noChao;
-        }
-  }
-  */
 
     void Jogador::salvarDataBuffer(){}
     void Jogador::mover(){
@@ -60,12 +58,35 @@
     void Jogador::salvar(){}
     void Jogador::colisao(Entidade *outraEntidade)
     {
+        int id = outraEntidade->getID();
+        sf::Vector2f overlap(
+                getCorpo().getGlobalBounds().left + getCorpo().getGlobalBounds().width - outraEntidade->getCorpo().getGlobalBounds().left,
+                getCorpo().getGlobalBounds().top + getCorpo().getGlobalBounds().height - outraEntidade->getCorpo().getGlobalBounds().top
+                );
+        switch (id){
+            case IDOBSTACUlO:
+                setPos(sf::Vector2f (getCorpo().getPosition().x, outraEntidade->getCorpo().getPosition().y - getCorpo().getSize().y));
+                velocidade.y = 0;
+                break;
+            case IDINIMIGO: 
+                if (std::abs(overlap.x) > std::abs(overlap.y)) {
+                    if (overlap.y > 0)
+                        outraEntidade->setPos(sf::Vector2f(outraEntidade->getCorpo().getPosition().x, getCorpo().getPosition().y + getCorpo().getSize().y));
+                    else
+                        outraEntidade->setPos(sf::Vector2f(outraEntidade->getCorpo().getPosition().x, getCorpo().getPosition().y - outraEntidade->getCorpo().getSize().y));
+                } else {
+                    if (overlap.x > 0)
+                        outraEntidade->setPos(sf::Vector2f(getCorpo().getPosition().x + getCorpo().getSize().x, outraEntidade->getCorpo().getPosition().y));
+                    else
+                        outraEntidade->setPos(sf::Vector2f(getCorpo().getPosition().x - outraEntidade->getCorpo().getSize().x, outraEntidade->getCorpo().getPosition().y));
+                }
+                break;
+            default:
+                break;
+        }
     }
     void Jogador::inicializar()
         {
             return;
         }
-    void Jogador::atualizar(float dt){
-            return;
-    }
 }

@@ -65,3 +65,7 @@ void Gerenciadores::Grafico::desenharListaEntidades(Listas::ListaEntidades *list
     }
     */
 }
+
+void Gerenciadores::Grafico::fecharJanela(){
+    janela->close();
+}

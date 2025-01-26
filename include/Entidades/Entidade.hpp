@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <sstream>  // Incluindo sstream para o uso de std::ostringstream
 #include <Mediator.hpp>
+#include <stdafx.h>
 
 namespace Entidades{
   class Entidade: public Ente{

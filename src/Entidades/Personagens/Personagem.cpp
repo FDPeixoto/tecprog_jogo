@@ -5,5 +5,6 @@ namespace Entidades{
   Personagem::~Personagem(){}
   void Personagem::setVelocidade(sf::Vector2f vel){
     velocidade = vel;
-  };
+  }
+  
 }

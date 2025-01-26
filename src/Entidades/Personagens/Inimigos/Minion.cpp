@@ -1,6 +1,5 @@
 #include <Minion.hpp>
 
-
 namespace Entidades{
     namespace Inimigos{
         float distance(const sf::Vector2f& a, const sf::Vector2f& b) {
@@ -13,10 +12,6 @@ namespace Entidades{
         }
 
         Minion::~Minion()
-        {
-        }
-
-        void Minion::perseguir(Jogador *p)
         {
         }
         void Minion::salvar()
@@ -63,7 +58,19 @@ namespace Entidades{
             return tam_grupo;
         }
         void Minion::colisao(Entidade *outraEntidade)
-        {   return;
+        {   
+            int id = outraEntidade->getID();
+            switch (id)
+            {
+            case IDOBSTACUlO:
+                setPos(sf::Vector2f (getCorpo().getPosition().x, outraEntidade->getCorpo().getPosition().y - getCorpo().getSize().y));
+                velocidade.y = 0;
+                break;
+            
+            default:
+                break;
+            }
+            return;
         }
         void Minion::mover()
         {
