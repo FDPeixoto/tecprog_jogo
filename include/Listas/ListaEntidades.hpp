@@ -14,6 +14,7 @@ namespace Listas{
         void remover(Entidades::Entidade* Ente);
         void executar();
         void limparLista();
+        void atualizar(float dt);
         Entidades::Entidade* operator[](int pos);
         Lista<Entidades::Entidade>& getListaEnt();
     };

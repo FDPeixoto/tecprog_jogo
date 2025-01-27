@@ -12,60 +12,72 @@
 
 namespace Gerenciadores{
     Grafico* Grafico::pGrafico = nullptr;
-}
-Gerenciadores::Grafico::Grafico(): 
+
+    Grafico::Grafico(): 
     janela(new sf::RenderWindow(sf::VideoMode(LARGURA, ALTURA), "Medievo++")),
-    panorama(sf::View(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(LARGURA, ALTURA)))
+    panorama(sf::View(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(LARGURA, ALTURA))), relogio()
     {}
 
-Gerenciadores::Grafico::~Grafico(){
-    if(janela != nullptr){
-        delete(janela);
-        janela = nullptr;
+    Grafico::~Grafico(){
+        if(janela != nullptr){
+            delete(janela);
+            janela = nullptr;
+        }
     }
-}
 
-Gerenciadores::Grafico* Gerenciadores::Grafico::getGerenciadorGrafico(){
-    if(pGrafico == nullptr){
-        pGrafico = new Grafico();
+    Grafico* Grafico::getGerenciadorGrafico(){
+        if(pGrafico == nullptr){
+            pGrafico = new Grafico();
+        }
+        return pGrafico;
     }
-    return pGrafico;
-}
 
-sf::RenderWindow* Gerenciadores::Grafico::getJanela(){
-    return janela;
-}
-
-void Gerenciadores::Grafico::redimensionarJanela (){
-    float proporcaoJanela = float(janela->getSize().x) / float(janela->getSize().y);
-    panorama.setSize(LARGURA * proporcaoJanela, ALTURA);
-}
-
-void Gerenciadores::Grafico::limparJanela(){
-    janela->clear();
-}
-
-void Gerenciadores::Grafico::mostrarJanela(){
-    janela->display();
-}
-
-void Gerenciadores::Grafico::desenharCorpo(sf::RectangleShape corpo)
-{
-    janela->draw(corpo);
-}
-
-void Gerenciadores::Grafico::desenharListaEntidades(Listas::ListaEntidades *listaMoveis, Listas::ListaEntidades *listaFixos)
-{
-    /*
-    for(Listas::Lista<Entidades::Entidade*>::Iterator it = listaFixos->getListaEnt().inicio(); it != listaFixos->getListaEnt().fim(); ++it){
-        desenharCorpo((*(*it))->getCorpo());   
+    sf::RenderWindow* Grafico::getJanela(){
+        return janela;
     }
-    for(Listas::Lista<Entidades::Entidade*>::Iterator it = listaMoveis->getListaEnt().inicio(); it != listaMoveis->getListaEnt().fim(); ++it){
-        desenharCorpo((*(*it))->getCorpo());   
-    }
-    */
-}
 
-void Gerenciadores::Grafico::fecharJanela(){
-    janela->close();
+    void Grafico::redimensionarJanela (){
+        float proporcaoJanela = float(janela->getSize().x) / float(janela->getSize().y);
+        panorama.setSize(LARGURA * proporcaoJanela, ALTURA);
+    }
+
+    void Grafico::limparJanela(){
+        janela->clear();
+    }
+
+    void Grafico::mostrarJanela(){
+        janela->display();
+    }
+
+    void Grafico::desenharCorpo(sf::RectangleShape corpo)
+    {
+        janela->draw(corpo);
+    }
+
+    void Grafico::desenharEntidade(Entidades::Entidade* entidade)
+    {
+        janela->draw(entidade->getCorpo());
+    }
+
+    void Grafico::desenharListaEntidades(Listas::ListaEntidades* lista)
+    {
+        for(Listas::Lista<Entidades::Entidade>::Iterator it = lista->getListaEnt().inicio(); it != lista->getListaEnt().fim(); it++){
+            if(*it != nullptr){
+                desenharEntidade(*it);
+            }
+        }
+    }
+
+    void Grafico::resetarRelogio()
+    {   
+        relogio.restart();
+    }
+
+    void Grafico::fecharJanela(){
+        janela->close();
+    }
+
+    sf::Clock* Grafico::getRelogio(){
+        return &relogio;
+    }
 }

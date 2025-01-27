@@ -3,35 +3,42 @@
  
 
  namespace Entidades{
-    Jogador::Jogador(const sf::Vector2f posicao): 
-    Personagem(sf::Vector2f(JOGADORLARGURA, JOGADORALTURA) , posicao, IDJOGADOR), pontos(0), numero_baixas(0), espada (false), magia (false), antidoto (false){
-        setVelocidade(sf::Vector2f(0.1f, 0.1f));
+    Jogador::Jogador(const sf::Vector2f posicao, bool jogador2): 
+        Personagem(sf::Vector2f(JOGADORLARGURA, JOGADORALTURA), posicao, IDJOGADOR),
+        pontos(0), numero_baixas(0), espada (false), magia (false), antidoto (false), ehJogador2(ehJogador2)
+    {
+        if(jogador2){
+            setCor(sf::Color::Green);
+        }
+        else{
+            setCor(sf::Color::Blue);
+        }
+        setVelocidade(sf::Vector2f(0.f, 0.f));
     }
-  Jogador::~Jogador(){}
-  void Jogador::setTeclas(sf::Keyboard::Key esquerda, sf::Keyboard::Key direita, sf::Keyboard::Key pulo){
-    teclaEsquerda=esquerda;
-    teclaDireita=direita;
-    teclaPulo=pulo;
-  }
 
-      void Jogador::atualizar(float dt){
+    Jogador::~Jogador() {}
+
+    void Jogador::atualizar(float dt){
         //ou float dt=relogio.getElapsedTime().asSeconds();
         //Andando só na horizontal por enquanto
-        float ds=velocidade.x*dt;//ou velocidadeFinal.x
-        if(paraEsquerda){
-          ds=ds*(-1);
-        }
-        corpo.move(ds,0.0f);
-            return;
+        float ds = velocidade.x * dt;//ou velocidadeFinal.x
+        corpo.move(ds, 0.f);
     }
-    void Jogador::andar(const bool paraEsquerda){
+
+    void Jogador::andar(const bool ehEsquerda){
         atacando = false;
         andando = true;
-        this->paraEsquerda = paraEsquerda;
-            
+        paraEsquerda = ehEsquerda;
+        if(paraEsquerda){
+            velocidade.x = -1000.0f;
+        }
+        else{
+            velocidade.x = 1000.f;
+        }
     }
     void Jogador::parar(){
-        andando=false;
+        andando = false;
+        velocidade.x = 0.0f;
     }
     const bool Jogador::getAndando() const{
         return andando;
@@ -39,23 +46,11 @@
 
 
     void Jogador::salvarDataBuffer(){}
-    void Jogador::mover(){
 
-    if (sf::Keyboard::isKeyPressed(teclaEsquerda)){
-        corpo.move(-velocidade.x, 0.f);
-    }
-    if (sf::Keyboard::isKeyPressed(teclaDireita)){
-        corpo.move(velocidade.x, 0.f);
-    }
-    if(sf::Keyboard::isKeyPressed(teclaPulo)){
-        corpo.move(0.f, -velocidade.y);
-    }
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
-        corpo.move(0.f, velocidade.y);
-    }
-    }
-    void Jogador::executar() {}
+    void Jogador::executar() { }
+    
     void Jogador::salvar(){}
+
     void Jogador::colisao(Entidade *outraEntidade)
     {
         int id = outraEntidade->getID();
@@ -86,7 +81,7 @@
         }
     }
     void Jogador::inicializar()
-        {
-            return;
-        }
+    {
+        return;
+    }
 }

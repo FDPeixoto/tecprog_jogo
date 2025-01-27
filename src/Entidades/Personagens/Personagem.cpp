@@ -6,5 +6,9 @@ namespace Entidades{
   void Personagem::setVelocidade(sf::Vector2f vel){
     velocidade = vel;
   }
-  
+
+  void Personagem::atualizarPosicao(float dt)
+  {
+
+  }
 }

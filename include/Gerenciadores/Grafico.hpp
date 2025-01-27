@@ -15,6 +15,7 @@ namespace Gerenciadores{
         private:
             sf::RenderWindow* janela;
             sf::View panorama;   
+            sf::Clock relogio;
 
             //Singleton    
             static Grafico* pGrafico;
@@ -27,7 +28,11 @@ namespace Gerenciadores{
             void redimensionarJanela();
             void mostrarJanela();
             void fecharJanela();
+            sf::Clock *getRelogio();
             void desenharCorpo(sf::RectangleShape corpo);
-            void desenharListaEntidades(Listas::ListaEntidades *listaMoveis, Listas::ListaEntidades *listaFixos);
+            void desenharEntidade(Entidades::Entidade *entidade);
+            void desenharListaEntidades(Listas::ListaEntidades *lista);
+            void setRelogio(sf::Clock *clock);
+            void resetarRelogio();
     };
 }

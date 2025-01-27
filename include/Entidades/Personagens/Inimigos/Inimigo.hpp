@@ -11,7 +11,8 @@ namespace Entidades{
             protected:
             int nivel_maldade;
             int moveAleatorio;
-            Entidades::Jogador* jog;
+            Entidades::Jogador* pJogador1;
+            Entidades::Jogador* pJogador2;
             sf::Clock relogio;
 
 
@@ -19,6 +20,11 @@ namespace Entidades{
             public:
             Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao);
             ~Inimigo();
+            void setJogador1(Entidades::Jogador* pJogador);
+            Entidades::Jogador* getJogador1();
+            void setJogador2(Entidades::Jogador* pJogador);
+            Entidades::Jogador* getJogador2();
+
             void salvarDataBuffer();
             //virtual void executar()=0;
             //virtual void danificar(Jogador* p);

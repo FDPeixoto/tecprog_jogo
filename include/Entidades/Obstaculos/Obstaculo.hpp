@@ -11,6 +11,7 @@ namespace Entidades{
                 ~Obstaculo();
                 virtual void executar() = 0;
                 virtual void obstacular(Entidades::Jogador* pJogador) = 0;
+                void atualizarPosicao(float dt);
         };
     }
 }

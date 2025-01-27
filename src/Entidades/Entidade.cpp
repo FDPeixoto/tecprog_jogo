@@ -55,4 +55,5 @@ namespace Entidades{
         pMediator->notificar(this, "verificarColisao");
     }
   }
+
 }

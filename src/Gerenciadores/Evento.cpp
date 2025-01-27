@@ -1,58 +1,62 @@
-#include "../../include/Gerenciadores/Evento.hpp"
-#include "../../include/Gerenciadores/Grafico.hpp"
-    /*Evento* GerenciadorEvento::pGerenciadorEvento = nullptr;
-    Grafico* GerenciadorEvento::pGerenciadorGrafico = Grafico::getGerenciadorGrafico();
-    Estado* GerenciadorEvento::pGerenciadorEstado = Estado::getGerenciadorEstado();*/
+#include "Evento.hpp"
 
+namespace Gerenciadores{
+    Evento* Evento::pGerenciadorEvento = nullptr;
 
-    
-    Gerenciadores::Evento::Evento():pGerenciadorGrafico(Gerenciadores::Grafico::getGerenciadorGrafico()){
-    }
-    Gerenciadores::Evento::~Evento(){
-        pGerenciadorGrafico=nullptr;
-        jog1=nullptr;
-        jog2=nullptr;
+    Evento::Evento(): pJog1(nullptr), pJog2(nullptr), pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()){}
+    Evento::~Evento(){
+        pGerenciadorGrafico = nullptr;
+        pJog1 = nullptr;
+        pJog2 = nullptr;
     }
 
-    Gerenciadores::Evento *Gerenciadores::Evento::getGerenciadorEvento()
+    Evento *Evento::getGerenciadorEvento()
     {
-        return nullptr;
+        if(pGerenciadorEvento == nullptr){
+            pGerenciadorEvento = new Evento();
+        }
+        return pGerenciadorEvento;
     }
 
-    void Gerenciadores::Evento::setJogador1(Entidades::Jogador* jog){
-        jog1=jog;
+    void Evento::setJogador1(Entidades::Jogador* jogador){
+        pJog1 = jogador;
     }
-    void Gerenciadores::Evento::setJogador2(Entidades::Jogador* jog){
-        jog2=jog;
+    void Evento::setJogador2(Entidades::Jogador* jogador){
+        pJog2 = jogador;
     }
-    void Gerenciadores::Evento::verificaTeclaPressionada(sf::Keyboard::Key tecla){
+    void Evento::verificaTeclaPressionada(sf::Keyboard::Key tecla){
         if(tecla==sf::Keyboard::A){
-            jog2->andar(true);//esta indo para a esquerda
+            if(pJog2 != nullptr){pJog2->andar(true);}
         }
         else if(tecla==sf::Keyboard::D){
-            jog2->andar(false);
+            if(pJog2 != nullptr){pJog2->andar(false);}
+        }
+        else if(tecla==sf::Keyboard::W){
+            //pJog2->pular();
         }
         else if(tecla==sf::Keyboard::Left){
-            jog1->andar(true);//esta indo para a esquerda
+            if(pJog1 != nullptr){pJog1->andar(true);}
         }
         else if(tecla==sf::Keyboard::Right){
-            jog1->andar(false);
+            if(pJog1 != nullptr){pJog1->andar(false);}
         }
-
+        else if(tecla==sf::Keyboard::Up){
+            //pJog1->pular();
+        }
         else if(tecla==sf::Keyboard::Escape){
             pGerenciadorGrafico->fecharJanela();
         }
     }
 
-    void Gerenciadores::Evento::verificaTeclaSolta(sf::Keyboard::Key tecla){
+    void Evento::verificaTeclaSolta(sf::Keyboard::Key tecla){
         if( (tecla==sf::Keyboard::A)||(tecla==sf::Keyboard::D)){
-            jog2->parar();
+            if(pJog2 != nullptr){pJog2->parar();}
         }
         if( (tecla==sf::Keyboard::Left)||(tecla==sf::Keyboard::Right)){
-            jog1->parar();
+            if(pJog1 != nullptr){pJog1->parar();}
         }
     }
-    void Gerenciadores::Evento::executar(){
+    void Evento::executar(){
         sf::Event evento;
         while(pGerenciadorGrafico->getJanela()->pollEvent(evento)){
             if(evento.type == sf::Event::KeyPressed){
@@ -66,3 +70,6 @@
             }
         }
     }
+}
+    
+    

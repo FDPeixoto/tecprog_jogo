@@ -11,6 +11,19 @@ namespace Entidades{
             moveAleatorio=rand()%4;
         }
         Inimigo::~Inimigo(){}
+
+        void Inimigo::setJogador1(Entidades::Jogador* pJogador){
+            pJogador1 = pJogador;
+        }
+        Entidades::Jogador* Inimigo::getJogador1(){
+            return pJogador1;
+        }
+        void Inimigo::setJogador2(Entidades::Jogador* pJogador){
+            pJogador2 = pJogador;
+        }
+        Entidades::Jogador* Inimigo::getJogador2(){
+            return pJogador2;
+        }
         void Inimigo::salvarDataBuffer(){}
         //void Inimigo::executar(){}
         //void Inimigo::danificar(Personagens::Jogador* p){}
@@ -31,7 +44,7 @@ namespace Entidades{
         }
 
         void Inimigo::mover(){
-            sf::Vector2f posJogador = jog->getCorpo().getPosition();
+            sf::Vector2f posJogador = pJogador1->getCorpo().getPosition();
             sf::Vector2f posInimigo= corpo.getPosition();
             if(fabs(posJogador.x-posInimigo.x>= RAIO_PERSEGUIR_X)||fabs(posJogador.y-posInimigo.y>=RAIO_PERSEGUIR_Y)){
                 perseguir(posJogador, posInimigo);

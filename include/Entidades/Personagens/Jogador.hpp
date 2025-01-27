@@ -14,20 +14,17 @@ namespace Entidades{
     bool atacando;
     bool andando;
     bool paraEsquerda;
-
-    sf::Keyboard::Key teclaEsquerda;
-    sf::Keyboard::Key teclaDireita;
-    sf::Keyboard::Key teclaPulo;
+    bool ehJogador2;
 
   public:
-    Jogador(const sf::Vector2f posicao);
+    Jogador(const sf::Vector2f posicao, bool jogador2);
     ~Jogador();
     void setTeclas(sf::Keyboard::Key esquerda, sf::Keyboard::Key direita, sf::Keyboard::Key pulo);
     void atualizar(float deltaTime, bool& noChao, sf::RectangleShape& plataforma, float gravidade);
     void salvarDataBuffer();
-    virtual void mover();
-    virtual void executar();
-    virtual void salvar();
+    void mover();
+    void executar();
+    void salvar();
     void andar(const bool paraEsquerda);
     const bool getAndando() const;
     void parar();

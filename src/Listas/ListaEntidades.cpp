@@ -29,7 +29,23 @@ namespace Listas{
         }
     }
 
-    Lista<Entidades::Entidade>& ListaEntidades::getListaEnt()
+    void ListaEntidades::executar()
+    {
+        for(Lista<Entidades::Entidade>::Iterator it = listaEnt.inicio(); it != listaEnt.fim(); it++){
+            if(*it != nullptr){
+                (*it)->executar();
+            }
+        }
+    }
+    void ListaEntidades::atualizar(float dt)
+    {
+        for(Lista<Entidades::Entidade>::Iterator it = listaEnt.inicio(); it != listaEnt.fim(); it++){
+            if(*it != nullptr){
+                (*it)->atualizar(dt);
+            }
+        }
+    }
+    Lista<Entidades::Entidade> &ListaEntidades::getListaEnt()
     {
         return listaEnt;
     }

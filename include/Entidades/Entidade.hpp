@@ -35,5 +35,6 @@ namespace Entidades{
       virtual void atualizar(float dt) = 0;
       virtual void inicializar() = 0;   
       void setMediator(Gerenciadores::Mediator* mediator);
+      virtual void atualizarPosicao(float dt) = 0;
   };
 }

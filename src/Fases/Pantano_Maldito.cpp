@@ -1,50 +1,35 @@
-#include "../include/Fases/Pantano_Maldito.hpp"
-#include <iostream>
-#include <SFML/Graphics.hpp>
-#include <cmath>
+#include "Pantano_Maldito.hpp"
 
-Fases::Pantano_Maldito::Pantano_Maldito(): Fase(), maxInimMedios(1)
-{
-    criarJogador(sf::Vector2f(0.0f, 0.0f));
-    criarJogador(sf::Vector2f(200.0f, 0.0f));
-}
-
-Fases::Pantano_Maldito::~Pantano_Maldito()
-{
-}
-void Fases::Pantano_Maldito::executar()
-{
-    pGerenciadorGrafico->getJanela()->clear();
-    
-    for(Listas::Lista<Entidades::Entidade>::Iterator it = listaPersonagens->getListaEnt().inicio(); it != listaPersonagens->getListaEnt().fim(); it++){
-        if(*it != nullptr){
-            pGerenciadorGrafico->getJanela()->draw((*it)->getCorpo());
-        }
+namespace Fases{
+    Pantano_Maldito::Pantano_Maldito(): Fase(), maxInimMedios(5)
+    {
+        criarMapa();
     }
 
-    for(Listas::Lista<Entidades::Entidade>::Iterator it = listaObstaculos->getListaEnt().inicio(); it != listaObstaculos->getListaEnt().fim(); it++){
-        if(*it != nullptr){
-            pGerenciadorGrafico->getJanela()->draw((*it)->getCorpo());
-        }
+    Pantano_Maldito::~Pantano_Maldito(){}
+
+    void Pantano_Maldito::criarInimMedios()
+    {
+
+    }
+    void Pantano_Maldito::criarInimigos()
+    {
+        //criarInimFaceis();
+        //criarInimMedios();
+    }
+    void Pantano_Maldito::criarObstaculos()
+    {
+        //criarObstFaceis();
+    }
+
+    const int Pantano_Maldito::getMaxInimMedios(){return maxInimMedios;}
+
+    void Pantano_Maldito::criarMapa()
+    {
+        criarJogador(sf::Vector2f(0.0f, 0.0f));
+        criarJogador(sf::Vector2f(200.0f, 0.0f));
     }
 }
-void Fases::Pantano_Maldito::criarInimMedios()
-{
-}
-void Fases::Pantano_Maldito::criarInimigos()
-{
-    //criarInimFaceis();
-    //criarInimMedios();
-}
-void Fases::Pantano_Maldito::criarObstaculos()
-{
-    //criarObstFaceis();
-}
-bool Fases::Pantano_Maldito::completou()
-{
-    return true;
-}
-const int Fases::Pantano_Maldito::getMaxInimMedios()
-{
-    return maxInimMedios;
-}
+
+
+
