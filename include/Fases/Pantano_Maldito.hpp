@@ -14,6 +14,7 @@ namespace Fases{
         void criarObstaculos();
         const int getMaxInimMedios();
         void criarMapa();
+        void criarEntidade(char letra, const sf::Vector2f posicao);
     };
 
 }

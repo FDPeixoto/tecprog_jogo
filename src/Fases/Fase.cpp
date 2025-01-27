@@ -1,7 +1,8 @@
 
 #include "Fase.hpp"
-
-
+#define LARGURA 1280
+#define ALTURA 720
+#define TAM_BORDA 10
 
 namespace Fases{
     Fase::Fase(): 
@@ -70,9 +71,25 @@ namespace Fases{
     
     void Fase::criarPlataforma(const sf::Vector2f posicao)
     {
-        Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma(50.f, 50.f, posicao);
+        Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma(50.0f, 50.0f, posicao);
         if(plataforma != nullptr){
             listaObstaculos->incluirEntidade(plataforma);
+        }
+    }
+    void Fase::criarBordaH(const sf::Vector2f posicao, sf::Color cor)
+    {
+        Entidades::Obstaculos::Plataforma* borda = new Entidades::Obstaculos::Plataforma(ALTURA, TAM_BORDA, posicao);
+        if(borda != nullptr){
+            borda->setCor(cor);
+            listaObstaculos->incluirEntidade(borda);
+        }
+    }
+    void Fase::criarBordaV(const sf::Vector2f posicao, sf::Color cor)
+    {
+        Entidades::Obstaculos::Plataforma* borda = new Entidades::Obstaculos::Plataforma(TAM_BORDA, LARGURA, posicao);
+        if(borda != nullptr){
+            borda->setCor(cor);
+            listaObstaculos->incluirEntidade(borda);
         }
     }
     

@@ -1,4 +1,13 @@
 #include "Pantano_Maldito.hpp"
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <SFML/Graphics.hpp>
+#define TAM_JOGADORX 50.0f
+#define TAM_JOGADORY 100.0f
+#define TAM_BORDA 10
+#define LARGURA 1280
+#define ALTURA 720
 
 namespace Fases{
     Pantano_Maldito::Pantano_Maldito(): Fase(), maxInimMedios(5)
@@ -26,10 +35,44 @@ namespace Fases{
 
     void Pantano_Maldito::criarMapa()
     {
-        criarJogador(sf::Vector2f(0.0f, 0.0f));
-        criarJogador(sf::Vector2f(200.0f, 0.0f));
+        //criarJogador(sf::Vector2f(0.0f, 0.0f));
+        //criarJogador(sf::Vector2f(200.0f, 0.0f));
+        criarBordaH(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
+        criarBordaH(sf::Vector2f(1270.0f, 0.0f), sf::Color::Yellow);
+        criarBordaV(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
+        criarBordaV(sf::Vector2f(0.0f,710.0f), sf::Color::Yellow);
+        //Está ao contrário as funções BordaV cria Horizontal e BordaH, vertical
+        
+        std::ifstream arquivo;
+        std::string linha;
+        arquivo.open("src/Fases/TestePrimeiraFase.txt");
+        if(!arquivo.is_open()){
+            std::cout<<"NAo abriu o arquivo .txt Pantano_Maldito"<<std::endl;
+            exit(1);
+        }
+        int j=0;
+        while(std::getline(arquivo,linha)){
+            for(int i=0; i<linha.size();i++){
+                if(linha[i]!=' '){
+                    criarEntidade(linha[i],sf::Vector2f(i,j));
+                }
+            }
+            j++;
+        }arquivo.close();
+        
     }
+    void Pantano_Maldito::criarEntidade(char letra, const sf::Vector2f posicao){
+        switch(letra){
+            case('j'):{
+                criarJogador(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
+            }
+        }
+    }
+
 }
 
 
-
+/*float x=posicao.x*TAM_JOGADORX;
+                float y=posicao.y*TAM_JOGADORY;
+                criarJogador(sf::Vector2f(x,y));*/
+                /*criarJogador(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORY));*/

@@ -28,6 +28,10 @@ namespace Listas{
             }
         }
     }
+    void ListaEntidades::limparLista()
+    {
+        listaEnt.limpar();
+    }
 
     void ListaEntidades::executar()
     {
