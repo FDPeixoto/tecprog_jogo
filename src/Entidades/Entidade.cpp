@@ -37,23 +37,8 @@ namespace Entidades{
     return;
   }
 
-  void Entidade::setMediator(Gerenciadores::Mediator *mediator)
-  {
-    pMediator = mediator;
-    if(pMediator != nullptr){
-      pMediator->registrarEntidade(this);
-    }
-  }
-
   const sf::Vector2f Entidade::getPos()
   {
     return corpo.getPosition();
   }
-
-  void Entidade::verificarColisao() {
-    if (pMediator != nullptr) {
-        pMediator->notificar(this, "verificarColisao");
-    }
-  }
-
 }
