@@ -1,4 +1,5 @@
 #include "Colisao.hpp"
+#include <Medievo.hpp>
 
 /*Codigo dos gerenciadores foi inspirado pelo monitor Giovani https://github.com/Giovanenero/JogoPlataforma2D-Jungle/blob/main/Jungle%2B%2B/src/Gerenciador/GerenciadorColisao.cpp */
 namespace Gerenciadores{
@@ -40,35 +41,27 @@ namespace Gerenciadores{
         return sf::Vector2f(distanciaEntreCentros.x - somaMetadeRectangulo.x, distanciaEntreCentros.y - somaMetadeRectangulo.y);
     }
     void Colisao::executar(){
-        /*
-        for(Listas::Lista<Entidades::Entidade*>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); ++it1){
-            if(it1 != nullptr){
-                for(Listas::Lista<Entidades::Entidade*>::Iterator it2 = listaMoveis->getListaEnt().inicio(); it2 != listaMoveis->getListaEnt().fim(); ++it2){
-                    if(it2 != nullptr){
-                        if(it2 != it1){
-                            if((*(*it1))->getCorpo().getGlobalBounds().intersects((*(*it2))->getCorpo().getGlobalBounds())){
-                                (*(*it1))->colisao(*(*it2));
-                            }
+        for (std::vector<Entidades::Entidade*>::iterator it = vectorEntidades.begin(); it != vectorEntidades.end(); ++it) {
+            Entidades::Entidade* entidade = *it;
+            entidade->verificarColisao();
+        }
+    }
+    void Colisao::registrarEntidade(Entidades::Entidade *entity)
+    {
+        vectorEntidades.push_back(entity);
+    }
+    void Colisao::notificar(Entidades::Entidade *sender, const std::string &evento)
+    {
+        if(evento == "verificarColisao"){
+           for (std::vector<Entidades::Entidade*>::iterator it = vectorEntidades.begin(); it != vectorEntidades.end(); ++it) {
+                Entidades::Entidade* entidade = *it;{
+                    if(sender != entidade){
+                        if(sender->getCorpo().getGlobalBounds().intersects(entidade->getCorpo().getGlobalBounds())){
+                            sender->colisao(entidade);
                         }
                     }
                 }
             }
-        }
-        for(Listas::Lista<Entidades::Entidade*>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); ++it1){
-            if(it1 != nullptr){
-                for(Listas::Lista<Entidades::Entidade*>::Iterator it2 = listaFixos->getListaEnt().inicio(); it2 != listaFixos->getListaEnt().fim(); ++it2){
-                    if(it2 != nullptr){
-                        if(it2 != it1){
-                            if((*(*it1))->getCorpo().getGlobalBounds().intersects((*(*it2))->getCorpo().getGlobalBounds())){
-                                (*(*it1))->colisao(*(*it2));
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        */
+       }
     }
 }
-
-
