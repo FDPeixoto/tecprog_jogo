@@ -134,6 +134,13 @@ namespace Fases{
         float variacaoTempo = pGerenciadorGrafico->getRelogio()->getElapsedTime().asSeconds();
         listaPersonagens->atualizar(variacaoTempo);
         pGerenciadorGrafico->resetarRelogio();
+        //int v1=pJogador1->getNumVidas();
+        //int v2=pJogador2->getNumVidas();
+        //pGerenciadorGrafico->desenharTexto("Vida: " + std::to_string(v1));
+        //pGerenciadorGrafico->desenharTexto("Vida: " + std::to_string(v2));
+
+        pGerenciadorGrafico->desenharTexto(pJogador1->getTextoVida());
+        pGerenciadorGrafico->desenharTexto(pJogador2->getTextoVida());
         desenhar();
     }
     void Fase::proximaFase(){

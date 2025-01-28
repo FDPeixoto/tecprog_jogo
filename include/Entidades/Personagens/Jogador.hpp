@@ -1,6 +1,6 @@
 #pragma once
 #include "Personagem.hpp"
-
+#include "stdafx.h"
 #include <cmath>
 namespace Entidades{
   class Jogador: public Personagem{

@@ -1,6 +1,5 @@
 #include "Jogador.hpp"
-#include "stdafx.h"
- 
+
 
  namespace Entidades{
     Jogador::Jogador(const sf::Vector2f posicao, bool jogador2): 
@@ -9,6 +8,7 @@
     {
         if(jogador2){
             setCor(sf::Color::Green);
+            setPosTexto(330.f, 200.f);
         }
         else{
             setCor(sf::Color::Blue);
@@ -44,10 +44,13 @@
         return andando;
     }
 
-
     void Jogador::salvarDataBuffer(){}
 
-    void Jogador::executar() { }
+    void Jogador::executar() {
+        /*std::string vidaStr = "Vida: " + std::to_string(num_vidas);  // Concatena a string
+        textoVida.setString(vidaStr); 
+        return (textoVida);*/
+     }
     
     void Jogador::salvar(){}
 

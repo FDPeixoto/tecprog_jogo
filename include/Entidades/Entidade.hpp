@@ -16,6 +16,7 @@ namespace Entidades{
       sf::Vector2f pos;
       sf::Vector2f tam;
       Gerenciadores::Mediator* pMediator;
+      bool ativo;
 
     public:
       Entidade(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
@@ -36,5 +37,6 @@ namespace Entidades{
       virtual void inicializar() = 0;   
       void setMediator(Gerenciadores::Mediator* mediator);
       virtual void atualizarPosicao(float dt) = 0;
+      void setAtivo(bool flg);
   };
 }

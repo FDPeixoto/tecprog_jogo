@@ -3,7 +3,7 @@
 #include "Entidade.hpp"
 namespace Entidades{
 
-  Entidade::Entidade(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID): Ente(ID), corpo(sf::RectangleShape(tamanho)), pos(posicao) {
+  Entidade::Entidade(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID): Ente(ID), corpo(sf::RectangleShape(tamanho)), pos(posicao), ativo(false) {
     corpo.setPosition(pos);
   }
 
@@ -54,6 +54,9 @@ namespace Entidades{
     if (pMediator != nullptr) {
         pMediator->notificar(this, "verificarColisao");
     }
+  }
+  void Entidade::setAtivo(bool flg){
+    ativo=flg;
   }
 
 }

@@ -30,6 +30,7 @@ namespace Gerenciadores{
             void fecharJanela();
             sf::Clock *getRelogio();
             void desenharCorpo(sf::RectangleShape corpo);
+            void desenharTexto(sf::Text texto);
             void desenharEntidade(Entidades::Entidade *entidade);
             void desenharListaEntidades(Listas::ListaEntidades *lista);
             void setRelogio(sf::Clock *clock);

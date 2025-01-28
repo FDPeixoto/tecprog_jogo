@@ -54,6 +54,10 @@ namespace Gerenciadores{
         janela->draw(corpo);
     }
 
+    void Grafico::desenharTexto(sf::Text texto)
+    {
+        janela->draw(texto);
+    }
     void Grafico::desenharEntidade(Entidades::Entidade* entidade)
     {
         janela->draw(entidade->getCorpo());
