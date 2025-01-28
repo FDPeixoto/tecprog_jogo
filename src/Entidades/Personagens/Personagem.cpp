@@ -9,6 +9,8 @@ namespace Entidades{
 
   void Personagem::atualizarPosicao(float dt)
   {
+      float ds = velocidade.x * dt;//ou velocidadeFinal.x
+      corpo.move(ds, 0.f);
 
   }
 }

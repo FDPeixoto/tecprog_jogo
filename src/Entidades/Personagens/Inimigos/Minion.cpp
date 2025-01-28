@@ -8,7 +8,8 @@ namespace Entidades{
 
         Minion::Minion(const sf::Vector2f posicao): Inimigo(sf::Vector2f(LARGURAMINION,ALTURAMINION ), posicao)
         {
-            velocidade = sf::Vector2f(50.0f, 0.0f);
+            setVelocidade(sf::Vector2f(50.f, 0.f));
+            //velocidade = sf::Vector2f(50.0f, 0.0f);
         }
 
         Minion::~Minion()
@@ -22,7 +23,7 @@ namespace Entidades{
         {
         }
 
-        void Minion::atualizar(float deltaTime, Jogador* jogador1, Jogador* jogador2, sf::RectangleShape& plataforma) 
+        /*void Minion::atualizar(float deltaTime, Jogador* jogador1, Jogador* jogador2, sf::RectangleShape& plataforma) 
         {
             // Calculando a distância entre o Minion e os jogadores
             float dist1 = distance(getCorpo().getPosition(), jogador1->getCorpo().getPosition());
@@ -47,7 +48,7 @@ namespace Entidades{
             if (getCorpo().getPosition().y + getCorpo().getSize().y >= plataforma.getPosition().y) {
                 //setPos(getCorpo().getPosition().x, plataforma.getPosition().y - getCorpo().getSize().y);
             }
-        }
+        }*/
 
         /*void Minion::executar()
         {

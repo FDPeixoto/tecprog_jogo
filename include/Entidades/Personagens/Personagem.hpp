@@ -15,7 +15,7 @@ namespace Entidades{
     virtual void executar() = 0;
     virtual void salvar()= 0;
     void setVelocidade(sf::Vector2f vel);
-    void atualizarPosicao(float dt);
+    virtual void atualizarPosicao(float dt);
 
     //SER IMPLEMETADO DEPOIS
     //virtual void getVivo()=0;

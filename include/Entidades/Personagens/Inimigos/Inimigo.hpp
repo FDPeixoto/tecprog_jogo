@@ -32,7 +32,7 @@ namespace Entidades{
             const int get_nivel_maldade();
             //virtual void executar()=0;
             void executar();
-            void atualizar(float dt);
+            virtual void atualizar(float dt);
             void inicializar();
             void mover();
             //void andar():

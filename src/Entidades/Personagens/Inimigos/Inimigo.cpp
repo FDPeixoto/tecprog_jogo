@@ -52,7 +52,8 @@ namespace Entidades{
             return;
         }
         void Inimigo::atualizar(float dt){
-            return;
+            float ds = velocidade.x * dt;//ou velocidadeFinal.x
+            corpo.move(ds, 0.f);
         }
 
         void Inimigo::mover(){
@@ -84,14 +85,14 @@ namespace Entidades{
             if(pJogador1!=nullptr){
                 sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
                 //if((fabs(posJogador.x-posInimigo.x)>= RAIO_PERSEGUIR_X)||(fabs(posJogador.y-posInimigo.y)>=RAIO_PERSEGUIR_Y)){
-                if((fabs(posJogador1.x-posInimigo.x)>= RAIO_PERSEGUIR_X)){
+                if((fabs(posJogador1.x-posInimigo.x)<= RAIO_PERSEGUIR_X)){
                     perseguir(posJogador1, posInimigo);
 
                 }
             }
             if(pJogador2!=nullptr){
                 sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
-                if(fabs(posJogador2.x-posInimigo.x)>= RAIO_PERSEGUIR_X){
+                if(fabs(posJogador2.x-posInimigo.x)<= RAIO_PERSEGUIR_X){
                     perseguir(posJogador2, posInimigo);
                 }
             }
@@ -103,10 +104,12 @@ namespace Entidades{
         
         void Inimigo::perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo){
             if((posJogador.x-posInimigo.x)>=0.0f){//significa que o jogador está a direita
-                corpo.move(velocidade.x,0.0f);
+                //corpo.move(velocidade.x,0.0f);
+                this->velocidade.x=50.0f;
             }
             else{
-                corpo.move(-velocidade.x,0.0f);
+                this->velocidade.x=-50.0f;
+                //corpo.move(-velocidade.x,0.0f);
             }
             /*if(posJogador.y-posInimigo.y>=0.0f){//significa que o jogador está acima
                 corpo.move(0.0f,velocidade.y);
@@ -119,10 +122,12 @@ namespace Entidades{
             iteracoes++;
             //if(iteracoes>50){
             if(moveAleatorio==0){
-                corpo.move((velocidade.x), 0.0f);
+                //corpo.move((velocidade.x), 0.0f);
+                this->velocidade.x=50.0f;
             }
             else if(moveAleatorio==1){
-                corpo.move((-velocidade.x), 0.0f);
+                this->velocidade.x=-50.0f;
+                //corpo.move((-velocidade.x), 0.0f);
             }
             //}
             /*else if(moveAleatorio==2){
@@ -136,7 +141,7 @@ namespace Entidades{
                 moveAleatorio=rand()%FAIXA_ALEATORIO;
                 relogio.restart();
             }*/
-            if(iteracoes>=100){//200
+            if(iteracoes>=10){//200
                 srand((unsigned int)time(NULL));  
                 // Gera um número aleatório entre 0 e 99
                 moveAleatorio = rand() % FAIXA_ALEATORIO; 
