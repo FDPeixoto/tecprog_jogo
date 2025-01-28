@@ -30,8 +30,8 @@ namespace Fases{
         Entidades::Inimigos::Durahan* durahan = new Entidades::Inimigos::Durahan(posicao);
         if(durahan != nullptr){
             durahan->setCor(sf::Color::Magenta);
-            //if(getJogador1() != nullptr){esquelto->setJogador1(getJogador1());}
-            //if(getJogador2() != nullptr){esqueleto->setJogador2(getJogador2());}
+            //if(getJogador1() != nullptr){durahan->setJogador1(getJogador1());}
+            //if(getJogador2() != nullptr){durahan->setJogador2(getJogador2());}
             listaPersonagens->incluirEntidade(durahan);
         }
 

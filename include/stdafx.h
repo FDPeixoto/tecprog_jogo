@@ -6,12 +6,16 @@
 #define GRAVIDADE 500.f
 #define NoChaoAZUL false
 #define NoChaoAMARELO false
-#define DELTATIME 60.0f
+#define DELTATIME 300.0f
 #define JOGADORALTURA 100.f
 #define JOGADORLARGURA 50.f
 #define IDJOGADOR 1
 #define IDINIMIGO 2
 #define IDOBSTACUlO 3
+
+#define RAIO_PERSEGUIR_X 800.0f
+#define RAIO_PERSEGUIR_Y 200.0f
+#define FAIXA_ALEATORIO 2
 
 #define ALTURAMINION 50.0f
 #define LARGURAMINION 30.0f

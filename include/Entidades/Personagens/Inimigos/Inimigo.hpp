@@ -1,9 +1,7 @@
 # pragma once
 #include "Jogador.hpp"
 #include "Personagem.hpp"
-
-#define RAIO_PERSEGUIR_X 200.0f
-#define RAIO_PERSEGUIR_Y 200.0f
+#include "stdafx.h"
 
 namespace Entidades{
     namespace Inimigos{
@@ -14,6 +12,7 @@ namespace Entidades{
             Entidades::Jogador* pJogador1;
             Entidades::Jogador* pJogador2;
             sf::Clock relogio;
+            int iteracoes;
 
 
 
@@ -31,10 +30,12 @@ namespace Entidades{
             void perseguir (sf::Vector2f posJogador, sf::Vector2f posInimigo);
             void set_nivel_maldade(int n);
             const int get_nivel_maldade();
-            virtual void executar()=0;
+            //virtual void executar()=0;
+            void executar();
             void atualizar(float dt);
             void inicializar();
             void mover();
+            //void andar():
             virtual void moverAleatorio();
 
         };

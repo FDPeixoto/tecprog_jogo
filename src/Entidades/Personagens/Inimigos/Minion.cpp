@@ -8,7 +8,7 @@ namespace Entidades{
 
         Minion::Minion(const sf::Vector2f posicao): Inimigo(sf::Vector2f(LARGURAMINION,ALTURAMINION ), posicao)
         {
-            velocidade = sf::Vector2f(50.f, 50.f);
+            velocidade = sf::Vector2f(50.0f, 0.0f);
         }
 
         Minion::~Minion()
@@ -49,9 +49,9 @@ namespace Entidades{
             }
         }
 
-        void Minion::executar()
+        /*void Minion::executar()
         {
-        }
+        }*/
 
         int Minion::get_tam_grupo()
         {
@@ -72,9 +72,9 @@ namespace Entidades{
             }
             return;
         }
-        void Minion::mover()
+        /*void Minion::mover()
         {
-        }
+        }*/
         int Minion::tam_grupo = 1;
     }
 }

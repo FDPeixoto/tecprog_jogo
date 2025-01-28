@@ -30,10 +30,10 @@
         andando = true;
         paraEsquerda = ehEsquerda;
         if(paraEsquerda){
-            velocidade.x = -1000.0f;
+            velocidade.x = -500.0f;
         }
         else{
-            velocidade.x = 1000.f;
+            velocidade.x = 500.f;
         }
     }
     void Jogador::parar(){

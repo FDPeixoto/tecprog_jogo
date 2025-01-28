@@ -4,13 +4,16 @@
 
 #include <stdlib.h>
 #include <time.h>
+//#include <cstdlib>  
+//#include <ctime>    
 
 namespace Entidades{
     namespace Inimigos{
         Inimigo::Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao): Personagem(tamanho, posicao, IDINIMIGO), nivel_maldade(0){
-            moveAleatorio=rand()%4;
+            moveAleatorio=rand()%FAIXA_ALEATORIO;
             pJogador1=nullptr;
             pJogador2=nullptr;
+            iteracoes=0;
 
         }
         Inimigo::~Inimigo(){
@@ -31,7 +34,10 @@ namespace Entidades{
             return pJogador2;
         }
         void Inimigo::salvarDataBuffer(){}
-        //void Inimigo::executar(){}
+        void Inimigo::executar(){
+            mover();
+            //moverAleatorio();
+        }
         //void Inimigo::danificar(Personagens::Jogador* p){}
         void Inimigo::set_nivel_maldade(int n){
             if((n>0)&&(n<5)){
@@ -96,36 +102,45 @@ namespace Entidades{
         }
         
         void Inimigo::perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo){
-            if(posJogador.x-posInimigo.x>=0.0f){//significa que o jogador está a direita
+            if((posJogador.x-posInimigo.x)>=0.0f){//significa que o jogador está a direita
                 corpo.move(velocidade.x,0.0f);
             }
             else{
                 corpo.move(-velocidade.x,0.0f);
             }
-            if(posJogador.y-posInimigo.y>=0.0f){//significa que o jogador está acima
+            /*if(posJogador.y-posInimigo.y>=0.0f){//significa que o jogador está acima
                 corpo.move(0.0f,velocidade.y);
             }
             else{
                 corpo.move(0.0f,-velocidade.y);
-            }
+            }*/
         }
         void Inimigo::moverAleatorio(){
+            iteracoes++;
+            //if(iteracoes>50){
             if(moveAleatorio==0){
-                corpo.move(velocidade.x,0.0f);
+                corpo.move((velocidade.x), 0.0f);
             }
             else if(moveAleatorio==1){
-                corpo.move(-velocidade.x,0.0f);
+                corpo.move((-velocidade.x), 0.0f);
             }
-            else if(moveAleatorio==2){
+            //}
+            /*else if(moveAleatorio==2){
                 corpo.move(0.0f,velocidade.y);
             }
             else if(moveAleatorio==3){
                 corpo.move(0.0f,-velocidade.y);
-            }
-            float intervalo=relogio.getElapsedTime().asSeconds();
-            if(intervalo>=2.0f){
-                moveAleatorio=rand()%4;
+            }*/
+            
+            /*if(intervalo>=2.0f){
+                moveAleatorio=rand()%FAIXA_ALEATORIO;
                 relogio.restart();
+            }*/
+            if(iteracoes>=100){//200
+                srand((unsigned int)time(NULL));  
+                // Gera um número aleatório entre 0 e 99
+                moveAleatorio = rand() % FAIXA_ALEATORIO; 
+                iteracoes=0; 
             }
         }
     }

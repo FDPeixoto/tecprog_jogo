@@ -19,6 +19,8 @@ Medievo::~Medievo(){
 }
 
 void Medievo::executar(){
+    float elapsedTime = 0.0f;
+
     while(pGerenciadorGrafico->getJanela()->isOpen()){
 
         pGerenciadorGrafico->getJanela()->clear();
@@ -27,6 +29,13 @@ void Medievo::executar(){
 
         primeiraFase.executar();
         pGerenciadorGrafico->getJanela()->display();
+
+        elapsedTime = clock.getElapsedTime().asSeconds();
+
+        // Se o tempo transcorrido for maior ou igual ao delayTime
+        if (elapsedTime >= DELTATIME) {
+            clock.restart();
+        }
     }
 }
 
