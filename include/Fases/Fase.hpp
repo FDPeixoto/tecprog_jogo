@@ -5,6 +5,7 @@
 #include "Minion.hpp"
 #include "Plataforma.hpp"
 #include "Evento.hpp"
+#include "Canhao.hpp"
 
 namespace Fases{
     class Fase: public Ente{
@@ -38,10 +39,12 @@ namespace Fases{
         void criarJogador(const sf::Vector2f posicao);
         void criarMinion(const sf::Vector2f posicao);
         void criarPlataforma(const sf::Vector2f posicao);
+        void criarPlataformaBase(const sf::Vector2f posicao);
         void criarBordaH(const sf::Vector2f posicao, sf::Color cor);
         void criarBordaV(const sf::Vector2f posicao, sf::Color cor);
         //Está ao contrário as funções BordaV cria Horizontal e BordaH, vertical
         void criarEspinho(const sf::Vector2f posicao);
+        void criarCanhao(const sf::Vector2f posicao);
         
         void desenhar();
         void executar();

@@ -56,6 +56,8 @@ namespace Fases{
         criarBordaH(sf::Vector2f(1270.0f, 0.0f), sf::Color::Yellow);
         criarBordaV(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
         criarBordaV(sf::Vector2f(0.0f,710.0f), sf::Color::Yellow);
+
+        criarPlataformaBase(sf::Vector2f(0.0f,660));
         //Está ao contrário as funções BordaV cria Horizontal e BordaH, vertical
         
         std::ifstream arquivo;
@@ -81,7 +83,6 @@ namespace Fases{
             case('j'):{
                 criarJogador(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
             }break;
-
             case('m'):{
                 criarMinion(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
             }break;
@@ -90,6 +91,15 @@ namespace Fases{
             }break;
             case('d'):{
                 criarInimDificil(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
+            }break;
+            case('b'):{
+                criarPlataforma(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
+            }break;
+            case('s'):{
+                criarEspinho(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
+            }break;
+            case('c'):{
+                criarCanhao(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
             }break;
         }
     }

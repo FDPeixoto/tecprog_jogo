@@ -1,3 +1,4 @@
+#pragma once
 #include <Obstaculo.hpp>
 
 namespace Entidades{
@@ -6,10 +7,16 @@ namespace Entidades{
             private:
                 int velocidade_inicial;
             public:
-                Canhao(const sf::Vector2f tamanho, const sf::Vector2f posicao);
+                Canhao(float alt, float larg, const sf::Vector2f posicao);
                 ~Canhao();
                 void obstacular(Entidades::Jogador* pJogador);
                 void lancar(Entidades::Jogador* pJogador);
+                void virtual executar();
+                virtual void salvar();
+                void virtual atualizar(float dt);
+                void virtual  colisao(Entidade *outraEntidade);
+                virtual void inicializar();
+                virtual void atualizarPosicao(float dt);
         };
     }
 }

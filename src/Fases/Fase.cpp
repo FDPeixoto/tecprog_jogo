@@ -1,4 +1,3 @@
-
 #include "Fase.hpp"
 #define LARGURA 1280
 #define ALTURA 720
@@ -74,6 +73,16 @@ namespace Fases{
     {
         Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma(50.0f, 50.0f, posicao);
         if(plataforma != nullptr){
+            plataforma->setCor(sf::Color::White);
+            listaObstaculos->incluirEntidade(plataforma);
+        }
+    }
+    void Fase::criarPlataformaBase(const sf::Vector2f posicao)
+    {
+        Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma(60.0f, LARGURA, posicao);
+        if(plataforma != nullptr){
+            sf::Color verdeEscuro(0, 100, 0);  // verde escuro
+            plataforma->setCor(verdeEscuro);
             listaObstaculos->incluirEntidade(plataforma);
         }
     }
@@ -96,12 +105,22 @@ namespace Fases{
     
     void Fase::criarEspinho(const sf::Vector2f posicao)
     {
-        Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma(50.f, 50.f, posicao);
+        Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma(LARGURA_ESPINHO, ALTURA_ESPINHO, posicao);
         if(plataforma != nullptr){
+            sf::Color laranja(255, 111, 0);  // RGB (255, 165, 0) - um laranja padrão
+            plataforma->setCor(laranja);
             listaObstaculos->incluirEntidade(plataforma);
         }
     }
-
+    void Fase::criarCanhao(const sf::Vector2f posicao)
+    {
+        Entidades::Obstaculos::Canhao* canhao = new Entidades::Obstaculos::Canhao(LARGURA_CANHAO, ALTURA_CANHAO, posicao);
+        if((canhao) != nullptr){
+            sf::Color roxa(128, 0, 128);  // roxo
+            canhao->setCor(roxa);
+            listaObstaculos->incluirEntidade(canhao);
+        }
+    }
     void Fase::desenhar()
     {
         pGerenciadorGrafico->desenharListaEntidades(listaPersonagens);
@@ -118,6 +137,6 @@ namespace Fases{
         desenhar();
     }
     void Fase::proximaFase(){
-        
+
     }
 }
