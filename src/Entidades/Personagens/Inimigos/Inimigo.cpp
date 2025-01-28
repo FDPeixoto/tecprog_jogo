@@ -7,10 +7,16 @@
 
 namespace Entidades{
     namespace Inimigos{
-        Inimigo::Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao): Personagem(tam, posicao, IDINIMIGO), nivel_maldade(0){
+        Inimigo::Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao): Personagem(tamanho, posicao, IDINIMIGO), nivel_maldade(0){
             moveAleatorio=rand()%4;
+            pJogador1=nullptr;
+            pJogador2=nullptr;
+
         }
-        Inimigo::~Inimigo(){}
+        Inimigo::~Inimigo(){
+            pJogador1=nullptr;
+            pJogador2=nullptr;
+        }
 
         void Inimigo::setJogador1(Entidades::Jogador* pJogador){
             pJogador1 = pJogador;

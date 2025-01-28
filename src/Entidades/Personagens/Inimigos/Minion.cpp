@@ -6,7 +6,7 @@ namespace Entidades{
             return std::sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
         }
 
-        Minion::Minion(const sf::Vector2f posicao): Inimigo(sf::Vector2f(50.f, 50.f), posicao)
+        Minion::Minion(const sf::Vector2f posicao): Inimigo(sf::Vector2f(LARGURAMINION,ALTURAMINION ), posicao)
         {
             velocidade = sf::Vector2f(50.f, 50.f);
         }

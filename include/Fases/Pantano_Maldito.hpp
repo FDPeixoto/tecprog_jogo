@@ -1,5 +1,6 @@
 #pragma once
 #include "Fase.hpp"
+#include "stdafx.h"
 
 namespace Fases{
     class Pantano_Maldito: public Fase{

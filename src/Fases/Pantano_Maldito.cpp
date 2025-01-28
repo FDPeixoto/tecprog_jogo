@@ -5,9 +5,6 @@
 #include <SFML/Graphics.hpp>
 #define TAM_JOGADORX 50.0f
 #define TAM_JOGADORY 100.0f
-#define TAM_BORDA 10
-#define LARGURA 1280
-#define ALTURA 720
 
 namespace Fases{
     Pantano_Maldito::Pantano_Maldito(): Fase(), maxInimMedios(5)
@@ -65,7 +62,11 @@ namespace Fases{
         switch(letra){
             case('j'):{
                 criarJogador(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
-            }
+            }break;
+
+            case('m'):{
+                criarMinion(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
+            }break;
         }
     }
 

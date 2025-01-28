@@ -1,6 +1,7 @@
+#pragma once
 #include "Inimigo.hpp"
 #include "Jogador.hpp"
-
+#include "stdafx.h"
 namespace Entidades{
     namespace Inimigos{
         class Minion: public Inimigo{

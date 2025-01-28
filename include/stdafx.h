@@ -12,3 +12,12 @@
 #define IDJOGADOR 1
 #define IDINIMIGO 2
 #define IDOBSTACUlO 3
+
+#define ALTURAMINION 30.0f
+#define LARGURAMINION 20.0f
+
+#define TAM_JOGADORX 50.0f
+#define TAM_JOGADORY 100.0f
+#define TAM_BORDA 10
+#define LARGURA 1280
+#define ALTURA 720

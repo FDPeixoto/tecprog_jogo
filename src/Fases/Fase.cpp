@@ -63,9 +63,10 @@ namespace Fases{
     {
         Entidades::Inimigos::Minion* minion = new Entidades::Inimigos::Minion(posicao);
         if(minion != nullptr){
+            minion->setCor(sf::Color::Red);
+            if(getJogador1() != nullptr){minion->setJogador1(getJogador1());}
+            if(getJogador2() != nullptr){minion->setJogador2(getJogador2());}
             listaPersonagens->incluirEntidade(minion);
-            if(getJogador1() != nullptr){setJogador1(getJogador1());}
-            if(getJogador2() != nullptr){setJogador2(getJogador2());}
         }
     }
     
