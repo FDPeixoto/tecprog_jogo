@@ -117,4 +117,7 @@ namespace Fases{
         pGerenciadorGrafico->resetarRelogio();
         desenhar();
     }
+    void Fase::proximaFase(){
+        
+    }
 }

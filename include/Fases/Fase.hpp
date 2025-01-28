@@ -46,5 +46,7 @@ namespace Fases{
         void desenhar();
         void executar();
         void criarCenario();
+
+        void proximaFase();
     };
 }

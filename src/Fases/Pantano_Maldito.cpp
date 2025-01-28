@@ -14,8 +14,15 @@ namespace Fases{
 
     Pantano_Maldito::~Pantano_Maldito(){}
 
-    void Pantano_Maldito::criarInimMedios()
+    void Pantano_Maldito::criarInimMedios(const sf::Vector2f posicao)
     {
+        Entidades::Inimigos::Esqueleto* esqueleto = new Entidades::Inimigos::Esqueleto(posicao);
+        if(esqueleto != nullptr){
+            esqueleto->setCor(sf::Color::Cyan);
+            //if(getJogador1() != nullptr){esquelto->setJogador1(getJogador1());}
+            //if(getJogador2() != nullptr){esqueleto->setJogador2(getJogador2());}
+            listaPersonagens->incluirEntidade(esqueleto);
+        }
 
     }
     void Pantano_Maldito::criarInimigos()
@@ -66,6 +73,9 @@ namespace Fases{
 
             case('m'):{
                 criarMinion(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
+            }break;
+            case('e'):{
+                criarInimMedios(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
             }break;
         }
     }
