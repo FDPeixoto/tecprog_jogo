@@ -6,6 +6,8 @@ namespace Entidades{
     int num_vidas;
     sf::Vector2f velocidade;
     bool noChao;
+    //bool vivo;
+    
   public:
     Personagem(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
     ~Personagem();
@@ -14,5 +16,8 @@ namespace Entidades{
     virtual void salvar()= 0;
     void setVelocidade(sf::Vector2f vel);
     void atualizarPosicao(float dt);
+
+    //SER IMPLEMETADO DEPOIS
+    //virtual void getVivo()=0;
   };
 }
