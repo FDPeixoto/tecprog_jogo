@@ -13,7 +13,7 @@
 #define IDINIMIGO 2
 #define IDOBSTACUlO 3
 
-#define RAIO_PERSEGUIR_X 700.0f
+#define RAIO_PERSEGUIR_X 500.0f
 #define RAIO_PERSEGUIR_Y 200.0f
 #define FAIXA_ALEATORIO 2
 
