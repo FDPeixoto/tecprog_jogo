@@ -14,7 +14,7 @@ namespace Fases{
 
     Pantano_Maldito::~Pantano_Maldito(){}
 
-    void Pantano_Maldito::criarInimMedios(const sf::Vector2f posicao)
+    void Pantano_Maldito::criarInimMedio(const sf::Vector2f posicao)
     {
         Entidades::Inimigos::Esqueleto* esqueleto = new Entidades::Inimigos::Esqueleto(posicao);
         if(esqueleto != nullptr){
@@ -22,6 +22,17 @@ namespace Fases{
             //if(getJogador1() != nullptr){esquelto->setJogador1(getJogador1());}
             //if(getJogador2() != nullptr){esqueleto->setJogador2(getJogador2());}
             listaPersonagens->incluirEntidade(esqueleto);
+        }
+
+    }
+    void Pantano_Maldito::criarInimDificil(const sf::Vector2f posicao)
+    {
+        Entidades::Inimigos::Durahan* durahan = new Entidades::Inimigos::Durahan(posicao);
+        if(durahan != nullptr){
+            durahan->setCor(sf::Color::Magenta);
+            //if(getJogador1() != nullptr){esquelto->setJogador1(getJogador1());}
+            //if(getJogador2() != nullptr){esqueleto->setJogador2(getJogador2());}
+            listaPersonagens->incluirEntidade(durahan);
         }
 
     }
@@ -75,7 +86,10 @@ namespace Fases{
                 criarMinion(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
             }break;
             case('e'):{
-                criarInimMedios(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
+                criarInimMedio(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
+            }break;
+            case('d'):{
+                criarInimDificil(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
             }break;
         }
     }

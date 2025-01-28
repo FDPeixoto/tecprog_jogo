@@ -18,6 +18,5 @@ namespace Entidades{
             antidoto_mortal=flg;
         }
         void Durahan::colisao(Entidade *outraEntidade){}
-        };
     }
 }

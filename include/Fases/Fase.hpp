@@ -21,7 +21,7 @@ namespace Fases{
 
         public:
         Fase();
-        ~Fase();
+        virtual ~Fase();
         
         virtual void criarMapa() = 0;
         virtual void criarInimigos()=0;
