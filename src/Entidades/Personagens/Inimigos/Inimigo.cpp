@@ -50,15 +50,51 @@ namespace Entidades{
         }
 
         void Inimigo::mover(){
-            sf::Vector2f posJogador = pJogador1->getCorpo().getPosition();
             sf::Vector2f posInimigo= corpo.getPosition();
-            if(fabs(posJogador.x-posInimigo.x>= RAIO_PERSEGUIR_X)||fabs(posJogador.y-posInimigo.y>=RAIO_PERSEGUIR_Y)){
-                perseguir(posJogador, posInimigo);
+            if((pJogador1!=nullptr) && (pJogador2!=nullptr)){
+                sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
+                sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
+
+                float distx1=fabs(posJogador1.x-posInimigo.x);
+                float disty1=fabs(posJogador1.y-posInimigo.y);
+
+                float distx2=fabs(posJogador2.x-posInimigo.x);
+                float disty2=fabs(posJogador2.y-posInimigo.y);
+
+                if(distx1<=distx2){
+                    if(distx1<=RAIO_PERSEGUIR_X){
+                        perseguir(posJogador1, posInimigo);
+                    }
+                }
+                else if (distx2<=RAIO_PERSEGUIR_X){
+                    perseguir(posJogador2, posInimigo);
+                }
+                else{
+                    moverAleatorio();
+                }
             }
+
+           
+            if(pJogador1!=nullptr){
+                sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
+                //if((fabs(posJogador.x-posInimigo.x)>= RAIO_PERSEGUIR_X)||(fabs(posJogador.y-posInimigo.y)>=RAIO_PERSEGUIR_Y)){
+                if((fabs(posJogador1.x-posInimigo.x)>= RAIO_PERSEGUIR_X)){
+                    perseguir(posJogador1, posInimigo);
+
+                }
+            }
+            if(pJogador2!=nullptr){
+                sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
+                if(fabs(posJogador2.x-posInimigo.x)>= RAIO_PERSEGUIR_X){
+                    perseguir(posJogador2, posInimigo);
+                }
+            }
+            //não sei se o else aqui embaixo é o suficiente
             else{
-                moverAleatorio();
-            }
+                    moverAleatorio();
+                }
         }
+        
         void Inimigo::perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo){
             if(posJogador.x-posInimigo.x>=0.0f){//significa que o jogador está a direita
                 corpo.move(velocidade.x,0.0f);
