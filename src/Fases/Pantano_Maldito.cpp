@@ -26,8 +26,12 @@ namespace Fases{
 
     void Pantano_Maldito::criarMapa()
     {
-        criarJogador(sf::Vector2f(0.0f, 0.0f));
-        criarJogador(sf::Vector2f(200.0f, 0.0f));
+        criarJogador(sf::Vector2f(100.0f, 0.0f));
+        criarJogador(sf::Vector2f(300.0f, 0.0f));
+        criarMinion(sf::Vector2f(300.0f, 300.0f));
+        criarPlataforma(sf::Vector2f(150.0f, 300.0f));
+        criarPlataforma(sf::Vector2f(250.0f, 400.0f));
+        criarPlataforma(sf::Vector2f(350.0f, 300.0f));
     }
 }
 

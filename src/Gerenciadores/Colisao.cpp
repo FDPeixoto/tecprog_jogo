@@ -40,11 +40,37 @@ namespace Gerenciadores{
         sf::Vector2f somaMetadeRectangulo(tam1.x/2.0f + tam2.x/2.0f, tam1.y/2.0f + tam2.y/2.0f);
         return sf::Vector2f(distanciaEntreCentros.x - somaMetadeRectangulo.x, distanciaEntreCentros.y - somaMetadeRectangulo.y);
     }
+
+    bool Colisao::checarColisao(Entidades::Entidade *entidade1, Entidades::Entidade *entidade2) {
+        return entidade1->getCorpo().getGlobalBounds().intersects(entidade2->getCorpo().getGlobalBounds());
+    }
     void Colisao::executar(){
-        for (std::vector<Entidades::Entidade*>::iterator it = vectorEntidades.begin(); it != vectorEntidades.end(); ++it) {
-            Entidades::Entidade* entidade = *it;
-            entidade->verificarColisao();
+        for(Listas::Lista<Entidades::Entidade>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); it1++){
+            if(*it1 != nullptr){
+                for(Listas::Lista<Entidades::Entidade>::Iterator it2 = listaMoveis->getListaEnt().inicio(); it2 != listaMoveis->getListaEnt().fim(); it2++){
+                    if(*it2 != nullptr){
+                        if(it1 != it2){
+                            if(checarColisao(*it1, *it2)){
+                                (*it1)->colisao(*it2);
+                            }
+                        }
+                    }
+                }
+            }
         }
+
+        for(Listas::Lista<Entidades::Entidade>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); it1++){
+            if(*it1 != nullptr){
+                for(Listas::Lista<Entidades::Entidade>::Iterator it2 = listaFixos->getListaEnt().inicio(); it2 != listaFixos->getListaEnt().fim(); it2++){
+                    if(*it2 != nullptr){
+                        if(checarColisao(*it1, *it2)){
+                                (*it1)->colisao(*it2);
+                        }
+                    }
+                }
+            }
+        }
+
     }
     void Colisao::registrarEntidade(Entidades::Entidade *entity)
     {
@@ -57,7 +83,7 @@ namespace Gerenciadores{
                 Entidades::Entidade* entidade = *it;{
                     if(sender != entidade){
                         if(sender->getCorpo().getGlobalBounds().intersects(entidade->getCorpo().getGlobalBounds())){
-                            sender->colisao(entidade);
+                            sender->setCor(sf::Color::Red);
                         }
                     }
                 }

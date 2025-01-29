@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Matematica/CoordTL.h"
 #include <SFML/Graphics.hpp>
 #include "../../include/Listas/ListaEntidades.hpp"
 #include "../../include/Listas/Lista.hpp"

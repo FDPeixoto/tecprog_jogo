@@ -27,6 +27,7 @@ void Medievo::executar(){
 
         primeiraFase.executar();
         pGerenciadorGrafico->getJanela()->display();
+        std::cout << "Hello, World!" << std::endl;
     }
 }
 

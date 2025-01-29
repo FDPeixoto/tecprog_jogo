@@ -32,7 +32,7 @@ namespace Gerenciadores{
             if(pJog2 != nullptr){pJog2->andar(false);}
         }
         else if(tecla==sf::Keyboard::W){
-            //pJog2->pular();
+            if(pJog2 != nullptr){pJog2->pular();}
         }
         else if(tecla==sf::Keyboard::Left){
             if(pJog1 != nullptr){pJog1->andar(true);}
@@ -41,7 +41,7 @@ namespace Gerenciadores{
             if(pJog1 != nullptr){pJog1->andar(false);}
         }
         else if(tecla==sf::Keyboard::Up){
-            //pJog1->pular();
+            if(pJog1 != nullptr){pJog1->pular();}
         }
         else if(tecla==sf::Keyboard::Escape){
             pGerenciadorGrafico->fecharJanela();

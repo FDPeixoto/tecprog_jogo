@@ -9,6 +9,6 @@ namespace Entidades{
 
   void Personagem::atualizarPosicao(float dt)
   {
-
+    return;
   }
 }

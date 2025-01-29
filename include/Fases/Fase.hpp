@@ -5,6 +5,7 @@
 #include "Minion.hpp"
 #include "Plataforma.hpp"
 #include "Evento.hpp"
+#include "Colisao.hpp"
 
 namespace Fases{
     class Fase: public Ente{
@@ -12,6 +13,7 @@ namespace Fases{
         protected:
         Gerenciadores::Grafico* pGerenciadorGrafico;
         Gerenciadores::Evento* pGerenciadorEvento;
+        Gerenciadores::Colisao* pGerenciadorColisao;
         Listas::ListaEntidades* listaPersonagens;
         Listas::ListaEntidades* listaObstaculos;
         Entidades::Jogador* pJogador1;

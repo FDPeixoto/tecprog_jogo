@@ -11,4 +11,4 @@
 #define JOGADORLARGURA 50.f
 #define IDJOGADOR 1
 #define IDINIMIGO 2
-#define IDOBSTACUlO 3
+#define IDOBSTACULO 3
