@@ -89,11 +89,17 @@ namespace Entidades{
                     perseguir(posJogador1, posInimigo);
 
                 }
+                else{
+                    moverAleatorio();
+                }
             }
             else if(pJogador2!=nullptr){
                 sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
                 if(fabs(posJogador2.x-posInimigo.x)<= RAIO_PERSEGUIR_X){
                     perseguir(posJogador2, posInimigo);
+                }
+                else{
+                    moverAleatorio();
                 }
             }
             //não sei se o else aqui embaixo é o suficiente

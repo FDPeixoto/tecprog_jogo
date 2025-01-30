@@ -42,22 +42,69 @@ namespace Entidades{
             atualizarListP (dt);
         }
         void Durahan::atirar(){
-
+            
             if(tiros<TAM_MAX_P){
-                tiros++;
+                bool dir=false;
+                sf::Vector2f posInimigo= corpo.getPosition();
+                if((pJogador1!=nullptr) && (pJogador2!=nullptr)){
+                    sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
+                    sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
+
+                    float distx1=fabs(posJogador1.x-posInimigo.x);
+                    //float disty1=fabs(posJogador1.y-posInimigo.y);
+
+                    float distx2=fabs(posJogador2.x-posInimigo.x);
+                    //float disty2=fabs(posJogador2.y-posInimigo.y);
+
+                    if(distx1<=distx2){//atira para o jogador 1
+                        if((posJogador1.x-posInimigo.x)>=0 ){//Eh para a direita
+                            dir=true;
+                        }
+                        else{//tá para a esquerda
+                            dir=false;
+                        }
+                    }
+                    else{//atira no jogador 2
+                        if((posJogador2.x-posInimigo.x)>=0 ){//Eh para a direita
+                            dir=true;
+                        }
+                        else{//tá para a esquerda
+                            dir=false;
+                        }
+                    }
+                }
+                else if(pJogador1!=nullptr){
+                    sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
+                    if((posJogador1.x-posInimigo.x)>=0 ){//Eh para a direita
+                        dir=true;
+                    }
+                    else{//tá para a esquerda
+                        dir=false;
+                    }
+                }
+                else if(pJogador2!=nullptr){
+                    sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
+                    if((posJogador2.x-posInimigo.x)>=0 ){//Eh para a direita
+                            dir=true;
+                    }
+                    else{//tá para a esquerda
+                        dir=false;
+                    }
+                }
+                
                 int contador = 0;
                 for (auto it = listaProjetil.begin(); it != listaProjetil.end(); ++it) {
                     if (contador == tiros) {
                         Entidades::Entidade* proj = *it;
                         if(proj != nullptr){
                             proj->setAtivo(true);
-                            proj->atirar(this->getPos());
+                            proj->atirar(this->getPos(),dir);
                             proj->executar();
                         }
                         break;  // Não precisa continuar após encontrar
                     }
                     ++contador;
-                }
+                }tiros++;
                 /*if(listaProjetil[tiros]!=nullptr){
                     //Entidades::Projetil proj= new Entidades::Projetil(getPos(this));
                     Entidades::Projetil* proj=listaProjetil[tiros];
@@ -82,9 +129,6 @@ namespace Entidades{
             if((aleatorio<=FAIXA_ALEATORIO) &&(jaAtirou==false)){
                     atirar();
                     jaAtirou=true;
-                    if(getCor()==sf::Color::Cyan){
-                        setCor(sf::Color::Yellow);
-                    }
                     
             }
             if(it>=100){

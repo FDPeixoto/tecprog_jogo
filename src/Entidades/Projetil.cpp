@@ -9,9 +9,14 @@ namespace Entidades{
     void Projetil::setVelocidade(sf::Vector2f vel){
     velocidade = vel;
     }
-    void Projetil::atirar(const sf::Vector2f posicaoInimigo) {
+    void Projetil::atirar(const sf::Vector2f posicaoInimigo, bool direita) {
         setPos(posicaoInimigo); // O projétil começa na posição do inimigo (Durahan)
-        setVelocidade(sf::Vector2f(-100.f, 0.f));
+        if(direita==true){
+            setVelocidade(sf::Vector2f(VEL_X_P, 0.f));
+        }
+        else{
+            setVelocidade(sf::Vector2f(-VEL_X_P, 0.f));
+        }
         setCor(sf::Color::Red);
         
     }

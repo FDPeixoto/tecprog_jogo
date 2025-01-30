@@ -40,6 +40,6 @@ namespace Entidades{
       virtual void atualizarPosicao(float dt) = 0;
       void setAtivo(bool flg);
       bool getAtivo();
-      virtual void atirar(const sf::Vector2f posInimigo);
+      virtual void atirar(const sf::Vector2f posInimigo, bool direita);
   };
 }

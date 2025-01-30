@@ -13,7 +13,7 @@ namespace Entidades{
         Projetil(const sf::Vector2f posicao);
         ~Projetil();
         //void atirar(Jogador* pAlvo);
-        void atirar(const sf::Vector2f posInimigo);
+        void atirar(const sf::Vector2f posInimigo, bool direita);
         void executar();
         void atualizar(float dt);
         void atualizarPosicao(float dt);

@@ -32,6 +32,7 @@ namespace Entidades{
                 void criarProjetil();
                 void atualizarListP(float dt);
                 void atualizar(float dt);
+                //DÁ PARA DEIXAR O PERSEGUIR DO INIMIGO MAIS GERAL E CHAMAR A FUNÇÃO PARA O DURRAHAN, MAS NO MOMENTO COPIEI MESMO
         };
     }
 }

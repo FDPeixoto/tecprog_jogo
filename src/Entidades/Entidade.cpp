@@ -64,7 +64,7 @@ namespace Entidades{
   void Entidade::setAtivo(bool flg){
     ativo=flg;
   }
-  void Entidade::atirar(const sf::Vector2f posInimigo){
+  void Entidade::atirar(const sf::Vector2f posInimigo, bool direita){
     return;
   }
   bool Entidade::getAtivo(){
