@@ -1,7 +1,7 @@
 #include "Projetil.hpp"
 
 namespace Entidades{
-    Projetil::Projetil(const sf::Vector2f posicao):Entidade( sf::Vector2f (TAM_X_PROJETIL,TAM_Y_PROJETIL), posicao, ID_PROJETIL), vxP(0.0f), velocidade(sf::Vector2f(0.0f,0.0f)){
+    Projetil::Projetil(const sf::Vector2f posicao):Entidade( sf::Vector2f (TAM_X_PROJETIL,TAM_Y_PROJETIL), posicao, ID_PROJETIL), vxP(0.0f), velocidade(sf::Vector2f(500.0f,0.0f)){
         
     }
     Projetil::~Projetil(){}
@@ -12,6 +12,7 @@ namespace Entidades{
     void Projetil::atirar(const sf::Vector2f posicaoInimigo) {
         setPos(posicaoInimigo); // O projétil começa na posição do inimigo (Durahan)
         setVelocidade(sf::Vector2f(-50.f, 0.f));
+        setCor(sf::Color::Red);
         
     }
     void Projetil::executar() {

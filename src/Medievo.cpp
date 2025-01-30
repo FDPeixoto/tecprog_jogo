@@ -20,6 +20,7 @@ Medievo::~Medievo(){
 
 void Medievo::executar(){
     float elapsedTime = 0.0f;
+    //primeiraFase.setListP();
 
     while(pGerenciadorGrafico->getJanela()->isOpen()){
 
@@ -28,6 +29,7 @@ void Medievo::executar(){
         pGerenciadorEvento->executar();
 
         primeiraFase.executar();
+        //primeiraFase.atualizarProj();
         pGerenciadorGrafico->getJanela()->display();
 
         elapsedTime = clock.getElapsedTime().asSeconds();

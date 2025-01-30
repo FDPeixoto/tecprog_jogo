@@ -10,7 +10,11 @@ namespace Fases{
     Pantano_Maldito::Pantano_Maldito(): Fase(), maxInimMedios(5),pD(nullptr)
     {
         criarMapa();
+
     }
+    /*void Pantano_Maldito::setLisPp(st::list<Entidades::Entidade*> l){
+        Fase::setListP(pD->getListaProjetil());
+    }*/
 
     Pantano_Maldito::~Pantano_Maldito(){
         pD=nullptr;
@@ -93,10 +97,12 @@ namespace Fases{
     }
     void Pantano_Maldito::executar(){
         Fase::executar();
+
         if(pD!= nullptr){
             pGerenciadorGrafico->desenharList(pD->getListaProjetil());
         }
     }
+    
     
     void Pantano_Maldito::criarEntidade(char letra, const sf::Vector2f posicao){
         switch(letra){

@@ -10,8 +10,10 @@ namespace Fases{
         listaObstaculos(new Listas::ListaEntidades()), 
         pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()), 
         pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()),
-        pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0)
-    {}
+        pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0)//, listP()
+    {
+        //listP.clear();
+    }
     
     Fase::~Fase(){
         pGerenciadorGrafico = nullptr;
@@ -19,6 +21,7 @@ namespace Fases{
         pJogador2 = nullptr;
         delete listaPersonagens;
         delete listaObstaculos;
+        //listP.clear();
     }
     
     void Fase::setJogador1(Entidades::Jogador *pJogador){pJogador1 = pJogador;}
@@ -33,6 +36,9 @@ namespace Fases{
     {
         return completou;
     }
+    /*void setListP(sf::list<Entidades::Entidade*>& l){
+        listP=l;
+    }*/
 
     void Fase::criarJogador(const sf::Vector2f posicao)
     {
@@ -133,6 +139,7 @@ namespace Fases{
 
         float variacaoTempo = pGerenciadorGrafico->getRelogio()->getElapsedTime().asSeconds();
         listaPersonagens->atualizar(variacaoTempo);
+        //listP->atualizar();
         pGerenciadorGrafico->resetarRelogio();
         //int v1=pJogador1->getNumVidas();
         //int v2=pJogador2->getNumVidas();

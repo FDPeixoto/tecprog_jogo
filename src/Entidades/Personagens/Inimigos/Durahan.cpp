@@ -25,6 +25,18 @@ namespace Entidades{
                     }
                 //}
         }
+        void Durahan::atualizarListP(float dt)
+        {
+            for (std::list<Entidades::Entidade*>::iterator it = listaProjetil.begin(); it != listaProjetil.end(); ++it) {
+                if (*it != nullptr) {
+                    (*it)->atualizar(dt);  // Chama a função atualizar para cada projétil
+                }
+            }
+        }
+        void Durahan::atualizar(float dt){
+            Inimigo::atualizar(dt);
+            atualizarListP (dt);
+        }
         void Durahan::atirar(){
             if(tiros<TAM_MAX_P){
                 int contador = 0;

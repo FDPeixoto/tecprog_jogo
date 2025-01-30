@@ -16,6 +16,7 @@ namespace Fases{
         Gerenciadores::Evento* pGerenciadorEvento;
         Listas::ListaEntidades* listaPersonagens;
         Listas::ListaEntidades* listaObstaculos;
+        //std::list<Entidades::Entidade*> listP;
         Entidades::Jogador* pJogador1;
         Entidades::Jogador* pJogador2;
         int quantidadeJogadores;
@@ -52,5 +53,6 @@ namespace Fases{
         void criarCenario();
 
         void proximaFase();
+        //Set list P..........
     };
 }

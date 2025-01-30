@@ -29,6 +29,8 @@ namespace Entidades{
                 void colisao(Entidade *outraEntidade);
                 std::list<Entidades::Entidade*>& getListaProjetil();
                 void criarProjetil();
+                void atualizarListP(float dt);
+                void atualizar(float dt);
         };
     }
 }
