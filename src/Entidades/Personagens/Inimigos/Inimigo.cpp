@@ -123,10 +123,10 @@ namespace Entidades{
             //if(iteracoes>50){
             if(moveAleatorio==0){
                 //corpo.move((velocidade.x), 0.0f);
-                this->velocidade.x=50.0f;
+                velocidade.x=VELOCIDADEY_DU;
             }
             else if(moveAleatorio==1){
-                this->velocidade.x=-50.0f;
+                velocidade.x=-VELOCIDADEY_DU;
                 //corpo.move((-velocidade.x), 0.0f);
             }
             //}

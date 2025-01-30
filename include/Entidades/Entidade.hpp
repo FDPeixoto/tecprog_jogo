@@ -25,6 +25,7 @@ namespace Entidades{
       virtual void salvar() = 0;
       void salvarDataBuffer();
       void setCor(sf::Color cor);
+      sf::Color getCor();
       const sf::RectangleShape getCorpo();
       void setPos(sf::Vector2f posicao);
       const sf::Vector2f getPos();
@@ -38,6 +39,7 @@ namespace Entidades{
       void setMediator(Gerenciadores::Mediator* mediator);
       virtual void atualizarPosicao(float dt) = 0;
       void setAtivo(bool flg);
+      bool getAtivo();
       virtual void atirar(const sf::Vector2f posInimigo);
   };
 }

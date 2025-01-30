@@ -34,7 +34,7 @@
 
 #define DURAHANALTURA 130.0f
 #define DURAHANLARGURA 80.0f
-#define VELOCIDADEX_DU 70.0f
+#define VELOCIDADEX_DU 150.0f
 #define VELOCIDADEY_DU 70.0f
 
 #define LARGURA_ESPINHO 20.0f
@@ -43,7 +43,7 @@
 #define LARGURA_CANHAO 100.0f
 #define ALTURA_CANHAO 50.0f
 
-#define TAM_X_PROJETIL 10.0f
-#define TAM_Y_PROJETIL 4.0f
+#define TAM_X_PROJETIL 30.0f
+#define TAM_Y_PROJETIL 10.0f
 #define VEL_X_P 150.0f
-#define TAM_MAX_P 10
+#define TAM_MAX_P 25

@@ -17,6 +17,9 @@ namespace Entidades{
   void Entidade::setCor(sf::Color cor){
     corpo.setFillColor(cor);
   }
+  sf::Color Entidade::getCor(){
+    return corpo.getFillColor();
+  }
 
   const sf::RectangleShape Entidade::getCorpo()
   {
@@ -63,6 +66,9 @@ namespace Entidades{
   }
   void Entidade::atirar(const sf::Vector2f posInimigo){
     return;
+  }
+  bool Entidade::getAtivo(){
+    return ativo;
   }
 
 }

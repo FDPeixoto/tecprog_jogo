@@ -14,6 +14,7 @@ namespace Entidades{
                 int tiros;
                 int it;
                 int aleatorio;
+                bool jaAtirou;
             public:
                 Durahan();
                 Durahan(const sf::Vector2f posicao);
