@@ -5,7 +5,6 @@
 #include "../../include/Listas/Lista.hpp"
 #include "Entidade.hpp"
 #include "Entidades/Personagens/Jogador.hpp"
-#include <list>
 
 #include <map>
 #include <Personagem.hpp>
@@ -34,6 +33,5 @@ namespace Gerenciadores{
             void desenharListaEntidades(Listas::ListaEntidades *lista);
             void setRelogio(sf::Clock *clock);
             void resetarRelogio();
-            void desenharList(std::list<Entidades::Entidade>* list);
     };
 }
