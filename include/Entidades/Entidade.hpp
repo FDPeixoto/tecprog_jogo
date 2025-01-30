@@ -38,5 +38,6 @@ namespace Entidades{
       void setMediator(Gerenciadores::Mediator* mediator);
       virtual void atualizarPosicao(float dt) = 0;
       void setAtivo(bool flg);
+      virtual void atirar(const sf::Vector2f posInimigo);
   };
 }

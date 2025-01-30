@@ -138,7 +138,10 @@ namespace Fases{
         //int v2=pJogador2->getNumVidas();
         //pGerenciadorGrafico->desenharTexto("Vida: " + std::to_string(v1));
         //pGerenciadorGrafico->desenharTexto("Vida: " + std::to_string(v2));
-
+        /*if (clock.getElapsedTime().asSeconds() >= 5.f) {  // Se passaram 5 segundos
+            pD->atirar();
+            clock.restart();  // Reinicia o relógio para a próxima verificação
+        }*/
         pGerenciadorGrafico->desenharTexto(pJogador1->getTextoVida());
         pGerenciadorGrafico->desenharTexto(pJogador2->getTextoVida());
         desenhar();
@@ -146,4 +149,5 @@ namespace Fases{
     void Fase::proximaFase(){
 
     }
+    
 }

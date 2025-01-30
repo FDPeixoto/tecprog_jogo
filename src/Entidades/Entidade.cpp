@@ -3,7 +3,10 @@
 #include "Entidade.hpp"
 namespace Entidades{
 
-  Entidade::Entidade(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID): Ente(ID), corpo(sf::RectangleShape(tamanho)), pos(posicao), ativo(false) {
+  Entidade::Entidade(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID): Ente(ID), corpo(sf::RectangleShape(tamanho)), pos(posicao), ativo(true) {
+    if(ID_PROJETIL==ID){
+      ativo=false;
+    }
     corpo.setPosition(pos);
   }
 
@@ -57,6 +60,9 @@ namespace Entidades{
   }
   void Entidade::setAtivo(bool flg){
     ativo=flg;
+  }
+  void Entidade::atirar(const sf::Vector2f posInimigo){
+    return;
   }
 
 }

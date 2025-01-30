@@ -36,6 +36,7 @@ void Medievo::executar(){
         if (elapsedTime >= DELTATIME) {
             clock.restart();
         }
+        
     }
 }
 

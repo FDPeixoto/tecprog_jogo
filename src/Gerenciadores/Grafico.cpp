@@ -71,6 +71,13 @@ namespace Gerenciadores{
             }
         }
     }
+    void Grafico::desenharList(std::list<Entidades::Entidade*>& list)
+    {
+        for(std::list<Entidades::Entidade*>::iterator it = list.begin(); it != list.end(); it++){
+            desenharEntidade((*it));
+            //desenharCorpo(it->getCorpo()); Esse funciona tambem so escolher qual voce prefere;
+        }
+    }
 
     void Grafico::resetarRelogio()
     {   

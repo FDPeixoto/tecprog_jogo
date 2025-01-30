@@ -8,6 +8,8 @@ namespace Fases{
     class Pantano_Maldito: public Fase{
         private:
         const int maxInimMedios;
+        Entidades::Inimigos::Durahan* pD;
+        
 
         public:
         Pantano_Maldito();
@@ -18,9 +20,12 @@ namespace Fases{
         const int getMaxInimMedios();
         void criarMapa();
         void criarEntidade(char letra, const sf::Vector2f posicao);
+        void executar();
 
 
         void criarInimDificil(const sf::Vector2f posicao);
+        void setpD(Entidades::Inimigos::Durahan* pDurahan);
+        Entidades::Inimigos::Durahan* getpD();
     };
 
 }

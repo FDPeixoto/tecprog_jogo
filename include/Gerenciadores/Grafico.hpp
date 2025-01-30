@@ -7,6 +7,7 @@
 #include "Entidade.hpp"
 #include "Entidades/Personagens/Jogador.hpp"
 
+#include <list>
 #include <map>
 #include <Personagem.hpp>
 
@@ -32,6 +33,7 @@ namespace Gerenciadores{
             void desenharCorpo(sf::RectangleShape corpo);
             void desenharTexto(sf::Text texto);
             void desenharEntidade(Entidades::Entidade *entidade);
+            void desenharList(std::list<Entidades::Entidade*>& list);
             void desenharListaEntidades(Listas::ListaEntidades *lista);
             void setRelogio(sf::Clock *clock);
             void resetarRelogio();

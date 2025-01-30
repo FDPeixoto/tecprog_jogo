@@ -6,6 +6,7 @@
 #include "Plataforma.hpp"
 #include "Evento.hpp"
 #include "Canhao.hpp"
+#include "Durahan.hpp"
 
 namespace Fases{
     class Fase: public Ente{
@@ -19,7 +20,7 @@ namespace Fases{
         Entidades::Jogador* pJogador2;
         int quantidadeJogadores;
         bool completou;
-
+        //sf::Clock clock;
         public:
         Fase();
         virtual ~Fase();

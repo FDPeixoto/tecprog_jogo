@@ -12,6 +12,7 @@
 #define IDJOGADOR 1
 #define IDINIMIGO 2
 #define IDOBSTACUlO 3
+#define ID_PROJETIL 4
 
 #define RAIO_PERSEGUIR_X 500.0f
 #define RAIO_PERSEGUIR_Y 200.0f
@@ -41,3 +42,8 @@
 
 #define LARGURA_CANHAO 100.0f
 #define ALTURA_CANHAO 50.0f
+
+#define TAM_X_PROJETIL 10.0f
+#define TAM_Y_PROJETIL 4.0f
+#define VEL_X_P 150.0f
+#define TAM_MAX_P 10
