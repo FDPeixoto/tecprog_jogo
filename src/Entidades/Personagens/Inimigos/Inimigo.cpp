@@ -82,7 +82,7 @@ namespace Entidades{
             }
 
            
-            if(pJogador1!=nullptr){
+            else if(pJogador1!=nullptr){
                 sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
                 //if((fabs(posJogador.x-posInimigo.x)>= RAIO_PERSEGUIR_X)||(fabs(posJogador.y-posInimigo.y)>=RAIO_PERSEGUIR_Y)){
                 if((fabs(posJogador1.x-posInimigo.x)<= RAIO_PERSEGUIR_X)){
@@ -90,7 +90,7 @@ namespace Entidades{
 
                 }
             }
-            if(pJogador2!=nullptr){
+            else if(pJogador2!=nullptr){
                 sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
                 if(fabs(posJogador2.x-posInimigo.x)<= RAIO_PERSEGUIR_X){
                     perseguir(posJogador2, posInimigo);
