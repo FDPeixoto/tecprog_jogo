@@ -9,7 +9,7 @@
 
 namespace Entidades{
     namespace Inimigos{
-        Inimigo::Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao): Personagem(tamanho, posicao, IDINIMIGO), nivel_maldade(0){
+        Inimigo::Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao): Personagem(tamanho, posicao, IDINIMIGO), nivel_maldade(0), pulando(false),noChao(false){
             moveAleatorio=rand()%FAIXA_ALEATORIO;
             pJogador1=nullptr;
             pJogador2=nullptr;
@@ -52,8 +52,25 @@ namespace Entidades{
             return;
         }
         void Inimigo::atualizar(float dt){
-            float ds = velocidade.x * dt;//ou velocidadeFinal.x
-            corpo.move(ds, 0.f);
+            if(noChao && pulando){
+            velocidade.y = -1200.f;
+            corpo.move(0.f, velocidade.y *  dt);
+            pulando = false;
+            noChao = false;
+        }
+        //ou float dt=relogio.getElapsedTime().asSeconds();
+        //Andando só na horizontal por enquanto
+        
+        if(!noChao){
+            velocidade.y += 1.f;
+            if(velocidade.y > 300.f){velocidade.y = 300.f;}
+        }
+        else{
+            velocidade.y = 0;
+        }
+        noChao = false;
+        corpo.move(velocidade.x * dt, velocidade.y *  dt);
+        //setPos(sf::Vector2f(corpo.getPosition().x + velocidade.x * dt, corpo.getPosition().y + velocidade.y * dt));
         }
 
         void Inimigo::mover(){

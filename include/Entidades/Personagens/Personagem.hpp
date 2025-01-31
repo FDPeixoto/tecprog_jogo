@@ -9,6 +9,7 @@ namespace Entidades{
     int num_vidas;
     sf::Vector2f velocidade;
     bool noChao;
+    bool pulando;
     sf::Font font;
     sf::Text textoVida;
     //bool vivo;
