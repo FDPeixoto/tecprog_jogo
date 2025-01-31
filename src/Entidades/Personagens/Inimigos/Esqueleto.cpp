@@ -24,6 +24,6 @@ namespace Entidades{
         }
         void Esqueleto::salvar(){}
         void Esqueleto::salvarDataBuffer(){}
-        void Esqueleto::colisao(Entidade *outraEntidade){}
+        //void Esqueleto::colisao(Entidade *outraEntidade){}
     }
 }

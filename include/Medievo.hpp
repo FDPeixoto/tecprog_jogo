@@ -16,7 +16,7 @@ class Medievo {
     //Gerenciadores::Colisao* pGerenciadorColisao;
     Gerenciadores::Evento* pGerenciadorEvento;
     Gerenciadores::Estado* pGerenciadorEstado;
-    Fases::Pantano_Maldito primeiraFase;
+    //Fases::Pantano_Maldito primeiraFase;
     sf::Clock clock;
     
 

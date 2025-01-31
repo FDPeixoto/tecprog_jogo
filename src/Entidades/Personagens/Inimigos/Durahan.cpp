@@ -145,7 +145,7 @@ namespace Entidades{
         void Durahan::setAntidotoMortal(bool flg){
             antidoto_mortal=flg;
         }
-        void Durahan::colisao(Entidade *outraEntidade){}
+        //void Durahan::colisao(Entidade *outraEntidade){}
         std::list<Entidades::Entidade*>& Durahan::getListaProjetil(){
             return listaProjetil;
         }

@@ -137,7 +137,7 @@ namespace Fases{
     void Fase::desenhar()
     {
         pGerenciadorGrafico->desenharListaEntidades(listaPersonagens);
-        //pGerenciadorGrafico->desenharListaEntidades(listaObstaculos); 
+        pGerenciadorGrafico->desenharListaEntidades(listaObstaculos); 
     }
 
     void Fase::executar(){

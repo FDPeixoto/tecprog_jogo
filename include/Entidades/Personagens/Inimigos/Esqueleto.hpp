@@ -16,7 +16,7 @@ namespace Entidades{
                 void executar();
                 void danificar(Entidades::Jogador* pJogador);
                 bool foraPantano();
-                void colisao(Entidade *outraEntidade);
+                //void colisao(Entidade *outraEntidade);
         };
     }
 }

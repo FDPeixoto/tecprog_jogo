@@ -37,6 +37,7 @@ namespace Entidades{
             void mover();
             //void andar():
             virtual void moverAleatorio();
+            void colisao(Entidade *outraEntidade);
 
         };
     }

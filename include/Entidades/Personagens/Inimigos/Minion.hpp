@@ -18,7 +18,7 @@ namespace Entidades{
             //void executar();
             void atualizar(float deltaTime, Entidades::Jogador* jogador1, Entidades::Jogador* jogador2, sf::RectangleShape& plataforma);
             static int get_tam_grupo();
-            void colisao(Entidade *outraEntidade);
+            //void colisao(Entidade *outraEntidade);
         };
     }
 }

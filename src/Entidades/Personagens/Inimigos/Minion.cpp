@@ -66,34 +66,7 @@ namespace Entidades{
         {
             return tam_grupo;
         }
-        void Minion::colisao(Entidade *outraEntidade)
-        {   
-            int id = outraEntidade->getID();
-            sf::Vector2f pos1 = getCorpo().getPosition();
-            sf::Vector2f pos2 = outraEntidade->getCorpo().getPosition();
-
-            sf::Vector2f tam1 = getCorpo().getSize();
-            sf::Vector2f tam2 = outraEntidade->getCorpo().getSize();
-
-            sf::Vector2f distancia(fabs((pos1.x + tam1.x/2.0f) - (pos2.x + tam2.x/2.0f)), fabs((pos1.y + tam1.y/2.0f) - (pos2.y + tam2.y/2.0f)));
-
-            int ID = outraEntidade->getID();
-            switch(ID){
-                case IDOBSTACULO:
-                if(pos1.x > pos2.x && pos1.x < pos2.x + tam2.x){
-                    setPos(sf::Vector2f(pos2.x + tam2.x, pos1.y));
-                }
-                else if(pos1.x + tam1.x > pos2.x){
-                    setPos(sf::Vector2f(pos2.x - tam1.x, pos1.y));
-                }
-                if(pos1.y < pos2.y){
-                    setPos(sf::Vector2f(pos1.x, pos2.y - tam1.y));
-                    velocidade.y = 0;
-                    noChao = true;
-                }
-                break;
-            }
-        }
+        
         /*void Minion::mover()
         {
         }*/

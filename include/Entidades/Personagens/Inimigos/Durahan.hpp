@@ -27,7 +27,7 @@ namespace Entidades{
                 void atirar();
                 void setAntidotoMortal(bool flg);
                 //bool getVivo();, pega direto de personagem mesmo
-                void colisao(Entidade *outraEntidade);
+                //void colisao(Entidade *outraEntidade);
                 std::list<Entidades::Entidade*>& getListaProjetil();
                 void criarProjetil();
                 void atualizarListP(float dt);
