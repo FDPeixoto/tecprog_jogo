@@ -14,7 +14,7 @@
 #define IDOBSTACUlO 3
 #define ID_PROJETIL 4
 
-#define RAIO_PERSEGUIR_X 500.0f
+#define RAIO_PERSEGUIR_X 300.0f
 //#define RAIO_PERSEGUIR_Y 200.0f
 #define FAIXA_ALEATORIO 2
 

@@ -3,12 +3,16 @@
 #include "stdafx.h"
 #include "Esqueleto.hpp"
 #include "Durahan.hpp"//para teste
+#include <vector>
 
 namespace Fases{
     class Pantano_Maldito: public Fase{
         private:
         const int maxInimMedios;
-        Entidades::Inimigos::Durahan* pD;
+        //Entidades::Inimigos::Durahan* pD;
+        std::vector<Entidades::Inimigos::Durahan*> vetorDurahan;
+        int cont_D;
+        int it_D;
         
 
         public:

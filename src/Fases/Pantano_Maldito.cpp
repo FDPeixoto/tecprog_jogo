@@ -7,9 +7,14 @@
 #define TAM_JOGADORY 100.0f
 
 namespace Fases{
-    Pantano_Maldito::Pantano_Maldito(): Fase(), maxInimMedios(5),pD(nullptr)
+    Pantano_Maldito::Pantano_Maldito(): Fase(), maxInimMedios(5),vetorDurahan(), it_D(0)
     {
+        srand((unsigned int)time(NULL));  
+        cont_D= (rand() % (FAIXA_ALEATORIO))+2; 
         criarMapa();
+        //, cont_D(2)
+        
+        vetorDurahan.clear();  
 
     }
     /*void Pantano_Maldito::setLisPp(st::list<Entidades::Entidade*> l){
@@ -17,7 +22,12 @@ namespace Fases{
     }*/
 
     Pantano_Maldito::~Pantano_Maldito(){
-        pD=nullptr;
+        //pD=nullptr;
+         for (std::vector<Entidades::Inimigos::Durahan*>::iterator it = vetorDurahan.begin();it != vetorDurahan.end();++it) {
+            delete *it; 
+        }
+        
+        vetorDurahan.clear();
     }
 
     void Pantano_Maldito::criarInimMedio(const sf::Vector2f posicao)
@@ -32,24 +42,26 @@ namespace Fases{
 
     }
     void Pantano_Maldito::criarInimDificil(const sf::Vector2f posicao)
-    {
+    {   
+        it_D++;
         Entidades::Inimigos::Durahan* durahan = new Entidades::Inimigos::Durahan(posicao);
         if(durahan != nullptr){
-            pD=durahan;
+            //pD=durahan;
             durahan->setCor(sf::Color::Magenta);
             if(Fase::getJogador1() != nullptr){durahan->setJogador1(getJogador1());}
             if(Fase::getJogador2() != nullptr){durahan->setJogador2(getJogador2());}
+            vetorDurahan.push_back(durahan);
             listaPersonagens->incluirEntidade(durahan);
             //num_Durahan++; lemnrando que isso está em fase
         }
 
     }
-    void Pantano_Maldito::setpD(Entidades::Inimigos::Durahan* pDurahan){
+    /*void Pantano_Maldito::setpD(Entidades::Inimigos::Durahan* pDurahan){
         pD=pDurahan;
     }
     Entidades::Inimigos::Durahan* Pantano_Maldito::getpD(){
         return pD;
-    }
+    }*/
     void Pantano_Maldito::criarInimigos()
     {
         //criarInimFaceis();
@@ -98,8 +110,13 @@ namespace Fases{
     void Pantano_Maldito::executar(){
         Fase::executar();
 
-        if(pD!= nullptr){
+        /*if(pD!= nullptr){
             pGerenciadorGrafico->desenharList(pD->getListaProjetil());
+        }*/
+        for (int i = 0; i < cont_D; i++) {  
+            if (vetorDurahan[i] != nullptr) { 
+                pGerenciadorGrafico->desenharList(vetorDurahan[i]->getListaProjetil());
+            }
         }
     }
     
@@ -116,7 +133,10 @@ namespace Fases{
                 criarInimMedio(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
             }break;
             case('d'):{
-                criarInimDificil(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
+                if(it_D<cont_D){
+                    criarInimDificil(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
+                }
+                else{}
             }break;
             case('b'):{
                 criarPlataforma(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
