@@ -1,5 +1,3 @@
-#ifndef FASE_HPP
-#define FASE_HPP
 
 #pragma once
 
@@ -68,4 +66,3 @@ namespace Fases{
     };
 }
 
-#endif // FASE_HPP

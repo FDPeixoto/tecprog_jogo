@@ -1,7 +1,7 @@
 #include "Personagem.hpp"
 
 namespace Entidades{
-  Personagem::Personagem(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID): Entidade(tamanho, posicao, ID), num_vidas(5), velocidade(0.0f, 0.0f), noChao(false){
+  Personagem::Personagem(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID): Entidade(tamanho, posicao, ID), num_vidas(5), velocidade(0.0f, 0.0f), noChao(false), pulando(true){
     if (!font.loadFromFile("Fonte/DejaVuSans.ttf")) {
           // Erro ao carregar a fonte
     }

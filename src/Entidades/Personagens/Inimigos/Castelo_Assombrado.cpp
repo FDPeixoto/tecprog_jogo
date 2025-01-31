@@ -1,6 +1,6 @@
 #include "Castelo_Assombrado.hpp"
 namespace Fases{
-        Castelo_Assombrado::Castelo_Assombrado(): maxChefoes(1), Fase(){
+        Castelo_Assombrado::Castelo_Assombrado(): maxChefoes(1), Fase(IDCASTELOASSOMBRADO){
         }
         Castelo_Assombrado::~Castelo_Assombrado(){}
         void Castelo_Assombrado::criarInimDificil(const sf::Vector2f posicao){}

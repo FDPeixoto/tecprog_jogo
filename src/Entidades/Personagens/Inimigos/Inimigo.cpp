@@ -9,7 +9,7 @@
 
 namespace Entidades{
     namespace Inimigos{
-        Inimigo::Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao): Personagem(tamanho, posicao, IDINIMIGO), nivel_maldade(0), pulando(false),noChao(false){
+        Inimigo::Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao): Personagem(tamanho, posicao, IDINIMIGO), nivel_maldade(0){
             moveAleatorio=rand()%FAIXA_ALEATORIO;
             pJogador1=nullptr;
             pJogador2=nullptr;

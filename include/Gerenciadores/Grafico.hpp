@@ -36,6 +36,5 @@ namespace Gerenciadores{
             void desenharListaEntidades(Listas::ListaEntidades *lista);
             void setRelogio(sf::Clock *clock);
             void resetarRelogio();
-            void desenharList(std::list<Entidades::Entidade*> &list);
     };
 }

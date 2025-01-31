@@ -3,8 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include <SFML/Graphics.hpp>
-#define TAM_JOGADORX 50.0f
-#define TAM_JOGADORY 100.0f
+//#define TAM_JOGADORX 50.0f
+//#define TAM_JOGADORY 100.0f
 
 namespace Fases{
 
