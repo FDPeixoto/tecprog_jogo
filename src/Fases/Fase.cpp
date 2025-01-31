@@ -4,8 +4,8 @@
 
 
 namespace Fases{
-    Fase::Fase(): 
-        Ente(), 
+    Fase::Fase(const int idFase): 
+        Ente(idFase), 
         listaPersonagens(new Listas::ListaEntidades()), 
         listaObstaculos(new Listas::ListaEntidades()), 
         pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()), 
@@ -100,6 +100,12 @@ namespace Fases{
     }
 
     void Fase::executar(){
+        if(pGerenciadorColisao->getListaMoveis() != listaPersonagens){
+            pGerenciadorColisao->setMoveis(listaPersonagens);
+        }
+        if(pGerenciadorColisao->getListaFixos() != listaObstaculos){
+            pGerenciadorColisao->setFixos(listaObstaculos);
+        }
         listaObstaculos->executar();
         listaPersonagens->executar();
         pGerenciadorColisao->executar();

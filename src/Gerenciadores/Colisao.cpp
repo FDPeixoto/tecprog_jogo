@@ -21,6 +21,14 @@ namespace Gerenciadores{
     {
         listaMoveis = moveis;
     }
+    Listas::ListaEntidades *Colisao::getListaMoveis()
+    {
+        return listaMoveis;
+    }
+    Listas::ListaEntidades *Colisao::getListaFixos()
+    {
+        return listaFixos;
+    }
     void Colisao::setFixos(Listas::ListaEntidades *fixos)
     {
         listaFixos = fixos;

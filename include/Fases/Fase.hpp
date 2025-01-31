@@ -1,4 +1,9 @@
+#ifndef FASE_HPP
+#define FASE_HPP
+
 #pragma once
+
+
 #include "ListaEntidades.hpp"
 #include "Grafico.hpp"
 #include "Jogador.hpp"
@@ -6,6 +11,10 @@
 #include "Plataforma.hpp"
 #include "Evento.hpp"
 #include "Colisao.hpp"
+
+namespace Gerenciadores{
+    class Evento;
+}
 
 namespace Fases{
     class Fase: public Ente{
@@ -23,8 +32,9 @@ namespace Fases{
 
         public:
         Fase();
+        Fase(const int idFase);
         ~Fase();
-        
+
         virtual void criarMapa() = 0;
         virtual void criarInimigos()=0;
         virtual void criarObstaculos()=0;
@@ -47,3 +57,5 @@ namespace Fases{
         void criarCenario();
     };
 }
+
+#endif // FASE_HPP

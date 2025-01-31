@@ -3,9 +3,10 @@
 namespace Gerenciadores{
     Evento* Evento::pGerenciadorEvento = nullptr;
 
-    Evento::Evento(): pJog1(nullptr), pJog2(nullptr), pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()){}
+    Evento::Evento(): pJog1(nullptr), pJog2(nullptr), pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()), pEstado(pEstado->getGerenciadorEstado()){}
     Evento::~Evento(){
         pGerenciadorGrafico = nullptr;
+        //pEstado = nullptr;
         pJog1 = nullptr;
         pJog2 = nullptr;
     }
@@ -24,6 +25,8 @@ namespace Gerenciadores{
     void Evento::setJogador2(Entidades::Jogador* jogador){
         pJog2 = jogador;
     }
+
+
     void Evento::verificaTeclaPressionada(sf::Keyboard::Key tecla){
         if(tecla==sf::Keyboard::A){
             if(pJog2 != nullptr){pJog2->andar(true);}
@@ -44,7 +47,13 @@ namespace Gerenciadores{
             if(pJog1 != nullptr){pJog1->pular();}
         }
         else if(tecla==sf::Keyboard::Escape){
-            pGerenciadorGrafico->fecharJanela();
+            pEstado->removerState();
+        }
+        else if(tecla ==sf::Keyboard::Num1){
+            pEstado->addState(IDCASTELOASSOMBRADO);
+        }
+        else if(tecla ==sf::Keyboard::Num2){
+            pEstado->addState(IDPANTANOMALDITO);
         }
     }
 

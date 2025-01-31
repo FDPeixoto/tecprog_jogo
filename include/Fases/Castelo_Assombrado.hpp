@@ -5,6 +5,10 @@ namespace Fases{
         private:
             const int maxChefoes;
         public:
-
+            Castelo_Assombrado();
+            ~Castelo_Assombrado();
+            void criarInimigos();
+            void criarObstaculos();
+            void criarMapa();
     };
 }

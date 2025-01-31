@@ -2,6 +2,14 @@
 #include "State.hpp"
 #include "Grafico.hpp"
 #include <stack>
+#include "stdafx.h"
+#include "CarregarSaveState.hpp"
+#include "FaseState.hpp"
+#include "LeaderboardState.hpp"
+#include "MenuFasesState.hpp"
+#include "MenuInicialState.hpp"
+#include "MenuJogadoresState.hpp"
+#include "PauseState.hpp"
 
 namespace Gerenciadores{
     class Estado{

@@ -49,4 +49,39 @@ namespace Gerenciadores{
         }
     }
 
+    void Estado::addState(const int ID)
+    {
+        States::State* estado = nullptr;
+        switch(ID){
+            case IDCARREGARSAVESTATE:
+                break;
+            //case IDFASESTATE:
+
+                //break;
+            case IDLEADERBOARDSTATE:
+
+                break;
+            case IDMENUFASESSTATE:
+                
+                break;
+            case IDMENUINICIALSTATE:
+
+                break;
+            case IDMENUJOGADORESSTATE:
+                
+                break;
+            case IDPAUSESTATE:
+                break;
+            case IDPANTANOMALDITO:
+                estado = new States::FaseState(IDPANTANOMALDITO);
+                break;
+            case IDCASTELOASSOMBRADO:
+                estado = new States::FaseState(IDCASTELOASSOMBRADO);
+                break;
+        }
+
+        if(estado != nullptr){
+            pilhaStates.push(estado);
+        }
+    }
 }

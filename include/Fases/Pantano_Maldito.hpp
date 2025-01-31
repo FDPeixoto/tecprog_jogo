@@ -1,4 +1,3 @@
-#pragma once
 #include "Fase.hpp"
 
 namespace Fases{
@@ -15,5 +14,4 @@ namespace Fases{
         const int getMaxInimMedios();
         void criarMapa();
     };
-
 }

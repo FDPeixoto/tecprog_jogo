@@ -7,7 +7,9 @@
 Medievo::Medievo(): 
     pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()), 
     //pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
-    pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento())
+    pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()),
+    pGerenciadorEstado(pGerenciadorEstado->getGerenciadorEstado())
+    
     {
         executar();
     }
@@ -19,13 +21,14 @@ Medievo::~Medievo(){
 }
 
 void Medievo::executar(){
+    pGerenciadorEstado->addState(IDCASTELOASSOMBRADO);
     while(pGerenciadorGrafico->getJanela()->isOpen()){
 
         pGerenciadorGrafico->getJanela()->clear();
 
+        pGerenciadorEstado->executar();
+        
         pGerenciadorEvento->executar();
-
-        primeiraFase.executar();
         pGerenciadorGrafico->getJanela()->display();
         std::cout << "Hello, World!" << std::endl;
     }
