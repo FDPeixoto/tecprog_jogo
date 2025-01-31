@@ -22,7 +22,6 @@ namespace Entidades{
     void setTeclas(sf::Keyboard::Key esquerda, sf::Keyboard::Key direita, sf::Keyboard::Key pulo);
     void atualizar(float deltaTime, bool& noChao, sf::RectangleShape& plataforma, float gravidade);
     void salvarDataBuffer();
-    void mover();
     void executar();
     void salvar();
     void andar(const bool paraEsquerda);
@@ -30,6 +29,7 @@ namespace Entidades{
     void parar();
     void colisao(Entidade* outraEntidade);
     void atualizar(float dt);
-    void inicializar();   
+    void inicializar();  
+    void pular(); 
   };
 }

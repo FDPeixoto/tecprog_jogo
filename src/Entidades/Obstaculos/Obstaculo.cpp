@@ -3,7 +3,7 @@
 
 namespace Entidades{
     namespace Obstaculos{
-        Obstaculo::Obstaculo(const sf::Vector2f tamanho, const sf::Vector2f posicao, bool causaDano): Entidade(tamanho, posicao, IDOBSTACUlO), danoso(causaDano){}
+        Obstaculo::Obstaculo(const sf::Vector2f tamanho, const sf::Vector2f posicao, bool causaDano): Entidade(tamanho, posicao, IDOBSTACULO), danoso(causaDano){}
         Obstaculo::~Obstaculo(){}
         void Obstaculo::atualizarPosicao(float dt)
         {

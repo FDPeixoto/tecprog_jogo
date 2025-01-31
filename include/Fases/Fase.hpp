@@ -1,4 +1,9 @@
+#ifndef FASE_HPP
+#define FASE_HPP
+
 #pragma once
+
+
 #include "ListaEntidades.hpp"
 #include "Grafico.hpp"
 #include "Jogador.hpp"
@@ -7,6 +12,11 @@
 #include "Evento.hpp"
 #include "Canhao.hpp"
 #include "Durahan.hpp"
+#include "Colisao.hpp"
+
+namespace Gerenciadores{
+    class Evento;
+}
 
 namespace Fases{
     class Fase: public Ente{
@@ -14,6 +24,7 @@ namespace Fases{
         protected:
         Gerenciadores::Grafico* pGerenciadorGrafico;
         Gerenciadores::Evento* pGerenciadorEvento;
+        Gerenciadores::Colisao* pGerenciadorColisao;
         Listas::ListaEntidades* listaPersonagens;
         Listas::ListaEntidades* listaObstaculos;
         //std::list<Entidades::Entidade*> listP;
@@ -23,9 +34,9 @@ namespace Fases{
         bool completou;
         //sf::Clock clock;
         public:
-        Fase();
-        virtual ~Fase();
-        
+        //Fase();
+        Fase(const int idFase);
+        ~Fase();
         virtual void criarMapa() = 0;
         virtual void criarInimigos()=0;
         virtual void criarObstaculos()=0;
@@ -56,3 +67,5 @@ namespace Fases{
         //Set list P..........
     };
 }
+
+#endif // FASE_HPP

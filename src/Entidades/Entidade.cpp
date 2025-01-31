@@ -28,6 +28,7 @@ namespace Entidades{
 
   void Entidade::setPos(sf::Vector2f posicao){
     corpo.setPosition(posicao);
+    //pos = posicao;
   }
 
   const sf::Vector2f Entidade::getTam(){
@@ -51,9 +52,13 @@ namespace Entidades{
     }
   }
 
-  const sf::Vector2f Entidade::getPos()
+  sf::Vector2f Entidade::getPos()
   {
-    return corpo.getPosition();
+    return pos;
+  }
+
+  void Entidade::mover(sf::Vector2f posicao){
+    corpo.move(posicao);
   }
 
   void Entidade::verificarColisao() {

@@ -7,7 +7,8 @@
 #define TAM_JOGADORY 100.0f
 
 namespace Fases{
-    Pantano_Maldito::Pantano_Maldito(): Fase(), maxInimMedios(5),vetorDurahan(), it_D(0)
+
+    Pantano_Maldito::Pantano_Maldito(): Fase(IDPANTANOMALDITO), maxInimMedios(5),vetorDurahan(), it_D(0)
     {
         srand((unsigned int)time(NULL));  
         cont_D= (rand() % (FAIXA_ALEATORIO))+2; 

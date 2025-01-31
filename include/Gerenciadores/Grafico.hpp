@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Matematica/CoordTL.h"
 #include <SFML/Graphics.hpp>
 #include "../../include/Listas/ListaEntidades.hpp"
 #include "../../include/Listas/Lista.hpp"
@@ -37,5 +36,6 @@ namespace Gerenciadores{
             void desenharListaEntidades(Listas::ListaEntidades *lista);
             void setRelogio(sf::Clock *clock);
             void resetarRelogio();
+            void desenharList(std::list<Entidades::Entidade*> &list);
     };
 }

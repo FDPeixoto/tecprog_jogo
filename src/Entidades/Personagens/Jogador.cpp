@@ -4,7 +4,7 @@
  namespace Entidades{
     Jogador::Jogador(const sf::Vector2f posicao, bool jogador2): 
         Personagem(sf::Vector2f(JOGADORLARGURA, JOGADORALTURA), posicao, IDJOGADOR),
-        pontos(0), numero_baixas(0), espada (false), magia (false), antidoto (false), ehJogador2(ehJogador2)
+        pontos(0), numero_baixas(0), espada (false), magia (false), antidoto (false), ehJogador2(ehJogador2), pulando(false)
     {
         if(jogador2){
             setCor(sf::Color::Green);
@@ -19,10 +19,26 @@
     Jogador::~Jogador() {}
 
     void Jogador::atualizar(float dt){
+
+        if(noChao && pulando){
+            velocidade.y = -1200.f;
+            corpo.move(0.f, velocidade.y *  dt);
+            pulando = false;
+            noChao = false;
+        }
         //ou float dt=relogio.getElapsedTime().asSeconds();
         //Andando só na horizontal por enquanto
-        float ds = velocidade.x * dt;//ou velocidadeFinal.x
-        corpo.move(ds, 0.f);
+        
+        if(!noChao){
+            velocidade.y += 1.f;
+            if(velocidade.y > 300.f){velocidade.y = 300.f;}
+        }
+        else{
+            velocidade.y = 0;
+        }
+        noChao = false;
+        corpo.move(velocidade.x * dt, velocidade.y *  dt);
+        //setPos(sf::Vector2f(corpo.getPosition().x + velocidade.x * dt, corpo.getPosition().y + velocidade.y * dt));
     }
 
     void Jogador::andar(const bool ehEsquerda){
@@ -55,30 +71,53 @@
     void Jogador::salvar(){}
 
     void Jogador::colisao(Entidade *outraEntidade)
-    {
-        int id = outraEntidade->getID();
-        sf::Vector2f overlap(
-                getCorpo().getGlobalBounds().left + getCorpo().getGlobalBounds().width - outraEntidade->getCorpo().getGlobalBounds().left,
-                getCorpo().getGlobalBounds().top + getCorpo().getGlobalBounds().height - outraEntidade->getCorpo().getGlobalBounds().top
-                );
-        switch (id){
-            case IDOBSTACUlO:
-                setPos(sf::Vector2f (getCorpo().getPosition().x, outraEntidade->getCorpo().getPosition().y - getCorpo().getSize().y));
-                velocidade.y = 0;
-                break;
-            case IDINIMIGO: 
-                if (std::abs(overlap.x) > std::abs(overlap.y)) {
-                    if (overlap.y > 0)
-                        outraEntidade->setPos(sf::Vector2f(outraEntidade->getCorpo().getPosition().x, getCorpo().getPosition().y + getCorpo().getSize().y));
-                    else
-                        outraEntidade->setPos(sf::Vector2f(outraEntidade->getCorpo().getPosition().x, getCorpo().getPosition().y - outraEntidade->getCorpo().getSize().y));
-                } else {
-                    if (overlap.x > 0)
-                        outraEntidade->setPos(sf::Vector2f(getCorpo().getPosition().x + getCorpo().getSize().x, outraEntidade->getCorpo().getPosition().y));
-                    else
-                        outraEntidade->setPos(sf::Vector2f(getCorpo().getPosition().x - outraEntidade->getCorpo().getSize().x, outraEntidade->getCorpo().getPosition().y));
+    {   
+        sf::Vector2f pos1 = getCorpo().getPosition();
+        sf::Vector2f pos2 = outraEntidade->getCorpo().getPosition();
+
+        sf::Vector2f tam1 = getCorpo().getSize();
+        sf::Vector2f tam2 = outraEntidade->getCorpo().getSize();
+
+        sf::Vector2f distancia(fabs((pos1.x + tam1.x/2.0f) - (pos2.x + tam2.x/2.0f)), fabs((pos1.y + tam1.y/2.0f) - (pos2.y + tam2.y/2.0f)));
+
+        int ID = outraEntidade->getID();
+        switch(ID){
+            case IDINIMIGO:
+                if(pos1.x < pos2.x){
+                    if(pos1.y < pos2.y){
+                        if(!getAndando()){setPos(sf::Vector2f(pos1.x -  0.1f * distancia.x, pos1.y -  0.1f * distancia.y));}
+                        else{outraEntidade->setPos(sf::Vector2f(pos2.x +  0.1f * distancia.x, pos2.y +  0.1f * distancia.y));}
+                    }
+                    else{
+                        if(!getAndando()){setPos(sf::Vector2f(pos1.x -  0.1f * distancia.x, pos1.y +  0.1f * distancia.y));}
+                        else{outraEntidade->setPos(sf::Vector2f(pos2.x +  0.1f * distancia.x, pos2.y -  0.1f * distancia.y));}
+                    }
+                }
+                else{
+                    if(pos1.y < pos2.y){
+                        if(!getAndando()){setPos(sf::Vector2f(pos1.x + 0.1f * distancia.x, pos1.y -  0.1f *distancia.y));}
+                        else{outraEntidade->setPos(sf::Vector2f(pos2.x -  0.1f * distancia.x, pos2.y +  0.1f * distancia.y));}
+                    }
+                    else{
+                        if(!getAndando()){setPos(sf::Vector2f(pos2.x +  0.1f * distancia.x, pos1.y +  0.1f * distancia.y));}
+                        else{outraEntidade->setPos(sf::Vector2f(pos2.x -  0.1f * distancia.x, pos2.y -  0.1f * distancia.y));}
+                    }
                 }
                 break;
+            case IDOBSTACULO:
+                if(pos1.x > pos2.x && pos1.x < pos2.x + tam2.x){
+                    setPos(sf::Vector2f(pos2.x + tam2.x, pos1.y));
+                }
+                else if(pos1.x + tam1.x > pos2.x){
+                    setPos(sf::Vector2f(pos2.x - tam1.x, pos1.y));
+                }
+                if(pos1.y < pos2.y){
+                    setPos(sf::Vector2f(pos1.x, pos2.y - tam1.y));
+                    velocidade.y = 0;
+                    noChao = true;
+                }
+                break;
+
             default:
                 break;
         }
@@ -87,4 +126,8 @@
     {
         return;
     }
-}
+    void Jogador::pular()
+    {
+        pulando = true;
+    }
+ }

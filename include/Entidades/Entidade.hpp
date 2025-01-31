@@ -28,7 +28,6 @@ namespace Entidades{
       sf::Color getCor();
       const sf::RectangleShape getCorpo();
       void setPos(sf::Vector2f posicao);
-      const sf::Vector2f getPos();
       void verificarColisao();
       const sf::Vector2f getTam();
       void moverCorpo(sf::Vector2f posicao);
@@ -41,5 +40,7 @@ namespace Entidades{
       void setAtivo(bool flg);
       bool getAtivo();
       virtual void atirar(const sf::Vector2f posInimigo, bool direita);
+      sf::Vector2f getPos();
+      void mover(sf::Vector2f posicao);
   };
 }

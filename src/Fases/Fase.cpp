@@ -4,15 +4,17 @@
 #define TAM_BORDA 10
 
 namespace Fases{
-    Fase::Fase(): 
-        Ente(), 
+    Fase::Fase(const int idFase): 
+        Ente(idFase), 
         listaPersonagens(new Listas::ListaEntidades()), 
         listaObstaculos(new Listas::ListaEntidades()), 
         pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()), 
         pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()),
-        pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0)//, listP()
+        pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
+        pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0)
     {
-        //listP.clear();
+        pGerenciadorColisao->setMoveis(listaPersonagens);
+        pGerenciadorColisao->setFixos(listaObstaculos);
     }
     
     Fase::~Fase(){
@@ -59,6 +61,7 @@ namespace Fases{
                 listaPersonagens->incluirEntidade(jogador);
                 setJogador2(jogador);
                 pGerenciadorEvento->setJogador2(jogador);
+                //jogador->setMediator(dynamic_cast<Gerenciadores::Mediator*> (pGerenciadorColisao));
             }
             quantidadeJogadores++;
         }
@@ -67,8 +70,10 @@ namespace Fases{
     void Fase::criarMinion(const sf::Vector2f posicao)
     {
         Entidades::Inimigos::Minion* minion = new Entidades::Inimigos::Minion(posicao);
+        minion->setCor(sf::Color::Red);
         if(minion != nullptr){
             minion->setCor(sf::Color::Red);
+            minion->setMediator(dynamic_cast<Gerenciadores::Mediator*> (pGerenciadorColisao));
             if(getJogador1() != nullptr){minion->setJogador1(getJogador1());}
             if(getJogador2() != nullptr){minion->setJogador2(getJogador2());}
             listaPersonagens->incluirEntidade(minion);
@@ -77,9 +82,10 @@ namespace Fases{
     
     void Fase::criarPlataforma(const sf::Vector2f posicao)
     {
-        Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma(50.0f, 50.0f, posicao);
+        Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma(50.0f, 50.0f, posicao);//a plaforma era 100.0f e 100.0f
         if(plataforma != nullptr){
             plataforma->setCor(sf::Color::White);
+            plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator*> (pGerenciadorColisao));
             listaObstaculos->incluirEntidade(plataforma);
         }
     }
@@ -115,6 +121,7 @@ namespace Fases{
         if(plataforma != nullptr){
             sf::Color laranja(255, 111, 0);  // RGB (255, 165, 0) - um laranja padrão
             plataforma->setCor(laranja);
+            plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator*> (pGerenciadorColisao));
             listaObstaculos->incluirEntidade(plataforma);
         }
     }
@@ -135,7 +142,15 @@ namespace Fases{
 
     void Fase::executar(){
         //listaObstaculos->executar();
+        if(pGerenciadorColisao->getListaMoveis() != listaPersonagens){
+            pGerenciadorColisao->setMoveis(listaPersonagens);
+        }
+        if(pGerenciadorColisao->getListaFixos() != listaObstaculos){
+            pGerenciadorColisao->setFixos(listaObstaculos);
+        }
+        listaObstaculos->executar();
         listaPersonagens->executar();
+        pGerenciadorColisao->executar();
 
         float variacaoTempo = pGerenciadorGrafico->getRelogio()->getElapsedTime().asSeconds();
         listaPersonagens->atualizar(variacaoTempo);

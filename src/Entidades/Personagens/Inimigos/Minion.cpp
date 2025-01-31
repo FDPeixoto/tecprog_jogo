@@ -9,6 +9,7 @@ namespace Entidades{
         Minion::Minion(const sf::Vector2f posicao): Inimigo(sf::Vector2f(LARGURAMINION,ALTURAMINION ), posicao)
         {
             setVelocidade(sf::Vector2f(50.f, 0.f));
+            setCor(sf::Color::Red);
             //velocidade = sf::Vector2f(50.0f, 0.0f);
         }
 
@@ -48,6 +49,13 @@ namespace Entidades{
             if (getCorpo().getPosition().y + getCorpo().getSize().y >= plataforma.getPosition().y) {
                 //setPos(getCorpo().getPosition().x, plataforma.getPosition().y - getCorpo().getSize().y);
             }
+
+
+
+
+            
+            float ds = velocidade.x * dt;//ou velocidadeFinal.x
+            corpo.move(ds, 0.f);
         }*/
 
         /*void Minion::executar()
@@ -61,17 +69,30 @@ namespace Entidades{
         void Minion::colisao(Entidade *outraEntidade)
         {   
             int id = outraEntidade->getID();
-            switch (id)
-            {
-            case IDOBSTACUlO:
-                setPos(sf::Vector2f (getCorpo().getPosition().x, outraEntidade->getCorpo().getPosition().y - getCorpo().getSize().y));
-                velocidade.y = 0;
-                break;
-            
-            default:
+            sf::Vector2f pos1 = getCorpo().getPosition();
+            sf::Vector2f pos2 = outraEntidade->getCorpo().getPosition();
+
+            sf::Vector2f tam1 = getCorpo().getSize();
+            sf::Vector2f tam2 = outraEntidade->getCorpo().getSize();
+
+            sf::Vector2f distancia(fabs((pos1.x + tam1.x/2.0f) - (pos2.x + tam2.x/2.0f)), fabs((pos1.y + tam1.y/2.0f) - (pos2.y + tam2.y/2.0f)));
+
+            int ID = outraEntidade->getID();
+            switch(ID){
+                case IDOBSTACULO:
+                if(pos1.x > pos2.x && pos1.x < pos2.x + tam2.x){
+                    setPos(sf::Vector2f(pos2.x + tam2.x, pos1.y));
+                }
+                else if(pos1.x + tam1.x > pos2.x){
+                    setPos(sf::Vector2f(pos2.x - tam1.x, pos1.y));
+                }
+                if(pos1.y < pos2.y){
+                    setPos(sf::Vector2f(pos1.x, pos2.y - tam1.y));
+                    velocidade.y = 0;
+                    noChao = true;
+                }
                 break;
             }
-            return;
         }
         /*void Minion::mover()
         {

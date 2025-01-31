@@ -3,8 +3,7 @@
 #include "Grafico.hpp"
 #include "Colisao.hpp"
 #include "Evento.hpp"
-#include "Pantano_Maldito.hpp"
-#include "Jogador.hpp"
+#include "Estado.hpp"
 
 #include "stdafx.h"
 #include <iostream>
@@ -16,8 +15,10 @@ class Medievo {
     Gerenciadores::Grafico* pGerenciadorGrafico;
     //Gerenciadores::Colisao* pGerenciadorColisao;
     Gerenciadores::Evento* pGerenciadorEvento;
+    Gerenciadores::Estado* pGerenciadorEstado;
     Fases::Pantano_Maldito primeiraFase;
     sf::Clock clock;
+    
 
     public:
     Medievo();

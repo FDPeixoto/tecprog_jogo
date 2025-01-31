@@ -20,8 +20,10 @@ namespace Entidades{
 
   void Personagem::atualizarPosicao(float dt)
   {
-      float ds = velocidade.x * dt;//ou velocidadeFinal.x
-      corpo.move(ds, 0.f);
+      /*float ds = velocidade.x * dt;//ou velocidadeFinal.x
+      corpo.move(ds, 0.f);*/
+
+      //return; estava no peixoto
 
   }
   void Personagem::setNumVidas(int n){

@@ -1,4 +1,3 @@
-#pragma once
 #include "Fase.hpp"
 #include "stdafx.h"
 #include "Esqueleto.hpp"
@@ -31,5 +30,4 @@ namespace Fases{
         void setpD(Entidades::Inimigos::Durahan* pDurahan);
         Entidades::Inimigos::Durahan* getpD();
     };
-
 }

@@ -1,10 +1,13 @@
 #pragma once
 #include "Grafico.hpp"
+#include "Estado.hpp"
 
 namespace Gerenciadores{
     class Evento{
         private:
-            Gerenciadores::Grafico* pGerenciadorGrafico;
+            Grafico* pGerenciadorGrafico;
+            Estado* pEstado;
+
             //static GerenciadorEstado* pGerenciadorEstado;
             Entidades::Jogador* pJog1;
             Entidades::Jogador* pJog2;
