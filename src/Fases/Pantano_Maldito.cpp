@@ -3,8 +3,6 @@
 #include <iostream>
 #include <fstream>
 #include <SFML/Graphics.hpp>
-//#define TAM_JOGADORX 50.0f
-//#define TAM_JOGADORY 100.0f
 
 namespace Fases{
 
@@ -78,8 +76,6 @@ namespace Fases{
 
     void Pantano_Maldito::criarMapa()
     {
-        //criarJogador(sf::Vector2f(0.0f, 0.0f));
-        //criarJogador(sf::Vector2f(200.0f, 0.0f));
         
         //criarPlataformaBase(sf::Vector2f(0.0f,660));
         //Está ao contrário as funções BordaV cria Horizontal e BordaH, vertical

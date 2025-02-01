@@ -1,11 +1,16 @@
 #pragma once
 #include "Fase.hpp"
 #include "stdafx.h"
+#include <vector>
 
 namespace Fases{
     class Castelo_Assombrado: public Fase{
         private:
-            const int maxChefoes;
+        const int maxChefoes;
+        std::vector<Entidades::Inimigos::Durahan*> vetorDurahan;
+        int cont_D;
+        int it_D;
+
         public:
         Castelo_Assombrado();
         ~Castelo_Assombrado();
@@ -15,6 +20,7 @@ namespace Fases{
         const int getMaxChefoes();
         void criarMapa();
         void criarEntidade(char letra, const sf::Vector2f posicao);
+        void executar();
 
     };
 }
