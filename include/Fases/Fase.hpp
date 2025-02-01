@@ -11,6 +11,7 @@
 #include "Canhao.hpp"
 #include "Durahan.hpp"
 #include "Colisao.hpp"
+//#include <vector>
 
 namespace Gerenciadores{
     class Evento;
@@ -30,6 +31,7 @@ namespace Fases{
         Entidades::Jogador* pJogador2;
         int quantidadeJogadores;
         bool completou;
+        //std::vector<Entidades::Obstaculos::Durahan*> vetorPortal;
         //sf::Clock clock;
         public:
         //Fase();

@@ -38,12 +38,36 @@ namespace Entidades{
   void Entidade::moverCorpo(sf::Vector2f posicao){
     corpo.move(posicao);
   }
+  /*void Entidade::atualizar(float dt){
+    
+        if(noChao && pulando){
+            velocidade.y = -120.f;
+            corpo.move(0.f, velocidade.y *  dt);
+            pulando = false;
+            noChao = false;
+        }
+        //ou float dt=relogio.getElapsedTime().asSeconds();
+        //Andando só na horizontal por enquanto
+        
+        if(!noChao){
+            velocidade.y += 1.f;
+            if(velocidade.y > 300.f){velocidade.y = 300.f;}
+        }
+        else{
+            velocidade.y = 0;
+        }
+        noChao = false;
+        corpo.move(velocidade.x * dt, velocidade.y *  dt);
+        //setPos(sf::Vector2f(corpo.getPosition().x + velocidade.x * dt, corpo.getPosition().y + velocidade.y * dt));
+  }*/
 
   void Entidade::renderizar()
   {
     return;
   }
-
+  /*void Entidade::ativarObstaculo(Entidades::entidade* pJogador){
+    return;
+  }*/
   void Entidade::setMediator(Gerenciadores::Mediator *mediator)
   {
     pMediator = mediator;

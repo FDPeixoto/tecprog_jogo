@@ -83,9 +83,15 @@ namespace Gerenciadores{
                 if(((*it1)->getID()==IDJOGADOR)&& ((*it1)->getAtacando()==true))
                 for(Listas::Lista<Entidades::Entidade>::Iterator it2 = listaMoveis->getListaEnt().inicio(); it2 != listaMoveis->getListaEnt().fim(); it2++){
                     if(*it2 != nullptr){
-                        if((*it2)->getID()==IDINIMIGO)
-                        if(it1 != it2){
-                            (*it2)->setVivo(false);
+                        if((*it2)->getID()==IDINIMIGO){
+                            //sf::Vector2f dist(fabs(*it2)->getPos()-(*it1)->getPos());
+                            //float dist_x=fabs((*it2)
+                            sf::Vector2f dist = ((*it2)->getPos() - (*it1)->getPos());
+                            dist.x = std::fabs(dist.x);  // Aplica o valor absoluto no componente x
+                            dist.y = std::fabs(dist.y);  // Aplica o valor absoluto no componente y
+                            if((it1 != it2)&&(dist.x<=RAIO_ATAQUE)){
+                                (*it2)->setVivo(false);
+                            }
                         }
                     }
                 }

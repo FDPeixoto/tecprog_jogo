@@ -31,7 +31,7 @@ namespace Entidades{
     void atualizar(float dt);
     void inicializar();  
     void pular();
-    void setAtacando(bool a);
+    void setAtacando(bool v);
     bool getAtacando(); 
   };
 }

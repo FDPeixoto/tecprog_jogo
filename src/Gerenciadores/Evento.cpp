@@ -46,6 +46,12 @@ namespace Gerenciadores{
         else if(tecla==sf::Keyboard::Up){
             if(pJog1 != nullptr){pJog1->pular();}
         }
+        else if(tecla==sf::Keyboard::M){
+            if(pJog1 != nullptr){pJog1->setAtacando(true);}
+        }
+        else if(tecla==sf::Keyboard::S){
+            if(pJog2 != nullptr){pJog2->setAtacando(true);}
+        }
         else if(tecla==sf::Keyboard::Escape){
             pEstado->removerState();
         }
@@ -61,8 +67,14 @@ namespace Gerenciadores{
         if( (tecla==sf::Keyboard::A)||(tecla==sf::Keyboard::D)){
             if(pJog2 != nullptr){pJog2->parar();}
         }
+        if(tecla==sf::Keyboard::S){
+            if(pJog2 != nullptr){pJog2->setAtacando(false);}
+        }
         if( (tecla==sf::Keyboard::Left)||(tecla==sf::Keyboard::Right)){
             if(pJog1 != nullptr){pJog1->parar();}
+        }
+        if(tecla==sf::Keyboard::M){
+            if(pJog1 != nullptr){pJog1->setAtacando(false);}
         }
     }
     void Evento::executar(){

@@ -10,11 +10,13 @@ namespace Fases{
         std::vector<Entidades::Inimigos::Durahan*> vetorDurahan;
         int cont_D;
         int it_D;
+        //std::vector<Entidades::Inimigos::Durahan*> vetorCanhao;
 
         public:
         Castelo_Assombrado();
         ~Castelo_Assombrado();
         void criarInimDificil(const sf::Vector2f posicao);
+        //void criarCanhao(const sf::Vector2f posicao);
         void criarInimigos();
         void criarObstaculos();
         const int getMaxChefoes();

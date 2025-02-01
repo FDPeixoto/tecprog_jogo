@@ -11,18 +11,24 @@ namespace Fases{
         pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()), 
         pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()),
         pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
-        pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0)
+        pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0)//, vetorPortal()
     {
         pGerenciadorColisao->setMoveis(listaPersonagens);
         pGerenciadorColisao->setFixos(listaObstaculos);
+        //vetorPortal.clear();
     }
     
     Fase::~Fase(){
+        /*for (std::vector<Entidades::Obstaculos::Portal*>::iterator it = vetorPortal.begin();it != vetorPortal.end();++it) {
+            delete *it; 
+        }*/
         pGerenciadorGrafico = nullptr;
         pJogador1 = nullptr;
         pJogador2 = nullptr;
         delete listaPersonagens;
         delete listaObstaculos;
+
+        //vetorPortal.clear();
         //listP.clear();
     }
     
@@ -134,6 +140,15 @@ namespace Fases{
             listaObstaculos->incluirEntidade(canhao);
         }
     }
+    /*void Fase::criarPortal(const sf::Vector2f posicao)
+    {
+        Entidades::Obstaculos::Canhao* portal = new Entidades::Obstaculos::Canhao(LARGURA_CANHAO, ALTURA_CANHAO, posicao);
+        if((portal) != nullptr){
+            //sf::Color roxa(128, 0, 128);  // roxo
+            portal->setCor(sf::Color::Cyan);
+            listaObstaculos->incluirEntidade(portal);
+        }
+    }*/
     void Fase::desenhar()
     {
         pGerenciadorGrafico->desenharListaEntidades(listaPersonagens);

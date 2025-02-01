@@ -21,8 +21,12 @@ namespace Fases{
          for (std::vector<Entidades::Inimigos::Durahan*>::iterator it = vetorDurahan.begin();it != vetorDurahan.end();++it) {
             delete *it; 
         }
+       /* for (std::vector<Entidades::Inimigos::Durahan*>::iterator it = vetorCanhao.begin();it != vetorCanhao.end();++it) {
+            delete *it; 
+        }*/
         
         vetorDurahan.clear();
+        //vetorCanhao.clear();
     }
 
     void Castelo_Assombrado::criarInimigos()
@@ -49,6 +53,16 @@ namespace Fases{
         }
 
     }
+    /*void Fase::criarCanhao(const sf::Vector2f posicao)
+    {
+        Entidades::Obstaculos::Canhao* canhao = new Entidades::Obstaculos::Canhao(LARGURA_CANHAO, ALTURA_CANHAO, posicao);
+        if((canhao) != nullptr){
+            sf::Color roxa(128, 0, 128);  // roxo
+            canhao->setCor(roxa);
+            //vetorCanhao.push_back(canhao);
+            listaObstaculos->incluirEntidade(canhao);
+        }
+    }*/
 
     void Castelo_Assombrado::criarMapa()
     {
