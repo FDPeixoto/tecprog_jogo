@@ -12,7 +12,7 @@ namespace Entidades{
     bool pulando;
     sf::Font font;
     sf::Text textoVida;
-    //bool vivo;
+    bool vivo;
     
   public:
     Personagem(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
@@ -27,6 +27,8 @@ namespace Entidades{
     //void mostrarNumVidas();
     void setPosTexto(int x, int y);
     sf::Text getTextoVida();
+    bool getVivo();
+    void setVivo(bool v);
 
     //SER IMPLEMETADO DEPOIS
     //virtual void getVivo()=0;

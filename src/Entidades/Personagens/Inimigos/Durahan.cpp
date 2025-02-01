@@ -98,7 +98,7 @@ namespace Entidades{
                         Entidades::Entidade* proj = *it;
                         if(proj != nullptr){
                             proj->setAtivo(true);
-                            proj->atirar(this->getPos(),dir);
+                            proj->atirar(posInimigo,dir);
                             proj->executar();
                         }
                         break;  // Não precisa continuar após encontrar

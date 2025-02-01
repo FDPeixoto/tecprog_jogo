@@ -78,6 +78,19 @@ namespace Gerenciadores{
                 }
             }
         }
+        for(Listas::Lista<Entidades::Entidade>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); it1++){
+            if(*it1 != nullptr){
+                if(((*it1)->getID()==IDJOGADOR)&& ((*it1)->getAtacando()==true))
+                for(Listas::Lista<Entidades::Entidade>::Iterator it2 = listaMoveis->getListaEnt().inicio(); it2 != listaMoveis->getListaEnt().fim(); it2++){
+                    if(*it2 != nullptr){
+                        if((*it2)->getID()==IDINIMIGO)
+                        if(it1 != it2){
+                            (*it2)->setVivo(false);
+                        }
+                    }
+                }
+            }
+        }
 
     }
     void Colisao::registrarEntidade(Entidades::Entidade *entity)

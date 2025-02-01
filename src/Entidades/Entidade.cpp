@@ -75,5 +75,17 @@ namespace Entidades{
   bool Entidade::getAtivo(){
     return ativo;
   }
+  bool Entidade::getVivo(){
+    return false;
+  }
+  void Entidade::setVivo(bool v){
+    return;
+  }
+  bool Entidade::getAtacando(){
+    return false;
+  }
+  void Entidade::setAtacando(bool v){
+    return;
+  }
 
 }

@@ -42,5 +42,11 @@ namespace Entidades{
       virtual void atirar(const sf::Vector2f posInimigo, bool direita);
       sf::Vector2f getPos();
       void mover(sf::Vector2f posicao);
+
+      virtual bool getVivo();
+      virtual void setVivo(bool v);
+
+      virtual bool getAtacando();
+      virtual void setAtacando(bool v);
   };
 }

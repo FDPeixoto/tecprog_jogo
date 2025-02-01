@@ -1,7 +1,7 @@
 #include "Personagem.hpp"
 
 namespace Entidades{
-  Personagem::Personagem(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID): Entidade(tamanho, posicao, ID), num_vidas(5), velocidade(0.0f, 0.0f), noChao(false), pulando(true){
+  Personagem::Personagem(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID): Entidade(tamanho, posicao, ID), vivo(true), num_vidas(5), velocidade(0.0f, 0.0f), noChao(false), pulando(true){
     if (!font.loadFromFile("Fonte/DejaVuSans.ttf")) {
           // Erro ao carregar a fonte
     }
@@ -41,5 +41,11 @@ namespace Entidades{
   }
   void Personagem::setPosTexto(int x, int y){
     textoVida.setPosition(x, y);
+  }
+  bool Personagem::getVivo(){
+    return vivo;
+  }
+  void Personagem::setVivo(bool v){
+    vivo=v;
   }
 }

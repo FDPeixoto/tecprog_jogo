@@ -30,6 +30,8 @@ namespace Entidades{
     void colisao(Entidade* outraEntidade);
     void atualizar(float dt);
     void inicializar();  
-    void pular(); 
+    void pular();
+    void setAtacando(bool a);
+    bool getAtacando(); 
   };
 }

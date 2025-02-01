@@ -79,12 +79,8 @@ namespace Fases{
     {
         //criarJogador(sf::Vector2f(0.0f, 0.0f));
         //criarJogador(sf::Vector2f(200.0f, 0.0f));
-        criarBordaH(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
-        criarBordaH(sf::Vector2f(1270.0f, 0.0f), sf::Color::Yellow);
-        criarBordaV(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
-        criarBordaV(sf::Vector2f(0.0f,710.0f), sf::Color::Yellow);
-
-        criarPlataformaBase(sf::Vector2f(0.0f,660));
+        
+        //criarPlataformaBase(sf::Vector2f(0.0f,660));
         //Está ao contrário as funções BordaV cria Horizontal e BordaH, vertical
         
         std::ifstream arquivo;
@@ -103,6 +99,10 @@ namespace Fases{
             }
             j++;
         }arquivo.close();
+        criarBordaH(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
+        criarBordaH(sf::Vector2f(1270.0f, 0.0f), sf::Color::Yellow);
+        criarBordaV(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
+        criarBordaV(sf::Vector2f(0.0f,710.0f), sf::Color::Yellow);
 
         //Pega a lista de porjétil que tem no Durahan
         //
@@ -145,8 +145,8 @@ namespace Fases{
             case('s'):{
                 criarEspinho(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
             }break;
-            case('c'):{
-                criarCanhao(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
+            case('#'):{
+                criarPlataforma(sf::Vector2f(posicao.x*TAM_JOGADORX, posicao.y*TAM_JOGADORX));
             }break;
         }
     }

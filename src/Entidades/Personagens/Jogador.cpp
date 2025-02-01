@@ -130,4 +130,10 @@
     {
         pulando = true;
     }
+    void Jogador::setAtacando(bool a){
+        atacando=a;
+    }
+    bool Jogador::getAtacando(){
+        return atacando;
+    }
  }
