@@ -131,6 +131,16 @@ namespace Fases{
             listaObstaculos->incluirEntidade(plataforma);
         }
     }
+    void Fase::criarCaixa(const sf::Vector2f posicao)
+    {
+        Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma( posicao);
+        if(plataforma != nullptr){
+            sf::Color laranja(255, 111, 0);  // RGB (255, 165, 0) - um laranja padrão
+            plataforma->setCor(laranja);
+            plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator*> (pGerenciadorColisao));
+            listaObstaculos->incluirEntidade(plataforma);
+        }
+    }
     void Fase::criarCanhao(const sf::Vector2f posicao)
     {
         Entidades::Obstaculos::Canhao* canhao = new Entidades::Obstaculos::Canhao(LARGURA_CANHAO, ALTURA_CANHAO, posicao);

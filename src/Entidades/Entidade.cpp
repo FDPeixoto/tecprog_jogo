@@ -111,5 +111,8 @@ namespace Entidades{
   void Entidade::setAtacando(bool v){
     return;
   }
+  void mudarLargura(int l){
+    corpo.setSize(sf::Vector2f(200.f, 50.f));
+  }
 
 }

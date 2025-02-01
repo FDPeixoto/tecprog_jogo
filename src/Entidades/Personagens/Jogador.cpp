@@ -21,7 +21,7 @@
     void Jogador::atualizar(float dt){
 
         if(noChao && pulando){
-            velocidade.y = -120.f;
+            velocidade.y = -VELOCIDADE_PULO;
             corpo.move(0.f, velocidade.y *  dt);
             pulando = false;
             noChao = false;

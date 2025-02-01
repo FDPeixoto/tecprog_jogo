@@ -53,7 +53,7 @@ namespace Entidades{
         }
         void Inimigo::atualizar(float dt){
             if(noChao && pulando){
-            velocidade.y = -120.f;
+            velocidade.y = -VELOCIDADE_PULOf;
             corpo.move(0.f, velocidade.y *  dt);
             pulando = false;
             noChao = false;

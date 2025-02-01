@@ -57,6 +57,7 @@ namespace Fases{
         void criarBordaV(const sf::Vector2f posicao, sf::Color cor);
         //Está ao contrário as funções BordaV cria Horizontal e BordaH, vertical
         void criarEspinho(const sf::Vector2f posicao);
+        void criarCaixa(const sf::Vector2f posicao);
         void criarCanhao(const sf::Vector2f posicao);
         
         void desenhar();
