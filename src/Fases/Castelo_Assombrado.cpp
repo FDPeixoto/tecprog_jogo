@@ -3,6 +3,7 @@
 namespace Fases{
     Castelo_Assombrado::Castelo_Assombrado(): Fase(IDCASTELOASSOMBRADO), maxChefoes(5)
     {
+        Fase::proximaFase();
         criarMapa();
     }
 

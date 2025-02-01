@@ -1,7 +1,7 @@
 #include "Fase.hpp"
 #define LARGURA 1280
 #define ALTURA 720
-#define TAM_BORDA 10
+
 
 namespace Fases{
     Fase::Fase(const int idFase): 
@@ -169,7 +169,9 @@ namespace Fases{
         desenhar();
     }
     void Fase::proximaFase(){
-
+        pJogador1=nullptr;
+        pJogador2=nullptr;
+        quantidadeJogadores=0;
     }
     
 }

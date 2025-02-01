@@ -8,10 +8,11 @@
 
 namespace Fases{
 
-    Pantano_Maldito::Pantano_Maldito(): Fase(IDPANTANOMALDITO), maxInimMedios(5),vetorDurahan(), it_D(0)
+    Pantano_Maldito::Pantano_Maldito(): Fase(IDPANTANOMALDITO), maxInimMedios(5),vetorDurahan(), it_D(0), cont_D(2)
     {
-        srand((unsigned int)time(NULL));  
-        cont_D= (rand() % (FAIXA_ALEATORIO))+2; 
+        Fase::proximaFase();
+        /*srand((unsigned int)time(NULL));  
+        cont_D= (rand() % (FAIXA_ALEATORIO))+2; */
         criarMapa();
         //, cont_D(2)
         
@@ -99,10 +100,10 @@ namespace Fases{
             }
             j++;
         }arquivo.close();
-        criarBordaH(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
-        criarBordaH(sf::Vector2f(1270.0f, 0.0f), sf::Color::Yellow);
-        criarBordaV(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
-        criarBordaV(sf::Vector2f(0.0f,710.0f), sf::Color::Yellow);
+        //criarBordaH(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
+        //criarBordaH(sf::Vector2f(1277.0f, 0.0f), sf::Color::Yellow);
+        //criarBordaV(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
+        criarBordaV(sf::Vector2f(0.0f,717.0f), sf::Color::Yellow);
 
         //Pega a lista de porjétil que tem no Durahan
         //
