@@ -1,5 +1,3 @@
-#ifndef FASE_HPP
-#define FASE_HPP
 
 #pragma once
 
@@ -10,7 +8,10 @@
 #include "Minion.hpp"
 #include "Plataforma.hpp"
 #include "Evento.hpp"
+#include "Canhao.hpp"
+#include "Durahan.hpp"
 #include "Colisao.hpp"
+//#include <vector>
 
 namespace Gerenciadores{
     class Evento;
@@ -25,16 +26,17 @@ namespace Fases{
         Gerenciadores::Colisao* pGerenciadorColisao;
         Listas::ListaEntidades* listaPersonagens;
         Listas::ListaEntidades* listaObstaculos;
+        //std::list<Entidades::Entidade*> listP;
         Entidades::Jogador* pJogador1;
         Entidades::Jogador* pJogador2;
         int quantidadeJogadores;
         bool completou;
-
+        //std::vector<Entidades::Obstaculos::Durahan*> vetorPortal;
+        //sf::Clock clock;
         public:
-        Fase();
+        //Fase();
         Fase(const int idFase);
         ~Fase();
-
         virtual void criarMapa() = 0;
         virtual void criarInimigos()=0;
         virtual void criarObstaculos()=0;
@@ -50,12 +52,20 @@ namespace Fases{
         void criarJogador(const sf::Vector2f posicao);
         void criarMinion(const sf::Vector2f posicao);
         void criarPlataforma(const sf::Vector2f posicao);
+        void criarPlataformaBase(const sf::Vector2f posicao);
+        void criarBordaH(const sf::Vector2f posicao, sf::Color cor);
+        void criarBordaV(const sf::Vector2f posicao, sf::Color cor);
+        //Está ao contrário as funções BordaV cria Horizontal e BordaH, vertical
         void criarEspinho(const sf::Vector2f posicao);
+        void criarCaixa(const sf::Vector2f posicao);
+        void criarCanhao(const sf::Vector2f posicao);
         
         void desenhar();
         void executar();
         void criarCenario();
+
+        void proximaFase();
+        //Set list P..........
     };
 }
 
-#endif // FASE_HPP

@@ -1,8 +1,13 @@
 #include "../include/Entidades/Obstaculos/Plataforma.hpp"
+#include "Plataforma.hpp"
 
 namespace Entidades{
     namespace Obstaculos{
         Plataforma::Plataforma(float alt, float larg, sf::Vector2f posicao): Obstaculo(sf::Vector2f(larg, alt), posicao, false), largura(larg){}
+        Plataforma::Plataforma(sf::Vector2f posicao): Obstaculo(sf::Vector2f(50.f, 50.f), posicao, false), largura(50.f)
+        {
+            
+        }
         Plataforma::~Plataforma(){}
         void Plataforma::executar()
         {

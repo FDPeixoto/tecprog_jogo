@@ -5,7 +5,7 @@
 #include "Evento.hpp"
 #include "Estado.hpp"
 
-
+#include "stdafx.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <cmath>
@@ -16,6 +16,9 @@ class Medievo {
     //Gerenciadores::Colisao* pGerenciadorColisao;
     Gerenciadores::Evento* pGerenciadorEvento;
     Gerenciadores::Estado* pGerenciadorEstado;
+    //Fases::Pantano_Maldito primeiraFase;
+    sf::Clock clock;
+    
 
     public:
     Medievo();

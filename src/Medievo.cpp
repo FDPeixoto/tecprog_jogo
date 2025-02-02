@@ -21,7 +21,11 @@ Medievo::~Medievo(){
 }
 
 void Medievo::executar(){
+
+   //float elapsedTime = 0.0f;
+    //primeiraFase.setListP();
     pGerenciadorEstado->addState(IDCASTELOASSOMBRADO);
+
     while(pGerenciadorGrafico->getJanela()->isOpen()){
 
         pGerenciadorGrafico->getJanela()->clear();
@@ -29,8 +33,20 @@ void Medievo::executar(){
         pGerenciadorEstado->executar();
         
         pGerenciadorEvento->executar();
+        /*primeiraFase.executar();
+        //primeiraFase.atualizarProj();
+        pGerenciadorGrafico->getJanela()->display();
+
+        elapsedTime = clock.getElapsedTime().asSeconds();
+
+        // Se o tempo transcorrido for maior ou igual ao delayTime
+        if (elapsedTime >= DELTATIME) {
+            clock.restart();
+        }*/
+
         pGerenciadorGrafico->getJanela()->display();
         std::cout << "Hello, World!" << std::endl;
+
     }
 }
 

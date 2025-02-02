@@ -1,4 +1,6 @@
+#pragma once
 #include <Inimigo.hpp>
+#include "stdafx.h"
 
 namespace Entidades{
     namespace Inimigos{
@@ -6,11 +8,15 @@ namespace Entidades{
             private:
                 float alcance;
             public:
-                Esqueleto(const sf::Vector2f tamanho, const sf::Vector2f posicao);
+                Esqueleto();
+                Esqueleto(const sf::Vector2f posicao);
                 ~Esqueleto();
+                void salvar();
+                void salvarDataBuffer();
                 void executar();
                 void danificar(Entidades::Jogador* pJogador);
                 bool foraPantano();
+                //void colisao(Entidade *outraEntidade);
         };
     }
 }

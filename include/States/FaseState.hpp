@@ -1,4 +1,5 @@
 #pragma once
+
 #include "State.hpp" 
 
 namespace Fases {
@@ -6,6 +7,8 @@ namespace Fases {
     class Pantano_Maldito;
     class Castelo_Assombrado;
 }
+
+
 
 namespace States{
     class FaseState: public State{

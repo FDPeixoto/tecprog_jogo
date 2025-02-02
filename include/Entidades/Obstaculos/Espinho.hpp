@@ -1,5 +1,5 @@
 #include <Obstaculo.hpp>
-
+#pragma once
 namespace Entidades{
     namespace Obstaculos{
         class Espinho: public Obstaculo{

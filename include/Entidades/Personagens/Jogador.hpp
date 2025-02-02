@@ -1,6 +1,6 @@
 #pragma once
 #include "Personagem.hpp"
-
+#include "stdafx.h"
 #include <cmath>
 namespace Entidades{
   class Jogador: public Personagem{
@@ -30,6 +30,8 @@ namespace Entidades{
     void colisao(Entidade* outraEntidade);
     void atualizar(float dt);
     void inicializar();  
-    void pular(); 
+    void pular();
+    void setAtacando(bool v);
+    bool getAtacando(); 
   };
 }

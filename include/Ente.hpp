@@ -11,6 +11,7 @@ public:
   Ente();
   Ente(int ID);
   virtual ~Ente();
+  //void setID();
   virtual void executar();
   void desenhar();
   const int getID();

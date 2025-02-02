@@ -54,6 +54,10 @@ namespace Gerenciadores{
         janela->draw(corpo);
     }
 
+    void Grafico::desenharTexto(sf::Text texto)
+    {
+        janela->draw(texto);
+    }
     void Grafico::desenharEntidade(Entidades::Entidade* entidade)
     {
         janela->draw(entidade->getCorpo());
@@ -63,7 +67,18 @@ namespace Gerenciadores{
     {
         for(Listas::Lista<Entidades::Entidade>::Iterator it = lista->getListaEnt().inicio(); it != lista->getListaEnt().fim(); it++){
             if(*it != nullptr){
+                if(((*it)->getID()==IDJOGADOR)||((*it)->getID()==IDINIMIGO)){
+                    if(((*it)->getVivo())==true){
+                     desenharEntidade(*it);   
+                    }
+                    else{
+
+                    }
+                }
+
+                else{
                 desenharEntidade(*it);
+                }
             }
         }
     }

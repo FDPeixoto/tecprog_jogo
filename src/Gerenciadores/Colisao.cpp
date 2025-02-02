@@ -78,6 +78,45 @@ namespace Gerenciadores{
                 }
             }
         }
+        /*for(Listas::Lista<Entidades::Entidade>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); it1++){
+            if(*it1 != nullptr){
+                if(((*it1)->getID()==IDJOGADOR)&& ((*it1)->getAtacando()==true))
+                for(Listas::Lista<Entidades::Entidade>::Iterator it2 = listaMoveis->getListaEnt().inicio(); it2 != listaMoveis->getListaEnt().fim(); it2++){
+                    if(*it2 != nullptr){
+                        if((*it2)->getID()==IDINIMIGO){
+                            //sf::Vector2f dist(fabs(*it2)->getPos()-(*it1)->getPos());
+                            //float dist_x=fabs((*it2)
+                            sf::Vector2f dist = ((*it2)->getPos() - (*it1)->getPos());
+                            dist.x = std::fabs(dist.x);  // Aplica o valor absoluto no componente x
+                            dist.y = std::fabs(dist.y);  // Aplica o valor absoluto no componente y
+                            if((it1 != it2)&&(dist.x<=RAIO_ATAQUE)){
+                                (*it2)->setVivo(false);
+                            }
+                        }
+                    }
+                }
+            }
+        }*/
+        for (Listas::Lista<Entidades::Entidade>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); it1++) {
+            if (*it1 != nullptr) {
+                if (((*it1)->getID() == IDJOGADOR) && ((*it1)->getAtacando() == true)) {
+                    for (Listas::Lista<Entidades::Entidade>::Iterator it2 = listaMoveis->getListaEnt().inicio(); it2 != listaMoveis->getListaEnt().fim(); it2++) {
+                        if (*it2 != nullptr) {
+                            if ((*it2)->getID() == IDINIMIGO) {
+                                sf::Vector2f dist = (*it2)->getPos() - (*it1)->getPos();
+                                dist.y = 0; // Ignora a componente Y
+
+                                // Agora você está verificando apenas a distância no eixo X
+                                if ((*it1)->getID() != (*it2)->getID() && std::fabs(dist.x) <= RAIO_ATAQUE) {
+                                    (*it2)->setVivo(false); // Destrói o inimigo
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
 
     }
     void Colisao::registrarEntidade(Entidades::Entidade *entity)

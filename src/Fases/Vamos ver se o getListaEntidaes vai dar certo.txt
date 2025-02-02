@@ -1,0 +1,10 @@
+testei assim: 
+Listas::ListaEntidades* Durahan::getListaProjetil(){
+            return &listaProjetil;
+   } e assim:
+Listas::ListaEntidades& Durahan::getListaProjetil(){
+            return &listaProjetil;
+        }
+Apareceu a seguinte mensagem: error: cannot convert 'Listas::ListaEntidades' to 'Listas::ListaEntidades*
+
+o atributo é: 
