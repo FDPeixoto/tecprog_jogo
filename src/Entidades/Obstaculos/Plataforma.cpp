@@ -1,14 +1,15 @@
 #include "../include/Entidades/Obstaculos/Plataforma.hpp"
 #include "Plataforma.hpp"
 
-namespace Entidades{
-    namespace Obstaculos{
-        Plataforma::Plataforma(float alt, float larg, sf::Vector2f posicao): Obstaculo(sf::Vector2f(larg, alt), posicao, false), largura(larg){}
-        Plataforma::Plataforma(sf::Vector2f posicao): Obstaculo(sf::Vector2f(50.f, 50.f), posicao, false), largura(50.f)
+namespace Entidades
+{
+    namespace Obstaculos
+    {
+        Plataforma::Plataforma(float alt, float larg, sf::Vector2f posicao) : Obstaculo(sf::Vector2f(larg, alt), posicao, false, IDPLATAFORMA), largura(larg) {}
+        Plataforma::Plataforma(sf::Vector2f posicao) : Obstaculo(sf::Vector2f(128.f, 64.f), posicao, false, IDPLATAFORMA)
         {
-            
         }
-        Plataforma::~Plataforma(){}
+        Plataforma::~Plataforma() {}
         void Plataforma::executar()
         {
             return;
@@ -18,7 +19,7 @@ namespace Entidades{
             return;
         }
         const float Plataforma::getAltura() { return altura; }
-        const float Plataforma::getLargura(){return largura;}
+        const float Plataforma::getLargura() { return largura; }
         void Plataforma::salvar()
         {
             return;

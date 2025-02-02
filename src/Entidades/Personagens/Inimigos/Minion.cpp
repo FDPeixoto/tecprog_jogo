@@ -1,16 +1,19 @@
 #include <Minion.hpp>
 
-namespace Entidades{
-    namespace Inimigos{
-        float distance(const sf::Vector2f& a, const sf::Vector2f& b) {
+namespace Entidades
+{
+    namespace Inimigos
+    {
+        float distance(const sf::Vector2f &a, const sf::Vector2f &b)
+        {
             return std::sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
         }
 
-        Minion::Minion(const sf::Vector2f posicao): Inimigo(sf::Vector2f(LARGURAMINION,ALTURAMINION ), posicao)
+        Minion::Minion(const sf::Vector2f posicao) : Inimigo(sf::Vector2f(LARGURAMINION, ALTURAMINION), posicao, IDMINION)
         {
             setVelocidade(sf::Vector2f(50.f, 0.f));
             setCor(sf::Color::Red);
-            //velocidade = sf::Vector2f(50.0f, 0.0f);
+            // velocidade = sf::Vector2f(50.0f, 0.0f);
         }
 
         Minion::~Minion()
@@ -24,12 +27,12 @@ namespace Entidades{
         {
         }
 
-        /*void Minion::atualizar(float deltaTime, Jogador* jogador1, Jogador* jogador2, sf::RectangleShape& plataforma) 
+        /*void Minion::atualizar(float deltaTime, Jogador* jogador1, Jogador* jogador2, sf::RectangleShape& plataforma)
         {
             // Calculando a distância entre o Minion e os jogadores
             float dist1 = distance(getCorpo().getPosition(), jogador1->getCorpo().getPosition());
             float dist2 = distance(getCorpo().getPosition(), jogador2->getCorpo().getPosition());
-            
+
             // Escolhendo o jogador mais próximo
             Jogador* alvo = (dist1 < dist2) ? jogador1 : jogador2; //Jogador& alvo -->> Jogador* alvo
 
@@ -41,7 +44,7 @@ namespace Entidades{
             if (comprimento != 0.f) {
                 direcao /= comprimento;
             }
-            
+
             // Movendo o Minion horizontalmente, sem alterar a posição Y
             //getCorpo().move(direcao.x * velocidade * deltaTime, 0.f);//direção.x ser apenas para ver a direção, já que é unitário
 
@@ -53,7 +56,7 @@ namespace Entidades{
 
 
 
-            
+
             float ds = velocidade.x * dt;//ou velocidadeFinal.x
             corpo.move(ds, 0.f);
         }*/
@@ -66,7 +69,7 @@ namespace Entidades{
         {
             return tam_grupo;
         }
-        
+
         /*void Minion::mover()
         {
         }*/

@@ -7,15 +7,27 @@
 #define NoChaoAZUL false
 #define NoChaoAMARELO false
 #define DELTATIME 300.0f
-#define JOGADORALTURA 100.f
-#define JOGADORLARGURA 50.f
+
+// IDs das Entidades
 #define IDJOGADOR 1
-#define IDINIMIGO 2
+#define IDMINION 2
+#define IDESQUELETO 3
+#define IDDURAHAN 4
+#define IDPLATAFORMA 5
+#define IDCAIXA 6
+#define IDESPINHO 7
+#define IDCANHAO 8
+#define IDPORTAL 9
+#define IDINIMIGO 10
 #define IDOBSTACUlO 3
+
+#define JOGADORALTURA 64.f
+#define JOGADORLARGURA 32.f
+
 #define ID_PROJETIL 4
 
 #define RAIO_PERSEGUIR_X 300.0f
-//#define RAIO_PERSEGUIR_Y 200.0f
+// #define RAIO_PERSEGUIR_Y 200.0f
 #define FAIXA_ALEATORIO 2
 
 #define ALTURAMINION 30.0f
@@ -48,8 +60,7 @@
 #define VEL_X_P 150.0f
 #define TAM_MAX_P 25
 
-#define IDOBSTACULO 3
-//#define IDPORTAL 20
+// #define IDPORTAL 20
 #define IDCARREGARSAVESTATE 11
 #define IDFASESTATE 12
 #define IDLEADERBOARDSTATE 13
@@ -65,8 +76,11 @@
 #define IDBOLACANHAO 30
 #define TAM_MAX_BOLAS_CANHAO 5
 
-//#define POSICAO_INICIAL_X 10
-//#define POSICAO_INICIAL_Y 700
+// #define POSICAO_INICIAL_X 10
+// #define POSICAO_INICIAL_Y 700
 #define VELOCIDADE_PULO 200.0f
 #define RAIO_ATAQUE 100.0f
 #define ALTURACAIXA 100.0f
+
+#define LARGURA_JANELA 1280
+#define ALTURA_JANELA 720

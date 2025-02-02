@@ -1,15 +1,19 @@
 #include <Esqueleto.hpp>
 
-namespace Entidades{
-    namespace Inimigos{
+namespace Entidades
+{
+    namespace Inimigos
+    {
         /*Esqueleto::Esqueleto(){
             alcance=ALCANCE
         }*/
-        Esqueleto::Esqueleto( const sf::Vector2f posicao): Inimigo(sf::Vector2f(ESQUELETOLARGURA,ESQUELETOALTURA ), posicao){
-            velocidade = sf::Vector2f(VELOCIDADEX_ESQ,VELOCIDADEY_ESQ );
+        Esqueleto::Esqueleto(const sf::Vector2f posicao) : Inimigo(sf::Vector2f(ESQUELETOLARGURA, ESQUELETOALTURA), posicao, IDESQUELETO)
+        {
+            velocidade = sf::Vector2f(VELOCIDADEX_ESQ, VELOCIDADEY_ESQ);
         }
-        Esqueleto::~Esqueleto(){
-            alcance=0;
+        Esqueleto::~Esqueleto()
+        {
+            alcance = 0;
         }
 
         void Esqueleto::executar()
@@ -22,8 +26,8 @@ namespace Entidades{
         {
             return false;
         }
-        void Esqueleto::salvar(){}
-        void Esqueleto::salvarDataBuffer(){}
-        //void Esqueleto::colisao(Entidade *outraEntidade){}
+        void Esqueleto::salvar() {}
+        void Esqueleto::salvarDataBuffer() {}
+        // void Esqueleto::colisao(Entidade *outraEntidade){}
     }
 }

@@ -1,15 +1,17 @@
 #include "Caixa.hpp"
 
-namespace Entidades{
-    namespace Obstaculos{
-        Caixa::Caixa( const sf::Vector2f posicao): Obstaculo(sf::Vector2f(ALTURACAIXA,ALTURACAIXA), posicao, true){
-            srand((unsigned int)time(NULL));  
-            largura= (rand() % (FAIXA_ALEATORIO*10))+50;
-            mudarLargura(largura);
+namespace Entidades
+{
+    namespace Obstaculos
+    {
+        Caixa::Caixa(const sf::Vector2f posicao) : lado(32.f), Obstaculo(sf::Vector2f(lado, lado), posicao, true, IDCAIXA)
+        {
+            setCor(sf::Color::Yellow);
         }
-        Caixa::~Caixa(){}
-        int Caixa::getLargura(){
-            return largura;
+        Caixa::~Caixa() {}
+        float Caixa::getLado()
+        {
+            return lado;
         }
 
     }
