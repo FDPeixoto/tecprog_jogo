@@ -50,5 +50,7 @@ namespace Entidades{
 
       virtual bool getAtacando();
       virtual void setAtacando(bool v);
+      void mudarLargura(int l);
   };
+ 
 }

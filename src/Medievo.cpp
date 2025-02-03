@@ -3,35 +3,36 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 
+Medievo::Medievo() : pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()),
+                     // pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
+                     pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()),
+                     pGerenciadorEstado(pGerenciadorEstado->getGerenciadorEstado())
 
-Medievo::Medievo(): 
-    pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()), 
-    //pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
-    pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()),
-    pGerenciadorEstado(pGerenciadorEstado->getGerenciadorEstado())
-    
-    {
-        executar();
-    }
+{
+    executar();
+}
 
-Medievo::~Medievo(){
-    //pGerenciadorColisao = nullptr;
+Medievo::~Medievo()
+{
+    // pGerenciadorColisao = nullptr;
     pGerenciadorGrafico = nullptr;
     pGerenciadorEvento = nullptr;
 }
 
-void Medievo::executar(){
+void Medievo::executar()
+{
 
-   //float elapsedTime = 0.0f;
-    //primeiraFase.setListP();
-    pGerenciadorEstado->addState(IDCASTELOASSOMBRADO);
+    // float elapsedTime = 0.0f;
+    // primeiraFase.setListP();
+    // pGerenciadorEstado->addState(IDCASTELOASSOMBRADO);
 
-    while(pGerenciadorGrafico->getJanela()->isOpen()){
+    while (pGerenciadorGrafico->getJanela()->isOpen())
+    {
 
         pGerenciadorGrafico->getJanela()->clear();
 
         pGerenciadorEstado->executar();
-        
+
         pGerenciadorEvento->executar();
         /*primeiraFase.executar();
         //primeiraFase.atualizarProj();
@@ -49,4 +50,3 @@ void Medievo::executar(){
 
     }
 }
-

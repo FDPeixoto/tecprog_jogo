@@ -5,47 +5,53 @@
 #include "../../include/Listas/ListaEntidades.hpp"
 #include "../../include/Listas/Lista.hpp"
 #include "Grafico.hpp"
-#define LARGURA 1280
-#define ALTURA 720
+#include "stdafx.h"
 
+namespace Gerenciadores
+{
+    Grafico *Grafico::pGrafico = nullptr;
 
+    Grafico::Grafico() : janela(new sf::RenderWindow(sf::VideoMode(LARGURA_JANELA, ALTURA_JANELA), "Medievo++")),
+                         panorama(sf::View(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(LARGURA_JANELA, ALTURA_JANELA))), relogio()
+    {
+    }
 
-namespace Gerenciadores{
-    Grafico* Grafico::pGrafico = nullptr;
-
-    Grafico::Grafico(): 
-    janela(new sf::RenderWindow(sf::VideoMode(LARGURA, ALTURA), "Medievo++")),
-    panorama(sf::View(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(LARGURA, ALTURA))), relogio()
-    {}
-
-    Grafico::~Grafico(){
-        if(janela != nullptr){
-            delete(janela);
+    Grafico::~Grafico()
+    {
+        if (janela != nullptr)
+        {
+            delete (janela);
             janela = nullptr;
         }
     }
 
-    Grafico* Grafico::getGerenciadorGrafico(){
-        if(pGrafico == nullptr){
+    Grafico *Grafico::getGerenciadorGrafico()
+    {
+        if (pGrafico == nullptr)
+        {
             pGrafico = new Grafico();
         }
         return pGrafico;
     }
 
-    sf::RenderWindow* Grafico::getJanela(){
+    sf::RenderWindow *Grafico::getJanela()
+    {
         return janela;
     }
 
-    void Grafico::redimensionarJanela (){
+    void Grafico::redimensionarJanela()
+    {
         float proporcaoJanela = float(janela->getSize().x) / float(janela->getSize().y);
-        panorama.setSize(LARGURA * proporcaoJanela, ALTURA);
+        panorama.setSize(LARGURA_JANELA * proporcaoJanela, ALTURA_JANELA);
     }
 
-    void Grafico::limparJanela(){
+    void Grafico::limparJanela()
+    {
         janela->clear();
     }
 
-    void Grafico::mostrarJanela(){
+    void Grafico::mostrarJanela()
+    {
         janela->display();
     }
 
@@ -58,49 +64,57 @@ namespace Gerenciadores{
     {
         janela->draw(texto);
     }
-    void Grafico::desenharEntidade(Entidades::Entidade* entidade)
+    void Grafico::desenharEntidade(Entidades::Entidade *entidade)
     {
         janela->draw(entidade->getCorpo());
     }
 
-    void Grafico::desenharListaEntidades(Listas::ListaEntidades* lista)
+    void Grafico::desenharListaEntidades(Listas::ListaEntidades *lista)
     {
-        for(Listas::Lista<Entidades::Entidade>::Iterator it = lista->getListaEnt().inicio(); it != lista->getListaEnt().fim(); it++){
-            if(*it != nullptr){
-                if(((*it)->getID()==IDJOGADOR)||((*it)->getID()==IDINIMIGO)){
-                    if(((*it)->getVivo())==true){
-                     desenharEntidade(*it);   
+        for (Listas::Lista<Entidades::Entidade>::Iterator it = lista->getListaEnt().inicio(); it != lista->getListaEnt().fim(); it++)
+        {
+            if (*it != nullptr)
+            {
+                if (((*it)->getID() == IDJOGADOR) || ((*it)->getID() == IDINIMIGO))
+                {
+                    if (((*it)->getVivo()) == true)
+                    {
+                        desenharEntidade(*it);
                     }
-                    else{
-
+                    else
+                    {
                     }
                 }
 
-                else{
-                desenharEntidade(*it);
+                else
+                {
+                    desenharEntidade(*it);
                 }
             }
         }
     }
 
     void Grafico::resetarRelogio()
-    {   
+    {
         relogio.restart();
     }
 
-    void Grafico::desenharList(std::list<Entidades::Entidade*>& list)
+    void Grafico::desenharList(std::list<Entidades::Entidade *> &list)
     {
-        for(std::list<Entidades::Entidade*>::iterator it = list.begin(); it != list.end(); it++){
+        for (std::list<Entidades::Entidade *>::iterator it = list.begin(); it != list.end(); it++)
+        {
             desenharEntidade((*it));
-            //desenharCorpo(it->getCorpo()); Esse funciona tambem so escolher qual voce prefere;
+            // desenharCorpo(it->getCorpo()); Esse funciona tambem so escolher qual voce prefere;
         }
     }
 
-    void Grafico::fecharJanela(){
+    void Grafico::fecharJanela()
+    {
         janela->close();
     }
 
-    sf::Clock* Grafico::getRelogio(){
+    sf::Clock *Grafico::getRelogio()
+    {
         return &relogio;
     }
 }
