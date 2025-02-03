@@ -6,11 +6,11 @@
 
 namespace Fases
 {
-    Castelo_Assombrado::Castelo_Assombrado() : Fase(IDCASTELOASSOMBRADO), maxChefoes(5), vetorDurahan(), it_D(0), cont_D(2)
+    Castelo_Assombrado::Castelo_Assombrado() : Fase(IDCASTELOASSOMBRADO), maxChefoes(5), vetorDurahan(), it_D(0)
     {
         Fase::proximaFase();
-        /*srand((unsigned int)time(NULL));
-        cont_D= (rand() % (FAIXA_ALEATORIO))+2; */
+        srand((unsigned int)time(NULL));
+        cont_D = (rand() % (2)) + 3;
         criarMapa();
         //, cont_D(2)
 
@@ -47,7 +47,7 @@ namespace Fases
         if (durahan != nullptr)
         {
             // pD=durahan;
-            durahan->setCor(sf::Color::Magenta);
+            // durahan->setCor(sf::Color::Magenta);
             if (Fase::getJogador1() != nullptr)
             {
                 durahan->setJogador1(getJogador1());
@@ -103,7 +103,7 @@ namespace Fases
         // criarBordaH(sf::Vector2f(1277.0f, 0.0f), sf::Color::Yellow);
         // criarBordaV(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
 
-        criarBordaV(sf::Vector2f(0.0f, 717.0f), sf::Color::Yellow);
+        // criarBordaV(sf::Vector2f(0.0f, 717.0f), sf::Color::Yellow);
 
         // Pega a lista de porjétil que tem no Durahan
         //
@@ -130,12 +130,12 @@ namespace Fases
         {
         case ('j'):
         {
-            criarJogador(sf::Vector2f(posicao.x * 16.f, posicao.y * 16.f));
+            criarJogador(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
         }
         break;
         case ('m'):
         {
-            criarMinion(sf::Vector2f(posicao.x * 16.f, posicao.y * 16.f));
+            criarMinion(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
         }
         break;
 
@@ -143,26 +143,26 @@ namespace Fases
         {
             if (it_D < cont_D)
             {
-                criarInimDificil(sf::Vector2f(posicao.x * 16.f, posicao.y * 16.f));
+                criarInimDificil(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
             }
             else
             {
             }
         }
         break;
-        case ('b'):
+        case ('c'):
         {
-            criarPlataforma(sf::Vector2f(posicao.x * 16.f, posicao.y * 16.f));
+            criarCanhao(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
         }
         break;
         case ('s'):
         {
-            criarEspinho(sf::Vector2f(posicao.x * 16.f, posicao.y * 16.f));
+            criarEspinho(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
         }
         break;
         case ('#'):
         {
-            criarPlataforma(sf::Vector2f(posicao.x * 16.f, posicao.y * 16.f));
+            criarPlataforma(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
         }
         break;
         }

@@ -1,7 +1,8 @@
 #include <Canhao.hpp>
 
-Entidades::Obstaculos::Canhao::Canhao(float alt, float larg, const sf::Vector2f posicao) : Entidades::Obstaculos::Obstaculo(sf::Vector2f(larg, alt), posicao, false, IDCANHAO), lancamentos(0) //,listaBolasCanhao(){
+Entidades::Obstaculos::Canhao::Canhao(const sf::Vector2f posicao) : Entidades::Obstaculos::Obstaculo(sf::Vector2f(LARGURA_CANHAO, ALTURA_CANHAO), posicao, false, IDCANHAO), lancamentos(0) //,listaBolasCanhao(){
 {
+    setCor(sf::Color::Yellow);
     it = 0;
     srand((unsigned int)time(NULL));
     aleatorio = (rand() % (FAIXA_ALEATORIO * 5));

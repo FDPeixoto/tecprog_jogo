@@ -12,7 +12,7 @@ namespace Entidades
         Minion::Minion(const sf::Vector2f posicao) : Inimigo(sf::Vector2f(LARGURAMINION, ALTURAMINION), posicao, IDMINION)
         {
             setVelocidade(sf::Vector2f(50.f, 0.f));
-            setCor(sf::Color::Red);
+            setCor(sf::Color::Yellow);
             // velocidade = sf::Vector2f(50.0f, 0.0f);
         }
 

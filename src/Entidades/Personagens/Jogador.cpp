@@ -24,7 +24,7 @@ namespace Entidades
         // checarForaDaJanela();
         if (noChao && pulando)
         {
-            velocidade.y = -VELOCIDADE_PULO * 4.f;
+            velocidade.y = -VELOCIDADE_PULO * 2.8f;
             corpo.move(0.f, velocidade.y * dt);
             pulando = false;
             noChao = false;
@@ -34,7 +34,7 @@ namespace Entidades
 
         if (!noChao)
         {
-            velocidade.y += 1.f;
+            velocidade.y += 10.f;
             if (velocidade.y > 300.f)
             {
                 velocidade.y = 300.f;
@@ -94,80 +94,87 @@ namespace Entidades
 
         sf::Vector2f distancia(fabs((pos1.x + tam1.x / 2.0f) - (pos2.x + tam2.x / 2.0f)), fabs((pos1.y + tam1.y / 2.0f) - (pos2.y + tam2.y / 2.0f)));
 
+        float overlapX = std::min(pos1.x + tam1.x, pos2.x + tam2.x) - std::max(pos1.x, pos2.x);
+        float overlapY = std::min(pos1.y + tam1.y, pos2.y + tam2.y) - std::max(pos1.y, pos2.y);
+
         int ID = outraEntidade->getID();
-        switch (ID)
+        if (ID == IDMINION || ID == IDESQUELETO || ID == IDDURAHAN || ID == IDCAIXA)
         {
-        case IDMINION:
-            if (pos1.x < pos2.x)
+            // Determine the axis of least penetration
+            if (overlapX < overlapY)
             {
-                if (pos1.y < pos2.y)
+                // Horizontal collision
+                if (pos1.x < pos2.x)
                 {
-                    if (!getAndando())
+                    // Player is to the left of the minion
+                    setPos(sf::Vector2f(pos2.x - tam1.x, pos1.y));
+                    if (getAndando())
                     {
-                        setPos(sf::Vector2f(pos1.x - 0.1f * distancia.x, pos1.y - 0.1f * distancia.y));
-                    }
-                    else
-                    {
-                        outraEntidade->setPos(sf::Vector2f(pos2.x + 0.1f * distancia.x, pos2.y + 0.1f * distancia.y));
+                        outraEntidade->setPos(sf::Vector2f(pos2.x + overlapX, pos2.y));
                     }
                 }
                 else
                 {
-                    if (!getAndando())
+                    // Player is to the right of the minion
+                    setPos(sf::Vector2f(pos2.x + tam2.x, pos1.y));
+                    if (getAndando())
                     {
-                        setPos(sf::Vector2f(pos1.x - 0.1f * distancia.x, pos1.y + 0.1f * distancia.y));
-                    }
-                    else
-                    {
-                        outraEntidade->setPos(sf::Vector2f(pos2.x + 0.1f * distancia.x, pos2.y - 0.1f * distancia.y));
+                        outraEntidade->setPos(sf::Vector2f(pos2.x - overlapX, pos2.y));
                     }
                 }
             }
             else
             {
+                // Vertical collision
                 if (pos1.y < pos2.y)
                 {
-                    if (!getAndando())
-                    {
-                        setPos(sf::Vector2f(pos1.x + 0.1f * distancia.x, pos1.y - 0.1f * distancia.y));
-                    }
-                    else
-                    {
-                        outraEntidade->setPos(sf::Vector2f(pos2.x - 0.1f * distancia.x, pos2.y + 0.1f * distancia.y));
-                    }
+                    // Player is above the minion
+                    setPos(sf::Vector2f(pos1.x, pos2.y - tam1.y));
+                    noChao = true;
                 }
                 else
                 {
-                    if (!getAndando())
-                    {
-                        setPos(sf::Vector2f(pos2.x + 0.1f * distancia.x, pos1.y + 0.1f * distancia.y));
-                    }
-                    else
-                    {
-                        outraEntidade->setPos(sf::Vector2f(pos2.x - 0.1f * distancia.x, pos2.y - 0.1f * distancia.y));
-                    }
+                    // Player is below the minion
+                    setPos(sf::Vector2f(pos1.x, pos2.y + tam2.y));
                 }
             }
-            break;
-        case IDPLATAFORMA:
-            if (pos1.x > pos2.x && pos1.x < pos2.x + tam2.x)
-            {
-                setPos(sf::Vector2f(pos2.x + tam2.x, pos1.y));
-            }
-            else if (pos1.x + tam1.x > pos2.x)
-            {
-                setPos(sf::Vector2f(pos2.x - tam1.x, pos1.y));
-            }
-            if (pos1.y < pos2.y)
-            {
-                setPos(sf::Vector2f(pos1.x, pos2.y - tam1.y));
-                velocidade.y = 0;
-                noChao = true;
-            }
-            break;
+        }
+        if (ID == IDPLATAFORMA || ID == IDESPINHO || ID == IDCANHAO)
+        {
+            // Calculate the intersection depth on both axes
 
-        default:
-            break;
+            // Determine the axis of least penetration
+            if (overlapX < overlapY)
+            {
+                // Horizontal collision
+                if (pos1.x < pos2.x)
+                {
+                    // Player is to the left of the platform
+                    setPos(sf::Vector2f(pos2.x - tam1.x, pos1.y));
+                }
+                else
+                {
+                    // Player is to the right of the platform
+                    setPos(sf::Vector2f(pos2.x + tam2.x, pos1.y));
+                }
+            }
+            else
+            {
+                // Vertical collision
+                if (pos1.y < pos2.y)
+                {
+                    // Player is above the platform
+                    setPos(sf::Vector2f(pos1.x, pos2.y - tam1.y));
+                    velocidade.y = 0; // Stop vertical movement
+                    noChao = true;    // Player is on the ground
+                }
+                else
+                {
+                    // Player is below the platform
+                    setPos(sf::Vector2f(pos1.x, pos2.y + tam2.y));
+                    velocidade.y = 0; // Stop vertical movement
+                }
+            }
         }
     }
     void Jogador::inicializar()

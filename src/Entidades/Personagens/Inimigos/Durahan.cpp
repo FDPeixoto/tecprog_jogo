@@ -12,7 +12,7 @@ namespace Entidades
             it = 0;
             srand((unsigned int)time(NULL));
             aleatorio = (rand() % (FAIXA_ALEATORIO * 5));
-
+            setCor(sf::Color::Red);
             criarProjetil();
         }
         Durahan::~Durahan()

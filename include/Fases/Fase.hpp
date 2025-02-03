@@ -10,6 +10,8 @@
 #include "Canhao.hpp"
 #include "Durahan.hpp"
 #include "Colisao.hpp"
+#include "Espinho.hpp"
+#include "Caixa.hpp"
 // #include <vector>
 
 namespace Gerenciadores

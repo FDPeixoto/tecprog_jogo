@@ -5,9 +5,13 @@ namespace Entidades
 {
     namespace Obstaculos
     {
-        Plataforma::Plataforma(float alt, float larg, sf::Vector2f posicao) : Obstaculo(sf::Vector2f(larg, alt), posicao, false, IDPLATAFORMA), largura(larg) {}
-        Plataforma::Plataforma(sf::Vector2f posicao) : Obstaculo(sf::Vector2f(128.f, 64.f), posicao, false, IDPLATAFORMA)
+        Plataforma::Plataforma(float alt, float larg, sf::Vector2f posicao) : Obstaculo(sf::Vector2f(larg, 64.f), posicao, false, IDPLATAFORMA), largura(larg)
         {
+            setCor(sf::Color(6, 64, 43)); // Verde Escuro
+        }
+        Plataforma::Plataforma(sf::Vector2f posicao) : Obstaculo(sf::Vector2f(64.f, 64.f), posicao, false, IDPLATAFORMA)
+        {
+            setCor(sf::Color(6, 64, 43));
         }
         Plataforma::~Plataforma() {}
         void Plataforma::executar()

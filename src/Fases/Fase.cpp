@@ -100,10 +100,10 @@ namespace Fases
 
     void Fase::criarPlataforma(const sf::Vector2f posicao)
     {
-        Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(50.0f, 50.0f, posicao); // a plaforma era 100.0f e 100.0f
+        Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(posicao); // a plaforma era 100.0f e 100.0f
         if (plataforma != nullptr)
         {
-            plataforma->setCor(sf::Color::White);
+            // plataforma->setCor(sf::Color::White);
             plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
             listaObstaculos->incluirEntidade(plataforma);
         }
@@ -113,8 +113,8 @@ namespace Fases
         Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(60.0f, LARGURA, posicao);
         if (plataforma != nullptr)
         {
-            sf::Color verdeEscuro(0, 100, 0); // verde escuro
-            plataforma->setCor(verdeEscuro);
+            // sf::Color verdeEscuro(0, 100, 0); // verde escuro
+            // plataforma->setCor(verdeEscuro);
             listaObstaculos->incluirEntidade(plataforma);
         }
     }
@@ -124,8 +124,8 @@ namespace Fases
         Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(altura, largura, posicao);
         if (plataforma != nullptr)
         {
-            sf::Color verdeEscuro(0, 100, 0); // verde escuro
-            plataforma->setCor(verdeEscuro);
+            // sf::Color verdeEscuro(0, 100, 0); // verde escuro
+            // plataforma->setCor(verdeEscuro);
             listaObstaculos->incluirEntidade(plataforma);
         }
     }
@@ -135,7 +135,7 @@ namespace Fases
         Entidades::Obstaculos::Plataforma *borda = new Entidades::Obstaculos::Plataforma(ALTURA, TAM_BORDA, posicao);
         if (borda != nullptr)
         {
-            borda->setCor(cor);
+            // borda->setCor(cor);
             listaObstaculos->incluirEntidade(borda);
         }
     }
@@ -144,40 +144,34 @@ namespace Fases
         Entidades::Obstaculos::Plataforma *borda = new Entidades::Obstaculos::Plataforma(TAM_BORDA, LARGURA, posicao);
         if (borda != nullptr)
         {
-            borda->setCor(cor);
+            // borda->setCor(cor);
             listaObstaculos->incluirEntidade(borda);
         }
     }
 
     void Fase::criarEspinho(const sf::Vector2f posicao)
     {
-        Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(LARGURA_ESPINHO, ALTURA_ESPINHO, posicao);
+        Entidades::Obstaculos::Espinho *plataforma = new Entidades::Obstaculos::Espinho(posicao);
         if (plataforma != nullptr)
         {
-            sf::Color laranja(255, 111, 0); // RGB (255, 165, 0) - um laranja padrão
-            plataforma->setCor(laranja);
             plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
             listaObstaculos->incluirEntidade(plataforma);
         }
     }
     void Fase::criarCaixa(const sf::Vector2f posicao)
     {
-        Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(posicao);
-        if (plataforma != nullptr)
+        Entidades::Obstaculos::Caixa *caixa = new Entidades::Obstaculos::Caixa(posicao + sf::Vector2f(0.f, 16.f));
+        if (caixa != nullptr)
         {
-            sf::Color laranja(255, 111, 0); // RGB (255, 165, 0) - um laranja padrão
-            plataforma->setCor(laranja);
-            plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
-            listaObstaculos->incluirEntidade(plataforma);
+            caixa->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
+            listaObstaculos->incluirEntidade(caixa);
         }
     }
     void Fase::criarCanhao(const sf::Vector2f posicao)
     {
-        Entidades::Obstaculos::Canhao *canhao = new Entidades::Obstaculos::Canhao(LARGURA_CANHAO, ALTURA_CANHAO, posicao);
+        Entidades::Obstaculos::Canhao *canhao = new Entidades::Obstaculos::Canhao(posicao);
         if ((canhao) != nullptr)
         {
-            sf::Color roxa(128, 0, 128); // roxo
-            canhao->setCor(roxa);
             listaObstaculos->incluirEntidade(canhao);
         }
     }

@@ -11,11 +11,20 @@ namespace Entidades
         {
         private:
             float lado;
+            bool noChao;
 
         public:
             Caixa(const sf::Vector2f posicao);
             ~Caixa();
             float getLado();
+            void virtual executar();
+            virtual void salvar();
+            void virtual atualizar(float dt);
+            void virtual colisao(Entidade *outraEntidade);
+            virtual void inicializar();
+            virtual void atualizarPosicao(float dt);
+            void Obstacular(Entidades::Jogador *pJogador);
+            void obstacular(Entidades::Jogador *pJogador);
         };
     }
 }
