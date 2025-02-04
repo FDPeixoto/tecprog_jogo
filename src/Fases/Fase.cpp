@@ -26,6 +26,7 @@ namespace Fases
         pGerenciadorGrafico = nullptr;
         pJogador1 = nullptr;
         pJogador2 = nullptr;
+        quantidadeJogadores=0;
         delete listaPersonagens;
         delete listaObstaculos;
 

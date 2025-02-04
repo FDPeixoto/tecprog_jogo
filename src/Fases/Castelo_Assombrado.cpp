@@ -8,7 +8,7 @@ namespace Fases
 {
     Castelo_Assombrado::Castelo_Assombrado() : Fase(IDCASTELOASSOMBRADO), maxChefoes(5), vetorDurahan(), it_D(0)
     {
-        Fase::proximaFase();
+        //Fase::proximaFase();
         srand((unsigned int)time(NULL));
         cont_D = (rand() % (2)) + 3;
         criarMapa();

@@ -156,15 +156,15 @@ namespace Entidades
 
         void Inimigo::perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo)
         {
-            if ((posJogador.x - posInimigo.x) >= 0.0f)
+            if ((posJogador.x - posInimigo.x) <= 0.0f)
             { // significa que o jogador está a direita
-                // corpo.move(velocidade.x,0.0f);
-                this->velocidade.x = 50.0f;
+                 //corpo.move(100.0f,0.0f);
+                velocidade.x = -100.0f;
             }
             else
             {
-                this->velocidade.x = -50.0f;
-                // corpo.move(-velocidade.x,0.0f);
+                velocidade.x = 100.0f;
+                // corpo.move(-100.0f,0.0f);
             }
             /*if(posJogador.y-posInimigo.y>=0.0f){//significa que o jogador está acima
                 corpo.move(0.0f,velocidade.y);
@@ -176,15 +176,15 @@ namespace Entidades
         void Inimigo::moverAleatorio()
         {
             iteracoes++;
-            // if(iteracoes>50){
+             //if(iteracoes>100){
             if (moveAleatorio == 0)
             {
                 // corpo.move((velocidade.x), 0.0f);
-                velocidade.x = VELOCIDADEY_DU;
+                velocidade.x = (VELOCIDADEY_DU/5);
             }
             else if (moveAleatorio == 1)
             {
-                velocidade.x = -VELOCIDADEY_DU;
+                velocidade.x = (-VELOCIDADEY_DU/5);
                 // corpo.move((-velocidade.x), 0.0f);
             }
             //}
@@ -198,7 +198,7 @@ namespace Entidades
                 moveAleatorio=rand()%FAIXA_ALEATORIO;
                 relogio.restart();
             }*/
-            if (iteracoes >= 10)
+            if (iteracoes >= 100)
             { // 200
                 srand((unsigned int)time(NULL));
                 // Gera um número aleatório entre 0 e 99

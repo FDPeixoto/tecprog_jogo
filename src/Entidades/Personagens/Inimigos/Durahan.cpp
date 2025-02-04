@@ -147,7 +147,7 @@ namespace Entidades
             }
             else
             {
-                setCor(sf::Color::Red);
+                //setCor(sf::Color::Red);
             }
 
             /*criarProjetil();
@@ -171,7 +171,7 @@ namespace Entidades
                 aleatorio = (rand() % (FAIXA_ALEATORIO * 5));
                 it = 0;
                 jaAtirou = false;
-                setCor(sf::Color::Magenta);
+                //setCor(sf::Color::Magenta);
             }
         }
         void Durahan::danificar(Entidades::Jogador *pJogador) {}
