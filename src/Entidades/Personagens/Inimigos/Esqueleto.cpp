@@ -21,6 +21,7 @@ namespace Entidades
 
         void Esqueleto::executar()
         {
+            Inimigo::executar();
         }
         void Esqueleto::danificar(Entidades::Jogador *pJogador)
         {

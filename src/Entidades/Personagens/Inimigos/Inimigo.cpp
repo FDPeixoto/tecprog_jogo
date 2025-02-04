@@ -111,6 +111,9 @@ namespace Entidades
                     {
                         perseguir(posJogador1, posInimigo);
                     }
+                    else{
+                        moverAleatorio();
+                    }
                 }
                 else if (distx2 <= RAIO_PERSEGUIR_X)
                 {
@@ -180,11 +183,11 @@ namespace Entidades
             if (moveAleatorio == 0)
             {
                 // corpo.move((velocidade.x), 0.0f);
-                velocidade.x = (VELOCIDADEY_DU/5);
+                velocidade.x = (VELOCIDADEY_DU);
             }
             else if (moveAleatorio == 1)
             {
-                velocidade.x = (-VELOCIDADEY_DU/5);
+                velocidade.x = (-VELOCIDADEY_DU);
                 // corpo.move((-velocidade.x), 0.0f);
             }
             //}
@@ -198,7 +201,7 @@ namespace Entidades
                 moveAleatorio=rand()%FAIXA_ALEATORIO;
                 relogio.restart();
             }*/
-            if (iteracoes >= 100)
+            if (iteracoes >= 10)
             { // 200
                 srand((unsigned int)time(NULL));
                 // Gera um número aleatório entre 0 e 99
