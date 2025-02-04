@@ -8,6 +8,8 @@ namespace Entidades
         Plataforma::Plataforma(float alt, float larg, sf::Vector2f posicao) : Obstaculo(sf::Vector2f(larg, 64.f), posicao, false, IDPLATAFORMA), largura(larg)
         {
             setCor(sf::Color(6, 64, 43)); // Verde Escuro
+            //if (!textura.loadFromFile("Texturas/plataforma-64x64.png")) {}
+            //Entidade::carregarTextura(&textura); 
         }
         Plataforma::Plataforma(sf::Vector2f posicao) : Obstaculo(sf::Vector2f(64.f, 64.f), posicao, false, IDPLATAFORMA)
         {
@@ -40,5 +42,6 @@ namespace Entidades
         {
             return;
         }
+        
     }
 }

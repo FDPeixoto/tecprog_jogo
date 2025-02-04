@@ -17,6 +17,8 @@ namespace Entidades{
       sf::Vector2f tam;
       Gerenciadores::Mediator* pMediator;
       bool ativo;
+      sf::Texture textura;
+      sf::Sprite sprite;
 
     public:
       Entidade(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
@@ -51,6 +53,11 @@ namespace Entidades{
       virtual bool getAtacando();
       virtual void setAtacando(bool v);
       void mudarLargura(int l);
+
+      virtual void carregarTextura(sf::Texture& text);//Era para ver puro
+      sf::Sprite& getSprite();
+
+      void atualizarSprite();
   };
  
 }

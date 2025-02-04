@@ -15,6 +15,7 @@ namespace Entidades{
     bool andando;
     bool paraEsquerda;
     bool ehJogador2;
+    sf::Texture textura;
 
   public:
     Jogador(const sf::Vector2f posicao, bool jogador2);

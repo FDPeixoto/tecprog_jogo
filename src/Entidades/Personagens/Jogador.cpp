@@ -7,12 +7,16 @@ namespace Entidades
     {
         if (jogador2)
         {
-            setCor(sf::Color::Green);
+            if (!textura.loadFromFile("Texturas/jogador2.png")) {}
+            setCor(sf::Color::Transparent);
             setPosTexto(330.f, 200.f);
+            Entidade::carregarTextura(textura); 
         }
         else
         {
-            setCor(sf::Color::Blue);
+            if (!textura.loadFromFile("Texturas/jogador1.png")) {}
+            setCor(sf::Color::Transparent);
+            Entidade::carregarTextura(textura); 
         }
         setVelocidade(sf::Vector2f(0.f, 0.f));
     }
@@ -80,6 +84,8 @@ namespace Entidades
         /*std::string vidaStr = "Vida: " + std::to_string(num_vidas);  // Concatena a string
         textoVida.setString(vidaStr);
         return (textoVida);*/
+        atualizarSprite();
+        
     }
 
     void Jogador::salvar() {}

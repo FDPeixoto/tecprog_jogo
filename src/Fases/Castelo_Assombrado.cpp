@@ -108,7 +108,7 @@ namespace Fases
         // Pega a lista de porjétil que tem no Durahan
         //
     }
-     void Castelo_Assombrado::criarInimDificil(const sf::Vector2f posicao)
+     /*void Castelo_Assombrado::criarInimDificil(const sf::Vector2f posicao)
     {   
         it_D++;
         Entidades::Inimigos::Durahan* durahan = new Entidades::Inimigos::Durahan(posicao);
@@ -121,6 +121,7 @@ namespace Fases
             listaPersonagens->incluirEntidade(durahan);
             //num_Durahan++; lemnrando que isso está em fase
         }
+    }*/
 
     void Castelo_Assombrado::executar()
     {
