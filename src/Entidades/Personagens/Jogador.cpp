@@ -85,6 +85,7 @@ namespace Entidades
         textoVida.setString(vidaStr);
         return (textoVida);*/
         //atualizarSprite();
+        pontos=pontos+0.1;
         
     }
 
@@ -198,5 +199,8 @@ namespace Entidades
     bool Jogador::getAtacando()
     {
         return atacando;
+    }
+    int Jogador::getPontos(){
+        return pontos;
     }
 }

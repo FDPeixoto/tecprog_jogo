@@ -33,6 +33,7 @@ namespace Entidades{
     void inicializar();  
     void pular();
     void setAtacando(bool v);
-    bool getAtacando(); 
+    bool getAtacando();
+    int getPontos(); 
   };
 }

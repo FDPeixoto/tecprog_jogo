@@ -26,7 +26,7 @@
 
 #define ID_PROJETIL 4
 
-#define RAIO_PERSEGUIR_X 800.0f
+#define RAIO_PERSEGUIR_X 600.0f
 // #define RAIO_PERSEGUIR_Y 200.0f
 #define FAIXA_ALEATORIO 2
 

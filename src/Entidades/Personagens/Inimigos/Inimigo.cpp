@@ -178,19 +178,20 @@ namespace Entidades
         }
         void Inimigo::moverAleatorio()
         {
+            //velocidade.x = (-VELOCIDADEX_DU);
             iteracoes++;
-             //if(iteracoes>100){
+             if(iteracoes==1){
             if (moveAleatorio == 0)
             {
                 // corpo.move((velocidade.x), 0.0f);
-                velocidade.x = (VELOCIDADEY_DU);
+                velocidade.x = (VELOCIDADEX_DU);
             }
             else if (moveAleatorio == 1)
             {
-                velocidade.x = (-VELOCIDADEY_DU);
+                velocidade.x = (-VELOCIDADEX_DU);
                 // corpo.move((-velocidade.x), 0.0f);
             }
-            //}
+            }
             /*else if(moveAleatorio==2){
                 corpo.move(0.0f,velocidade.y);
             }
@@ -201,7 +202,7 @@ namespace Entidades
                 moveAleatorio=rand()%FAIXA_ALEATORIO;
                 relogio.restart();
             }*/
-            if (iteracoes >= 10)
+            if (iteracoes >= 20)
             { // 200
                 srand((unsigned int)time(NULL));
                 // Gera um número aleatório entre 0 e 99
