@@ -117,12 +117,12 @@ namespace Entidades{
   void carregarTextura(){
     return;
   }
-  void Entidade::carregarTextura(sf::Texture& text) {
+  void Entidade::carregarTextura(sf::Texture* text) {
     /*if (!text.getSize().x || !text.getSize().y) {
         //erro
     }
     sprite.setTexture(text); */
-    corpo.setTexture
+    corpo.setTexture(text);
 }
 sf::Sprite& Entidade::getSprite() {
     return sprite;  // Retorna o sprite por referência

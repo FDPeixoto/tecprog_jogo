@@ -54,7 +54,7 @@ namespace Entidades{
       virtual void setAtacando(bool v);
       void mudarLargura(int l);
 
-      virtual void carregarTextura(sf::Texture& text);//Era para ver puro
+      virtual void carregarTextura(sf::Texture* text);//Era para ver puro
       sf::Sprite& getSprite();
 
       void atualizarSprite();

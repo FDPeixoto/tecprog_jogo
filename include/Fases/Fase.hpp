@@ -33,6 +33,7 @@ namespace Fases
         // std::list<Entidades::Entidade*> listP;
         Entidades::Jogador *pJogador1;
         Entidades::Jogador *pJogador2;
+        Entidades::Obstaculos::Plataforma *pFundo;
         int quantidadeJogadores;
         bool completou;
         int maxMinio;
@@ -59,6 +60,7 @@ namespace Fases
         void criarPlataforma(const sf::Vector2f posicao);
         void criarPlataformaBase(const sf::Vector2f posicao);
         void criarPlataforma(const sf::Vector2f posicao, float largura, float altura);
+        void criarPlataformaF(const sf::Vector2f posicao, float largura, float altura);
         void criarBordaH(const sf::Vector2f posicao, sf::Color cor);
         void criarBordaV(const sf::Vector2f posicao, sf::Color cor);
         // Está ao contrário as funções BordaV cria Horizontal e BordaH, vertical

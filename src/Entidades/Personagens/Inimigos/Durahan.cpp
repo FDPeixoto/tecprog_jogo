@@ -12,8 +12,11 @@ namespace Entidades
             it = 0;
             srand((unsigned int)time(NULL));
             aleatorio = (rand() % (FAIXA_ALEATORIO * 5));
-            setCor(sf::Color::Red);
+            //setCor(sf::Color::Red);
             criarProjetil();
+            if (!textura.loadFromFile("Texturas/Durahan2.png")) {}
+            setCor(sf::Color::White); //cor anterior: (6, 64, 43)
+            Entidade::carregarTextura(&textura);
         }
         Durahan::~Durahan()
         {

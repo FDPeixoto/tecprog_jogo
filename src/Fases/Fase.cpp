@@ -10,7 +10,7 @@ namespace Fases
                                    pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()),
                                    pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()),
                                    pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
-                                   pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0) //, vetorPortal()
+                                   pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0), pFundo(nullptr) //, vetorPortal()
     {
         pGerenciadorColisao->setMoveis(listaPersonagens);
         pGerenciadorColisao->setFixos(listaObstaculos);
@@ -54,7 +54,7 @@ namespace Fases
         if (quantidadeJogadores == 0)
         {
             Entidades::Jogador *jogador = new Entidades::Jogador(posicao, false);
-            jogador->setCor(sf::Color::Blue);
+            jogador->setCor(sf::Color::White);//Blue
             if (jogador != nullptr)
             {
                 listaPersonagens->incluirEntidade(jogador);
@@ -66,7 +66,7 @@ namespace Fases
         else if (quantidadeJogadores == 1)
         {
             Entidades::Jogador *jogador = new Entidades::Jogador(posicao, true);
-            jogador->setCor(sf::Color::Green);
+            jogador->setCor(sf::Color::White);//Green
             if (jogador != nullptr)
             {
                 listaPersonagens->incluirEntidade(jogador);
@@ -127,6 +127,19 @@ namespace Fases
             // sf::Color verdeEscuro(0, 100, 0); // verde escuro
             // plataforma->setCor(verdeEscuro);
             listaObstaculos->incluirEntidade(plataforma);
+        }
+    }
+    void Fase::criarPlataformaF(const sf::Vector2f posicao, float altura, float largura)
+    {
+        Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(altura, largura, posicao);
+        if (plataforma != nullptr)
+        {
+            // sf::Color verdeEscuro(0, 100, 0); // verde escuro
+            // plataforma->setCor(verdeEscuro);
+            //listaObstaculos->incluirEntidade(plataforma);
+            pFundo=plataforma;
+            pGerenciadorGrafico->desenharEntidade(plataforma);
+            //pGerenciadorGrafico->display();
         }
     }
 

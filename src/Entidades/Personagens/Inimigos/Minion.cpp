@@ -12,8 +12,11 @@ namespace Entidades
         Minion::Minion(const sf::Vector2f posicao) : Inimigo(sf::Vector2f(LARGURAMINION, ALTURAMINION), posicao, IDMINION)
         {
             setVelocidade(sf::Vector2f(50.f, 0.f));
-            setCor(sf::Color::Yellow);
+            //setCor(sf::Color::Yellow);
             // velocidade = sf::Vector2f(50.0f, 0.0f);
+            setCor(sf::Color::White); 
+            if (!textura.loadFromFile("Texturas/minion1.png")) {}
+            Entidade::carregarTextura(&textura); 
         }
 
         Minion::~Minion()

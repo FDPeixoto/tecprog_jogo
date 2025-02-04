@@ -17,9 +17,15 @@ namespace Entidades
         if (direita == true)
         {
             setVelocidade(sf::Vector2f(VEL_X_P, 0.f));
+            setCor(sf::Color::White); 
+            if (!textura.loadFromFile("Texturas/proj-Dir.png")) {}
+            Entidade::carregarTextura(&textura);
         }
         else
         {
+            setCor(sf::Color::White); 
+            if (!textura.loadFromFile("Texturas/proj-Esq.png")) {}
+            Entidade::carregarTextura(&textura);
             setVelocidade(sf::Vector2f(-VEL_X_P, 0.f));
         }
         setCor(sf::Color::Red);

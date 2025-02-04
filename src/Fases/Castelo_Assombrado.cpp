@@ -74,7 +74,7 @@ namespace Fases
 
     void Castelo_Assombrado::criarMapa()
     {
-
+        //criarPlataformaF(sf::Vector2f(0.0f,0.0f), ALTURA_JANELA, LARGURA_JANELA);
         // criarPlataformaBase(sf::Vector2f(0.0f,660));
         // Está ao contrário as funções BordaV cria Horizontal e BordaH, vertical
 
@@ -99,6 +99,8 @@ namespace Fases
             j++;
         }
         arquivo.close();
+
+        
         // criarBordaH(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
         // criarBordaH(sf::Vector2f(1277.0f, 0.0f), sf::Color::Yellow);
         // criarBordaV(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
