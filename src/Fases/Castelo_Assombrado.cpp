@@ -58,6 +58,7 @@ namespace Fases
             }
             vetorDurahan.push_back(durahan);
             listaPersonagens->incluirEntidade(durahan);
+            pGerenciadorColisao->adicionarInimigo(durahan);
             // num_Durahan++; lemnrando que isso está em fase
         }
     }

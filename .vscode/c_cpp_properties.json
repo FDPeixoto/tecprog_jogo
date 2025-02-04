@@ -3,15 +3,26 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:\\Bru\\TecProg\\Teste0\\modelo-sfml-windows/**",
                 "C:\\mingw32\\include",
                 "C:\\SFML-2.6.2\\include",
+                "${workspaceFolder}/include",
                 "${workspaceFolder}/include/**",
-                "${workspaceFolder}/include/Gerenciadores/**",
-                "${workspaceFolder}/include/Fases/**",
+                "${workspaceFolder}/include/Entidades",
                 "${workspaceFolder}/include/Entidades/**",
+                "${workspaceFolder}/include/Entidades/Obstaculos",
+                "${workspaceFolder}/include/Entidades/Obstaculos/**",
+                "${workspaceFolder}/include/Entidades/Personagens",
                 "${workspaceFolder}/include/Entidades/Personagens/**",
-                "${workspaceFolder}/include/Entidades/Personagens/Inimigos/**"
+                "${workspaceFolder}/include/Entidades/Personagens/Inimigos",
+                "${workspaceFolder}/include/Entidades/Personagens/Inimigos/**",
+                "${workspaceFolder}/include/Fases",
+                "${workspaceFolder}/include/Fases/**",
+                "${workspaceFolder}/include/Gerenciadores",
+                "${workspaceFolder}/include/Gerenciadores/**",
+                "${workspaceFolder}/include/Listas",
+                "${workspaceFolder}/include/Listas/**",
+                "${workspaceFolder}/include/States",
+                "${workspaceFolder}/include/States/**"
             ],
             "defines": [
                 "_DEBUG",

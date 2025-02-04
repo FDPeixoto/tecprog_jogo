@@ -10,31 +10,35 @@
 #include <map>
 #include <Personagem.hpp>
 
-namespace Gerenciadores{
-    class Grafico{
-        private:
-            sf::RenderWindow* janela;
-            sf::View panorama;   
-            sf::Clock relogio;
+namespace Gerenciadores
+{
+    class Grafico
+    {
+    private:
+        sf::RenderWindow *janela;
+        sf::View panorama;
+        sf::Clock relogio;
 
-            //Singleton    
-            static Grafico* pGrafico;
-            Grafico();
-        public:
-            ~Grafico();
-            static Grafico* getGerenciadorGrafico();
-            sf::RenderWindow* getJanela();
-            void limparJanela();
-            void redimensionarJanela();
-            void mostrarJanela();
-            void fecharJanela();
-            sf::Clock *getRelogio();
-            void desenharCorpo(sf::RectangleShape corpo);
-            void desenharTexto(sf::Text texto);
-            void desenharEntidade(Entidades::Entidade *entidade);
-            void desenharList(std::list<Entidades::Entidade*>& list);
-            void desenharListaEntidades(Listas::ListaEntidades *lista);
-            void setRelogio(sf::Clock *clock);
-            void resetarRelogio();
+        // Singleton
+        static Grafico *pGrafico;
+        Grafico();
+
+    public:
+        ~Grafico();
+        static Grafico *getGerenciadorGrafico();
+        sf::RenderWindow *getJanela();
+        void limparJanela();
+        void redimensionarJanela();
+        void mostrarJanela();
+        void fecharJanela();
+        sf::Clock *getRelogio();
+        void desenharCorpo(sf::RectangleShape corpo);
+        void desenharTexto(sf::Text texto);
+        void desenharEntidade(Entidades::Entidade *entidade);
+        void desenharList(std::list<Entidades::Entidade *> &list);
+        void desenharListaEntidades(Listas::ListaEntidades *lista);
+        void setRelogio(sf::Clock *clock);
+        void resetarRelogio();
+        void setView(sf::View view);
     };
 }

@@ -9,7 +9,7 @@ namespace Fases
 
     Pantano_Maldito::Pantano_Maldito() : Fase(IDPANTANOMALDITO), maxInimMedios(5), vetorDurahan(), it_D(0), cont_D(2)
     {
-        // Fase::proximaFase();
+        Fase::proximaFase();
         /*srand((unsigned int)time(NULL));
         cont_D= (rand() % (FAIXA_ALEATORIO))+2; */
         criarMapa();
@@ -41,6 +41,7 @@ namespace Fases
             //  if(Fase::getJogador1() != nullptr){esquelto->setJogador1(getJogador1());}
             //  if(Fase::getJogador2() != nullptr){esqueleto->setJogador2(getJogador2());}
             listaPersonagens->incluirEntidade(esqueleto);
+            pGerenciadorColisao->adicionarInimigo(esqueleto);
         }
     }
     void Pantano_Maldito::criarInimDificil(const sf::Vector2f posicao)
@@ -61,7 +62,8 @@ namespace Fases
             }
             vetorDurahan.push_back(durahan);
             listaPersonagens->incluirEntidade(durahan);
-            // num_Durahan++; lemnrando que isso está em fase
+            // pGerenciadorColisao->adicionarInimigo(durahan);
+            //  num_Durahan++; lemnrando que isso está em fase
         }
     }
     /*void Pantano_Maldito::setpD(Entidades::Inimigos::Durahan* pDurahan){
