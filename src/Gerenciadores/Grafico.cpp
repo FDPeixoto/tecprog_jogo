@@ -6,6 +6,8 @@
 #include "../../include/Listas/Lista.hpp"
 #include "Grafico.hpp"
 #include "stdafx.h"
+#include "../../include/nlohmann/json.hpp"  // Incluindo a biblioteca JSON
+using json = nlohmann::json; 
 
 namespace Gerenciadores
 {
@@ -14,6 +16,7 @@ namespace Gerenciadores
     Grafico::Grafico() : janela(new sf::RenderWindow(sf::VideoMode(LARGURA_JANELA, ALTURA_JANELA), "Medievo++")),
                          panorama(sf::View(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(LARGURA_JANELA, ALTURA_JANELA))), relogio()
     {
+         fonte.loadFromFile("Fonte/DejaVuSans.ttf");
     }
 
     Grafico::~Grafico()
@@ -114,6 +117,38 @@ namespace Gerenciadores
     void Grafico::fecharJanela()
     {
         janela->close();
+    }
+    void Grafico::mostrarRanking(){
+        std::ifstream arquivo("ranking.json");
+    if (arquivo.is_open()) {
+        json ranking;
+        arquivo >> ranking;
+        arquivo.close();
+
+        sf::Text textoRanking;
+        textoRanking.setFont(fonte);
+        textoRanking.setCharacterSize(20);
+        textoRanking.setFillColor(sf::Color::White);
+
+        int yPos = 20;
+        for (int i = 0; i < ranking.size(); ++i) {
+            std::string texto = "Partida: " + ranking[i]["nomePartida"].get<std::string>();
+            textoRanking.setString(texto);
+            textoRanking.setPosition(50, yPos);
+            janela->draw(textoRanking);  // Modificado para usar o ponteiro
+            yPos += 30;
+
+            for (const auto& jogador : ranking[i]["jogadores"]) {
+                texto = jogador["nome"].get<std::string>() + " - " +
+                        std::to_string(jogador["pontuacao"].get<int>());
+                textoRanking.setString(texto);
+                textoRanking.setPosition(50, yPos);
+                janela->draw(textoRanking);  // Modificado para usar o ponteiro
+                yPos += 40;
+            }
+            yPos += 20;
+        }
+    }
     }
 
     sf::Clock *Grafico::getRelogio()

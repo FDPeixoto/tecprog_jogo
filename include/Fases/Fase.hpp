@@ -46,8 +46,6 @@ namespace Fases
         int maxEspinho;
         std::string nomePartida;
         sf::Font fonte;
-        sf::Text textoEntrada;
-        bool capturandoNome;
         int pontosJ1;
         int pontosJ2;
 
@@ -88,8 +86,8 @@ namespace Fases
         void criarCenario();
 
         void proximaFase();
-        void registrarNomePartida(sf::Event& evento,sf::RenderWindow* janela);
         bool completouFase();
+        //void mostrarRanking(sf::RenderWindow* janela);
         // Set list P..........
     };
 }

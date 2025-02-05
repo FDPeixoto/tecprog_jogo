@@ -22,15 +22,7 @@ namespace Fases
         pGerenciadorColisao->setMoveis(listaPersonagens);
         pGerenciadorColisao->setFixos(listaObstaculos);
          fonte.loadFromFile("Fonte/DejaVuSans.ttf");
-            
-    
-    textoEntrada.setFont(fonte);
-    textoEntrada.setCharacterSize(24);
-    textoEntrada.setFillColor(sf::Color::White);
-    textoEntrada.setPosition(50, 500);  // Posição na tela
-    textoEntrada.setString("Nome da Partida: " + nomePartida);
-        // vetorPortal.clear();
-        capturandoNome=true;
+        
     }
 
     Fase::~Fase()
@@ -200,12 +192,11 @@ namespace Fases
     }
     arquivoSaida << ranking.dump(4); // Formatação bonita
     arquivoSaida.close();
+
+    //mostrarRanking(pGerenciadorGrafico->getJanela());
 }
 
-    /*void setListP(sf::list<Entidades::Entidade*>& l){
-        listP=l;
-    }*/
-    void mostrarRanking(sf::RenderWindow* janela, const sf::Font& fonte) {
+    /*void Fase::mostrarRanking(sf::RenderWindow* janela) {
     std::ifstream arquivo("ranking.json");
     if (arquivo.is_open()) {
         json ranking;
@@ -214,16 +205,16 @@ namespace Fases
 
         sf::Text textoRanking;
         textoRanking.setFont(fonte);
-        textoRanking.setCharacterSize(24);
+        textoRanking.setCharacterSize(20);
         textoRanking.setFillColor(sf::Color::White);
 
-        int yPos = 50;
+        int yPos = 20;
         for (int i = 0; i < ranking.size(); ++i) {
             std::string texto = "Partida: " + ranking[i]["nomePartida"].get<std::string>();
             textoRanking.setString(texto);
             textoRanking.setPosition(50, yPos);
             janela->draw(textoRanking);  // Modificado para usar o ponteiro
-            yPos += 40;
+            yPos += 30;
 
             for (const auto& jogador : ranking[i]["jogadores"]) {
                 texto = jogador["nome"].get<std::string>() + " - " +
@@ -236,7 +227,7 @@ namespace Fases
             yPos += 20;
         }
     }
-}
+}*/
 
 
     void Fase::criarJogador(const sf::Vector2f posicao)
@@ -392,33 +383,7 @@ namespace Fases
         pGerenciadorGrafico->desenharListaEntidades(listaPersonagens);
         pGerenciadorGrafico->desenharListaEntidades(listaObstaculos);
     }
-    void Fase::registrarNomePartida(sf::Event& evento,sf::RenderWindow* janela){
-        
-        /*if (capturandoNome) {
-                if (evento.type == sf::Event::TextEntered) {
-                    if (evento.text.unicode == 13) {  // 13 é o código ASCII para Enter
-                        setNomePartida(nomePartida);
-                        salvarRanking("ranking.json");
-                        capturandoNome = false;  // Termina a captura do nome
-                    }
-                    else if (evento.text.unicode < 128 && evento.text.unicode != 8) {  // Ignora backspace
-                        nomePartida += static_cast<char>(evento.text.unicode);
-                    }
-                    else if (evento.text.unicode == 8 && nomePartida.size() > 0) {
-                        nomePartida.pop_back();
-                    }
 
-                    textoEntrada.setString("Nome da Partida: " + nomePartida);
-                }*/
-
-                // Verifica se o botão foi clicado//Está em eventos agora
-                /*if (botaoConfirmar.foiClicado(janela)) {
-                    fase.setNomePartida(nomePartida);
-                    fase.salvarRanking("ranking.json");
-                    capturandoNome = false;
-                }*/
-            //}
-        }
     
 
     void Fase::executar()
@@ -453,9 +418,11 @@ namespace Fases
             pD->atirar();
             clock.restart();  // Reinicia o relógio para a próxima verificação
         }*/
+        
+        //pGerenciadorGrafico->mostrarRanking();
         pGerenciadorGrafico->desenharTexto(pJogador1->getTextoVida());
         pGerenciadorGrafico->desenharTexto(pJogador2->getTextoVida());
-        pGerenciadorGrafico->desenharTexto(pGerenciadorEvento->getTextoEntrada());
+        //pGerenciadorGrafico->desenharTexto(pGerenciadorEvento->getTextoEntrada());
         desenhar();
     }
     void Fase::proximaFase()

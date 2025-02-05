@@ -139,6 +139,9 @@ namespace Fases
                 pGerenciadorGrafico->desenharList(vetorDurahan[i]->getListaProjetil());
             }
         }
+        if(completou==true){
+            //mostrarRanking(pGerenciadorGrafico->getJanela());
+        }
     }
     void Castelo_Assombrado::criarEntidade(char letra, const sf::Vector2f posicao)
     {

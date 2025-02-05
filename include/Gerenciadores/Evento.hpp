@@ -3,7 +3,7 @@
 #include "Estado.hpp"
 #include "Fase.hpp"
 #include <fstream>
-#include <vector>
+//#include <vector>
 #include <string>
 
 namespace Gerenciadores{
@@ -19,10 +19,9 @@ namespace Gerenciadores{
             static Evento* pGerenciadorEvento;
 
         std::string nomePartida;
-        sf::Font fonte;
-        sf::Text textoEntrada;
-        bool capturandoNome;
-        //Botao botaoConfirmar;
+        //sf::Font fonte;
+        //sf::Text textoEntrada;
+        
             Evento();
         public:
             ~Evento();
@@ -34,7 +33,7 @@ namespace Gerenciadores{
             void verificaTeclaPressionada(sf::Keyboard::Key tecla);
             void verificaTeclaSolta(sf::Keyboard::Key tecla);
             void executar(); 
-            void mostrarRanking(sf::RenderWindow* janela); 
-            void salvarNaFase();       
+            //void mostrarRanking(sf::RenderWindow* janela); 
+            //void salvarNaFase();       
     };
 }

@@ -12,16 +12,16 @@ namespace Gerenciadores{
         //pEstado = nullptr;
         pJog1 = nullptr;
         pJog2 = nullptr;
-        fonte.loadFromFile("Fonte/DejaVuSans.ttf");
+        //fonte.loadFromFile("Fonte/DejaVuSans.ttf");
         //botaoConfirmar.setFonte("ConfirmarNome",fonte);
-        textoEntrada.setFont(fonte);
+        /*textoEntrada.setFont(fonte);
         textoEntrada.setCharacterSize(24);
         textoEntrada.setFillColor(sf::Color::White);
-        textoEntrada.setPosition(500, 30);  // Posição na tela*/
-        // vetorPortal.clear();
+        textoEntrada.setPosition(500, 30);  // Posição na tela
+        
         capturandoNome=true;
         nomePartida="Teste0";
-        textoEntrada.setString("Nome da Partida: " + nomePartida);
+        textoEntrada.setString("Nome da Partida: " + nomePartida);*/
 
     }
     
@@ -42,11 +42,11 @@ namespace Gerenciadores{
     void Evento::setNomePartida(const std::string nome){
         nomePartida=nome;
     }
-    sf::Text Evento::getTextoEntrada()
+    /*sf::Text Evento::getTextoEntrada()
   {
     
     return (textoEntrada);
-  }
+  }*/
 
 
 
@@ -75,8 +75,8 @@ namespace Gerenciadores{
         else if(tecla==sf::Keyboard::S){
             if(pJog2 != nullptr){pJog2->setAtacando(true);}
         }
-        else if(tecla==sf::Keyboard::R){
-            mostrarRanking(pGerenciadorGrafico->getJanela());
+        else if(tecla==sf::Keyboard::Q ){
+            pGerenciadorGrafico->mostrarRanking();
         }
         else if(tecla==sf::Keyboard::Escape){
             pEstado->removerState();
@@ -104,18 +104,19 @@ namespace Gerenciadores{
             if(pJog1 != nullptr){pJog1->setAtacando(false);}
         }
     }
-    void Evento::salvarNaFase(){
+    /*void Evento::salvarNaFase(){
         if(pFase!=nullptr){
             pFase->setNomePartida(nomePartida);  // Define o nome da partida na fase
             
-    }}
+        }
+    }*/
     void Evento::executar(){
         int pontuacaoJ1=0;
         int pontuacaoJ2=0;
         pFase=pEstado->getStateAtual()->getFase();
         sf::Event evento;
         while(pGerenciadorGrafico->getJanela()->pollEvent(evento)){
-            //botaoConfirmar.desenhar(pGerenciadorGrafico->getJanela());
+            
             if(evento.type == sf::Event::KeyPressed){
                 verificaTeclaPressionada(evento.key.code);
             }
@@ -125,63 +126,34 @@ namespace Gerenciadores{
             else if(evento.type==sf::Event::Closed){
                 pGerenciadorGrafico->fecharJanela();
             }
-            salvarNaFase();
-            /*if(capturandoNome==true){
-            if (evento.type == sf::Event::TextEntered) {
-                if (evento.text.unicode == 13) {  // 13 é o código ASCII para Enter
-                    setNomePartida(nomePartida);
-                    if(pFase!=nullptr){
-                    pFase->setNomePartida(nomePartida);
-                    pFase->salvarRanking("ranking.json");
-                    }
-                    capturandoNome = false;  // Termina a captura do nome
-                }
-                else if (evento.text.unicode < 128 && evento.text.unicode != 8) {  // Ignora backspace
-                    nomePartida += static_cast<char>(evento.text.unicode);
-                }
-                else if (evento.text.unicode == 8 && nomePartida.size() > 0) {
-                    nomePartida.pop_back();
-                }
+            //salvarNaFase();
 
-                textoEntrada.setString("Nome da Partida: " + nomePartida);
-            }*/
-        if(pFase!=nullptr){
-        if (pFase->completouFase()==true) {
-        
-            if(pFase->getID()==IDPANTANOMALDITO){
-                //pFase->setNomePartida("Pantano Maldito2");
-                //pFase->salvarRanking("ranking.json");
-                pontuacaoJ1=pFase->getPontosJogador1();
-                pontuacaoJ2=pFase->getPontosJogador2();
-                 pEstado->addState(IDCASTELOASSOMBRADO);
-            }
-            else{//eh o castelo assombrado
-                pFase->setNomePartida("Nome da Partida aqui");
-                pFase->salvarRanking("ranking.json", pontuacaoJ1, pontuacaoJ2);
-                pGerenciadorGrafico->fecharJanela();
-            }
-        }
-        }
-        
-         //pGerenciadorGrafico->desenharTexto(textoEntrada);
-         
-         //else {
-            //mostrarRanking(pGerenciadorGrafico->getJanela());
-        //}
-
-            }
-        /*if (botaoConfirmar.foiClicado(pGerenciadorGrafico->getJanela())) {
             if(pFase!=nullptr){
-            pFase->setNomePartida(nomePartida);  // Define o nome da partida na fase
-            pFase->salvarRanking("ranking.json");  // Salva o ranking no arquivo JSON
+                if (pFase->completouFase()==true) {
+                
+                    if(pFase->getID()==IDPANTANOMALDITO){
+                        //pFase->setNomePartida("Pantano Maldito2");
+                        //pFase->salvarRanking("ranking.json");
+                        pontuacaoJ1=pFase->getPontosJogador1();
+                        pontuacaoJ2=pFase->getPontosJogador2();
+                        pEstado->addState(IDCASTELOASSOMBRADO);
+                    }
+                    else{//eh o castelo assombrado
+                        pFase->setNomePartida("Nome da Partida aqui");
+                        pFase->salvarRanking("ranking.json", pontuacaoJ1, pontuacaoJ2);
+                        pGerenciadorGrafico->fecharJanela();
+                    }
+                }
             }
-            capturandoNome = false;  // Termina a captura do nome
-        }*/
+
+
+            }
+
         
     }
     
 
-    void Evento::mostrarRanking(sf::RenderWindow* janela) {
+    /*void Evento::mostrarRanking(sf::RenderWindow* janela) {
     std::ifstream arquivo("ranking.json");
     if (arquivo.is_open()) {
         json ranking;
@@ -190,7 +162,7 @@ namespace Gerenciadores{
 
         sf::Text textoRanking;
         textoRanking.setFont(fonte);
-        textoRanking.setCharacterSize(24);
+        textoRanking.setCharacterSize(18);
         textoRanking.setFillColor(sf::Color::White);
 
         int yPos = 50;
@@ -212,7 +184,7 @@ namespace Gerenciadores{
             yPos += 20;
         }
     }
-    }
+    }*/
 }
     
     

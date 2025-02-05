@@ -3,65 +3,65 @@
         "jogadores": [
             {
                 "nome": "1",
-                "pontuacao": 1903
+                "pontuacao": 3708
             },
             {
                 "nome": "2",
-                "pontuacao": 1903
+                "pontuacao": 3708
             }
         ],
-        "nomePartida": "teste unico"
+        "nomePartida": "Nome da Partida aqui"
     },
     {
         "jogadores": [
             {
                 "nome": "1",
-                "pontuacao": 1865
+                "pontuacao": 3569
             },
             {
                 "nome": "2",
-                "pontuacao": 1865
+                "pontuacao": 3569
             }
         ],
-        "nomePartida": "Pantano Maldito2"
+        "nomePartida": "Nome da Partida aqui"
     },
     {
         "jogadores": [
             {
                 "nome": "1",
-                "pontuacao": 983
+                "pontuacao": 3568
             },
             {
                 "nome": "2",
-                "pontuacao": 983
+                "pontuacao": 3568
             }
         ],
-        "nomePartida": "Pantano Maldito1"
+        "nomePartida": "Nome da Partida aqui"
     },
     {
         "jogadores": [
             {
                 "nome": "1",
-                "pontuacao": 711
+                "pontuacao": 3567
             },
             {
                 "nome": "2",
-                "pontuacao": 711
+                "pontuacao": 3567
             }
         ],
-        "nomePartida": "Castelo Assombrado"
+        "nomePartida": "Nome da Partida aqui"
     },
     {
         "jogadores": [
             {
                 "nome": "1",
-                "pontuacao": 401
+                "pontuacao": 3566
             },
             {
                 "nome": "2",
-                "pontuacao": 401
+                "pontuacao": 3566
             }
         ],
-        "nomePartida": "teste unico 12:40"
+        "nomePartida": "Nome da Partida aqui"
     }
 ]
