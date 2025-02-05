@@ -42,6 +42,7 @@ namespace Fases
             //  if(Fase::getJogador2() != nullptr){esqueleto->setJogador2(getJogador2());}
             listaPersonagens->incluirEntidade(esqueleto);
             pGerenciadorColisao->adicionarInimigo(esqueleto);
+            esqueleto->setMediator(pGerenciadorColisao);
         }
     }
     void Pantano_Maldito::criarInimDificil(const sf::Vector2f posicao)
@@ -62,6 +63,7 @@ namespace Fases
             }
             vetorDurahan.push_back(durahan);
             listaPersonagens->incluirEntidade(durahan);
+            durahan->setMediator(pGerenciadorColisao);
             // pGerenciadorColisao->adicionarInimigo(durahan);
             //  num_Durahan++; lemnrando que isso está em fase
         }

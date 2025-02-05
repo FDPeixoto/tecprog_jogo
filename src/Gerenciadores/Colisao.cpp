@@ -79,44 +79,12 @@ namespace Gerenciadores
     {
         for (auto jogador : listJogadores)
         {
-            for (auto inimigo : listInimigos)
-            {
-
-                if (checarColisao(jogador, inimigo))
-                {
-                    jogador->colisao(inimigo); // Notify player of collision
-                    // inimigo->colisao(jogador); // Notify enemy of collision
-                }
-            }
+            jogador->verificarColisao();
         }
 
-        // Check collisions between players and obstacles
-        for (auto jogador : listJogadores)
-        {
-            for (auto obstaculo : listObstaculos)
-            {
-                if (obstaculo != nullptr && jogador != nullptr)
-                {
-                    if (checarColisao(jogador, obstaculo))
-                    {
-                        jogador->colisao(obstaculo); // Notify player of collision
-                        // obstaculo->colisao(jogador); // Notify obstacle of collision
-                    }
-                }
-            }
-        }
-
-        // Check collisions between enemies and obstacles
         for (auto inimigo : listInimigos)
         {
-            for (auto obstaculo : listObstaculos)
-            {
-                if (checarColisao(inimigo, obstaculo))
-                {
-                    inimigo->colisao(obstaculo); // Notify enemy of collision
-                    // obstaculo->colisao(inimigo); // Notify obstacle of collision
-                }
-            }
+            inimigo->verificarColisao();
         }
     }
 
@@ -127,18 +95,17 @@ namespace Gerenciadores
 
     void Colisao::notificar(Entidades::Entidade *sender, const std::string &evento)
     {
+
         if (evento == "verificarColisao")
         {
-            for (std::vector<Entidades::Entidade *>::iterator it = vectorEntidades.begin(); it != vectorEntidades.end(); ++it)
+            for (Listas::Lista<Entidades::Entidade>::Iterator itOutraEntidade = todasEntidades->getListaEnt().inicio(); itOutraEntidade != todasEntidades->getListaEnt().fim(); itOutraEntidade++)
             {
-                Entidades::Entidade *entidade = *it;
+                if (sender != *itOutraEntidade)
                 {
-                    if (sender != entidade)
+                    if (checarColisao(sender, *itOutraEntidade))
                     {
-                        if (sender->getCorpo().getGlobalBounds().intersects(entidade->getCorpo().getGlobalBounds()))
-                        {
-                            sender->setCor(sf::Color::Red);
-                        }
+                        sender->colisao(*itOutraEntidade);
+                        (*itOutraEntidade)->colisao(sender);
                     }
                 }
             }

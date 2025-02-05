@@ -61,6 +61,7 @@ namespace Fases
                 setJogador1(jogador);
                 pGerenciadorEvento->setJogador1(jogador);
                 pGerenciadorColisao->adicionarJogador(jogador);
+                jogador->setMediator(pGerenciadorColisao);
             }
             quantidadeJogadores++;
         }
@@ -74,6 +75,7 @@ namespace Fases
                 setJogador2(jogador);
                 pGerenciadorEvento->setJogador2(jogador);
                 pGerenciadorColisao->adicionarJogador(jogador);
+                jogador->setMediator(pGerenciadorColisao);
                 //  jogador->setMediator(dynamic_cast<Gerenciadores::Mediator*> (pGerenciadorColisao));
             }
             quantidadeJogadores++;
@@ -121,6 +123,7 @@ namespace Fases
             // plataforma->setCor(verdeEscuro);
             listaObstaculos->incluirEntidade(plataforma);
             pGerenciadorColisao->adicionarObstaculo(plataforma);
+            plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
         }
     }
 
@@ -133,6 +136,7 @@ namespace Fases
             // plataforma->setCor(verdeEscuro);
             listaObstaculos->incluirEntidade(plataforma);
             pGerenciadorColisao->adicionarObstaculo(plataforma);
+            plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
         }
     }
 
@@ -182,6 +186,7 @@ namespace Fases
         {
             listaObstaculos->incluirEntidade(canhao);
             pGerenciadorColisao->adicionarObstaculo(canhao);
+            canhao->setMediator(pGerenciadorColisao);
         }
     }
     /*void Fase::criarPortal(const sf::Vector2f posicao)

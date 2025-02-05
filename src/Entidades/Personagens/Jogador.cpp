@@ -20,7 +20,8 @@ namespace Entidades
 
     void Jogador::atualizar(float dt)
     {
-        // checarForaDaJanela();
+        // verificarColisao();
+        //  checarForaDaJanela();
         if (noChao && pulando)
         {
             velocidade.y = -VELOCIDADE_PULO * 4.f;

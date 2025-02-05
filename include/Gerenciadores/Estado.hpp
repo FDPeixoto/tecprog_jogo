@@ -11,19 +11,22 @@
 #include "MenuJogadoresState.hpp"
 #include "PauseState.hpp"
 
-namespace Gerenciadores{
-    class Estado{
-        private:
-            std::stack<States::State*> pilhaStates;
+namespace Gerenciadores
+{
+    class Estado
+    {
+    private:
+        std::stack<States::State *> pilhaStates;
 
-            static Estado* pEstado;
-            Estado();
-        public:
-            ~Estado();
-            static Estado* getGerenciadorEstado();
-            void executar();
-            void addState(const int ID);
-            void removerState();
-            States::State* getStateAtual();
+        static Estado *pEstado;
+        Estado();
+
+    public:
+        ~Estado();
+        static Estado *getGerenciadorEstado();
+        void executar();
+        void addState(const int ID);
+        void removerState();
+        States::State *getStateAtual();
     };
 }
