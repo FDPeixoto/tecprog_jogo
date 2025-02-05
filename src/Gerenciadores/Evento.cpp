@@ -147,12 +147,12 @@ namespace Gerenciadores{
         if (pFase->completouFase()==true) {
         
             if(pFase->getID()==IDPANTANOMALDITO){
-                pFase->setNomePartida("Pantano Maldito");
+                pFase->setNomePartida("Pantano Maldito1");
                 pFase->salvarRanking("ranking.json");
                  pEstado->addState(IDCASTELOASSOMBRADO);
             }
             else{//eh o castelo assombrado
-                pFase->setNomePartida("Castelo Assombrado");
+                pFase->setNomePartida("Castelo Assombrado1");
                 pFase->salvarRanking("ranking.json");
                 pGerenciadorGrafico->fecharJanela();
             }

@@ -3,63 +3,50 @@
         "jogadores": [
             {
                 "nome": "1",
-                "pontuacao": 4522
+                "pontuacao": 983
             },
             {
                 "nome": "2",
-                "pontuacao": 4522
+                "pontuacao": 983
             }
         ],
-        "nomePartida": "Pantano Maldito"
+        "nomePartida": "Pantano Maldito1"
     },
     {
         "jogadores": [
             {
                 "nome": "1",
-                "pontuacao": 4522
+                "pontuacao": 711
             },
             {
                 "nome": "2",
-                "pontuacao": 4522
+                "pontuacao": 711
             }
         ],
-        "nomePartida": "Pantano Maldito"
+        "nomePartida": "Castelo Assombrado"
     },
     {
         "jogadores": [
             {
                 "nome": "1",
-                "pontuacao": 4522
+                "pontuacao": 312
             },
             {
                 "nome": "2",
-                "pontuacao": 4522
+                "pontuacao": 312
             }
         ],
-        "nomePartida": "Pantano Maldito"
+        "nomePartida": "Castelo Assombrado1"
     },
     {
         "jogadores": [
             {
                 "nome": "1",
-                "pontuacao": 4522
+                "pontuacao": 250
             },
             {
                 "nome": "2",
-                "pontuacao": 4522
-            }
-        ],
-        "nomePartida": "Pantano Maldito"
-    },
-    {
-        "jogadores": [
-            {
-                "nome": "1",
-                "pontuacao": 4522
-            },
-            {
-                "nome": "2",
-                "pontuacao": 4522
+                "pontuacao": 250
             }
         ],
         "nomePartida": "Pantano Maldito"

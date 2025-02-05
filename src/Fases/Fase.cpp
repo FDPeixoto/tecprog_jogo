@@ -77,7 +77,7 @@ namespace Fases
         nomePartida=nome;
     }
 
-void Fase::salvarRanking(const std::string& arquivo) {
+/*void Fase::salvarRanking(const std::string& arquivo) {
     json ranking;
 
     // 🔹 1. Tenta abrir e carregar o arquivo existente
@@ -129,7 +129,75 @@ void Fase::salvarRanking(const std::string& arquivo) {
     arquivoSaida << ranking.dump(4); // Formatação bonita
     arquivoSaida.close();
     //pGerenciadorGrafico->fecharJanela(); //Para debugar
+    }*/
+    void Fase::salvarRanking(const std::string& arquivo) {
+    json ranking;
+
+    // 🔹 1. Tenta abrir e carregar o arquivo existente
+    std::ifstream arquivoExistente(arquivo);
+    if (arquivoExistente.is_open()) {
+        try {
+            arquivoExistente >> ranking;
+        } catch (const std::exception& e) {
+            ranking = json::array(); // Se houver erro, inicializa um array vazio
+        }
+        arquivoExistente.close();
+    } else {
+        ranking = json::array(); // Se o arquivo não existir, inicia como array vazio
     }
+
+    // 🔹 2. Captura a pontuação dos jogadores
+    int pontosJogador1 = getPontosJogador1();
+    int pontosJogador2 = getPontosJogador2();
+
+    // 🔹 3. Verifica se a partida já existe no ranking
+    bool partidaExistente = false;
+    for (auto& jogo : ranking) {
+        // Verifica se o nome da partida já está no ranking
+        if (jogo["nomePartida"] == nomePartida) {
+            // Se o nome da partida já existe, verifica se a pontuação é a mesma
+            int pontuacaoJogador1Existente = std::max(jogo["jogadores"][0]["pontuacao"], jogo["jogadores"][1]["pontuacao"]);
+            if (pontuacaoJogador1Existente == std::max(pontosJogador1, pontosJogador2)) {
+                partidaExistente = true;  // A partida existe e a pontuação é a mesma, não adiciona
+                return;
+            }
+        }
+    }
+
+    // 🔹 4. Se a partida não existe ou a pontuação for diferente, adiciona ao ranking
+    if (!partidaExistente) {
+        json jogo;
+        jogo["nomePartida"] = nomePartida;
+        jogo["jogadores"] = {
+            {{"nome", "1"}, {"pontuacao", pontosJogador1}},
+            {{"nome", "2"}, {"pontuacao", pontosJogador2}}
+        };
+
+        // 🔹 5. Adiciona a nova partida ao ranking
+        ranking.push_back(jogo);
+
+        // 🔹 6. Ordena todas as partidas pela **melhor pontuação geral**
+        std::sort(ranking.begin(), ranking.end(), [](const json& a, const json& b) {
+            int maxA = std::max(a["jogadores"][0]["pontuacao"], a["jogadores"][1]["pontuacao"]);
+            int maxB = std::max(b["jogadores"][0]["pontuacao"], b["jogadores"][1]["pontuacao"]);
+            return maxA > maxB; // Ordem decrescente
+        });
+
+        // 🔹 7. Mantém apenas os 5 melhores registros
+        if (ranking.size() > 5) {
+            ranking.erase(ranking.begin() + 5, ranking.end());
+        }
+    }
+
+    // 🔹 8. Salva o ranking atualizado no arquivo
+    std::ofstream arquivoSaida(arquivo);
+    if (!arquivoSaida) {
+        return;
+    }
+    arquivoSaida << ranking.dump(4); // Formatação bonita
+    arquivoSaida.close();
+}
+
     /*void setListP(sf::list<Entidades::Entidade*>& l){
         listP=l;
     }*/
