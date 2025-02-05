@@ -203,4 +203,7 @@ namespace Entidades
     int Jogador::getPontos(){
         return pontos;
     }
+    void Jogador::setPontos(int p){
+        pontos=p;
+    }
 }

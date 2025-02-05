@@ -145,11 +145,15 @@ namespace Gerenciadores{
             }*/
         if(pFase!=nullptr){
         if (pFase->completouFase()==true) {
-            pFase->salvarRanking("ranking.json");  // Salva o ranking no arquivo JSON
+        
             if(pFase->getID()==IDPANTANOMALDITO){
+                pFase->setNomePartida("Pantano Maldito");
+                pFase->salvarRanking("ranking.json");
                  pEstado->addState(IDCASTELOASSOMBRADO);
             }
             else{//eh o castelo assombrado
+                pFase->setNomePartida("Castelo Assombrado");
+                pFase->salvarRanking("ranking.json");
                 pGerenciadorGrafico->fecharJanela();
             }
         }

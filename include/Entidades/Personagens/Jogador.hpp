@@ -35,5 +35,6 @@ namespace Entidades{
     void setAtacando(bool v);
     bool getAtacando();
     int getPontos(); 
+    void setPontos(int p);
   };
 }
