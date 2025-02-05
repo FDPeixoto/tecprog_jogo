@@ -48,6 +48,8 @@ namespace Fases
         sf::Font fonte;
         sf::Text textoEntrada;
         bool capturandoNome;
+        int pontosJ1;
+        int pontosJ2;
 
     public:
         // Fase();
@@ -63,7 +65,7 @@ namespace Fases
         void setJogador2(Entidades::Jogador *pJogador);
         Entidades::Jogador *getJogador2();
         bool getCompletou();
-        void salvarRanking(const std::string& arquivo);
+        void salvarRanking(const std::string& arquivo, int pJ1, int pJ2 );
         int getPontosJogador1() const;
         int getPontosJogador2() const;
         void setNomePartida(const std::string nome);

@@ -110,6 +110,8 @@ namespace Gerenciadores{
             
     }}
     void Evento::executar(){
+        int pontuacaoJ1=0;
+        int pontuacaoJ2=0;
         pFase=pEstado->getStateAtual()->getFase();
         sf::Event evento;
         while(pGerenciadorGrafico->getJanela()->pollEvent(evento)){
@@ -147,13 +149,15 @@ namespace Gerenciadores{
         if (pFase->completouFase()==true) {
         
             if(pFase->getID()==IDPANTANOMALDITO){
-                pFase->setNomePartida("Pantano Maldito1");
-                pFase->salvarRanking("ranking.json");
+                //pFase->setNomePartida("Pantano Maldito2");
+                //pFase->salvarRanking("ranking.json");
+                pontuacaoJ1=pFase->getPontosJogador1();
+                pontuacaoJ2=pFase->getPontosJogador2();
                  pEstado->addState(IDCASTELOASSOMBRADO);
             }
             else{//eh o castelo assombrado
-                pFase->setNomePartida("Castelo Assombrado1");
-                pFase->salvarRanking("ranking.json");
+                pFase->setNomePartida("Nome da Partida aqui");
+                pFase->salvarRanking("ranking.json", pontuacaoJ1, pontuacaoJ2);
                 pGerenciadorGrafico->fecharJanela();
             }
         }

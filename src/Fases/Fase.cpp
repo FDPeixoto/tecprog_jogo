@@ -16,7 +16,8 @@ namespace Fases
                                    pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()),
                                    pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()),
                                    pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
-                                   pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0), pFundo(nullptr), completou(false) //, vetorPortal()
+                                   pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0), pFundo(nullptr), completou(false),
+                                   pontosJ1(0), pontosJ2(0)//, vetorPortal()
     {
         pGerenciadorColisao->setMoveis(listaPersonagens);
         pGerenciadorColisao->setFixos(listaObstaculos);
@@ -130,7 +131,7 @@ namespace Fases
     arquivoSaida.close();
     //pGerenciadorGrafico->fecharJanela(); //Para debugar
     }*/
-    void Fase::salvarRanking(const std::string& arquivo) {
+    void Fase::salvarRanking(const std::string& arquivo, int pJ1, int pJ2) {
     json ranking;
 
     // 🔹 1. Tenta abrir e carregar o arquivo existente
@@ -149,6 +150,9 @@ namespace Fases
     // 🔹 2. Captura a pontuação dos jogadores
     int pontosJogador1 = getPontosJogador1();
     int pontosJogador2 = getPontosJogador2();
+    pontosJogador1=pontosJogador1+pJ1;
+    pontosJogador2=pontosJogador2+pJ2;
+
 
     // 🔹 3. Verifica se a partida já existe no ranking
     bool partidaExistente = false;
@@ -419,7 +423,10 @@ namespace Fases
 
     void Fase::executar()
     {
-        
+        //atualizando os pontos caso os jogaores morram durante a partida
+        pontosJ1=getPontosJogador1();
+        pontosJ2=getPontosJogador2();
+
         
         // listaObstaculos->executar();
         if (pGerenciadorColisao->getListaMoveis() != listaPersonagens)
@@ -474,5 +481,6 @@ namespace Fases
             return false;
         
     }
+
 
 }
