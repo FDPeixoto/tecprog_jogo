@@ -41,7 +41,7 @@ namespace Entidades
     void Projetil::atualizar(float dt)
     {
         float ds = velocidade.x * dt; // ou velocidadeFinal.x
-        corpo.move(ds, 0.001f);
+        corpo.move(ds, 0.05f);
         return;
     }
     void Projetil::atualizarPosicao(float dt) {}

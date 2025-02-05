@@ -241,6 +241,8 @@ namespace Fases
                 listaPersonagens->incluirEntidade(jogador);
                 setJogador1(jogador);
                 pGerenciadorEvento->setJogador1(jogador);
+                pGerenciadorColisao->adicionarJogador(jogador);
+                jogador->setMediator(pGerenciadorColisao);
             }
             quantidadeJogadores++;
         }
@@ -253,7 +255,9 @@ namespace Fases
                 listaPersonagens->incluirEntidade(jogador);
                 setJogador2(jogador);
                 pGerenciadorEvento->setJogador2(jogador);
-                // jogador->setMediator(dynamic_cast<Gerenciadores::Mediator*> (pGerenciadorColisao));
+                pGerenciadorColisao->adicionarJogador(jogador);
+                jogador->setMediator(pGerenciadorColisao);
+                //  jogador->setMediator(dynamic_cast<Gerenciadores::Mediator*> (pGerenciadorColisao));
             }
             quantidadeJogadores++;
         }
@@ -267,6 +271,7 @@ namespace Fases
         {
             minion->setCor(sf::Color::Red);
             minion->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
+            pGerenciadorColisao->adicionarInimigo(minion);
             if (getJogador1() != nullptr)
             {
                 minion->setJogador1(getJogador1());
@@ -287,6 +292,7 @@ namespace Fases
             // plataforma->setCor(sf::Color::White);
             plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
             listaObstaculos->incluirEntidade(plataforma);
+            pGerenciadorColisao->adicionarObstaculo(plataforma);
         }
     }
     void Fase::criarPlataformaBase(const sf::Vector2f posicao)
@@ -297,6 +303,8 @@ namespace Fases
             // sf::Color verdeEscuro(0, 100, 0); // verde escuro
             // plataforma->setCor(verdeEscuro);
             listaObstaculos->incluirEntidade(plataforma);
+            pGerenciadorColisao->adicionarObstaculo(plataforma);
+            plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
         }
     }
 
@@ -308,6 +316,8 @@ namespace Fases
             // sf::Color verdeEscuro(0, 100, 0); // verde escuro
             // plataforma->setCor(verdeEscuro);
             listaObstaculos->incluirEntidade(plataforma);
+            pGerenciadorColisao->adicionarObstaculo(plataforma);
+            plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
         }
     }
     void Fase::criarPlataformaF(const sf::Vector2f posicao, float altura, float largura)
@@ -350,6 +360,7 @@ namespace Fases
         {
             plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
             listaObstaculos->incluirEntidade(plataforma);
+            pGerenciadorColisao->adicionarObstaculo(plataforma);
         }
     }
     void Fase::criarCaixa(const sf::Vector2f posicao)
@@ -359,6 +370,7 @@ namespace Fases
         {
             caixa->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
             listaObstaculos->incluirEntidade(caixa);
+            pGerenciadorColisao->adicionarObstaculo(caixa);
         }
     }
     void Fase::criarCanhao(const sf::Vector2f posicao)
@@ -367,6 +379,8 @@ namespace Fases
         if ((canhao) != nullptr)
         {
             listaObstaculos->incluirEntidade(canhao);
+            pGerenciadorColisao->adicionarObstaculo(canhao);
+            canhao->setMediator(pGerenciadorColisao);
         }
     }
     /*void Fase::criarPortal(const sf::Vector2f posicao)

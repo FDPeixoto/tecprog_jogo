@@ -2,8 +2,7 @@
 
 namespace Entidades
 {
-    Jogador::Jogador(const sf::Vector2f posicao, bool jogador2) : Personagem(sf::Vector2f(JOGADORLARGURA, JOGADORALTURA), posicao, IDJOGADOR),
-                                                                  pontos(0), numero_baixas(0), espada(false), magia(false), antidoto(false), ehJogador2(ehJogador2), pulando(false)
+    Jogador::Jogador(const sf::Vector2f posicao, bool jogador2) : Personagem(sf::Vector2f(JOGADORLARGURA, JOGADORALTURA), posicao, IDJOGADOR), pontos(0), numero_baixas(0), espada(false), magia(false), antidoto(false), ehJogador2(ehJogador2), pulando(false)
     {
         if (jogador2)
         {
@@ -25,10 +24,11 @@ namespace Entidades
 
     void Jogador::atualizar(float dt)
     {
-        // checarForaDaJanela();
+        // verificarColisao();
+        //  checarForaDaJanela();
         if (noChao && pulando)
         {
-            velocidade.y = -VELOCIDADE_PULO * 2.8f;
+            velocidade.y = -VELOCIDADE_PULO * 4.f;
             corpo.move(0.f, velocidade.y * dt);
             pulando = false;
             noChao = false;
@@ -38,7 +38,7 @@ namespace Entidades
 
         if (!noChao)
         {
-            velocidade.y += 10.f;
+            velocidade.y += 5.f;
             if (velocidade.y > 300.f)
             {
                 velocidade.y = 300.f;
@@ -60,11 +60,11 @@ namespace Entidades
         paraEsquerda = ehEsquerda;
         if (paraEsquerda)
         {
-            velocidade.x = -500.0f;
+            velocidade.x = -300.0f;
         }
         else
         {
-            velocidade.x = 500.f;
+            velocidade.x = 300.f;
         }
     }
     void Jogador::parar()
@@ -205,5 +205,13 @@ namespace Entidades
     }
     void Jogador::setPontos(int p){
         pontos=p;
+
+    void Jogador::atacar()
+    {
+        atacando = true;
+        if (pMediator)
+        {
+            pMediator->notificar(this, "atacar");
+        }
     }
 }

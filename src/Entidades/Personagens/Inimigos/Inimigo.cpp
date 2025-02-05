@@ -64,6 +64,7 @@ namespace Entidades
         }
         void Inimigo::atualizar(float dt)
         {
+            // verificarColisao();
             if (noChao && pulando)
             {
                 velocidade.y = -VELOCIDADE_PULO;

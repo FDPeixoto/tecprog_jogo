@@ -57,7 +57,9 @@ namespace Fases
                 durahan->setJogador2(getJogador2());
             }
             vetorDurahan.push_back(durahan);
+            durahan->setMediator(pGerenciadorColisao);
             listaPersonagens->incluirEntidade(durahan);
+            pGerenciadorColisao->adicionarInimigo(durahan);
             // num_Durahan++; lemnrando que isso está em fase
         }
     }

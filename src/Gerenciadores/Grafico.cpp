@@ -105,6 +105,11 @@ namespace Gerenciadores
         relogio.restart();
     }
 
+    void Grafico::setView(sf::View view)
+    {
+        janela->setView(view);
+    }
+
     void Grafico::desenharList(std::list<Entidades::Entidade *> &list)
     {
         for (std::list<Entidades::Entidade *>::iterator it = list.begin(); it != list.end(); it++)

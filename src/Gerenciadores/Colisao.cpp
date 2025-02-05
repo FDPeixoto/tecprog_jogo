@@ -1,12 +1,14 @@
 #include "Colisao.hpp"
-#include <Medievo.hpp>
 
 /*Codigo dos gerenciadores foi inspirado pelo monitor Giovani https://github.com/Giovanenero/JogoPlataforma2D-Jungle/blob/main/Jungle%2B%2B/src/Gerenciador/GerenciadorColisao.cpp */
 namespace Gerenciadores
 {
     Colisao *Colisao::pColisao = nullptr;
-    Colisao::Colisao()
+    Colisao::Colisao() : todasEntidades(new Listas::ListaEntidades())
     {
+        listJogadores.clear();
+        listInimigos.clear();
+        listObstaculos.clear();
     }
     Colisao::~Colisao()
     {
@@ -54,167 +56,65 @@ namespace Gerenciadores
     {
         return entidade1->getCorpo().getGlobalBounds().intersects(entidade2->getCorpo().getGlobalBounds());
     }
+
+    void Colisao::adicionarJogador(Entidades::Jogador *jogador)
+    {
+        listJogadores.push_back(jogador);
+        todasEntidades->incluirEntidade(jogador);
+    }
+
+    void Colisao::adicionarInimigo(Entidades::Inimigos::Inimigo *inimigo)
+    {
+        listInimigos.push_back(inimigo);
+        todasEntidades->incluirEntidade(inimigo);
+    }
+
+    void Colisao::adicionarObstaculo(Entidades::Obstaculos::Obstaculo *obstaculo)
+    {
+        listObstaculos.push_back(obstaculo);
+        todasEntidades->incluirEntidade(obstaculo);
+    }
+
     void Colisao::executar()
     {
-        for (Listas::Lista<Entidades::Entidade>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); it1++)
+        for (auto jogador : listJogadores)
         {
-            if (*it1 != nullptr)
-            {
-                for (Listas::Lista<Entidades::Entidade>::Iterator it2 = listaMoveis->getListaEnt().inicio(); it2 != listaMoveis->getListaEnt().fim(); it2++)
-                {
-                    if (*it2 != nullptr)
-                    {
-                        if (it1 != it2)
-                        {
-                            if (checarColisao(*it1, *it2))
-                            {
-                                (*it1)->colisao(*it2);
-                            }
-                        }
-                    }
-                }
-            }
+            jogador->verificarColisao();
         }
 
-        for (Listas::Lista<Entidades::Entidade>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); it1++)
+        for (auto inimigo : listInimigos)
         {
-            if (*it1 != nullptr)
-            {
-                for (Listas::Lista<Entidades::Entidade>::Iterator it2 = listaFixos->getListaEnt().inicio(); it2 != listaFixos->getListaEnt().fim(); it2++)
-                {
-                    if (*it2 != nullptr)
-                    {
-                        if (checarColisao(*it1, *it2))
-                        {
-                            (*it1)->colisao(*it2);
-                        }
-                    }
-                }
-            }
-        }
-        /*for(Listas::Lista<Entidades::Entidade>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); it1++){
-            if(*it1 != nullptr){
-                if(((*it1)->getID()==IDJOGADOR)&& ((*it1)->getAtacando()==true))
-                for(Listas::Lista<Entidades::Entidade>::Iterator it2 = listaMoveis->getListaEnt().inicio(); it2 != listaMoveis->getListaEnt().fim(); it2++){
-                    if(*it2 != nullptr){
-                        if((*it2)->getID()==IDINIMIGO){
-                            //sf::Vector2f dist(fabs(*it2)->getPos()-(*it1)->getPos());
-                            //float dist_x=fabs((*it2)
-                            sf::Vector2f dist = ((*it2)->getPos() - (*it1)->getPos());
-                            dist.x = std::fabs(dist.x);  // Aplica o valor absoluto no componente x
-                            dist.y = std::fabs(dist.y);  // Aplica o valor absoluto no componente y
-                            if((it1 != it2)&&(dist.x<=RAIO_ATAQUE)){
-                                (*it2)->setVivo(false);
-                            }
-                        }
-                    }
-                }
-            }
-        }*/
-        for (Listas::Lista<Entidades::Entidade>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); it1++)
-        {
-            if (*it1 != nullptr)
-            {
-                if (((*it1)->getID() == IDJOGADOR) && ((*it1)->getAtacando() == true))
-                {
-                    for (Listas::Lista<Entidades::Entidade>::Iterator it2 = listaMoveis->getListaEnt().inicio(); it2 != listaMoveis->getListaEnt().fim(); it2++)
-                    {
-                        if (*it2 != nullptr)
-                        {
-                            if ((*it2)->getID() == IDINIMIGO)
-                            {
-                                sf::Vector2f dist = (*it2)->getPos() - (*it1)->getPos();
-                                dist.y = 0; // Ignora a componente Y
-
-                                // Agora você está verificando apenas a distância no eixo X
-                                if ((*it1)->getID() != (*it2)->getID() && std::fabs(dist.x) <= RAIO_ATAQUE)
-                                {
-                                    (*it2)->setVivo(false); // Destrói o inimigo
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        /*for(Listas::Lista<Entidades::Entidade>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); it1++){
-            if(*it1 != nullptr){
-                if(((*it1)->getID()==IDJOGADOR)&& ((*it1)->getAtacando()==true))
-                for(Listas::Lista<Entidades::Entidade>::Iterator it2 = listaMoveis->getListaEnt().inicio(); it2 != listaMoveis->getListaEnt().fim(); it2++){
-                    if(*it2 != nullptr){
-                        if((*it2)->getID()==IDINIMIGO){
-                            //sf::Vector2f dist(fabs(*it2)->getPos()-(*it1)->getPos());
-                            //float dist_x=fabs((*it2)
-                            sf::Vector2f dist = ((*it2)->getPos() - (*it1)->getPos());
-                            dist.x = std::fabs(dist.x);  // Aplica o valor absoluto no componente x
-                            dist.y = std::fabs(dist.y);  // Aplica o valor absoluto no componente y
-                            if((it1 != it2)&&(dist.x<=RAIO_ATAQUE)){
-                                (*it2)->setVivo(false);
-                            }
-                        }
-                    }
-                }
-            }
-        }*/
-        for (Listas::Lista<Entidades::Entidade>::Iterator it1 = listaMoveis->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); it1++) {
-            if (*it1 != nullptr) {
-                if (((*it1)->getID() == IDJOGADOR) && ((*it1)->getAtacando() == true)) {
-                    for (Listas::Lista<Entidades::Entidade>::Iterator it2 = listaMoveis->getListaEnt().inicio(); it2 != listaMoveis->getListaEnt().fim(); it2++) {
-                        if (*it2 != nullptr) {
-                            if ((*it2)->getID() == IDINIMIGO) {
-                                sf::Vector2f dist = (*it2)->getPos() - (*it1)->getPos();
-                                dist.y = 0; // Ignora a componente Y
-
-                                // Agora você está verificando apenas a distância no eixo X
-                                if ((*it1)->getID() != (*it2)->getID() && std::fabs(dist.x) <= RAIO_ATAQUE) {
-                                    (*it2)->setVivo(false); // Destrói o inimigo
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-
-        for (Listas::Lista<Entidades::Entidade>::Iterator it1 = listaFixos->getListaEnt().inicio(); it1 != listaMoveis->getListaEnt().fim(); it1++)
-        {
-            if (*it1 != nullptr)
-            {
-                for (Listas::Lista<Entidades::Entidade>::Iterator it2 = listaFixos->getListaEnt().inicio(); it2 != listaFixos->getListaEnt().fim(); it2++)
-                {
-                    if (*it2 != nullptr)
-                    {
-                        if (checarColisao(*it1, *it2))
-                        {
-                            (*it1)->colisao(*it2);
-                        }
-                    }
-                }
-            }
+            inimigo->verificarColisao();
         }
     }
-    void Colisao::registrarEntidade(Entidades::Entidade *entity)
+
+    void Colisao::registrarEntidade(Entidades::Entidade *entidade)
     {
-        vectorEntidades.push_back(entity);
+        return;
     }
+
     void Colisao::notificar(Entidades::Entidade *sender, const std::string &evento)
     {
+
         if (evento == "verificarColisao")
         {
-            for (std::vector<Entidades::Entidade *>::iterator it = vectorEntidades.begin(); it != vectorEntidades.end(); ++it)
+            for (Listas::Lista<Entidades::Entidade>::Iterator itOutraEntidade = todasEntidades->getListaEnt().inicio(); itOutraEntidade != todasEntidades->getListaEnt().fim(); itOutraEntidade++)
             {
-                Entidades::Entidade *entidade = *it;
+                if (sender != *itOutraEntidade)
                 {
-                    if (sender != entidade)
+                    if (checarColisao(sender, *itOutraEntidade))
                     {
-                        if (sender->getCorpo().getGlobalBounds().intersects(entidade->getCorpo().getGlobalBounds()))
-                        {
-                            sender->setCor(sf::Color::Red);
-                        }
+                        sender->colisao(*itOutraEntidade);
+                        (*itOutraEntidade)->colisao(sender);
                     }
                 }
             }
+        }
+        else if (evento == "atacar")
+        {
+        }
+        else if (evento == "obstacular")
+        {
         }
     }
 }

@@ -4,27 +4,42 @@
 #include <Mediator.hpp>
 #include <math.h>
 #include "Entidade.hpp"
+#include "Jogador.hpp"
+#include "Inimigo.hpp"
+#include "Obstaculo.hpp"
+#include <list>
 
-namespace Gerenciadores{
-    class Colisao: public Mediator{
-        private:
-            Listas::ListaEntidades* listaMoveis;
-            Listas::ListaEntidades* listaFixos;
-            std::vector<Entidades::Entidade*> vectorEntidades;
+namespace Gerenciadores
+{
+    class Colisao : public Mediator
+    {
+    private:
+        Listas::ListaEntidades *listaMoveis;
+        Listas::ListaEntidades *listaFixos;
+        std::vector<Entidades::Entidade *> vectorEntidades;
+        std::list<Entidades::Jogador *> listJogadores;
+        std::list<Entidades::Inimigos::Inimigo *> listInimigos;
+        std::list<Entidades::Obstaculos::Obstaculo *> listObstaculos;
+        Listas::ListaEntidades *todasEntidades;
+        // std::list<Entidades::Projeteis *> listProjeteis;
 
-            static Colisao* pColisao;
-            Colisao();
-        public:
-            ~Colisao();
-            static Colisao* getGerenciadorColisao();
-            void setMoveis(Listas::ListaEntidades* moveis);
-            Listas::ListaEntidades* getListaMoveis();
-            Listas::ListaEntidades* getListaFixos();
-            void setFixos(Listas::ListaEntidades* fixos);
-            const sf::Vector2f calculaColisao(Entidades::Entidade* entidade1, Entidades::Entidade* entidade2);
-            bool checarColisao(Entidades::Entidade *entidade1, Entidades::Entidade *entidade2);
-            void executar();
-            void registrarEntidade(Entidades::Entidade* entidade) override;
-            void notificar(Entidades::Entidade *sender, const std::string &evento);
+        static Colisao *pColisao;
+        Colisao();
+
+    public:
+        ~Colisao();
+        static Colisao *getGerenciadorColisao();
+        void setMoveis(Listas::ListaEntidades *moveis);
+        Listas::ListaEntidades *getListaMoveis();
+        Listas::ListaEntidades *getListaFixos();
+        void setFixos(Listas::ListaEntidades *fixos);
+        const sf::Vector2f calculaColisao(Entidades::Entidade *entidade1, Entidades::Entidade *entidade2);
+        bool checarColisao(Entidades::Entidade *entidade1, Entidades::Entidade *entidade2);
+        void executar();
+        void registrarEntidade(Entidades::Entidade *entidade) override;
+        void adicionarJogador(Entidades::Jogador *jogador);
+        void adicionarInimigo(Entidades::Inimigos::Inimigo *inimigo);
+        void adicionarObstaculo(Entidades::Obstaculos::Obstaculo *obstaculo);
+        void notificar(Entidades::Entidade *sender, const std::string &evento);
     };
 }

@@ -1,5 +1,4 @@
 #pragma once
-#include "Ente.hpp"
 
 
 namespace Fases {
@@ -7,11 +6,13 @@ namespace Fases {
     class Pantano_Maldito;
     class Castelo_Assombrado;
 }
-namespace States{
-    class State: public Ente{
+namespace States
+{
+    class State: public Ente
+    {
         private:
             bool remover;
-        
+            const int identificador;
         public:
             State(const int ID);
             ~State();
