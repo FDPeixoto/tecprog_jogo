@@ -18,6 +18,7 @@ class Medievo {
     Gerenciadores::Estado* pGerenciadorEstado;
     //Fases::Pantano_Maldito primeiraFase;
     sf::Clock clock;
+    bool capturandoNome;
     
 
     public:

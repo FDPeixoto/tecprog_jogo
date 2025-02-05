@@ -21,6 +21,7 @@ Medievo::~Medievo()
 
 void Medievo::executar()
 {
+    pGerenciadorEstado->addState(IDPANTANOMALDITO);
 
     // float elapsedTime = 0.0f;
     // primeiraFase.setListP();

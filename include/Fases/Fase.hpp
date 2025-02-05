@@ -14,6 +14,11 @@
 #include "Caixa.hpp"
 // #include <vector>
 
+#include <fstream>
+#include <vector>
+#include <string>
+
+
 namespace Gerenciadores
 {
     class Evento;
@@ -39,6 +44,10 @@ namespace Fases
         int maxMinio;
         int maxCaixa;
         int maxEspinho;
+        std::string nomePartida;
+        sf::Font fonte;
+        sf::Text textoEntrada;
+        bool capturandoNome;
 
     public:
         // Fase();
@@ -54,6 +63,10 @@ namespace Fases
         void setJogador2(Entidades::Jogador *pJogador);
         Entidades::Jogador *getJogador2();
         bool getCompletou();
+        void salvarRanking(const std::string& arquivo);
+        int getPontosJogador1() const;
+        int getPontosJogador2() const;
+        void setNomePartida(const std::string nome);
 
         void criarJogador(const sf::Vector2f posicao);
         void criarMinion(const sf::Vector2f posicao);
@@ -73,6 +86,8 @@ namespace Fases
         void criarCenario();
 
         void proximaFase();
+        void registrarNomePartida(sf::Event& evento,sf::RenderWindow* janela);
+        bool completouFase();
         // Set list P..........
     };
 }
