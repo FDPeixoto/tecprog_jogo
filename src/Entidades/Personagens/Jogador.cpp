@@ -85,7 +85,7 @@ namespace Entidades
         textoVida.setString(vidaStr);
         return (textoVida);*/
         //atualizarSprite();
-        pontos=pontos+0.1;
+        pontos=pontos+1;
         
     }
 

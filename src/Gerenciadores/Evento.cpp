@@ -6,23 +6,22 @@ using json = nlohmann::json;
 namespace Gerenciadores{
     Evento* Evento::pGerenciadorEvento = nullptr;
 
-    Evento::Evento(): pJog1(nullptr), pJog2(nullptr), pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()), pEstado(pEstado->getGerenciadorEstado()), nomePartida(""), botaoConfirmar(500, 50, 200, 50, "Confirmar Nome", fonte){}
+    Evento::Evento(): pJog1(nullptr), pJog2(nullptr), pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()), pEstado(pEstado->getGerenciadorEstado()), nomePartida(""),pFase(nullptr){}
     Evento::~Evento(){
         pGerenciadorGrafico = nullptr;
         //pEstado = nullptr;
         pJog1 = nullptr;
         pJog2 = nullptr;
         fonte.loadFromFile("Fonte/DejaVuSans.ttf");
-        /*botaoConfirmar.setFonte("ConfirmarNome",fonte);
+        //botaoConfirmar.setFonte("ConfirmarNome",fonte);
         textoEntrada.setFont(fonte);
         textoEntrada.setCharacterSize(24);
         textoEntrada.setFillColor(sf::Color::White);
-        textoEntrada.setPosition(50, 500);  // Posição na tela*/
+        textoEntrada.setPosition(500, 30);  // Posição na tela*/
         // vetorPortal.clear();
         capturandoNome=true;
         nomePartida="Teste0";
-
-     
+        textoEntrada.setString("Nome da Partida: " + nomePartida);
 
     }
     
@@ -43,6 +42,11 @@ namespace Gerenciadores{
     void Evento::setNomePartida(const std::string nome){
         nomePartida=nome;
     }
+    sf::Text Evento::getTextoEntrada()
+  {
+    
+    return (textoEntrada);
+  }
 
 
 
@@ -100,11 +104,16 @@ namespace Gerenciadores{
             if(pJog1 != nullptr){pJog1->setAtacando(false);}
         }
     }
+    void Evento::salvarNaFase(){
+        if(pFase!=nullptr){
+            pFase->setNomePartida(nomePartida);  // Define o nome da partida na fase
+            
+    }}
     void Evento::executar(){
         pFase=pEstado->getStateAtual()->getFase();
         sf::Event evento;
         while(pGerenciadorGrafico->getJanela()->pollEvent(evento)){
-            botaoConfirmar.desenhar(pGerenciadorGrafico->getJanela());
+            //botaoConfirmar.desenhar(pGerenciadorGrafico->getJanela());
             if(evento.type == sf::Event::KeyPressed){
                 verificaTeclaPressionada(evento.key.code);
             }
@@ -114,7 +123,8 @@ namespace Gerenciadores{
             else if(evento.type==sf::Event::Closed){
                 pGerenciadorGrafico->fecharJanela();
             }
-            if(capturandoNome==true){
+            salvarNaFase();
+            /*if(capturandoNome==true){
             if (evento.type == sf::Event::TextEntered) {
                 if (evento.text.unicode == 13) {  // 13 é o código ASCII para Enter
                     setNomePartida(nomePartida);
@@ -132,30 +142,30 @@ namespace Gerenciadores{
                 }
 
                 textoEntrada.setString("Nome da Partida: " + nomePartida);
-            }
-
-            }
-        if (botaoConfirmar.foiClicado(pGerenciadorGrafico->getJanela())) {
-            if(pFase!=nullptr){
-            pFase->setNomePartida(nomePartida);  // Define o nome da partida na fase
-            pFase->salvarRanking("ranking.json");  // Salva o ranking no arquivo JSON
-            }
-            capturandoNome = false;  // Termina a captura do nome
-        }
+            }*/
         if(pFase!=nullptr){
         if (pFase->completouFase()==true) {
             pFase->salvarRanking("ranking.json");  // Salva o ranking no arquivo JSON
         }
         }
         
-        if (capturandoNome) {
-            pGerenciadorGrafico->desenharTexto(textoEntrada);
-            botaoConfirmar.desenhar(pGerenciadorGrafico->getJanela());
-        } else {
-            mostrarRanking(pGerenciadorGrafico->getJanela());
-        }
+         //pGerenciadorGrafico->desenharTexto(textoEntrada);
+         
+         //else {
+            //mostrarRanking(pGerenciadorGrafico->getJanela());
+        //}
+
+            }
+        /*if (botaoConfirmar.foiClicado(pGerenciadorGrafico->getJanela())) {
+            if(pFase!=nullptr){
+            pFase->setNomePartida(nomePartida);  // Define o nome da partida na fase
+            pFase->salvarRanking("ranking.json");  // Salva o ranking no arquivo JSON
+            }
+            capturandoNome = false;  // Termina a captura do nome
+        }*/
+        
     }
-    }
+    
 
     void Evento::mostrarRanking(sf::RenderWindow* janela) {
     std::ifstream arquivo("ranking.json");

@@ -27,6 +27,7 @@ namespace Fases
     textoEntrada.setCharacterSize(24);
     textoEntrada.setFillColor(sf::Color::White);
     textoEntrada.setPosition(50, 500);  // Posição na tela
+    textoEntrada.setString("Nome da Partida: " + nomePartida);
         // vetorPortal.clear();
         capturandoNome=true;
     }
@@ -77,52 +78,57 @@ namespace Fases
     }
 
 void Fase::salvarRanking(const std::string& arquivo) {
-    // Cria um objeto JSON para os jogadores
     json ranking;
-    
-    // Tenta abrir o arquivo para leitura
+
+    // 🔹 1. Tenta abrir e carregar o arquivo existente
     std::ifstream arquivoExistente(arquivo);
     if (arquivoExistente.is_open()) {
-        // Se o arquivo existir, carrega os dados
-        arquivoExistente >> ranking;
+        try {
+            arquivoExistente >> ranking;
+        } catch (const std::exception& e) {
+            //std::cerr << "Erro ao carregar o arquivo JSON: " << e.what() << std::endl;
+            ranking = json::array(); // Se houver erro, inicializa um array vazio
+        }
         arquivoExistente.close();
     } else {
-        // Caso o arquivo não exista, cria um novo arquivo com conteúdo JSON vazio
-        std::ofstream novoArquivo(arquivo);
-        novoArquivo << "[]";  // Cria um array JSON vazio
-        novoArquivo.close();
+        ranking = json::array(); // Se o arquivo não existir, inicia como array vazio
     }
 
-    // Adiciona a pontuação dos jogadores
-   json jogo;
-   int pontosJogador1=getPontosJogador1();
-   int pontosJogador2=getPontosJogador2();
+    // 🔹 2. Captura a pontuação dos jogadores
+    int pontosJogador1 = getPontosJogador1();
+    int pontosJogador2 = getPontosJogador2();
 
+    json jogo;
     jogo["nomePartida"] = nomePartida;
     jogo["jogadores"] = {
         {{"nome", "1"}, {"pontuacao", pontosJogador1}},
         {{"nome", "2"}, {"pontuacao", pontosJogador2}}
     };
 
-    // Adiciona o objeto 'jogo' ao ranking
+    // 🔹 3. Adiciona a nova partida ao ranking
     ranking.push_back(jogo);
 
-    // Ordena os jogadores pelo ranking (decrescente)
+    // 🔹 4. Ordena todas as partidas pela **melhor pontuação geral**
     std::sort(ranking.begin(), ranking.end(), [](const json& a, const json& b) {
-        return a["jogadores"][0]["pontuacao"] > b["jogadores"][0]["pontuacao"];
+        int maxA = std::max(a["jogadores"][0]["pontuacao"], a["jogadores"][1]["pontuacao"]);
+        int maxB = std::max(b["jogadores"][0]["pontuacao"], b["jogadores"][1]["pontuacao"]);
+        return maxA > maxB; // Ordem decrescente
     });
 
-    // Limita a exibição aos 5 melhores
+    // 🔹 5. Mantém apenas os 5 melhores registros
     if (ranking.size() > 5) {
-        ranking.erase(ranking.begin() + 5, ranking.end()); // Remove os elementos extras
+        ranking.erase(ranking.begin() + 5, ranking.end());
     }
 
-    // Salva no arquivo
+    // 🔹 6. Salva o ranking atualizado no arquivo
     std::ofstream arquivoSaida(arquivo);
-    arquivoSaida << ranking.dump(4); // '4' é a indentação para uma saída bonita
+    if (!arquivoSaida) {
+        //std::cerr << "Erro ao abrir o arquivo para escrita!" << std::endl;
+        return;
+    }
+    arquivoSaida << ranking.dump(4); // Formatação bonita
     arquivoSaida.close();
-}
-
+    }
     /*void setListP(sf::list<Entidades::Entidade*>& l){
         listP=l;
     }*/
@@ -344,7 +350,7 @@ void Fase::salvarRanking(const std::string& arquivo) {
 
     void Fase::executar()
     {
-        completouFase();
+        
         
         // listaObstaculos->executar();
         if (pGerenciadorColisao->getListaMoveis() != listaPersonagens)
@@ -373,6 +379,7 @@ void Fase::salvarRanking(const std::string& arquivo) {
         }*/
         pGerenciadorGrafico->desenharTexto(pJogador1->getTextoVida());
         pGerenciadorGrafico->desenharTexto(pJogador2->getTextoVida());
+        pGerenciadorGrafico->desenharTexto(pGerenciadorEvento->getTextoEntrada());
         desenhar();
     }
     void Fase::proximaFase()
