@@ -128,6 +128,7 @@ void Fase::salvarRanking(const std::string& arquivo) {
     }
     arquivoSaida << ranking.dump(4); // Formatação bonita
     arquivoSaida.close();
+    pGerenciadorGrafico->fecharJanela(); //Para debugar
     }
     /*void setListP(sf::list<Entidades::Entidade*>& l){
         listP=l;
@@ -390,13 +391,13 @@ void Fase::salvarRanking(const std::string& arquivo) {
     }
     bool Fase::completouFase(){
         if((pJogador1!=nullptr)){
-            sf::Vector2f posJ1=pJogador1->getPos();
+            sf::Vector2f posJ1=pJogador1->getCorpo().getPosition();
             if(posJ1.x>=(LARGURA_JANELA/2)){
                     return true;
             }
         }
         else if(pJogador2!=nullptr){
-            sf::Vector2f posJ2=pJogador2->getPos();
+            sf::Vector2f posJ2=pJogador2->getCorpo().getPosition();
             if(posJ2.x>=(LARGURA_JANELA/2)){
                     return true;
             }

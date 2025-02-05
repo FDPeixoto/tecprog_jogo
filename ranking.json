@@ -1,0 +1,15 @@
+[
+    {
+        "jogadores": [
+            {
+                "nome": "1",
+                "pontuacao": 306
+            },
+            {
+                "nome": "2",
+                "pontuacao": 306
+            }
+        ],
+        "nomePartida": ""
+    }
+]
