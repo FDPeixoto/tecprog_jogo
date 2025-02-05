@@ -146,6 +146,12 @@ namespace Gerenciadores{
         if(pFase!=nullptr){
         if (pFase->completouFase()==true) {
             pFase->salvarRanking("ranking.json");  // Salva o ranking no arquivo JSON
+            if(pFase->getID()==IDPANTANOMALDITO){
+                 pEstado->addState(IDCASTELOASSOMBRADO);
+            }
+            else{//eh o castelo assombrado
+                pGerenciadorGrafico->fecharJanela();
+            }
         }
         }
         

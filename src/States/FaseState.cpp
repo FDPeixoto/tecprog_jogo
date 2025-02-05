@@ -29,5 +29,12 @@ namespace States{
     void FaseState::executar()
     {
         pFase->executar();
+        /*if(pFase->getCompletou()==true){
+            if(IDPANTANOMALDITO){//vAI PARA A SEGUNDA FASE
+                Fase::Fase* Aux=pFase;
+                pFase = new Fases::Castelo_Assombrado();
+                delete aux
+            }
+        }*/
     }
 }

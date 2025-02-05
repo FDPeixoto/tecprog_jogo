@@ -29,5 +29,7 @@ namespace Fases{
         void criarInimDificil(const sf::Vector2f posicao);
         void setpD(Entidades::Inimigos::Durahan* pDurahan);
         Entidades::Inimigos::Durahan* getpD();
+
+        void verificarCompletou();
     };
 }

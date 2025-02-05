@@ -113,6 +113,7 @@ namespace Fases
     void Pantano_Maldito::executar()
     {
         Fase::executar();
+        verificarCompletou();
 
         /*if(pD!= nullptr){
             pGerenciadorGrafico->desenharList(pD->getListaProjetil());
@@ -162,6 +163,23 @@ namespace Fases
         }
         break;
         }
+    }
+    void Pantano_Maldito::verificarCompletou(){
+        
+        if((pJogador1!=nullptr)){
+            sf::Vector2f posJ1=pJogador1->getCorpo().getPosition();
+            if(posJ1.x>=(LARGURA_JANELA/2)){
+                    completou=true;
+            }
+        }
+        else if(pJogador2!=nullptr){
+            sf::Vector2f posJ2=pJogador2->getCorpo().getPosition();
+            if(posJ2.x>=(LARGURA_JANELA/2)){
+                    completou=true;
+            }
+        }
+        
+           // return false;
     }
 
 }

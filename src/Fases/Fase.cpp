@@ -16,7 +16,7 @@ namespace Fases
                                    pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()),
                                    pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()),
                                    pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
-                                   pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0), pFundo(nullptr) //, vetorPortal()
+                                   pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0), pFundo(nullptr), completou(false) //, vetorPortal()
     {
         pGerenciadorColisao->setMoveis(listaPersonagens);
         pGerenciadorColisao->setFixos(listaObstaculos);
@@ -128,7 +128,7 @@ void Fase::salvarRanking(const std::string& arquivo) {
     }
     arquivoSaida << ranking.dump(4); // Formatação bonita
     arquivoSaida.close();
-    pGerenciadorGrafico->fecharJanela(); //Para debugar
+    //pGerenciadorGrafico->fecharJanela(); //Para debugar
     }
     /*void setListP(sf::list<Entidades::Entidade*>& l){
         listP=l;
