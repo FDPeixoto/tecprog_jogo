@@ -391,13 +391,13 @@ void Fase::salvarRanking(const std::string& arquivo) {
     bool Fase::completouFase(){
         if((pJogador1!=nullptr)){
             sf::Vector2f posJ1=pJogador1->getPos();
-            if(posJ1.x>=LARGURA_JANELA){
+            if(posJ1.x>=(LARGURA_JANELA/2)){
                     return true;
             }
         }
         else if(pJogador2!=nullptr){
             sf::Vector2f posJ2=pJogador2->getPos();
-            if(posJ2.x>=LARGURA_JANELA){
+            if(posJ2.x>=(LARGURA_JANELA/2)){
                     return true;
             }
         }
