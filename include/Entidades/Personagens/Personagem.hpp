@@ -15,6 +15,7 @@ namespace Entidades
     sf::Font font;
     sf::Text textoVida;
     bool vivo;
+    int dano;
 
   public:
     Personagem(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
@@ -31,10 +32,9 @@ namespace Entidades
     sf::Text getTextoVida();
     bool getVivo();
     void setVivo(bool v);
+    void atacar(int dano, Personagem *personagem);
+    void tomarDano(int dano);
 
     void checarForaDaJanela();
-
-    // SER IMPLEMETADO DEPOIS
-    // virtual void getVivo()=0;
   };
 }

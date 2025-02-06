@@ -36,8 +36,9 @@ namespace Entidades
     void pular();
     void setAtacando(bool v);
     bool getAtacando();
-    int getPontos(); 
+    int getPontos();
     void setPontos(int p);
     void atacar();
+    void sofrerObstacular(int ID);
   };
 }

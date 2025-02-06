@@ -11,5 +11,12 @@ namespace Entidades
         {
             return; // não faz nada
         }
+        void Obstaculo::colisao(Entidade *outraEntidade)
+        {
+            if (outraEntidade->getID() == IDJOGADOR)
+            {
+                obstacular(static_cast<Entidades::Jogador *>(outraEntidade));
+            }
+        }
     }
 }

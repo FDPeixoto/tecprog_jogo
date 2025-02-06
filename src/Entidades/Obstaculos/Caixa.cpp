@@ -31,61 +31,6 @@ namespace Entidades
             noChao = false;
         }
 
-        void Caixa::colisao(Entidade *outraEntidade)
-        {
-            // Get positions and sizes of the box and the other entity
-            sf::Vector2f pos1 = getCorpo().getPosition();
-            sf::Vector2f pos2 = outraEntidade->getCorpo().getPosition();
-
-            sf::Vector2f tam1 = getCorpo().getSize();
-            sf::Vector2f tam2 = outraEntidade->getCorpo().getSize();
-
-            // Calculate the overlap between the box and the other entity
-            float overlapX = std::min(pos1.x + tam1.x, pos2.x + tam2.x) - std::max(pos1.x, pos2.x);
-            float overlapY = std::min(pos1.y + tam1.y, pos2.y + tam2.y) - std::max(pos1.y, pos2.y);
-
-            // Check if there is a collision
-            if (overlapX > 0 && overlapY > 0)
-            {
-                int ID = outraEntidade->getID();
-
-                // Handle collision with a platform
-                if (ID == IDPLATAFORMA)
-                {
-                    // Determine the axis of least penetration
-                    if (overlapX < overlapY)
-                    {
-                        // Horizontal collision
-                        if (pos1.x < pos2.x)
-                        {
-                            // Box is to the left of the platform
-                            setPos(sf::Vector2f(pos2.x - tam1.x, pos1.y));
-                        }
-                        else
-                        {
-                            // Box is to the right of the platform
-                            setPos(sf::Vector2f(pos2.x + tam2.x, pos1.y));
-                        }
-                    }
-                    else
-                    {
-                        // Vertical collision
-                        if (pos1.y < pos2.y)
-                        {
-                            // Box is above the platform
-                            setPos(sf::Vector2f(pos1.x, pos2.y - tam1.y));
-                            noChao = true;
-                        }
-                        else
-                        {
-                            // Box is below the platform
-                            setPos(sf::Vector2f(pos1.x, pos2.y + tam2.y));
-                        }
-                    }
-                }
-            }
-        }
-
         void Caixa::inicializar()
         {
         }

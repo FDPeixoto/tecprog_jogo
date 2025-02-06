@@ -57,6 +57,26 @@ namespace Gerenciadores
         return entidade1->getCorpo().getGlobalBounds().intersects(entidade2->getCorpo().getGlobalBounds());
     }
 
+    float calculaDistancia(Entidades::Entidade *entidade1, Entidades::Entidade *entidade2)
+    {
+        sf::Vector2f pos1 = entidade1->getPos();
+        sf::Vector2f pos2 = entidade2->getPos();
+
+        sf::Vector2f tam1 = entidade1->getTam();
+        sf::Vector2f tam2 = entidade2->getTam();
+
+        // Calculate the center of the first rectangle
+        sf::Vector2f center1(pos1.x + tam1.x / 2.f, pos1.y + tam1.y / 2.f);
+
+        // Calculate the center of the second rectangle
+        sf::Vector2f center2(pos2.x + tam2.x / 2.f, pos2.y + tam2.y / 2.f);
+
+        float dx = center2.x - center1.x;
+        float dy = center2.y - center1.y;
+
+        return std::sqrt(std::pow(dx, 2) + std::pow(dy, 2));
+    }
+
     void Colisao::adicionarJogador(Entidades::Jogador *jogador)
     {
         listJogadores.push_back(jogador);
@@ -110,11 +130,42 @@ namespace Gerenciadores
                 }
             }
         }
-        else if (evento == "atacar")
+        else if (evento == "ataqueDoJogador")
         {
+            for (std::list<Entidades::Inimigos::Inimigo *>::iterator itInimigo = listInimigos.begin(); itInimigo != listInimigos.end(); itInimigo++)
+            {
+                if (*itInimigo != nullptr)
+                {
+                    if (calculaDistancia(sender, *itInimigo) < 10.f)
+                    {
+                        (*itInimigo)->tomarDano(2);
+                    }
+                }
+            }
         }
-        else if (evento == "obstacular")
+        else if (evento == "ataqueInimigo")
         {
+            for (std::list<Entidades::Jogador *>::iterator itJogador = listJogadores.begin(); itJogador != listJogadores.end(); itJogador++)
+            {
+                if (*itJogador != nullptr)
+                {
+                    if (calculaDistancia(sender, *itJogador) < 10.f)
+                    {
+                        switch (sender->getID())
+                        {
+                        case IDMINION:
+                            (*itJogador)->tomarDano(1);
+                            break;
+                        case IDESQUELETO:
+                            (*itJogador)->tomarDano(2);
+                            break;
+                        case IDDURAHAN:
+                            (*itJogador)->tomarDano(3);
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 }

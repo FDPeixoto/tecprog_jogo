@@ -22,7 +22,6 @@ namespace Entidades
             void salvar();
             void atualizar(float dt);
             void inicializar();
-            void colisao(Entidade *outraEntidade);
         };
     }
 }

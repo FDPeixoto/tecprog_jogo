@@ -55,6 +55,24 @@ namespace Entidades
     vivo = v;
   }
 
+  void Personagem::atacar(int dano, Personagem *personagem)
+  {
+    personagem->setNumVidas(getNumVidas() - dano);
+    if (personagem->getNumVidas() <= 0)
+    {
+      personagem->setVivo(false);
+    }
+  }
+
+  void Personagem::tomarDano(int dano)
+  {
+    setNumVidas(getNumVidas() - dano);
+    if (getNumVidas() <= 0)
+    {
+      setVivo(false);
+    }
+  }
+
   void Personagem::checarForaDaJanela()
   {
     if (pos.x < 0.f)

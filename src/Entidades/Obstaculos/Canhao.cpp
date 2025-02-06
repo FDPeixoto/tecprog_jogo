@@ -47,6 +47,5 @@ void Entidades::Obstaculos::Canhao::executar()
 
 void Entidades::Obstaculos::Canhao::salvar() {}
 void Entidades::Obstaculos::Canhao::atualizar(float dt) {}
-void Entidades::Obstaculos::Canhao::colisao(Entidade *outraEntidade) {}
 void Entidades::Obstaculos::Canhao::inicializar() {}
 void Entidades::Obstaculos::Canhao::atualizarPosicao(float dt) {}

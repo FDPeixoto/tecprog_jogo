@@ -23,9 +23,6 @@ namespace Entidades
         void Espinho::inicializar()
         {
         }
-        void Espinho::colisao(Entidade *outraEntidade)
-        {
-        }
         void Espinho::Obstacular(Entidades::Jogador *pJogador) {}
     }
 }
