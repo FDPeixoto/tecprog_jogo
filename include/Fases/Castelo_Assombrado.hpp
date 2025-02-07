@@ -7,10 +7,16 @@ namespace Fases{
     class Castelo_Assombrado: public Fase{
         private:
         const int maxChefoes;
+        int  maxEsp;
+        int it_Esp;
+        int maxM;
+        int it_M;
+        int maxP;
+        int it_P;
         std::vector<Entidades::Inimigos::Durahan*> vetorDurahan;
         int cont_D;
         int it_D;
-        //std::vector<Entidades::Inimigos::Durahan*> vetorCanhao;
+        int aleatoriedadeP;
 
         public:
         Castelo_Assombrado();

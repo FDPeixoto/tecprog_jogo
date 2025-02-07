@@ -6,11 +6,19 @@
 
 namespace Fases
 {
-    Castelo_Assombrado::Castelo_Assombrado() : Fase(IDCASTELOASSOMBRADO), maxChefoes(5), vetorDurahan(), it_D(0)
+    Castelo_Assombrado::Castelo_Assombrado() : Fase(IDCASTELOASSOMBRADO), maxChefoes(5), vetorDurahan(), it_D(0), maxEsp(3), it_Esp(0),maxM(3), it_M(0),maxP(3), it_P(0)
     {
         //Fase::proximaFase();
         srand((unsigned int)time(NULL));
         cont_D = (rand() % (2)) + 3;
+        srand((unsigned int)time(NULL));
+        maxM = (rand() % (2)) + 3;
+        srand((unsigned int)time(NULL));
+        maxEsp = (rand() % (2)) + 3;
+        srand((unsigned int)time(NULL));
+        maxP = (rand() % (10)) + 10;
+        srand((unsigned int)time(NULL));
+        aleatoriedadeP=(rand() % (3))+1;
         criarMapa();
         //, cont_D(2)
 
@@ -179,6 +187,13 @@ namespace Fases
         case ('s'):
         {
             criarEspinho(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
+        }
+        break;
+        case ('&'):
+        {
+            if((it_P<maxP)&&(((it_P+1)%aleatoriedadeP)!=0))
+            criarPlataforma(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
+            it_P++;
         }
         break;
         case ('#'):
