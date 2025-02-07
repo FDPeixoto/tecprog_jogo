@@ -43,6 +43,7 @@ namespace Entidades
   {
     std::string vidaStr = "Vida: " + std::to_string(num_vidas); // Concatena a string
     textoVida.setString(vidaStr);
+    textoVida.setPosition(sf::Vector2f(50.f, 50.f));
     return (textoVida);
   }
   void Personagem::setPosTexto(int x, int y)

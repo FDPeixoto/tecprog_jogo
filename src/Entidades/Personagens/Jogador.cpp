@@ -67,14 +67,34 @@ namespace Entidades
     {
         atacando = false;
         andando = true;
-        paraEsquerda = ehEsquerda;
-        if (paraEsquerda)
+
+        // Update velocity
+        velocidade.x = ehEsquerda ? -300.0f : 300.0f;
+
+        // Only flip if changing direction
+        if (paraEsquerda != ehEsquerda)
         {
-            velocidade.x = -300.0f;
-        }
-        else
-        {
-            velocidade.x = 300.f;
+            paraEsquerda = ehEsquerda;
+
+            // Get current position and bounds
+            sf::Vector2f pos = corpo.getPosition();
+            sf::FloatRect bounds = corpo.getLocalBounds();
+
+            if (paraEsquerda)
+            {
+                // Move origin to the right side before flipping
+                corpo.setOrigin(bounds.width, 0);
+                corpo.setScale(-1.f, 1.f);
+            }
+            else
+            {
+                // Move origin back to the left side before flipping back
+                corpo.setOrigin(0, 0);
+                corpo.setScale(1.f, 1.f);
+            }
+
+            // Keep the position the same
+            corpo.setPosition(pos);
         }
     }
     void Jogador::parar()

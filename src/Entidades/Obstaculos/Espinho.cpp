@@ -13,6 +13,7 @@ namespace Entidades
         void Espinho::executar() {}
         void Espinho::obstacular(Entidades::Jogador *pJogador)
         {
+            pJogador->tomarDano(pJogador->getNumVidas());
         }
         void Espinho::salvar()
         {
@@ -23,6 +24,9 @@ namespace Entidades
         void Espinho::inicializar()
         {
         }
-        void Espinho::Obstacular(Entidades::Jogador *pJogador) {}
+        void Espinho::Obstacular(Entidades::Jogador *pJogador)
+        {
+            pJogador->tomarDano(pJogador->getNumVidas());
+        }
     }
 }

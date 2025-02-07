@@ -62,9 +62,9 @@ namespace Gerenciadores
     {
         janela->draw(corpo);
     }
-
-    void Grafico::desenharTexto(sf::Text texto)
+    void Grafico::desenharTexto(sf::Text texto, sf::Vector2f posicao)
     {
+        texto.setPosition(posicao);
         janela->draw(texto);
     }
     void Grafico::desenharEntidade(Entidades::Entidade *entidade)

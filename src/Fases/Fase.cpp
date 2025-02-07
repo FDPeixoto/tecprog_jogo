@@ -447,8 +447,9 @@ namespace Fases
         }*/
 
         // pGerenciadorGrafico->mostrarRanking();
-        pGerenciadorGrafico->desenharTexto(pJogador1->getTextoVida());
-        pGerenciadorGrafico->desenharTexto(pJogador2->getTextoVida());
+
+        pGerenciadorGrafico->desenharTexto(pJogador1->getTextoVida(), sf::Vector2f(0.f, 10.f));
+        pGerenciadorGrafico->desenharTexto(pJogador2->getTextoVida(), sf::Vector2f(200.f, 10.f));
         // pGerenciadorGrafico->desenharTexto(pGerenciadorEvento->getTextoEntrada());
         desenhar();
     }

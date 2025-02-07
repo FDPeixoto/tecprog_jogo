@@ -155,14 +155,12 @@ namespace Entidades
                     {
                         perseguir(posJogador1, posInimigo);
                         perseguindo = true;
-                        return; // Skip random movement if chasing
                     }
                 }
                 else if (distx2 <= RAIO_PERSEGUIR_X)
                 {
                     perseguir(posJogador2, posInimigo);
                     perseguindo = true;
-                    return; // Skip random movement if chasing
                 }
             }
             else if (pJogador1 != nullptr)
@@ -172,7 +170,6 @@ namespace Entidades
                 {
                     perseguir(posJogador1, posInimigo);
                     perseguindo = true;
-                    return; // Skip random movement if chasing
                 }
             }
             else if (pJogador2 != nullptr)
@@ -182,8 +179,32 @@ namespace Entidades
                 {
                     perseguir(posJogador2, posInimigo);
                     perseguindo = true;
-                    return; // Skip random movement if chasing
                 }
+            }
+
+            // Only flip if changing direction
+            if (velocidade.x < 0.f)
+            {
+
+                // Get current position and bounds
+                sf::Vector2f pos = corpo.getPosition();
+                sf::FloatRect bounds = corpo.getLocalBounds();
+
+                if (velocidade.x < 0.f)
+                {
+                    // Move origin to the right side before flipping
+                    corpo.setOrigin(bounds.width, 0);
+                    corpo.setScale(-1.f, 1.f);
+                }
+                else
+                {
+                    // Move origin back to the left side before flipping back
+                    corpo.setOrigin(0, 0);
+                    corpo.setScale(1.f, 1.f);
+                }
+
+                // Keep the position the same
+                corpo.setPosition(pos);
             }
         }
 
