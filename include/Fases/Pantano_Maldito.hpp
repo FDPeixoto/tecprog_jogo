@@ -8,8 +8,6 @@ namespace Fases{
     class Pantano_Maldito: public Fase{
         private:
         const int maxInimMedios;
-        //Entidades::Inimigos::Durahan* pD;
-        std::vector<Entidades::Inimigos::Durahan*> vetorDurahan;
         int cont_D;
         int it_D;
         Entidades::Obstaculos::Plataforma fundo;
@@ -19,8 +17,6 @@ namespace Fases{
         Pantano_Maldito();
         ~Pantano_Maldito();
         void criarInimMedio(const sf::Vector2f posicao);
-        void criarInimigos();
-        void criarObstaculos();
         const int getMaxInimMedios();
         void criarMapa();
         void criarEntidade(char letra, const sf::Vector2f posicao);

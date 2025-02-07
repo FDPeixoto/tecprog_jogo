@@ -78,7 +78,7 @@ namespace Gerenciadores
         {
             if (*it != nullptr)
             {
-                if (((*it)->getID() == IDJOGADOR) || ((*it)->getID() == IDMINION) || ((*it)->getID() == IDDURAHAN) || ((*it)->getID() == IDESQUELETO))
+                /*if (((*it)->getID() == IDJOGADOR) || ((*it)->getID() == IDMINION) || ((*it)->getID() == IDDURAHAN) || ((*it)->getID() == IDESQUELETO))
                 {
                     if (((*it)->getVivo()))
                     {
@@ -87,15 +87,9 @@ namespace Gerenciadores
                     else
                     {
                     }
-                }
-                /*if((*it)->getID() == IDJOGADOR){
-                    janela->draw((*it)->getSprite());
-                }*/
-
-                else
-                {
-                    desenharEntidade(*it);
-                }
+                }*///else
+                desenharEntidade(*it);
+                
             }
         }
     }

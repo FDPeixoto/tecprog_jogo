@@ -32,23 +32,9 @@ namespace Fases
         {
             delete *it;
         }
-        /* for (std::vector<Entidades::Inimigos::Durahan*>::iterator it = vetorCanhao.begin();it != vetorCanhao.end();++it) {
-             delete *it;
-         }*/
-
         vetorDurahan.clear();
-        // vetorCanhao.clear();
     }
 
-    void Castelo_Assombrado::criarInimigos()
-    {
-        // criarInimFaceis();
-        // criarInimMedios();
-    }
-    void Castelo_Assombrado::criarObstaculos()
-    {
-        // criarObstFaceis();
-    }
     void Castelo_Assombrado::criarInimDificil(const sf::Vector2f posicao)
     {
         it_D++;
@@ -72,23 +58,18 @@ namespace Fases
             // num_Durahan++; lemnrando que isso está em fase
         }
     }
-    /*void Fase::criarCanhao(const sf::Vector2f posicao)
+    void Castelo_Assombrado::criarEspinho(const sf::Vector2f posicao)
     {
-        Entidades::Obstaculos::Canhao* canhao = new Entidades::Obstaculos::Canhao(LARGURA_CANHAO, ALTURA_CANHAO, posicao);
-        if((canhao) != nullptr){
-            sf::Color roxa(128, 0, 128);  // roxo
-            canhao->setCor(roxa);
-            //vetorCanhao.push_back(canhao);
-            listaObstaculos->incluirEntidade(canhao);
+        Entidades::Obstaculos::Espinho *plataforma = new Entidades::Obstaculos::Espinho(posicao);
+        if (plataforma != nullptr)
+        {
+            plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
+            listaObstaculos->incluirEntidade(plataforma);
+            pGerenciadorColisao->adicionarObstaculo(plataforma);
         }
-    }*/
-
+    }
     void Castelo_Assombrado::criarMapa()
-    {
-        //criarPlataformaF(sf::Vector2f(0.0f,0.0f), ALTURA_JANELA, LARGURA_JANELA);
-        // criarPlataformaBase(sf::Vector2f(0.0f,660));
-        // Está ao contrário as funções BordaV cria Horizontal e BordaH, vertical
-              
+    {           
         std::ifstream arquivo;
         std::string linha;
         arquivo.open("src/Fases/TesteSegundaFase.txt");
@@ -110,39 +91,14 @@ namespace Fases
             j++;
         }
         arquivo.close();
-        //pGerenciadorGrafico->desenharEntidade(&fundo);        
-        // criarBordaH(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
-        // criarBordaH(sf::Vector2f(1277.0f, 0.0f), sf::Color::Yellow);
-        // criarBordaV(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
-
-        // criarBordaV(sf::Vector2f(0.0f, 717.0f), sf::Color::Yellow);
-
-        // Pega a lista de porjétil que tem no Durahan
-        //
     }
-     /*void Castelo_Assombrado::criarInimDificil(const sf::Vector2f posicao)
-    {   
-        it_D++;
-        Entidades::Inimigos::Durahan* durahan = new Entidades::Inimigos::Durahan(posicao);
-        if(durahan != nullptr){
-            //pD=durahan;
-            durahan->setCor(sf::Color::Magenta);
-            if(Fase::getJogador1() != nullptr){durahan->setJogador1(getJogador1());}
-            if(Fase::getJogador2() != nullptr){durahan->setJogador2(getJogador2());}
-            vetorDurahan.push_back(durahan);
-            listaPersonagens->incluirEntidade(durahan);
-            //num_Durahan++; lemnrando que isso está em fase
-        }
-    }*/
+
 
     void Castelo_Assombrado::executar()
     {
         pGerenciadorGrafico->desenharEntidade(&fundo);
         Fase::executar();
 
-        /*if(pD!= nullptr){
-            pGerenciadorGrafico->desenharList(pD->getListaProjetil());
-        }*/
         for (int i = 0; i < cont_D; i++)
         {
             if (vetorDurahan[i] != nullptr)
@@ -150,10 +106,7 @@ namespace Fases
                 pGerenciadorGrafico->desenharList(vetorDurahan[i]->getListaProjetil());
             }
         }
-        if(completou==true){
-            //mostrarRanking(pGerenciadorGrafico->getJanela());
-        }
-        //pGerenciadorGrafico->desenharEntidade(&fundo);
+        if(completou==true){ }
     }
     void Castelo_Assombrado::criarEntidade(char letra, const sf::Vector2f posicao)
     {

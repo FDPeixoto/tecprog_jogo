@@ -7,23 +7,14 @@ namespace Gerenciadores
 {
     Evento *Evento::pGerenciadorEvento = nullptr;
 
-    Evento::Evento() : pJog1(nullptr), pJog2(nullptr), pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()), pEstado(pEstado->getGerenciadorEstado()), nomePartida(""), pFase(nullptr) {}
+    Evento::Evento() : pJog1(nullptr), pJog2(nullptr), pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()), pEstado(pEstado->getGerenciadorEstado()), pFase(nullptr) {}
     Evento::~Evento()
     {
         pGerenciadorGrafico = nullptr;
         // pEstado = nullptr;
         pJog1 = nullptr;
         pJog2 = nullptr;
-        // fonte.loadFromFile("Fonte/DejaVuSans.ttf");
-        // botaoConfirmar.setFonte("ConfirmarNome",fonte);
-        /*textoEntrada.setFont(fonte);
-        textoEntrada.setCharacterSize(24);
-        textoEntrada.setFillColor(sf::Color::White);
-        textoEntrada.setPosition(500, 30);  // Posição na tela
 
-        capturandoNome=true;
-        nomePartida="Teste0";
-        textoEntrada.setString("Nome da Partida: " + nomePartida);*/
     }
 
     Evento *Evento::getGerenciadorEvento()
@@ -43,15 +34,6 @@ namespace Gerenciadores
     {
         pJog2 = jogador;
     }
-    void Evento::setNomePartida(const std::string nome)
-    {
-        nomePartida = nome;
-    }
-    /*sf::Text Evento::getTextoEntrada()
-  {
-
-    return (textoEntrada);
-  }*/
 
     void Evento::verificaTeclaPressionada(sf::Keyboard::Key tecla)
     {
@@ -160,12 +142,7 @@ namespace Gerenciadores
             }
         }
     }
-    /*void Evento::salvarNaFase(){
-        if(pFase!=nullptr){
-            pFase->setNomePartida(nomePartida);  // Define o nome da partida na fase
 
-        }
-    }*/
     void Evento::executar()
     {
         int pontuacaoJ1 = 0;

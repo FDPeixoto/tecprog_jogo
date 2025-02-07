@@ -41,16 +41,13 @@ namespace Entidades
     virtual void inicializar() = 0;
     void setMediator(Gerenciadores::Mediator *mediator);
     virtual void atualizarPosicao(float dt) = 0;
-    // virtual void atualizar(float dt);
     void setAtivo(bool flg);
     bool getAtivo();
     virtual void atirar(const sf::Vector2f posInimigo, bool direita);
     sf::Vector2f getPos();
     void mover(sf::Vector2f posicao);
-    // virtual void ativarObstaculo(Entidades::entidade* pJogador);
-
-    virtual bool getVivo();
-    virtual void setVivo(bool v);
+    //virtual bool getVivo();
+    //virtual void setVivo(bool v);
 
       virtual bool getAtacando();
       virtual void setAtacando(bool v);

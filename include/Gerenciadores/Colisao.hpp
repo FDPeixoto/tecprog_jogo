@@ -21,8 +21,6 @@ namespace Gerenciadores
         std::list<Entidades::Inimigos::Inimigo *> listInimigos;
         std::list<Entidades::Obstaculos::Obstaculo *> listObstaculos;
         Listas::ListaEntidades *todasEntidades;
-        // std::list<Entidades::Projeteis *> listProjeteis;
-
         static Colisao *pColisao;
         Colisao();
 

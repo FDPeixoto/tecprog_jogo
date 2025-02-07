@@ -7,7 +7,7 @@
 namespace Fases
 {
 
-    Pantano_Maldito::Pantano_Maldito() : Fase(IDPANTANOMALDITO),fundo(ALTURA_JANELA,LARGURA_JANELA, sf::Vector2f(0.0f, 0.0f),false ), maxInimMedios(5), vetorDurahan(), it_D(0), cont_D(2)
+    Pantano_Maldito::Pantano_Maldito() : Fase(IDPANTANOMALDITO),fundo(ALTURA_JANELA,LARGURA_JANELA, sf::Vector2f(0.0f, 0.0f),false ), maxInimMedios(5), it_D(0), cont_D(2)
     {
         Fase::proximaFase();
         /*srand((unsigned int)time(NULL));
@@ -15,21 +15,11 @@ namespace Fases
         criarMapa();
         //, cont_D(2)
 
-        vetorDurahan.clear();
     }
-    /*void Pantano_Maldito::setLisPp(st::list<Entidades::Entidade*> l){
-        Fase::setListP(pD->getListaProjetil());
-    }*/
 
     Pantano_Maldito::~Pantano_Maldito()
     {
-        // pD=nullptr;
-        for (std::vector<Entidades::Inimigos::Durahan *>::iterator it = vetorDurahan.begin(); it != vetorDurahan.end(); ++it)
-        {
-            delete *it;
-        }
-
-        vetorDurahan.clear();
+        
     }
 
     void Pantano_Maldito::criarInimMedio(const sf::Vector2f posicao)
@@ -51,8 +41,6 @@ namespace Fases
         Entidades::Inimigos::Durahan *durahan = new Entidades::Inimigos::Durahan(posicao);
         if (durahan != nullptr)
         {
-            // pD=durahan;
-            // durahan->setCor(sf::Color::Magenta);
             if (Fase::getJogador1() != nullptr)
             {
                 durahan->setJogador1(getJogador1());
@@ -61,37 +49,13 @@ namespace Fases
             {
                 durahan->setJogador2(getJogador2());
             }
-            vetorDurahan.push_back(durahan);
             listaPersonagens->incluirEntidade(durahan);
-            durahan->setMediator(pGerenciadorColisao);
-            // pGerenciadorColisao->adicionarInimigo(durahan);
-            //  num_Durahan++; lemnrando que isso está em fase
         }
     }
-    /*void Pantano_Maldito::setpD(Entidades::Inimigos::Durahan* pDurahan){
-        pD=pDurahan;
-    }
-    Entidades::Inimigos::Durahan* Pantano_Maldito::getpD(){
-        return pD;
-    }*/
-    void Pantano_Maldito::criarInimigos()
-    {
-        // criarInimFaceis();
-        // criarInimMedios();
-    }
-    void Pantano_Maldito::criarObstaculos()
-    {
-        // criarObstFaceis();
-    }
-
     const int Pantano_Maldito::getMaxInimMedios() { return maxInimMedios; }
 
     void Pantano_Maldito::criarMapa()
     {
-
-        // criarPlataformaBase(sf::Vector2f(0.0f,660));
-        // Está ao contrário as funções BordaV cria Horizontal e BordaH, vertical
-
         std::ifstream arquivo;
         std::string linha;
         arquivo.open("src/Fases/TestePrimeiraFase.txt");
@@ -119,18 +83,6 @@ namespace Fases
         pGerenciadorGrafico->desenharEntidade(&fundo);
         Fase::executar();
         verificarCompletou();
-
-        /*if(pD!= nullptr){
-            pGerenciadorGrafico->desenharList(pD->getListaProjetil());
-        }
-        for (int i = 0; i < cont_D; i++)
-        {
-            if (vetorDurahan[i] != nullptr)
-            {
-                pGerenciadorGrafico->desenharList(vetorDurahan[i]->getListaProjetil());
-            }
-        }
-        */
     }
 
     void Pantano_Maldito::criarEntidade(char letra, const sf::Vector2f posicao)
@@ -155,11 +107,6 @@ namespace Fases
         case ('b'):
         {
             criarCaixa(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
-        }
-        break;
-        case ('s'):
-        {
-            criarEspinho(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
         }
         break;
         case ('#'):

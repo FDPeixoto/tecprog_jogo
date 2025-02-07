@@ -1,23 +1,13 @@
 #include "Fase.hpp"
-#include "../../include/nlohmann/json.hpp" // Incluindo a biblioteca JSON
+#include "../../include/nlohmann/json.hpp" 
 using json = nlohmann::json;
-
-/*#include <nlohmann/json.hpp>
-
-using json = nlohmann::json;*/
-#define LARGURA 1280
-#define ALTURA 720
 
 namespace Fases
 {
-    Fase::Fase(const int idFase) : Ente(idFase),
-                                   listaPersonagens(new Listas::ListaEntidades()),
-                                   listaObstaculos(new Listas::ListaEntidades()),
-                                   pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()),
-                                   pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()),
-                                   pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
-                                   pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0), pFundo(nullptr), completou(false),
-                                   pontosJ1(0), pontosJ2(0) //, vetorPortal()
+    Fase::Fase(const int idFase) : Ente(idFase),listaPersonagens(new Listas::ListaEntidades()),
+    listaObstaculos(new Listas::ListaEntidades()), pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()),
+    pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()), pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
+    pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0), completou(false), pontosJ1(0), pontosJ2(0) 
     {
         pGerenciadorColisao->setMoveis(listaPersonagens);
         pGerenciadorColisao->setFixos(listaObstaculos);
@@ -27,18 +17,12 @@ namespace Fases
 
     Fase::~Fase()
     {
-        /*for (std::vector<Entidades::Obstaculos::Portal*>::iterator it = vetorPortal.begin();it != vetorPortal.end();++it) {
-            delete *it;
-        }*/
         pGerenciadorGrafico = nullptr;
         pJogador1 = nullptr;
         pJogador2 = nullptr;
         quantidadeJogadores = 0;
         delete listaPersonagens;
         delete listaObstaculos;
-
-        // vetorPortal.clear();
-        // listP.clear();
     }
 
     void Fase::setJogador1(Entidades::Jogador *pJogador) { pJogador1 = pJogador; }
@@ -74,64 +58,9 @@ namespace Fases
         nomePartida = nome;
     }
 
-    /*void Fase::salvarRanking(const std::string& arquivo) {
-        json ranking;
-
-        // 🔹 1. Tenta abrir e carregar o arquivo existente
-        std::ifstream arquivoExistente(arquivo);
-        if (arquivoExistente.is_open()) {
-            try {
-                arquivoExistente >> ranking;
-            } catch (const std::exception& e) {
-                //std::cerr << "Erro ao carregar o arquivo JSON: " << e.what() << std::endl;
-                ranking = json::array(); // Se houver erro, inicializa um array vazio
-            }
-            arquivoExistente.close();
-        } else {
-            ranking = json::array(); // Se o arquivo não existir, inicia como array vazio
-        }
-
-        // 🔹 2. Captura a pontuação dos jogadores
-        int pontosJogador1 = getPontosJogador1();
-        int pontosJogador2 = getPontosJogador2();
-
-        json jogo;
-        jogo["nomePartida"] = nomePartida;
-        jogo["jogadores"] = {
-            {{"nome", "1"}, {"pontuacao", pontosJogador1}},
-            {{"nome", "2"}, {"pontuacao", pontosJogador2}}
-        };
-
-        // 🔹 3. Adiciona a nova partida ao ranking
-        ranking.push_back(jogo);
-
-        // 🔹 4. Ordena todas as partidas pela **melhor pontuação geral**
-        std::sort(ranking.begin(), ranking.end(), [](const json& a, const json& b) {
-            int maxA = std::max(a["jogadores"][0]["pontuacao"], a["jogadores"][1]["pontuacao"]);
-            int maxB = std::max(b["jogadores"][0]["pontuacao"], b["jogadores"][1]["pontuacao"]);
-            return maxA > maxB; // Ordem decrescente
-        });
-
-        // 🔹 5. Mantém apenas os 5 melhores registros
-        if (ranking.size() > 5) {
-            ranking.erase(ranking.begin() + 5, ranking.end());
-        }
-
-        // 🔹 6. Salva o ranking atualizado no arquivo
-        std::ofstream arquivoSaida(arquivo);
-        if (!arquivoSaida) {
-            //std::cerr << "Erro ao abrir o arquivo para escrita!" << std::endl;
-            return;
-        }
-        arquivoSaida << ranking.dump(4); // Formatação bonita
-        arquivoSaida.close();
-        //pGerenciadorGrafico->fecharJanela(); //Para debugar
-        }*/
     void Fase::salvarRanking(const std::string &arquivo, int pJ1, int pJ2)
     {
         json ranking;
-
-        // 🔹 1. Tenta abrir e carregar o arquivo existente
         std::ifstream arquivoExistente(arquivo);
         if (arquivoExistente.is_open())
         {
@@ -141,16 +70,15 @@ namespace Fases
             }
             catch (const std::exception &e)
             {
-                ranking = json::array(); // Se houver erro, inicializa um array vazio
+                ranking = json::array();
             }
             arquivoExistente.close();
         }
         else
         {
-            ranking = json::array(); // Se o arquivo não existir, inicia como array vazio
+            ranking = json::array(); 
         }
 
-        // 🔹 2. Captura a pontuação dos jogadores
         int pontosJogador1 = getPontosJogador1();
         int pontosJogador2 = getPontosJogador2();
         pontosJogador1 = pontosJogador1 + pJ1;
@@ -250,7 +178,7 @@ namespace Fases
         if (quantidadeJogadores == 0)
         {
             Entidades::Jogador *jogador = new Entidades::Jogador(posicao, false);
-            jogador->setCor(sf::Color::White); // Blue
+            jogador->setCor(sf::Color::White); 
             if (jogador != nullptr)
             {
                 listaPersonagens->incluirEntidade(jogador);
@@ -264,7 +192,7 @@ namespace Fases
         else if (quantidadeJogadores == 1)
         {
             Entidades::Jogador *jogador = new Entidades::Jogador(posicao, true);
-            jogador->setCor(sf::Color::White); // Green
+            jogador->setCor(sf::Color::White); 
             if (jogador != nullptr)
             {
                 listaPersonagens->incluirEntidade(jogador);
@@ -304,79 +232,12 @@ namespace Fases
         Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(posicao, Castelo); // a plaforma era 100.0f e 100.0f
         if (plataforma != nullptr)
         {
-            // plataforma->setCor(sf::Color::White);
             plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
             listaObstaculos->incluirEntidade(plataforma);
             pGerenciadorColisao->adicionarObstaculo(plataforma);
-        }
-    }
-    /*void Fase::criarPlataformaBase(const sf::Vector2f posicao)
-    {
-        Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(60.0f, LARGURA, posicao);
-        if (plataforma != nullptr)
-        {
-            // sf::Color verdeEscuro(0, 100, 0); // verde escuro
-            // plataforma->setCor(verdeEscuro);
-            listaObstaculos->incluirEntidade(plataforma);
-            pGerenciadorColisao->adicionarObstaculo(plataforma);
-            plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
         }
     }
 
-    void Fase::criarPlataforma(const sf::Vector2f posicao, float altura, float largura)
-    {
-        Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(altura, largura, posicao);
-        if (plataforma != nullptr)
-        {
-            // sf::Color verdeEscuro(0, 100, 0); // verde escuro
-            // plataforma->setCor(verdeEscuro);
-            listaObstaculos->incluirEntidade(plataforma);
-            pGerenciadorColisao->adicionarObstaculo(plataforma);
-            plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
-        }
-    }
-    void Fase::criarPlataformaF(const sf::Vector2f posicao, float altura, float largura)
-    {
-        Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(altura, largura, posicao);
-        if (plataforma != nullptr)
-        {
-            // sf::Color verdeEscuro(0, 100, 0); // verde escuro
-            // plataforma->setCor(verdeEscuro);
-            // listaObstaculos->incluirEntidade(plataforma);
-            pFundo = plataforma;
-            pGerenciadorGrafico->desenharEntidade(plataforma);
-            // pGerenciadorGrafico->display();
-        }
-    }*/
-
-    /*void Fase::criarBordaH(const sf::Vector2f posicao, sf::Color cor)
-    {
-        Entidades::Obstaculos::Plataforma *borda = new Entidades::Obstaculos::Plataforma(ALTURA, TAM_BORDA, posicao);
-        if (borda != nullptr)
-        {
-            // borda->setCor(cor);
-            listaObstaculos->incluirEntidade(borda);
-        }
-    }
-    void Fase::criarBordaV(const sf::Vector2f posicao, sf::Color cor)
-    {
-        Entidades::Obstaculos::Plataforma *borda = new Entidades::Obstaculos::Plataforma(TAM_BORDA, LARGURA, posicao);
-        if (borda != nullptr)
-        {
-            // borda->setCor(cor);
-            listaObstaculos->incluirEntidade(borda);
-        }
-    }*/
-    void Fase::criarEspinho(const sf::Vector2f posicao)
-    {
-        Entidades::Obstaculos::Espinho *plataforma = new Entidades::Obstaculos::Espinho(posicao);
-        if (plataforma != nullptr)
-        {
-            plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
-            listaObstaculos->incluirEntidade(plataforma);
-            pGerenciadorColisao->adicionarObstaculo(plataforma);
-        }
-    }
     void Fase::criarCaixa(const sf::Vector2f posicao)
     {
         Entidades::Obstaculos::Caixa *caixa = new Entidades::Obstaculos::Caixa(posicao + sf::Vector2f(0.f, 16.f));
@@ -387,16 +248,7 @@ namespace Fases
             pGerenciadorColisao->adicionarObstaculo(caixa);
         }
     }
-   
-    /*void Fase::criarPortal(const sf::Vector2f posicao)
-    {
-        Entidades::Obstaculos::Canhao* portal = new Entidades::Obstaculos::Canhao(LARGURA_CANHAO, ALTURA_CANHAO, posicao);
-        if((portal) != nullptr){
-            //sf::Color roxa(128, 0, 128);  // roxo
-            portal->setCor(sf::Color::Cyan);
-            listaObstaculos->incluirEntidade(portal);
-        }
-    }*/
+
     void Fase::desenhar()
     {
         pGerenciadorGrafico->desenharListaEntidades(listaPersonagens);
@@ -406,11 +258,9 @@ namespace Fases
     void Fase::executar()
     {
         eliminarPersonagensMortos();
-        // atualizando os pontos caso os jogaores morram durante a partida
         pontosJ1 = getPontosJogador1();
         pontosJ2 = getPontosJogador2();
 
-        // listaObstaculos->executar();
         if (pGerenciadorColisao->getListaMoveis() != listaPersonagens)
         {
             pGerenciadorColisao->setMoveis(listaPersonagens);
@@ -425,22 +275,10 @@ namespace Fases
 
         float variacaoTempo = pGerenciadorGrafico->getRelogio()->getElapsedTime().asSeconds();
         listaPersonagens->atualizar(variacaoTempo);
-        // listP->atualizar();
         pGerenciadorGrafico->resetarRelogio();
-        // int v1=pJogador1->getNumVidas();
-        // int v2=pJogador2->getNumVidas();
-        // pGerenciadorGrafico->desenharTexto("Vida: " + std::to_string(v1));
-        // pGerenciadorGrafico->desenharTexto("Vida: " + std::to_string(v2));
-        /*if (clock.getElapsedTime().asSeconds() >= 5.f) {  // Se passaram 5 segundos
-            pD->atirar();
-            clock.restart();  // Reinicia o relógio para a próxima verificação
-        }*/
-
-        // pGerenciadorGrafico->mostrarRanking();
-
         pGerenciadorGrafico->desenharTexto(pJogador1->getTextoVida(), sf::Vector2f(0.f, 10.f));
         pGerenciadorGrafico->desenharTexto(pJogador2->getTextoVida(), sf::Vector2f(200.f, 10.f));
-        // pGerenciadorGrafico->desenharTexto(pGerenciadorEvento->getTextoEntrada());
+        
         desenhar();
     }
     void Fase::proximaFase()
@@ -472,13 +310,13 @@ namespace Fases
 
     void Fase::eliminarPersonagensMortos()
     {
-        for (auto itPersonagem = listaPersonagens->getListaEnt().inicio(); itPersonagem != listaPersonagens->getListaEnt().fim(); itPersonagem++)
+       /* for (auto itPersonagem = listaPersonagens->getListaEnt().inicio(); itPersonagem != listaPersonagens->getListaEnt().fim(); itPersonagem++)
         {
             if (!(*itPersonagem)->getVivo())
             {
                 listaPersonagens->removerEntidade((*itPersonagem));
                 pGerenciadorColisao->removerEntidade(*itPersonagem);
             }
-        }
+        }*/
     }
 }

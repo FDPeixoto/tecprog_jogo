@@ -11,7 +11,6 @@ namespace Entidades
     namespace Inimigos
     {
         // Movement states
-
         Inimigo::Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID) : Personagem(tamanho, posicao, ID), nivel_maldade(0)
         {
             pJogador1 = nullptr;

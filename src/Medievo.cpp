@@ -21,8 +21,7 @@ Medievo::~Medievo()
 void Medievo::executar()
 {
     pGerenciadorEstado->addState(IDPANTANOMALDITO);
-    // pGerenciadorEstado->addState(IDCASTELOASSOMBRADO);
-
+    
     while (pGerenciadorGrafico->getJanela()->isOpen())
     {
 

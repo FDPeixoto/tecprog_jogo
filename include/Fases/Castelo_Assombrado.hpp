@@ -24,9 +24,7 @@ namespace Fases{
         Castelo_Assombrado();
         ~Castelo_Assombrado();
         void criarInimDificil(const sf::Vector2f posicao);
-        //void criarCanhao(const sf::Vector2f posicao);
-        void criarInimigos();
-        void criarObstaculos();
+        void criarEspinho(const sf::Vector2f posicao);
         const int getMaxChefoes();
         void criarMapa();
         void criarEntidade(char letra, const sf::Vector2f posicao);

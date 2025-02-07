@@ -12,16 +12,9 @@ namespace Gerenciadores{
             Grafico* pGerenciadorGrafico;
             Estado* pEstado;
             Fases::Fase* pFase;
-
-            //static GerenciadorEstado* pGerenciadorEstado;
             Entidades::Jogador* pJog1;
             Entidades::Jogador* pJog2;
-            static Evento* pGerenciadorEvento;
-
-        std::string nomePartida;
-        //sf::Font fonte;
-        //sf::Text textoEntrada;
-        
+            static Evento* pGerenciadorEvento;    
             Evento();
         public:
             ~Evento();
@@ -33,7 +26,6 @@ namespace Gerenciadores{
             void verificaTeclaPressionada(sf::Keyboard::Key tecla);
             void verificaTeclaSolta(sf::Keyboard::Key tecla);
             void executar(); 
-            //void mostrarRanking(sf::RenderWindow* janela); 
-            //void salvarNaFase();       
+                   
     };
 }

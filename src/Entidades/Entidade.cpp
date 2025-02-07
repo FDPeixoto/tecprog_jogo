@@ -99,12 +99,12 @@ namespace Entidades{
   bool Entidade::getAtivo(){
     return ativo;
   }
-  bool Entidade::getVivo(){
+  /*bool Entidade::getVivo(){
     return false;
   }
   void Entidade::setVivo(bool v){
     return;
-  }
+  }*/
   bool Entidade::getAtacando(){
     return false;
   }

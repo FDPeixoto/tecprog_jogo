@@ -6,7 +6,9 @@ namespace Entidades
     {
         Espinho::Espinho(const sf::Vector2f posicao) : Obstaculo(sf::Vector2(ALTURA_ESPINHO, LARGURA_ESPINHO), posicao, true, IDESPINHO)
         {
-            setCor(sf::Color(128, 128, 128));
+            textura.loadFromFile("Texturas/espinho.png");
+            setCor(sf::Color::White); 
+            Entidade::carregarTextura(&textura);
         }
         Espinho::~Espinho() {}
         bool Espinho::getMortal() { return mortal; }

@@ -6,7 +6,9 @@ namespace Entidades
     {
         Caixa::Caixa(const sf::Vector2f posicao) : lado(48.f), Obstaculo(sf::Vector2f(48.f, 48.f), posicao, true, IDCAIXA)
         {
-            setCor(sf::Color(150, 75, 0)); // Marrom
+            textura.loadFromFile("Texturas/caixa.png");
+            setCor(sf::Color::White); // cor anterior: (6, 64, 43)
+            Entidade::carregarTextura(&textura);
         }
         Caixa::~Caixa() {}
         float Caixa::getLado()

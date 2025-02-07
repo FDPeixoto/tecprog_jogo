@@ -31,10 +31,8 @@ namespace Fases
         Gerenciadores::Colisao *pGerenciadorColisao;
         Listas::ListaEntidades *listaPersonagens;
         Listas::ListaEntidades *listaObstaculos;
-        // std::list<Entidades::Entidade*> listP;
         Entidades::Jogador *pJogador1;
         Entidades::Jogador *pJogador2;
-        Entidades::Obstaculos::Plataforma *pFundo;
         int quantidadeJogadores;
         bool completou;
         int maxMinio;
@@ -50,10 +48,6 @@ namespace Fases
         Fase(const int idFase);
         ~Fase();
         virtual void criarMapa() = 0;
-        virtual void criarInimigos() = 0;
-        virtual void criarObstaculos() = 0;
-        // virtual void criarEntidade(char letra, const sf::Vector2f posicao) = 0;
-
         void setJogador1(Entidades::Jogador *pJogador);
         Entidades::Jogador *getJogador1();
         void setJogador2(Entidades::Jogador *pJogador);
@@ -67,13 +61,6 @@ namespace Fases
         void criarJogador(const sf::Vector2f posicao);
         void criarMinion(const sf::Vector2f posicao);
         void criarPlataforma(const sf::Vector2f posicao, bool Castelo);
-       // void criarPlataformaBase(const sf::Vector2f posicao);
-        //void criarPlataforma(const sf::Vector2f posicao, float largura, float altura);
-       // void criarPlataformaF(const sf::Vector2f posicao, float largura, float altura);
-        //void criarBordaH(const sf::Vector2f posicao, sf::Color cor);
-        //void criarBordaV(const sf::Vector2f posicao, sf::Color cor);
-        // Está ao contrário as funções BordaV cria Horizontal e BordaH, vertical
-        void criarEspinho(const sf::Vector2f posicao);
         void criarCaixa(const sf::Vector2f posicao);
         
         void desenhar();
@@ -83,7 +70,6 @@ namespace Fases
         void proximaFase();
         bool completouFase();
         void eliminarPersonagensMortos();
-        // void mostrarRanking(sf::RenderWindow* janela);
-        //  Set list P..........
+
     };
 }
