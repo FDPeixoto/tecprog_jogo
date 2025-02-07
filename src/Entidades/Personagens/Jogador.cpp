@@ -29,7 +29,7 @@ namespace Entidades
     void Jogador::atualizar(float dt)
     {
         // verificarColisao();
-        //  checarForaDaJanela();
+
         tempoDesdeUltimoAtaque += dt;
         if (tempoDesdeUltimoAtaque >= cooldownAtaque)
         {
@@ -60,6 +60,7 @@ namespace Entidades
         }
         noChao = false;
         corpo.move(velocidade.x * dt, velocidade.y * dt);
+        checarForaDaJanela();
         // setPos(sf::Vector2f(corpo.getPosition().x + velocidade.x * dt, corpo.getPosition().y + velocidade.y * dt));
     }
 
@@ -210,6 +211,15 @@ namespace Entidades
                     setPos(sf::Vector2f(pos1.x, pos2.y + tam2.y));
                     velocidade.y = 0; // Stop vertical movement
                 }
+            }
+        }
+        if (ID == ID_PROJETIL)
+        {
+            if (outraEntidade->getAtivo())
+            {
+                tomarDano(1);
+                outraEntidade->setPos(sf::Vector2f(10000.f, 10000.f));
+                outraEntidade->setAtivo(false);
             }
         }
     }

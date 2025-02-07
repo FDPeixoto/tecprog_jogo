@@ -52,7 +52,7 @@
 #define TAM_X_PROJETIL 32.0f
 #define TAM_Y_PROJETIL 16.0f
 #define VEL_X_P 150.0f
-#define TAM_MAX_P 25
+#define TAM_MAX_P 1
 
 // #define IDPORTAL 20
 #define IDCARREGARSAVESTATE 11

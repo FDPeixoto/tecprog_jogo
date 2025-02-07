@@ -92,7 +92,40 @@ namespace Entidades
             if (tempoDesdeUltimoAtaque >= cooldownAtaque)
             {
                 podeAtacar = true;
-                tempoDesdeUltimoAtaque -= cooldownAtaque;
+                tempoDesdeUltimoAtaque = 0.f;
+            }
+
+            sf::Vector2f posInimigo = corpo.getPosition();
+
+            // Check distance to players
+            bool jogadorProximo = false;
+
+            if (pJogador1 != nullptr)
+            {
+                sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
+                float distancia1 = fabs(posJogador1.x - posInimigo.x);
+
+                if (distancia1 <= 10.f) // Define RAIO_ATAQUE_X as needed
+                {
+                    jogadorProximo = true;
+                }
+            }
+
+            if (pJogador2 != nullptr)
+            {
+                sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
+                float distancia2 = fabs(posJogador2.x - posInimigo.x);
+
+                if (distancia2 <= 10.f)
+                {
+                    jogadorProximo = true;
+                }
+            }
+
+            // Attack if a player is nearby
+            if (jogadorProximo)
+            {
+                atacar();
             }
 
             // Apply gravity
@@ -134,7 +167,27 @@ namespace Entidades
                 }
             }
             perseguindo = false;
-            // Move the enemy
+
+            // Get current position and bounds
+            sf::Vector2f pos = corpo.getPosition();
+            sf::FloatRect bounds = corpo.getLocalBounds();
+
+            if (velocidade.x < 0.f)
+            {
+                // Move origin to the right side before flipping
+                corpo.setOrigin(bounds.width, 0);
+                corpo.setScale(-1.f, 1.f);
+            }
+            else
+            {
+                // Move origin back to the left side before flipping back
+                corpo.setOrigin(0, 0);
+                corpo.setScale(1.f, 1.f);
+            }
+
+            // Keep the position the same
+            corpo.setPosition(pos);
+
             corpo.move(velocidade.x * dt, velocidade.y * dt);
         }
 
@@ -183,29 +236,6 @@ namespace Entidades
             }
 
             // Only flip if changing direction
-            if (velocidade.x < 0.f)
-            {
-
-                // Get current position and bounds
-                sf::Vector2f pos = corpo.getPosition();
-                sf::FloatRect bounds = corpo.getLocalBounds();
-
-                if (velocidade.x < 0.f)
-                {
-                    // Move origin to the right side before flipping
-                    corpo.setOrigin(bounds.width, 0);
-                    corpo.setScale(-1.f, 1.f);
-                }
-                else
-                {
-                    // Move origin back to the left side before flipping back
-                    corpo.setOrigin(0, 0);
-                    corpo.setScale(1.f, 1.f);
-                }
-
-                // Keep the position the same
-                corpo.setPosition(pos);
-            }
         }
 
         void Inimigo::atacar()

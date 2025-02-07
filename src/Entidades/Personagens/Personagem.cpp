@@ -13,7 +13,7 @@ namespace Entidades
     textoVida.setFillColor(sf::Color::White); // Cor do texto
     textoVida.setPosition(100.f, 100.f);      // Posição do texto na janela
     textoVida.setString("Vida: " + std::to_string(num_vidas));
-    cooldownAtaque = 3.0f; // precisa de 3 segundos para aacar novamente;
+    cooldownAtaque = 1.0f; // precisa de 3 segundos para aacar novamente;
     tempoDesdeUltimoAtaque = 0.f;
     podeAtacar = true;
   }
@@ -80,19 +80,19 @@ namespace Entidades
 
   void Personagem::checarForaDaJanela()
   {
-    if (pos.x < 0.f)
+    if (corpo.getPosition().x < 0.f)
     {
       setPos(sf::Vector2f(0.f, pos.y));
     }
-    else if (pos.x + tam.x > LARGURA_JANELA)
+    else if (corpo.getPosition().x + tam.x > LARGURA_JANELA)
     {
       setPos(sf::Vector2f(LARGURA_JANELA - tam.x, pos.y));
     }
-    if (pos.y < 0.f)
+    if (corpo.getPosition().y < 0.f)
     {
       setPos(sf::Vector2f(pos.x, 0.f));
     }
-    else if (pos.y + tam.y > ALTURA_JANELA)
+    else if (corpo.getPosition().y + tam.y > ALTURA_JANELA)
     {
       setPos(sf::Vector2f(pos.x, ALTURA_JANELA - tam.y));
     }
