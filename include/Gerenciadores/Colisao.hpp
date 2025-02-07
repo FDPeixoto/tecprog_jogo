@@ -41,5 +41,7 @@ namespace Gerenciadores
         void adicionarInimigo(Entidades::Inimigos::Inimigo *inimigo);
         void adicionarObstaculo(Entidades::Obstaculos::Obstaculo *obstaculo);
         void notificar(Entidades::Entidade *sender, const std::string &evento);
+        void removerEntidade(Entidades::Entidade *entidade);
+        void limparListas();
     };
 }

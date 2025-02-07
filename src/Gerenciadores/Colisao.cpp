@@ -59,8 +59,8 @@ namespace Gerenciadores
 
     float calculaDistancia(Entidades::Entidade *entidade1, Entidades::Entidade *entidade2)
     {
-        sf::Vector2f pos1 = entidade1->getPos();
-        sf::Vector2f pos2 = entidade2->getPos();
+        sf::Vector2f pos1 = entidade1->getCorpo().getPosition();
+        sf::Vector2f pos2 = entidade2->getCorpo().getPosition();
 
         sf::Vector2f tam1 = entidade1->getTam();
         sf::Vector2f tam2 = entidade2->getTam();
@@ -136,20 +136,20 @@ namespace Gerenciadores
             {
                 if (*itInimigo != nullptr)
                 {
-                    if (calculaDistancia(sender, *itInimigo) < 10.f)
+                    if (calculaDistancia(sender, *itInimigo) < 100.f)
                     {
                         (*itInimigo)->tomarDano(2);
                     }
                 }
             }
         }
-        else if (evento == "ataqueInimigo")
+        else if (evento == "ataqueDoInimigo")
         {
             for (std::list<Entidades::Jogador *>::iterator itJogador = listJogadores.begin(); itJogador != listJogadores.end(); itJogador++)
             {
                 if (*itJogador != nullptr)
                 {
-                    if (calculaDistancia(sender, *itJogador) < 10.f)
+                    if (calculaDistancia(sender, *itJogador) < 100.f)
                     {
                         switch (sender->getID())
                         {
@@ -167,5 +167,28 @@ namespace Gerenciadores
                 }
             }
         }
+    }
+    void Colisao::removerEntidade(Entidades::Entidade *entidade)
+    {
+        todasEntidades->removerEntidade(entidade);
+        if (entidade->getID() == IDJOGADOR)
+        {
+            listJogadores.remove(static_cast<Entidades::Jogador *>(entidade));
+        }
+        else if (entidade->getID() == IDMINION || entidade->getID() == IDESQUELETO || entidade->getID() == IDDURAHAN)
+        {
+            listInimigos.remove(static_cast<Entidades::Inimigos::Inimigo *>(entidade));
+        }
+        else if (entidade->getID() == IDESPINHO || entidade->getID() == IDPLATAFORMA || entidade->getID() == IDCAIXA)
+        {
+            listObstaculos.remove(static_cast<Entidades::Obstaculos::Obstaculo *>(entidade));
+        }
+    }
+    void Colisao::limparListas()
+    {
+        listInimigos.clear();
+        listJogadores.clear();
+        listObstaculos.clear();
+        todasEntidades->limparLista();
     }
 }

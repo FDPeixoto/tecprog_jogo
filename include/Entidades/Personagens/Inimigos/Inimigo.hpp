@@ -3,6 +3,13 @@
 #include "Personagem.hpp"
 #include "stdafx.h"
 
+enum class MovementState
+{
+    IDLE,
+    WALKING_LEFT,
+    WALKING_RIGHT
+};
+
 namespace Entidades
 {
     namespace Inimigos
@@ -16,6 +23,12 @@ namespace Entidades
             Entidades::Jogador *pJogador2;
             sf::Clock relogio;
             int iteracoes;
+            float tempoMudancaDirecao;
+            float intervaloMudancaDirecao;
+            MovementState currentState;
+            float stateTimer;
+            float stateDuration;
+            bool perseguindo; // Add this to the class definition
 
         public:
             Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
@@ -29,6 +42,7 @@ namespace Entidades
             // virtual void executar()=0;
             // virtual void danificar(Jogador* p);
             void perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo);
+            void changeState();
             void set_nivel_maldade(int n);
             const int get_nivel_maldade();
             // virtual void executar()=0;
@@ -36,6 +50,7 @@ namespace Entidades
             virtual void atualizar(float dt);
             void inicializar();
             void mover();
+            void atacar();
             // void andar():
             virtual void moverAleatorio();
             void colisao(Entidade *outraEntidade);

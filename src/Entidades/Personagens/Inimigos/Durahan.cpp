@@ -7,15 +7,18 @@ namespace Entidades
         Durahan::Durahan(const sf::Vector2f posicao) : Inimigo(sf::Vector2f(DURAHANLARGURA, DURAHANALTURA), posicao, IDDURAHAN), listaProjetil(), jaAtirou(false)
         {
             velocidade = sf::Vector2f(VELOCIDADEX_DU, VELOCIDADEY_DU);
+            setVivo(true);
             antidoto_mortal = false;
             tiros = 0;
             it = 0;
             srand((unsigned int)time(NULL));
             aleatorio = (rand() % (FAIXA_ALEATORIO * 5));
-            //setCor(sf::Color::Red);
+            // setCor(sf::Color::Red);
             criarProjetil();
-            if (!textura.loadFromFile("Texturas/Durahan2.png")) {}
-            setCor(sf::Color::White); //cor anterior: (6, 64, 43)
+            if (!textura.loadFromFile("Texturas/Durahan2.png"))
+            {
+            }
+            setCor(sf::Color::White); // cor anterior: (6, 64, 43)
             Entidade::carregarTextura(&textura);
         }
         Durahan::~Durahan()
@@ -147,7 +150,7 @@ namespace Entidades
             }
             else
             {
-                //setCor(sf::Color::Red);
+                // setCor(sf::Color::Red);
             }
 
             /*criarProjetil();
@@ -171,7 +174,7 @@ namespace Entidades
                 aleatorio = (rand() % (FAIXA_ALEATORIO * 5));
                 it = 0;
                 jaAtirou = false;
-                //setCor(sf::Color::Magenta);
+                // setCor(sf::Color::Magenta);
             }
         }
         void Durahan::danificar(Entidades::Jogador *pJogador) {}

@@ -13,6 +13,9 @@ namespace Entidades
     textoVida.setFillColor(sf::Color::White); // Cor do texto
     textoVida.setPosition(100.f, 100.f);      // Posição do texto na janela
     textoVida.setString("Vida: " + std::to_string(num_vidas));
+    cooldownAtaque = 3.0f; // precisa de 3 segundos para aacar novamente;
+    tempoDesdeUltimoAtaque = 0.f;
+    podeAtacar = true;
   }
 
   Personagem::~Personagem() {}
@@ -70,6 +73,7 @@ namespace Entidades
     if (getNumVidas() <= 0)
     {
       setVivo(false);
+      setPos(sf::Vector2f(0.f, 10000.f));
     }
   }
 

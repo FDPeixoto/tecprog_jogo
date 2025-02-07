@@ -26,7 +26,7 @@
 
 #define ID_PROJETIL 4
 
-#define RAIO_PERSEGUIR_X 600.0f
+#define RAIO_PERSEGUIR_X 100.f
 // #define RAIO_PERSEGUIR_Y 200.0f
 #define FAIXA_ALEATORIO 2
 
@@ -46,7 +46,7 @@
 
 #define DURAHANALTURA 96.0f
 #define DURAHANLARGURA 64.0f
-#define VELOCIDADEX_DU 150.0f
+#define VELOCIDADEX_DU 50.0f
 #define VELOCIDADEY_DU 0.0f
 
 #define TAM_X_PROJETIL 32.0f

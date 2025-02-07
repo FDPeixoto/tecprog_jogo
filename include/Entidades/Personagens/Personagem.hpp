@@ -16,6 +16,9 @@ namespace Entidades
     sf::Text textoVida;
     bool vivo;
     int dano;
+    float cooldownAtaque;
+    float tempoDesdeUltimoAtaque;
+    bool podeAtacar;
 
   public:
     Personagem(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
@@ -34,6 +37,7 @@ namespace Entidades
     void setVivo(bool v);
     void atacar(int dano, Personagem *personagem);
     void tomarDano(int dano);
+    virtual void atacar() = 0;
 
     void checarForaDaJanela();
   };

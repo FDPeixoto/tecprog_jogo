@@ -18,7 +18,6 @@
 #include <vector>
 #include <string>
 
-
 namespace Gerenciadores
 {
     class Evento;
@@ -63,7 +62,7 @@ namespace Fases
         void setJogador2(Entidades::Jogador *pJogador);
         Entidades::Jogador *getJogador2();
         bool getCompletou();
-        void salvarRanking(const std::string& arquivo, int pJ1, int pJ2 );
+        void salvarRanking(const std::string &arquivo, int pJ1, int pJ2);
         int getPontosJogador1() const;
         int getPontosJogador2() const;
         void setNomePartida(const std::string nome);
@@ -87,7 +86,8 @@ namespace Fases
 
         void proximaFase();
         bool completouFase();
-        //void mostrarRanking(sf::RenderWindow* janela);
-        // Set list P..........
+        void eliminarPersonagensMortos();
+        // void mostrarRanking(sf::RenderWindow* janela);
+        //  Set list P..........
     };
 }

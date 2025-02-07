@@ -1,89 +1,103 @@
-//O código do Giovani foi tulizado como inspiração: https://github.com/Giovanenero/JogoPlataforma2D-Jungle/blob/main/Jungle%2B%2B/include/Lista/Lista.hpp
-//O codigo do professor Jean Simao tambem foi utilizado como inspiracao
+// O código do Giovani foi tulizado como inspiração: https://github.com/Giovanenero/JogoPlataforma2D-Jungle/blob/main/Jungle%2B%2B/include/Lista/Lista.hpp
+// O codigo do professor Jean Simao tambem foi utilizado como inspiracao
 #pragma once
 #include <iostream>
 
-namespace Listas{
+namespace Listas
+{
 
-  template<class TL>
-  class Lista{
+  template <class TL>
+  class Lista
+  {
+  public:
+    // Classe elemento eh aninhada
+    template <class TE>
+    class Elemento
+    {
+    private:
+      TE *pInfo;
+      Elemento<TE> *pProx;
+      Elemento<TE> *pAnte;
+
     public:
-      //Classe elemento eh aninhada 
-      template<class TE>
-      class Elemento{
-        private:
-          TE* pInfo;
-          Elemento<TE>* pProx;
-          Elemento<TE>* pAnte;
-        public:
-          Elemento(): pInfo(nullptr), pProx(nullptr), pAnte(nullptr){}
+      Elemento() : pInfo(nullptr), pProx(nullptr), pAnte(nullptr) {}
 
-          Elemento(TE* info): pInfo(info), pProx(nullptr), pAnte(nullptr) {}
-          
-          ~Elemento(){
-            pInfo = nullptr;
-            pProx = nullptr;
-            pAnte = nullptr;
-          }
+      Elemento(TE *info) : pInfo(info), pProx(nullptr), pAnte(nullptr) {}
 
-          void setInfo(TE* p){pInfo = p;}
-          
-          TE* getInfo(){return pInfo;}
+      ~Elemento()
+      {
+        pInfo = nullptr;
+        pProx = nullptr;
+        pAnte = nullptr;
+      }
 
-          void setProx(Elemento<TE>* pP){pProx = pP;}
-          
-          Elemento<TE>* getProx(){return pProx;}
+      void setInfo(TE *p) { pInfo = p; }
 
-          void setAnte(Elemento<TE>* pA){pAnte = pA;}   
+      TE *getInfo() { return pInfo; }
 
-          Elemento<TE>* getAnte(){return pAnte;}
-      };
-      class Iterator{
-        private: 
-          Elemento<TL>* pAtual;
+      void setProx(Elemento<TE> *pP) { pProx = pP; }
 
-        public:
-          Iterator(Elemento<TL>* elemento) : pAtual(elemento) {}
-          
-          TL* operator*(){
-            return pAtual->getInfo();
-          }
+      Elemento<TE> *getProx() { return pProx; }
 
-          Iterator& operator++() {
-            pAtual = pAtual->getProx();
-            return *this;
-          }
+      void setAnte(Elemento<TE> *pA) { pAnte = pA; }
 
-          Iterator operator++(int) {
-            Iterator aux = *this;
-            ++(*this);
-            return aux;
-          }
+      Elemento<TE> *getAnte() { return pAnte; }
+    };
+    class Iterator
+    {
+    private:
+      Elemento<TL> *pAtual;
 
-          bool operator==(const Iterator& pOutro) const {
-            return pAtual == pOutro.pAtual;
-          }
-          bool operator!=(const Iterator& pOutro) const {
-            return !(*this == pOutro);
-          }
-          friend class Lista;
-      };
+    public:
+      Iterator(Elemento<TL> *elemento) : pAtual(elemento) {}
+
+      TL *operator*()
+      {
+        return pAtual->getInfo();
+      }
+
+      Iterator &operator++()
+      {
+        pAtual = pAtual->getProx();
+        return *this;
+      }
+
+      Iterator operator++(int)
+      {
+        Iterator aux = *this;
+        ++(*this);
+        return aux;
+      }
+
+      bool operator==(const Iterator &pOutro) const
+      {
+        return pAtual == pOutro.pAtual;
+      }
+      bool operator!=(const Iterator &pOutro) const
+      {
+        return !(*this == pOutro);
+      }
+      friend class Lista;
+    };
+
   private:
-    Elemento<TL>* pPrimeiro;
-    Elemento<TL>* pUltimo;
+    Elemento<TL> *pPrimeiro;
+    Elemento<TL> *pUltimo;
     int tam;
 
   public:
-    Lista(): pPrimeiro(nullptr), pUltimo(nullptr){tam = 0;}
-    
-    ~Lista(){
+    Lista() : pPrimeiro(nullptr), pUltimo(nullptr) { tam = 0; }
+
+    ~Lista()
+    {
       limpar();
     }
 
-    void incluirElemento(TL* pElemento){
+    void incluirElemento(TL *pElemento)
+    {
       if (pElemento != nullptr)
       {
-        Elemento<TL>* pAux = new Elemento<TL>();
+        Elemento<TL> *pAux = new Elemento<TL>();
         pAux->setInfo(pElemento);
         pAux->setProx(nullptr);
         if (pPrimeiro == nullptr)
@@ -102,28 +116,61 @@ namespace Listas{
       }
     }
 
-    void removerElemento(TL* pElemento){
-      Elemento<TL>* aux = pPrimeiro;
-      while(aux != nullptr && aux->getInfo() != pElemento){
-        aux = aux->getProx();
-      } 
-      if(aux != nullptr){
-        if(aux == pPrimeiro){
-          pPrimeiro = pPrimeiro->getProx();
-        }
-        else if(aux == pUltimo){
-          pUltimo = pUltimo->getAnte();
-        }
-        else{
-          aux->getAnte()->setProx(aux->getProx());
-          aux->getProx()->setAnte(aux->getAnte());
-        }
-        delete aux;
-        tam--;
+    void removerElemento(TL *pElemento)
+    {
+      if (pElemento == nullptr || pPrimeiro == nullptr)
+      {
+        return; // Early return if the element is null or the list is empty
       }
+
+      Elemento<TL> *aux = pPrimeiro;
+      while (aux != nullptr && aux->getInfo() != pElemento)
+      {
+        aux = aux->getProx();
+      }
+
+      if (aux == nullptr)
+      {
+        return; // Element not found
+      }
+
+      if (aux == pPrimeiro)
+      {
+        pPrimeiro = pPrimeiro->getProx();
+        if (pPrimeiro != nullptr)
+        {
+          pPrimeiro->setAnte(nullptr);
+        }
+        else
+        {
+          pUltimo = nullptr; // List is now empty
+        }
+      }
+      else if (aux == pUltimo)
+      {
+        pUltimo = pUltimo->getAnte();
+        if (pUltimo != nullptr)
+        {
+          pUltimo->setProx(nullptr);
+        }
+        else
+        {
+          pPrimeiro = nullptr; // List is now empty
+        }
+      }
+      else
+      {
+        aux->getAnte()->setProx(aux->getProx());
+        aux->getProx()->setAnte(aux->getAnte());
+      }
+
+      delete aux;
+      tam--;
     }
-    void limpar(){
-      Elemento<TL>* aux = pPrimeiro;
+
+    void limpar()
+    {
+      Elemento<TL> *aux = pPrimeiro;
       while (aux != nullptr)
       {
         pPrimeiro = aux->getProx();
@@ -133,10 +180,8 @@ namespace Listas{
       tam = 0;
     }
 
-
-
-    Iterator inicio(){return Iterator(pPrimeiro);}
-    Iterator fim(){return Iterator(nullptr);}
-    const int getTam(){return tam;}
+    Iterator inicio() { return Iterator(pPrimeiro); }
+    Iterator fim() { return Iterator(nullptr); }
+    const int getTam() { return tam; }
   };
 }
