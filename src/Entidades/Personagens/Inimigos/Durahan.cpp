@@ -1,24 +1,27 @@
 #include "Durahan.hpp"
+#include "Colisao.hpp"
 
 namespace Entidades
 {
     namespace Inimigos
     {
-        Durahan::Durahan(const sf::Vector2f posicao) : Inimigo(sf::Vector2f(DURAHANLARGURA, DURAHANALTURA), posicao, IDDURAHAN), listaProjetil(), jaAtirou(false)
+        Durahan::Durahan(const sf::Vector2f posicao)
+            : Inimigo(sf::Vector2f(DURAHANLARGURA, DURAHANALTURA), posicao, IDDURAHAN),
+              listaProjetil(),
+              jaAtirou(false)
         {
             velocidade = sf::Vector2f(VELOCIDADEX_DU, VELOCIDADEY_DU);
             setVivo(true);
             antidoto_mortal = false;
-            tiros = 0;
-            it = 0;
-            srand((unsigned int)time(NULL));
-            aleatorio = (rand() % (FAIXA_ALEATORIO * 5));
-            // setCor(sf::Color::Red);
+            // Remove tiros initialization
+            srand(static_cast<unsigned int>(time(nullptr)));
+            aleatorio = rand() % (FAIXA_ALEATORIO * 5);
             criarProjetil();
             if (!textura.loadFromFile("Texturas/Durahan2.png"))
             {
+                // Handle error
             }
-            setCor(sf::Color::White); // cor anterior: (6, 64, 43)
+            setCor(sf::Color::White);
             Entidade::carregarTextura(&textura);
         }
         Durahan::~Durahan()
@@ -35,6 +38,7 @@ namespace Entidades
                 if (proj != nullptr)
                 {
                     proj->setCor(sf::Color::White);
+                    proj->setMediator(Gerenciadores::Colisao::getGerenciadorColisao());
                     listaProjetil.push_back(proj);
                 }
             }
@@ -60,102 +64,52 @@ namespace Entidades
         }
         void Durahan::atirar()
         {
-
-            if (tiros < TAM_MAX_P)
+            if (podeAtacar)
             {
                 bool dir = false;
                 sf::Vector2f posInimigo = corpo.getPosition();
+
+                // Determine target direction (existing code)
                 if ((pJogador1 != nullptr) && (pJogador2 != nullptr))
                 {
                     sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
                     sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
 
                     float distx1 = fabs(posJogador1.x - posInimigo.x);
-                    // float disty1=fabs(posJogador1.y-posInimigo.y);
-
                     float distx2 = fabs(posJogador2.x - posInimigo.x);
-                    // float disty2=fabs(posJogador2.y-posInimigo.y);
 
                     if (distx1 <= distx2)
-                    { // atira para o jogador 1
-                        if ((posJogador1.x - posInimigo.x) >= 0)
-                        { // Eh para a direita
-                            dir = true;
-                        }
-                        else
-                        { // tá para a esquerda
-                            dir = false;
-                        }
+                    {
+                        dir = (posJogador1.x - posInimigo.x) >= 0;
                     }
                     else
-                    { // atira no jogador 2
-                        if ((posJogador2.x - posInimigo.x) >= 0)
-                        { // Eh para a direita
-                            dir = true;
-                        }
-                        else
-                        { // tá para a esquerda
-                            dir = false;
-                        }
+                    {
+                        dir = (posJogador2.x - posInimigo.x) >= 0;
                     }
                 }
                 else if (pJogador1 != nullptr)
                 {
                     sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
-                    if ((posJogador1.x - posInimigo.x) >= 0)
-                    { // Eh para a direita
-                        dir = true;
-                    }
-                    else
-                    { // tá para a esquerda
-                        dir = false;
-                    }
+                    dir = (posJogador1.x - posInimigo.x) >= 0;
                 }
                 else if (pJogador2 != nullptr)
                 {
                     sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
-                    if ((posJogador2.x - posInimigo.x) >= 0)
-                    { // Eh para a direita
-                        dir = true;
-                    }
-                    else
-                    { // tá para a esquerda
-                        dir = false;
-                    }
+                    dir = (posJogador2.x - posInimigo.x) >= 0;
                 }
 
-                int contador = 0;
-                for (auto it = listaProjetil.begin(); it != listaProjetil.end(); ++it)
+                // Find and fire the first inactive projectile
+                for (auto &proj : listaProjetil)
                 {
-                    if (contador == tiros)
+                    if (proj != nullptr && !proj->getAtivo())
                     {
-                        Entidades::Entidade *proj = *it;
-                        if (proj != nullptr)
-                        {
-                            proj->setAtivo(true);
-                            proj->atirar(posInimigo, dir);
-                            proj->executar();
-                        }
-                        break; // Não precisa continuar após encontrar
+                        proj->setAtivo(true);
+                        proj->atirar(posInimigo, dir);
+                        proj->executar();
+                        break; // Fire only one projectile per attack
                     }
-                    ++contador;
                 }
-                tiros++;
-                /*if(listaProjetil[tiros]!=nullptr){
-                    //Entidades::Projetil proj= new Entidades::Projetil(getPos(this));
-                    Entidades::Projetil* proj=listaProjetil[tiros];
-                    proj->setAtivo(true);
-                    proj->executar();
-                }*/
             }
-            else
-            {
-                // setCor(sf::Color::Red);
-            }
-
-            /*criarProjetil();
-            proj->setAtivo(true);
-            proj->atirar(this->getPos);*/
         }
         void Durahan::salvar() {}
         void Durahan::salvarDataBuffer() {}

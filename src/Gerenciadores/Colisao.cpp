@@ -106,11 +106,19 @@ namespace Gerenciadores
         {
             inimigo->verificarColisao();
         }
+
+        for (Listas::Lista<Entidades::Entidade>::Iterator entidade = todasEntidades->getListaEnt().inicio(); entidade != todasEntidades->getListaEnt().fim(); entidade++)
+        {
+            if ((*entidade)->getID() == ID_PROJETIL)
+            {
+                (*entidade)->verificarColisao();
+            }
+        }
     }
 
     void Colisao::registrarEntidade(Entidades::Entidade *entidade)
     {
-        return;
+        todasEntidades->incluirEntidade(entidade);
     }
 
     void Colisao::notificar(Entidades::Entidade *sender, const std::string &evento)

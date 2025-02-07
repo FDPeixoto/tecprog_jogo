@@ -1,4 +1,5 @@
 #include "Projetil.hpp"
+#include "Jogador.hpp"
 
 namespace Entidades
 {
@@ -17,14 +18,18 @@ namespace Entidades
         if (direita == true)
         {
             setVelocidade(sf::Vector2f(VEL_X_P, 0.f));
-            setCor(sf::Color::White); 
-            if (!textura.loadFromFile("Texturas/proj-Dir.png")) {}
+            setCor(sf::Color::White);
+            if (!textura.loadFromFile("Texturas/proj-Dir.png"))
+            {
+            }
             Entidade::carregarTextura(&textura);
         }
         else
         {
-            setCor(sf::Color::White); 
-            if (!textura.loadFromFile("Texturas/proj-Esq.png")) {}
+            setCor(sf::Color::White);
+            if (!textura.loadFromFile("Texturas/proj-Esq.png"))
+            {
+            }
             Entidade::carregarTextura(&textura);
             setVelocidade(sf::Vector2f(-VEL_X_P, 0.f));
         }
@@ -45,6 +50,21 @@ namespace Entidades
         return;
     }
     void Projetil::atualizarPosicao(float dt) {}
-    void Projetil::colisao(Entidade *outraEntidade) {}
+    void Projetil::colisao(Entidade *outraEntidade)
+    {
+        int ID = outraEntidade->getID();
+        if (ID == IDJOGADOR)
+        {
+            if (getAtivo())
+            {
+                static_cast<Entidades::Jogador *>(outraEntidade)->tomarDano(1);
+                setAtivo(false);
+            }
+        }
+        else if (ID == IDPLATAFORMA || ID == IDCAIXA || ID == IDESPINHO)
+        {
+            setAtivo(false);
+        }
+    }
     void Projetil::salvar() {}
 }
