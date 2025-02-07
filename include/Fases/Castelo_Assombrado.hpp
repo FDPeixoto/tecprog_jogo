@@ -1,5 +1,6 @@
 #pragma once
 #include "Fase.hpp"
+#include "Plataforma.hpp"
 #include "stdafx.h"
 #include <vector>
 
@@ -17,6 +18,7 @@ namespace Fases{
         int cont_D;
         int it_D;
         int aleatoriedadeP;
+        Entidades::Obstaculos::Plataforma fundo;
 
         public:
         Castelo_Assombrado();

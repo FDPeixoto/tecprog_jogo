@@ -6,7 +6,7 @@
 
 namespace Fases
 {
-    Castelo_Assombrado::Castelo_Assombrado() : Fase(IDCASTELOASSOMBRADO), maxChefoes(5), vetorDurahan(), it_D(0), maxEsp(3), it_Esp(0),maxM(3), it_M(0),maxP(3), it_P(0)
+    Castelo_Assombrado::Castelo_Assombrado() : Fase(IDCASTELOASSOMBRADO),fundo(ALTURA_JANELA,LARGURA_JANELA, sf::Vector2f(0.0f, 0.0f), true ), maxChefoes(5), vetorDurahan(), it_D(0), maxEsp(3), it_Esp(0),maxM(3), it_M(0),maxP(3), it_P(0)
     {
         //Fase::proximaFase();
         srand((unsigned int)time(NULL));
@@ -19,6 +19,7 @@ namespace Fases
         maxP = (rand() % (10)) + 10;
         srand((unsigned int)time(NULL));
         aleatoriedadeP=(rand() % (3))+1;
+         
         criarMapa();
         //, cont_D(2)
 
@@ -87,7 +88,7 @@ namespace Fases
         //criarPlataformaF(sf::Vector2f(0.0f,0.0f), ALTURA_JANELA, LARGURA_JANELA);
         // criarPlataformaBase(sf::Vector2f(0.0f,660));
         // Está ao contrário as funções BordaV cria Horizontal e BordaH, vertical
-
+              
         std::ifstream arquivo;
         std::string linha;
         arquivo.open("src/Fases/TesteSegundaFase.txt");
@@ -109,8 +110,7 @@ namespace Fases
             j++;
         }
         arquivo.close();
-
-        
+        //pGerenciadorGrafico->desenharEntidade(&fundo);        
         // criarBordaH(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
         // criarBordaH(sf::Vector2f(1277.0f, 0.0f), sf::Color::Yellow);
         // criarBordaV(sf::Vector2f(0.0f, 0.0f), sf::Color::Yellow);
@@ -137,6 +137,7 @@ namespace Fases
 
     void Castelo_Assombrado::executar()
     {
+        pGerenciadorGrafico->desenharEntidade(&fundo);
         Fase::executar();
 
         /*if(pD!= nullptr){
@@ -152,6 +153,7 @@ namespace Fases
         if(completou==true){
             //mostrarRanking(pGerenciadorGrafico->getJanela());
         }
+        //pGerenciadorGrafico->desenharEntidade(&fundo);
     }
     void Castelo_Assombrado::criarEntidade(char letra, const sf::Vector2f posicao)
     {
@@ -179,11 +181,6 @@ namespace Fases
             }
         }
         break;
-        case ('c'):
-        {
-            criarCanhao(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
-        }
-        break;
         case ('s'):
         {
             criarEspinho(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
@@ -192,13 +189,13 @@ namespace Fases
         case ('&'):
         {
             if((it_P<maxP)&&(((it_P+1)%aleatoriedadeP)!=0))
-            criarPlataforma(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
+            criarPlataforma(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f), true);
             it_P++;
         }
         break;
         case ('#'):
         {
-            criarPlataforma(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
+            criarPlataforma(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f), true);
         }
         break;
         }

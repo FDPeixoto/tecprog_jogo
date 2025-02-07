@@ -299,9 +299,9 @@ namespace Fases
         }
     }
 
-    void Fase::criarPlataforma(const sf::Vector2f posicao)
+    void Fase::criarPlataforma(const sf::Vector2f posicao, bool Castelo)
     {
-        Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(posicao); // a plaforma era 100.0f e 100.0f
+        Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(posicao, Castelo); // a plaforma era 100.0f e 100.0f
         if (plataforma != nullptr)
         {
             // plataforma->setCor(sf::Color::White);
@@ -310,7 +310,7 @@ namespace Fases
             pGerenciadorColisao->adicionarObstaculo(plataforma);
         }
     }
-    void Fase::criarPlataformaBase(const sf::Vector2f posicao)
+    /*void Fase::criarPlataformaBase(const sf::Vector2f posicao)
     {
         Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(60.0f, LARGURA, posicao);
         if (plataforma != nullptr)
@@ -347,9 +347,9 @@ namespace Fases
             pGerenciadorGrafico->desenharEntidade(plataforma);
             // pGerenciadorGrafico->display();
         }
-    }
+    }*/
 
-    void Fase::criarBordaH(const sf::Vector2f posicao, sf::Color cor)
+    /*void Fase::criarBordaH(const sf::Vector2f posicao, sf::Color cor)
     {
         Entidades::Obstaculos::Plataforma *borda = new Entidades::Obstaculos::Plataforma(ALTURA, TAM_BORDA, posicao);
         if (borda != nullptr)
@@ -366,8 +366,7 @@ namespace Fases
             // borda->setCor(cor);
             listaObstaculos->incluirEntidade(borda);
         }
-    }
-
+    }*/
     void Fase::criarEspinho(const sf::Vector2f posicao)
     {
         Entidades::Obstaculos::Espinho *plataforma = new Entidades::Obstaculos::Espinho(posicao);
@@ -388,16 +387,7 @@ namespace Fases
             pGerenciadorColisao->adicionarObstaculo(caixa);
         }
     }
-    void Fase::criarCanhao(const sf::Vector2f posicao)
-    {
-        Entidades::Obstaculos::Canhao *canhao = new Entidades::Obstaculos::Canhao(posicao);
-        if ((canhao) != nullptr)
-        {
-            listaObstaculos->incluirEntidade(canhao);
-            pGerenciadorColisao->adicionarObstaculo(canhao);
-            canhao->setMediator(pGerenciadorColisao);
-        }
-    }
+   
     /*void Fase::criarPortal(const sf::Vector2f posicao)
     {
         Entidades::Obstaculos::Canhao* portal = new Entidades::Obstaculos::Canhao(LARGURA_CANHAO, ALTURA_CANHAO, posicao);

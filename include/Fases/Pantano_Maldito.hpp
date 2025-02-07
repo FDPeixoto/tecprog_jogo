@@ -12,6 +12,7 @@ namespace Fases{
         std::vector<Entidades::Inimigos::Durahan*> vetorDurahan;
         int cont_D;
         int it_D;
+        Entidades::Obstaculos::Plataforma fundo;
         
 
         public:

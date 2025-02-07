@@ -5,21 +5,27 @@ namespace Entidades
 {
     namespace Obstaculos
     {
-        Plataforma::Plataforma(float alt, float larg, sf::Vector2f posicao) : Obstaculo(sf::Vector2f(larg, alt), posicao, false, IDPLATAFORMA), largura(larg)
+        Plataforma::Plataforma(float alt, float larg, sf::Vector2f posicao, bool Castelo) : Obstaculo(sf::Vector2f(larg, alt), posicao, false, IDPLATAFORMA), largura(larg)
         {
             // setCor(sf::Color(6, 64, 43)); // Verde Escuro
             // if (!textura.loadFromFile("Texturas/plataforma-64x64.png")) {}
             // Entidade::carregarTextura(&textura);
-            if (!textura.loadFromFile("Texturas/testeFundo1.png"))
-            {
+            if(Castelo){
+            textura.loadFromFile("Texturas/testeFundo1.png");
+            }
+            else{
+                textura.loadFromFile("Texturas/PantanoMaldito.png");
             }
             setCor(sf::Color::White); // cor anterior: (6, 64, 43)
             Entidade::carregarTextura(&textura);
         }
-        Plataforma::Plataforma(sf::Vector2f posicao) : Obstaculo(sf::Vector2f(64.f, 64.f), posicao, false, IDPLATAFORMA)
+        Plataforma::Plataforma(sf::Vector2f posicao, bool Castelo) : Obstaculo(sf::Vector2f(64.f, 64.f), posicao, false, IDPLATAFORMA)
         {
-            if (!textura.loadFromFile("Texturas/plataforma-64x64.png"))
-            {
+            if(Castelo){
+                textura.loadFromFile("Texturas/plataforma-64x64.png");
+            }
+            else{
+                textura.loadFromFile("Texturas/PlataformaPantano.png");
             }
             setCor(sf::Color::White); // cor anterior: (6, 64, 43)
             Entidade::carregarTextura(&textura);

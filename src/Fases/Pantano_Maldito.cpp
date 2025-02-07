@@ -7,7 +7,7 @@
 namespace Fases
 {
 
-    Pantano_Maldito::Pantano_Maldito() : Fase(IDPANTANOMALDITO), maxInimMedios(5), vetorDurahan(), it_D(0), cont_D(2)
+    Pantano_Maldito::Pantano_Maldito() : Fase(IDPANTANOMALDITO),fundo(ALTURA_JANELA,LARGURA_JANELA, sf::Vector2f(0.0f, 0.0f),false ), maxInimMedios(5), vetorDurahan(), it_D(0), cont_D(2)
     {
         Fase::proximaFase();
         /*srand((unsigned int)time(NULL));
@@ -116,6 +116,7 @@ namespace Fases
     }
     void Pantano_Maldito::executar()
     {
+        pGerenciadorGrafico->desenharEntidade(&fundo);
         Fase::executar();
         verificarCompletou();
 
@@ -163,7 +164,7 @@ namespace Fases
         break;
         case ('#'):
         {
-            criarPlataforma(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
+            criarPlataforma(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f), false);
         }
         break;
         }

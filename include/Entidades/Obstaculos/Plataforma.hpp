@@ -15,8 +15,8 @@ namespace Entidades
             float altura;
 
         public:
-            Plataforma(float alt, float larg, sf::Vector2f posicao);
-            Plataforma(sf::Vector2f posicao);
+            Plataforma(float alt, float larg, sf::Vector2f posicao,bool Castelo);
+            Plataforma(sf::Vector2f posicao, bool Castelo);
             ~Plataforma();
             void executar();
             void obstacular(Entidades::Jogador *pJogador);
