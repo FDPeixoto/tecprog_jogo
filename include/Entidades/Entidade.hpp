@@ -20,7 +20,6 @@ namespace Entidades
       Gerenciadores::Mediator* pMediator;
       bool ativo;
       sf::Texture textura;
-      sf::Sprite sprite;
 
   public:
     Entidade(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
@@ -32,8 +31,9 @@ namespace Entidades
     sf::Color getCor();
     const sf::RectangleShape getCorpo();
     void setPos(sf::Vector2f posicao);
-    void verificarColisao();
+    sf::Vector2f getPos();
     const sf::Vector2f getTam();
+    void verificarColisao();
     void moverCorpo(sf::Vector2f posicao);
     virtual void colisao(Entidade *outraEntidade) = 0;
     virtual void renderizar();
@@ -44,19 +44,14 @@ namespace Entidades
     void setAtivo(bool flg);
     bool getAtivo();
     virtual void atirar(const sf::Vector2f posInimigo, bool direita);
-    sf::Vector2f getPos();
     void mover(sf::Vector2f posicao);
     //virtual bool getVivo();
     //virtual void setVivo(bool v);
-
+    virtual void setAtacando(bool v);
       virtual bool getAtacando();
-      virtual void setAtacando(bool v);
       void mudarLargura(int l);
-
       virtual void carregarTextura(sf::Texture* text);//Era para ver puro
-      sf::Sprite& getSprite();
 
-      void atualizarSprite();
   };
 
 }

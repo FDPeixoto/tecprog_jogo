@@ -7,9 +7,15 @@
 namespace Fases{
     class Pantano_Maldito: public Fase{
         private:
-        const int maxInimMedios;
-        int cont_D;
-        int it_D;
+        int  maxCaixas;
+        int it_Caixas;
+        int maxM;
+        int it_M;
+        int maxP;
+        int it_P;
+        int maxEsqueletos;
+        int it_Esqueletos;
+        int aleatoriedadeP;
         Entidades::Obstaculos::Plataforma fundo;
         
 

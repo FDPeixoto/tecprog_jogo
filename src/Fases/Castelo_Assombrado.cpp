@@ -110,6 +110,8 @@ namespace Fases
     }
     void Castelo_Assombrado::criarEntidade(char letra, const sf::Vector2f posicao)
     {
+        srand((unsigned int)time(NULL));
+        int mudancaPos = (rand() % (4)) *16;
         switch (letra)
         {
         case ('j'):
@@ -119,7 +121,12 @@ namespace Fases
         break;
         case ('m'):
         {
-            criarMinion(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
+            if(it_M< maxM){
+                criarMinion(sf::Vector2f((posicao.x * 64.f)+ mudancaPos, posicao.y * 64.f));
+                srand((unsigned int)time(NULL));
+                mudancaPos = (rand() % (4)) *16;
+                it_M++;
+            }
         }
         break;
 
@@ -127,7 +134,10 @@ namespace Fases
         {
             if (it_D < cont_D)
             {
-                criarInimDificil(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
+                criarInimDificil(sf::Vector2f((posicao.x * 64.f)+mudancaPos, posicao.y * 64.f));
+                srand((unsigned int)time(NULL));
+                mudancaPos = (rand() % (4)) *16;
+                //O it_D++, está dentro da função
             }
             else
             {
@@ -136,7 +146,12 @@ namespace Fases
         break;
         case ('s'):
         {
-            criarEspinho(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
+            if(it_Esp<maxEsp){
+                criarEspinho(sf::Vector2f((posicao.x * 64.f)+mudancaPos, posicao.y * 64.f));
+                it_Esp++;
+                srand((unsigned int)time(NULL));
+                mudancaPos = (rand() % (4)) *16;
+            }
         }
         break;
         case ('&'):
