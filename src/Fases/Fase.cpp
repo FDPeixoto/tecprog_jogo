@@ -14,7 +14,7 @@ namespace Fases
         pGerenciadorColisao->setFixos(listaObstaculos);
         pGerenciadorColisao->limparListas();
         doisJogadores = false;
-        fonte.loadFromFile("Fonte/DejaVuSans.ttf");
+        //fonte.loadFromFile("Fonte/DejaVuSans.ttf");
     }
 
     Fase::Fase(const int idFase, bool temSegundoJogador) : Ente(idFase), listaPersonagens(new Listas::ListaEntidades()),
@@ -52,7 +52,7 @@ namespace Fases
     void Fase::setJogador2(Entidades::Jogador *pJogador) { pJogador2 = pJogador; }
 
     Entidades::Jogador *Fase::getJogador2() { return pJogador2; }
-    /*int Fase::getPontosJogador1() const
+    int Fase::getPontosJogador1() const
     {
         if (pJogador1 != nullptr)
         {
@@ -67,7 +67,7 @@ namespace Fases
             return pJogador2->getPontos();
         }
         return 0;
-    }*/
+    }
 
     bool Fase::getCompletou()
     {

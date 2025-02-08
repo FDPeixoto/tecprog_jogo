@@ -51,8 +51,8 @@ namespace Fases
         Entidades::Jogador *getJogador2();
         bool getCompletou();
         //void salvarRanking(const std::string &arquivo, int pJ1, int pJ2);
-        //int getPontosJogador1() const;
-        //int getPontosJogador2() const;
+        int getPontosJogador1() const;
+        int getPontosJogador2() const;
         //void setNomePartida(const std::string nome);
 
         void criarJogador(const sf::Vector2f posicao);

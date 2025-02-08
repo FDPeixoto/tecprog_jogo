@@ -122,7 +122,7 @@ namespace Gerenciadores
     {
         janela->close();
     }
-    /*void Grafico::mostrarRanking()
+    void Grafico::mostrarRanking()
     {
         std::ifstream arquivo("ranking.json");
         if (arquivo.is_open())
@@ -157,7 +157,7 @@ namespace Gerenciadores
                 yPos += 20;
             }
         }
-    }*/
+    }
 
     sf::Clock *Grafico::getRelogio()
     {

@@ -44,7 +44,7 @@ namespace Gerenciadores
         void desenharListaEntidades(Listas::ListaEntidades *lista);
         void setRelogio(sf::Clock *clock);
         void resetarRelogio();
-        //void mostrarRanking();
+        void mostrarRanking();
         void setView(sf::View view);
         sf::Font getFonte();
     };
