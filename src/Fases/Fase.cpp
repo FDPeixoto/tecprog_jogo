@@ -238,16 +238,6 @@ namespace Fases
         }
     }
 
-    void Fase::criarCaixa(const sf::Vector2f posicao)
-    {
-        Entidades::Obstaculos::Caixa *caixa = new Entidades::Obstaculos::Caixa(posicao + sf::Vector2f(0.f, 16.f));
-        if (caixa != nullptr)
-        {
-            caixa->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
-            listaObstaculos->incluirEntidade(caixa);
-            pGerenciadorColisao->adicionarObstaculo(caixa);
-        }
-    }
 
     void Fase::desenhar()
     {

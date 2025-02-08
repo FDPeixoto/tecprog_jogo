@@ -6,11 +6,11 @@
 
 namespace Fases
 {
-    Castelo_Assombrado::Castelo_Assombrado() : Fase(IDCASTELOASSOMBRADO),fundo(ALTURA_JANELA,LARGURA_JANELA, sf::Vector2f(0.0f, 0.0f), true ), maxChefoes(5), vetorDurahan(), it_D(0), maxEsp(3), it_Esp(0),maxM(3), it_M(0),maxP(3), it_P(0)
+    Castelo_Assombrado::Castelo_Assombrado() : Fase(IDCASTELOASSOMBRADO),fundo(ALTURA_JANELA,LARGURA_JANELA, sf::Vector2f(0.0f, 0.0f), true ), vetorDurahan(), it_Ogros(0), maxEsp(3), it_Esp(0),maxM(3), it_M(0),maxP(3), it_P(0)
     {
         //Fase::proximaFase();
         srand((unsigned int)time(NULL));
-        cont_D = (rand() % (2)) + 3;
+        maxOgros = (rand() % (2)) + 3;
         srand((unsigned int)time(NULL));
         maxM = (rand() % (2)) + 3;
         srand((unsigned int)time(NULL));
@@ -21,7 +21,7 @@ namespace Fases
         aleatoriedadeP=(rand() % (3))+1;
          
         criarMapa();
-        //, cont_D(2)
+        //, maxOgros(2)
 
         vetorDurahan.clear();
     }
@@ -37,7 +37,7 @@ namespace Fases
 
     void Castelo_Assombrado::criarInimDificil(const sf::Vector2f posicao)
     {
-        it_D++;
+        it_Ogros++;
         Entidades::Inimigos::Durahan *durahan = new Entidades::Inimigos::Durahan(posicao);
         if (durahan != nullptr)
         {
@@ -99,7 +99,7 @@ namespace Fases
         pGerenciadorGrafico->desenharEntidade(&fundo);
         Fase::executar();
 
-        for (int i = 0; i < cont_D; i++)
+        for (int i = 0; i < maxOgros; i++)
         {
             if (vetorDurahan[i] != nullptr)
             {
@@ -132,12 +132,12 @@ namespace Fases
 
         case ('d'):
         {
-            if (it_D < cont_D)
+            if (it_Ogros < maxOgros)
             {
                 criarInimDificil(sf::Vector2f((posicao.x * 64.f)+mudancaPos, posicao.y * 64.f));
                 srand((unsigned int)time(NULL));
                 mudancaPos = (rand() % (4)) *16;
-                //O it_D++, está dentro da função
+                //O it_Ogros++, está dentro da função
             }
             else
             {

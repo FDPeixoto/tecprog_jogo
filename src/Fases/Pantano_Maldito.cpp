@@ -42,6 +42,16 @@ namespace Fases
             esqueleto->setMediator(pGerenciadorColisao);
         }
     }
+    void Pantano_Maldito::criarCaixa(const sf::Vector2f posicao)
+    {
+        Entidades::Obstaculos::Caixa *caixa = new Entidades::Obstaculos::Caixa(posicao + sf::Vector2f(0.f, 16.f));
+        if (caixa != nullptr)
+        {
+            caixa->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
+            listaObstaculos->incluirEntidade(caixa);
+            pGerenciadorColisao->adicionarObstaculo(caixa);
+        }
+    }
 
     void Pantano_Maldito::criarMapa()
     {

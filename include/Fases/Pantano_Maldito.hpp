@@ -23,16 +23,10 @@ namespace Fases{
         Pantano_Maldito();
         ~Pantano_Maldito();
         void criarInimMedio(const sf::Vector2f posicao);
-        const int getMaxInimMedios();
         void criarMapa();
+        void criarCaixa(const sf::Vector2f posicao);
         void criarEntidade(char letra, const sf::Vector2f posicao);
         void executar();
-
-
-        void criarInimDificil(const sf::Vector2f posicao);
-        void setpD(Entidades::Inimigos::Durahan* pDurahan);
-        Entidades::Inimigos::Durahan* getpD();
-
         void verificarCompletou();
     };
 }

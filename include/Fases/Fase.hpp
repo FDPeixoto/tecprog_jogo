@@ -61,8 +61,7 @@ namespace Fases
         void criarJogador(const sf::Vector2f posicao);
         void criarMinion(const sf::Vector2f posicao);
         void criarPlataforma(const sf::Vector2f posicao, bool Castelo);
-        void criarCaixa(const sf::Vector2f posicao);
-        
+               
         void desenhar();
         void executar();
         void criarCenario();

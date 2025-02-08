@@ -7,7 +7,6 @@
 namespace Fases{
     class Castelo_Assombrado: public Fase{
         private:
-        const int maxChefoes;
         int  maxEsp;
         int it_Esp;
         int maxM;
@@ -15,8 +14,8 @@ namespace Fases{
         int maxP;
         int it_P;
         std::vector<Entidades::Inimigos::Durahan*> vetorDurahan;
-        int cont_D;
-        int it_D;
+        int maxOgros;
+        int it_Ogros;
         int aleatoriedadeP;
         Entidades::Obstaculos::Plataforma fundo;
 
@@ -25,7 +24,6 @@ namespace Fases{
         ~Castelo_Assombrado();
         void criarInimDificil(const sf::Vector2f posicao);
         void criarEspinho(const sf::Vector2f posicao);
-        const int getMaxChefoes();
         void criarMapa();
         void criarEntidade(char letra, const sf::Vector2f posicao);
         void executar();
