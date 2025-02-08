@@ -16,8 +16,8 @@ namespace Fases{
         int maxEsqueletos;
         int it_Esqueletos;
         int aleatoriedadeP;
-        Entidades::Obstaculos::Plataforma fundo;
-        
+        sf::RectangleShape fundo;
+        sf::Texture textura;
 
         public:
         Pantano_Maldito();

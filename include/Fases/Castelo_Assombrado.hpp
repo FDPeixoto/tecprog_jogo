@@ -17,7 +17,8 @@ namespace Fases{
         int maxOgros;
         int it_Ogros;
         int aleatoriedadeP;
-        Entidades::Obstaculos::Plataforma fundo;
+        sf::RectangleShape fundo;
+        sf::Texture textura;
 
         public:
         Castelo_Assombrado();

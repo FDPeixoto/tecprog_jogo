@@ -6,15 +6,18 @@
 
 namespace Fases
 {
-    Castelo_Assombrado::Castelo_Assombrado() : Fase(IDCASTELOASSOMBRADO),fundo(ALTURA_JANELA,LARGURA_JANELA, sf::Vector2f(0.0f, 0.0f), true ), vetorDurahan(), it_Ogros(0), maxEsp(3), it_Esp(0),maxM(3), it_M(0),maxP(3), it_P(0)
+    Castelo_Assombrado::Castelo_Assombrado() : Fase(IDCASTELOASSOMBRADO),fundo(sf::Vector2f(LARGURA_JANELA, ALTURA_JANELA)), vetorDurahan(), it_Ogros(0), maxEsp(3), it_Esp(0),maxM(3), it_M(0),maxP(3), it_P(0)
     {
+        fundo.setPosition(0.0f, 0.0f);
+        textura.loadFromFile("Texturas/testeFundo1.png");
+        fundo.setTexture(&textura);
         //Fase::proximaFase();
         srand((unsigned int)time(NULL));
-        maxOgros = (rand() % (2)) + 3;
+        maxEsp = (rand() % (3)) + 3;
         srand((unsigned int)time(NULL));
-        maxM = (rand() % (2)) + 3;
+        maxOgros = (rand() % (3)) + 3;
         srand((unsigned int)time(NULL));
-        maxEsp = (rand() % (2)) + 3;
+        maxM = (rand() % (3)) + 3;
         srand((unsigned int)time(NULL));
         maxP = (rand() % (10)) + 10;
         srand((unsigned int)time(NULL));
@@ -96,7 +99,7 @@ namespace Fases
 
     void Castelo_Assombrado::executar()
     {
-        pGerenciadorGrafico->desenharEntidade(&fundo);
+        pGerenciadorGrafico->desenharCorpo(fundo);
         Fase::executar();
 
         for (int i = 0; i < maxOgros; i++)

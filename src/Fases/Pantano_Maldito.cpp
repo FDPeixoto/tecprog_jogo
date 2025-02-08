@@ -7,15 +7,18 @@
 namespace Fases
 {
 
-    Pantano_Maldito::Pantano_Maldito() : Fase(IDPANTANOMALDITO),fundo(ALTURA_JANELA,LARGURA_JANELA, sf::Vector2f(0.0f, 0.0f),false ), maxCaixas(3), it_Caixas(0),maxM(3), it_M(0),maxP(3), it_P(0), maxEsqueletos(3), it_Esqueletos(0), aleatoriedadeP(5)
+    Pantano_Maldito::Pantano_Maldito() : Fase(IDPANTANOMALDITO),fundo(sf::Vector2f(LARGURA_JANELA, ALTURA_JANELA)), maxCaixas(3), it_Caixas(0),maxM(3), it_M(0),maxP(3), it_P(0), maxEsqueletos(3), it_Esqueletos(0), aleatoriedadeP(5)
     {
+        fundo.setPosition(0.0f, 0.0f);
+        textura.loadFromFile("Texturas/PantanoMaldito.png");
+        fundo.setTexture(&textura);
         //Fase::proximaFase();
         srand((unsigned int)time(NULL));
-        maxCaixas = (rand() % (2)) + 3;
+        maxCaixas = (rand() % (3)) + 3;
         srand((unsigned int)time(NULL));
-        maxM = (rand() % (2)) + 3;
+        maxM = (rand() % (3)) + 3;
         srand((unsigned int)time(NULL));
-        maxEsqueletos = (rand() % (2)) + 3;
+        maxEsqueletos = (rand() % (3)) + 3;
         srand((unsigned int)time(NULL));
         maxP = (rand() % (10)) + 10;
         srand((unsigned int)time(NULL));
@@ -78,7 +81,7 @@ namespace Fases
     }
     void Pantano_Maldito::executar()
     {
-        pGerenciadorGrafico->desenharEntidade(&fundo);
+        pGerenciadorGrafico->desenharCorpo(fundo);
         Fase::executar();
         verificarCompletou();
     }
