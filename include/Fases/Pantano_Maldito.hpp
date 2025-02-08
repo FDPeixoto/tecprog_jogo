@@ -23,9 +23,9 @@ namespace Fases{
         Pantano_Maldito();
         ~Pantano_Maldito();
         void criarInimMedio(const sf::Vector2f posicao);
-        void criarMapa();
         void criarCaixa(const sf::Vector2f posicao);
         void criarEntidade(char letra, const sf::Vector2f posicao);
+        void criarMapa();
         void executar();
         void verificarCompletou();
     };

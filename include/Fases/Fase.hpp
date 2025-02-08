@@ -35,28 +35,23 @@ namespace Fases
         Entidades::Jogador *pJogador2;
         int quantidadeJogadores;
         bool completou;
-        int maxMinio;
-        int maxCaixa;
-        int maxEspinho;
-        std::string nomePartida;
-        sf::Font fonte;
         int pontosJ1;
         int pontosJ2;
 
     public:
         // Fase();
         Fase(const int idFase);
-        ~Fase();
+        virtual ~Fase();
         virtual void criarMapa() = 0;
         void setJogador1(Entidades::Jogador *pJogador);
         Entidades::Jogador *getJogador1();
         void setJogador2(Entidades::Jogador *pJogador);
         Entidades::Jogador *getJogador2();
         bool getCompletou();
-        void salvarRanking(const std::string &arquivo, int pJ1, int pJ2);
-        int getPontosJogador1() const;
-        int getPontosJogador2() const;
-        void setNomePartida(const std::string nome);
+        //void salvarRanking(const std::string &arquivo, int pJ1, int pJ2);
+        //int getPontosJogador1() const;
+        //int getPontosJogador2() const;
+        //void setNomePartida(const std::string nome);
 
         void criarJogador(const sf::Vector2f posicao);
         void criarMinion(const sf::Vector2f posicao);
@@ -64,8 +59,6 @@ namespace Fases
                
         void desenhar();
         void executar();
-        void criarCenario();
-
         void proximaFase();
         bool completouFase();
         void eliminarPersonagensMortos();

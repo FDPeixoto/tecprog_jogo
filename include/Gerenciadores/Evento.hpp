@@ -19,8 +19,8 @@ namespace Gerenciadores{
         public:
             ~Evento();
             static Evento* getGerenciadorEvento();
-            void setNomePartida(const std::string nome);
-            sf::Text getTextoEntrada();
+            //void setNomePartida(const std::string nome);
+            //sf::Text getTextoEntrada();
             void setJogador1(Entidades::Jogador* jogador);
             void setJogador2(Entidades::Jogador* jogador);
             void verificaTeclaPressionada(sf::Keyboard::Key tecla);

@@ -12,7 +12,6 @@ namespace Fases
         pGerenciadorColisao->setMoveis(listaPersonagens);
         pGerenciadorColisao->setFixos(listaObstaculos);
         pGerenciadorColisao->limparListas();
-        fonte.loadFromFile("Fonte/DejaVuSans.ttf");
     }
 
     Fase::~Fase()
@@ -32,7 +31,7 @@ namespace Fases
     void Fase::setJogador2(Entidades::Jogador *pJogador) { pJogador2 = pJogador; }
 
     Entidades::Jogador *Fase::getJogador2() { return pJogador2; }
-    int Fase::getPontosJogador1() const
+    /*int Fase::getPontosJogador1() const
     {
         if (pJogador1 != nullptr)
         {
@@ -47,13 +46,13 @@ namespace Fases
             return pJogador2->getPontos();
         }
         return 0;
-    }
+    }*/
 
     bool Fase::getCompletou()
     {
         return completou;
     }
-    void Fase::setNomePartida(const std::string nome)
+   /* void Fase::setNomePartida(const std::string nome)
     {
         nomePartida = nome;
     }
@@ -138,7 +137,7 @@ namespace Fases
         arquivoSaida.close();
 
         // mostrarRanking(pGerenciadorGrafico->getJanela());
-    }
+    }*/
 
     /*void Fase::mostrarRanking(sf::RenderWindow* janela) {
     std::ifstream arquivo("ranking.json");
@@ -248,8 +247,8 @@ namespace Fases
     void Fase::executar()
     {
         eliminarPersonagensMortos();
-        pontosJ1 = getPontosJogador1();
-        pontosJ2 = getPontosJogador2();
+        //pontosJ1 = getPontosJogador1();
+        //pontosJ2 = getPontosJogador2();
 
         if (pGerenciadorColisao->getListaMoveis() != listaPersonagens)
         {

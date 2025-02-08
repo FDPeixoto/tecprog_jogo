@@ -17,7 +17,7 @@ namespace States
 
     public:
         State(const int ID);
-        ~State();
+        virtual ~State();
         virtual void executar() = 0;
         virtual void desenhar();
         virtual Fases::Fase *getFase() = 0;

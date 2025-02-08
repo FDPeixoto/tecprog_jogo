@@ -95,7 +95,7 @@ namespace Gerenciadores
         }
         else if (tecla == sf::Keyboard::Q)
         {
-            pGerenciadorGrafico->mostrarRanking();
+           // pGerenciadorGrafico->mostrarRanking();
         }
         else if (tecla == sf::Keyboard::Escape)
         {
@@ -175,14 +175,14 @@ namespace Gerenciadores
                     {
                         // pFase->setNomePartida("Pantano Maldito2");
                         // pFase->salvarRanking("ranking.json");
-                        pontuacaoJ1 = pFase->getPontosJogador1();
-                        pontuacaoJ2 = pFase->getPontosJogador2();
+                        //pontuacaoJ1 = pFase->getPontosJogador1();
+                        //pontuacaoJ2 = pFase->getPontosJogador2();
                         pEstado->addState(IDCASTELOASSOMBRADO);
                     }
                     else
                     { // eh o castelo assombrado
-                        pFase->setNomePartida("Nome da Partida aqui");
-                        pFase->salvarRanking("ranking.json", pontuacaoJ1, pontuacaoJ2);
+                        //pFase->setNomePartida("Nome da Partida aqui");
+                        //pFase->salvarRanking("ranking.json", pontuacaoJ1, pontuacaoJ2);
                         pGerenciadorGrafico->fecharJanela();
                     }
                 }

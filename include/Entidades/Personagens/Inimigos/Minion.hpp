@@ -6,7 +6,7 @@ namespace Entidades{
     namespace Inimigos{
         class Minion: public Inimigo{
             private:
-            static int tam_grupo;
+            bool super;
 
             public:
             Minion();
@@ -14,7 +14,6 @@ namespace Entidades{
             ~Minion();
             void salvar();
             void salvarDataBuffer();
-            static int get_tam_grupo();
         };
     }
 }
