@@ -21,7 +21,10 @@
                 "${workspaceFolder}/include/Gerenciadores/**",
                 "${workspaceFolder}/include/Listas",
                 "${workspaceFolder}/include/Listas/**",
-                "${workspaceFolder}/include/States/**"
+                "${workspaceFolder}/include/States/**",
+                "${workspaceFolder}/include/States",
+                "${workspaceFolder}/include/States/Menus",
+                "${workspaceFolder}/include/States/Menus/**"
             ],
             "defines": [
                 "_DEBUG",

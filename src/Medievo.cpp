@@ -20,8 +20,8 @@ Medievo::~Medievo()
 
 void Medievo::executar()
 {
-    pGerenciadorEstado->addState(IDPANTANOMALDITO);
-    
+    pGerenciadorEstado->addState(IDMENUINICIALSTATE);
+
     while (pGerenciadorGrafico->getJanela()->isOpen())
     {
 
@@ -32,7 +32,5 @@ void Medievo::executar()
         pGerenciadorEvento->executar();
 
         pGerenciadorGrafico->getJanela()->display();
-        std::cout << "Hello, World!" << std::endl;
-
     }
 }

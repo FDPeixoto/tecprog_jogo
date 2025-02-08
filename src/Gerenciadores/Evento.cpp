@@ -14,7 +14,6 @@ namespace Gerenciadores
         // pEstado = nullptr;
         pJog1 = nullptr;
         pJog2 = nullptr;
-
     }
 
     Evento *Evento::getGerenciadorEvento()
@@ -37,77 +36,86 @@ namespace Gerenciadores
 
     void Evento::verificaTeclaPressionada(sf::Keyboard::Key tecla)
     {
-        if (tecla == sf::Keyboard::A)
+        int idEstado = pEstado->getStateAtual()->getIdentificador();
+        if (idEstado == IDMENUINICIALSTATE)
         {
-            if (pJog2 != nullptr)
+            if (tecla == sf::Keyboard::Num1)
             {
-                pJog2->andar(true);
+                pEstado->addState(IDCASTELOASSOMBRADO);
+            }
+            else if (tecla == sf::Keyboard::Num2)
+            {
+                pEstado->addState(IDPANTANOMALDITO);
             }
         }
-        else if (tecla == sf::Keyboard::D)
+
+        else if (idEstado == IDCASTELOASSOMBRADO || IDPANTANOMALDITO)
         {
-            if (pJog2 != nullptr)
+            if (tecla == sf::Keyboard::A)
             {
-                pJog2->andar(false);
+                if (pJog2 != nullptr)
+                {
+                    pJog2->andar(true);
+                }
+            }
+            else if (tecla == sf::Keyboard::D)
+            {
+                if (pJog2 != nullptr)
+                {
+                    pJog2->andar(false);
+                }
+            }
+            else if (tecla == sf::Keyboard::W)
+            {
+                if (pJog2 != nullptr)
+                {
+                    pJog2->pular();
+                }
+            }
+            else if (tecla == sf::Keyboard::Left)
+            {
+                if (pJog1 != nullptr)
+                {
+                    pJog1->andar(true);
+                }
+            }
+            else if (tecla == sf::Keyboard::Right)
+            {
+                if (pJog1 != nullptr)
+                {
+                    pJog1->andar(false);
+                }
+            }
+            else if (tecla == sf::Keyboard::Up)
+            {
+                if (pJog1 != nullptr)
+                {
+                    pJog1->pular();
+                }
+            }
+            else if (tecla == sf::Keyboard::M)
+            {
+                if (pJog1 != nullptr)
+                {
+                    pJog1->atacar();
+                }
+            }
+            else if (tecla == sf::Keyboard::S)
+            {
+                if (pJog2 != nullptr)
+                {
+                    pJog2->atacar();
+                }
+            }
+            else if (tecla == sf::Keyboard::Q)
+            {
+                pGerenciadorGrafico->mostrarRanking();
             }
         }
-        else if (tecla == sf::Keyboard::W)
-        {
-            if (pJog2 != nullptr)
-            {
-                pJog2->pular();
-            }
-        }
-        else if (tecla == sf::Keyboard::Left)
-        {
-            if (pJog1 != nullptr)
-            {
-                pJog1->andar(true);
-            }
-        }
-        else if (tecla == sf::Keyboard::Right)
-        {
-            if (pJog1 != nullptr)
-            {
-                pJog1->andar(false);
-            }
-        }
-        else if (tecla == sf::Keyboard::Up)
-        {
-            if (pJog1 != nullptr)
-            {
-                pJog1->pular();
-            }
-        }
-        else if (tecla == sf::Keyboard::M)
-        {
-            if (pJog1 != nullptr)
-            {
-                pJog1->atacar();
-            }
-        }
-        else if (tecla == sf::Keyboard::S)
-        {
-            if (pJog2 != nullptr)
-            {
-                pJog2->atacar();
-            }
-        }
-        else if (tecla == sf::Keyboard::Q)
-        {
-            pGerenciadorGrafico->mostrarRanking();
-        }
-        else if (tecla == sf::Keyboard::Escape)
+
+        if (tecla == sf::Keyboard::Escape)
         {
             pEstado->removerState();
-        }
-        else if (tecla == sf::Keyboard::Num1)
-        {
-            pEstado->addState(IDCASTELOASSOMBRADO);
-        }
-        else if (tecla == sf::Keyboard::Num2)
-        {
-            pEstado->addState(IDPANTANOMALDITO);
         }
     }
 

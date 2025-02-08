@@ -1,5 +1,4 @@
 #pragma once
-#include "Ente.hpp"
 
 namespace Fases
 {
@@ -7,13 +6,19 @@ namespace Fases
     class Pantano_Maldito;
     class Castelo_Assombrado;
 }
+
+namespace Gerenciadores
+{
+    class Estado;
+}
 namespace States
 {
-    class State : public Ente
+    class State
     {
     private:
         bool remover;
         const int identificador;
+        Gerenciadores::Estado *pEstado;
 
     public:
         State(const int ID);
@@ -23,5 +28,6 @@ namespace States
         virtual Fases::Fase *getFase() = 0;
         void setRemover(const bool remover);
         const bool getRemover();
+        const int getIdentificador();
     };
 }
