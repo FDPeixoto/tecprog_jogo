@@ -49,7 +49,7 @@ namespace Gerenciadores
             }
         }
 
-        else if (idEstado == IDCASTELOASSOMBRADO || IDPANTANOMALDITO)
+        if (idEstado == IDCASTELOASSOMBRADO || idEstado == IDPANTANOMALDITO)
         {
             if (tecla == sf::Keyboard::A)
             {
@@ -111,9 +111,20 @@ namespace Gerenciadores
             {
                 pGerenciadorGrafico->mostrarRanking();
             }
+            else if (tecla == sf::Keyboard::Escape)
+            {
+                pEstado->addState(IDPAUSESTATE);
+            }
+        }
+        if (idEstado == IDPAUSESTATE)
+        {
+            if (tecla == sf::Keyboard::Escape)
+            {
+                pEstado->removerState();
+            }
         }
 
-        if (tecla == sf::Keyboard::Escape)
+        if (tecla == sf::Keyboard::BackSpace)
         {
             pEstado->removerState();
         }
@@ -155,7 +166,10 @@ namespace Gerenciadores
     {
         int pontuacaoJ1 = 0;
         int pontuacaoJ2 = 0;
-        pFase = pEstado->getStateAtual()->getFase();
+        if (pEstado->getStateAtual()->getIdentificador() == IDCASTELOASSOMBRADO || pEstado->getStateAtual()->getIdentificador() == IDPANTANOMALDITO)
+        {
+            pFase = pEstado->getStateAtual()->getFase();
+        }
         sf::Event evento;
         while (pGerenciadorGrafico->getJanela()->pollEvent(evento))
         {
@@ -197,37 +211,4 @@ namespace Gerenciadores
             }
         }
     }
-
-    /*void Evento::mostrarRanking(sf::RenderWindow* janela) {
-    std::ifstream arquivo("ranking.json");
-    if (arquivo.is_open()) {
-        json ranking;
-        arquivo >> ranking;
-        arquivo.close();
-
-        sf::Text textoRanking;
-        textoRanking.setFont(fonte);
-        textoRanking.setCharacterSize(18);
-        textoRanking.setFillColor(sf::Color::White);
-
-        int yPos = 50;
-        for (int i = 0; i < ranking.size(); ++i) {
-            std::string texto = "Partida: " + ranking[i]["nomePartida"].get<std::string>();
-            textoRanking.setString(texto);
-            textoRanking.setPosition(50, yPos);
-            pGerenciadorGrafico->desenharTexto(textoRanking);
-            yPos += 40;
-
-            for (const auto& jogador : ranking[i]["jogadores"]) {
-                texto = jogador["nome"].get<std::string>() + " - " +
-                        std::to_string(jogador["pontuacao"].get<int>());
-                textoRanking.setString(texto);
-                textoRanking.setPosition(50, yPos);
-                janela->draw(textoRanking);  // Modificado para usar o ponteiro
-                yPos += 40;
-            }
-            yPos += 20;
-        }
-    }
-    }*/
 }

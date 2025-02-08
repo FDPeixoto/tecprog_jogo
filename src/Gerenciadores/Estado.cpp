@@ -56,6 +56,15 @@ namespace Gerenciadores
         }
     }
 
+    int Estado::getIdentificadorAtual()
+    {
+        if (!pilhaStates.empty())
+        {
+            return pilhaStates.top()->getIdentificador();
+        }
+        return -1;
+    }
+
     void Estado::addState(const int ID)
     {
         States::State *estado = nullptr;
@@ -79,6 +88,7 @@ namespace Gerenciadores
 
             break;
         case IDPAUSESTATE:
+            estado = new States::Menus::PauseState();
             break;
         case IDPANTANOMALDITO:
             estado = new States::FaseState(IDPANTANOMALDITO);

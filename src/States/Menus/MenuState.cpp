@@ -24,12 +24,11 @@ namespace States
         {
             // 1. Draw Ente's base properties (if needed)
             // sf::RectangleShape quadrado(sf::Vector2f(100.f, 100.f), sf::Vector2f(100.f, 100.f));
-
             // 2. Draw all UI elements
             for (auto &botao : botoes)
             {
-                sf::RenderWindow *janela = pGrafico->getJanela();
-                botao->desenhar(janela);
+
+                botao->desenhar(pGrafico->getJanela());
             }
         }
 

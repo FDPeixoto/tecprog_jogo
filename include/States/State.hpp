@@ -28,6 +28,6 @@ namespace States
         virtual Fases::Fase *getFase() = 0;
         void setRemover(const bool remover);
         const bool getRemover();
-        const int getIdentificador();
+        int getIdentificador();
     };
 }

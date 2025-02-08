@@ -14,7 +14,7 @@ namespace States
     }
     void State::setRemover(const bool remover) { this->remover = remover; }
     const bool State::getRemover() { return remover; }
-    const int State::getIdentificador()
+    int State::getIdentificador()
     {
         return identificador;
     }

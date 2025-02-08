@@ -28,5 +28,6 @@ namespace Gerenciadores
         void addState(const int ID);
         void removerState();
         States::State *getStateAtual();
+        int getIdentificadorAtual();
     };
 }
