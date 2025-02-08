@@ -33,10 +33,10 @@ namespace Fases
 
     void Pantano_Maldito::criarInimMedio(const sf::Vector2f posicao)
     {
-        Entidades::Inimigos::Esqueleto *esqueleto = new Entidades::Inimigos::Esqueleto(posicao);
+        Entidades::Inimigos::Esqueleto *esqueleto = static_cast<Entidades::Inimigos::Esqueleto*>(factory.create(IDESQUELETO, posicao));
+        
         if (esqueleto != nullptr)
         {
-            // esqueleto->setCor(sf::Color::Cyan);
             if (Fase::getJogador1() != nullptr)
             {
                 esqueleto->setJogador1(getJogador1());
@@ -52,7 +52,8 @@ namespace Fases
     }
     void Pantano_Maldito::criarCaixa(const sf::Vector2f posicao)
     {
-        Entidades::Obstaculos::Caixa *caixa = new Entidades::Obstaculos::Caixa(posicao + sf::Vector2f(0.f, 16.f));
+        Entidades::Obstaculos::Caixa *caixa = static_cast<Entidades::Obstaculos::Caixa*>(factory.create(IDCAIXA, posicao));
+        //chamava a construtora assim (posicao + sf::Vector2f(0.f, 16.f))
         if (caixa != nullptr)
         {
             caixa->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));

@@ -116,6 +116,9 @@ namespace Entidades
         textoVida.setString(vidaStr);
         return (textoVida);*/
         pontos = pontos + 1;
+        if(getNumVidas()<0){
+            setNumVidas(0);
+        }
     }
 
     void Jogador::salvar() {}

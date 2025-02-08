@@ -14,6 +14,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include "Factory.hpp"
 
 namespace Gerenciadores
 {
@@ -38,6 +39,7 @@ namespace Fases
         bool completou;
         int pontosJ1;
         int pontosJ2;
+        Factory factory;
 
     public:
         // Fase();
@@ -58,11 +60,14 @@ namespace Fases
         void criarJogador(const sf::Vector2f posicao);
         void criarMinion(const sf::Vector2f posicao);
         void criarPlataforma(const sf::Vector2f posicao, bool Castelo);
-               
+
         void desenhar();
         void executar();
         void proximaFase();
         bool completouFase();
         void eliminarPersonagensMortos();
+        
     };
 }
+
+

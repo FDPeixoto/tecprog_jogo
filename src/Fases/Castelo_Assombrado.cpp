@@ -41,7 +41,8 @@ namespace Fases
     void Castelo_Assombrado::criarInimDificil(const sf::Vector2f posicao)
     {
         it_Ogros++;
-        Entidades::Inimigos::Durahan *durahan = new Entidades::Inimigos::Durahan(posicao);
+        Entidades::Inimigos::Durahan *durahan = static_cast<Entidades::Inimigos::Durahan*>(factory.create(IDDURAHAN, posicao));
+        
         if (durahan != nullptr)
         {
             // pD=durahan;
@@ -63,7 +64,8 @@ namespace Fases
     }
     void Castelo_Assombrado::criarEspinho(const sf::Vector2f posicao)
     {
-        Entidades::Obstaculos::Espinho *plataforma = new Entidades::Obstaculos::Espinho(posicao);
+        Entidades::Obstaculos::Espinho *plataforma = static_cast<Entidades::Obstaculos::Espinho*>(factory.create(IDESPINHO, posicao));
+       
         if (plataforma != nullptr)
         {
             plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));

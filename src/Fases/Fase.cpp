@@ -228,8 +228,8 @@ namespace Fases
 
     void Fase::criarMinion(const sf::Vector2f posicao)
     {
-        Entidades::Inimigos::Minion *minion = new Entidades::Inimigos::Minion(posicao);
-        minion->setCor(sf::Color::Red);
+        Entidades::Inimigos::Minion *minion = static_cast<Entidades::Inimigos::Minion*>(factory.create(IDMINION, posicao));
+        
         if (minion != nullptr)
         {
             minion->setCor(sf::Color::Red);
@@ -249,7 +249,7 @@ namespace Fases
 
     void Fase::criarPlataforma(const sf::Vector2f posicao, bool Castelo)
     {
-        Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(posicao, Castelo); // a plaforma era 100.0f e 100.0f
+        Entidades::Obstaculos::Plataforma *plataforma = static_cast<Entidades::Obstaculos::Plataforma*>(factory.create(IDPLATAFORMA, posicao));
         if (plataforma != nullptr)
         {
             plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
