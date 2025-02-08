@@ -16,8 +16,8 @@ Entidades::Entidade* Factory::create(const int id, sf::Vector2f posicao, bool Ca
     else if ( id == IDESQUELETO){
         return new Entidades::Inimigos::Esqueleto(posicao);
     }
-    else if( id == IDDURAHAN){
-        return new Entidades::Inimigos::Durahan(posicao);
+    else if( id == IDOGRO){
+        return new Entidades::Inimigos::Ogro(posicao);
     }
     else {
         // Caso o id não seja reconhecido, você pode retornar nullptr ou lançar uma exceção

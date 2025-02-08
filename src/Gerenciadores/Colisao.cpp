@@ -167,7 +167,7 @@ namespace Gerenciadores
                         case IDESQUELETO:
                             (*itJogador)->tomarDano(2);
                             break;
-                        case IDDURAHAN:
+                        case IDOGRO:
                             (*itJogador)->tomarDano(3);
                             break;
                         }
@@ -183,7 +183,7 @@ namespace Gerenciadores
         {
             listJogadores.remove(static_cast<Entidades::Jogador *>(entidade));
         }
-        else if (entidade->getID() == IDMINION || entidade->getID() == IDESQUELETO || entidade->getID() == IDDURAHAN)
+        else if (entidade->getID() == IDMINION || entidade->getID() == IDESQUELETO || entidade->getID() == IDOGRO)
         {
             listInimigos.remove(static_cast<Entidades::Inimigos::Inimigo *>(entidade));
         }

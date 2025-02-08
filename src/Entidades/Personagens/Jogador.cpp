@@ -137,7 +137,7 @@ namespace Entidades
         float overlapY = std::min(pos1.y + tam1.y, pos2.y + tam2.y) - std::max(pos1.y, pos2.y);
 
         int ID = outraEntidade->getID();
-        if (ID == IDMINION || ID == IDESQUELETO || ID == IDDURAHAN || ID == IDCAIXA)
+        if (ID == IDMINION || ID == IDESQUELETO || ID == IDOGRO || ID == IDCAIXA)
         {
             // Determine the axis of least penetration
             if (overlapX < overlapY)

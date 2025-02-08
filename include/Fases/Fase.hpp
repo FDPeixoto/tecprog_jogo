@@ -7,7 +7,7 @@
 #include "Minion.hpp"
 #include "Plataforma.hpp"
 #include "Evento.hpp"
-#include "Durahan.hpp"
+#include "Ogro.hpp"
 #include "Colisao.hpp"
 #include "Espinho.hpp"
 #include "Caixa.hpp"

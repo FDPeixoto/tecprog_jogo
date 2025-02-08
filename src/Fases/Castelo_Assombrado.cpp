@@ -6,7 +6,7 @@
 
 namespace Fases
 {
-    Castelo_Assombrado::Castelo_Assombrado(bool temSegundoJogador) :  Fase(IDCASTELOASSOMBRADO, temSegundoJogador),fundo(sf::Vector2f(LARGURA_JANELA, ALTURA_JANELA)), vetorDurahan(), it_Ogros(0), maxEsp(3), it_Esp(0),maxM(3), it_M(0),maxP(3), it_P(0)
+    Castelo_Assombrado::Castelo_Assombrado(bool temSegundoJogador) :  Fase(IDCASTELOASSOMBRADO, temSegundoJogador),fundo(sf::Vector2f(LARGURA_JANELA, ALTURA_JANELA)), vetorOgro(), it_Ogros(0), maxEsp(3), it_Esp(0),maxM(3), it_M(0),maxP(3), it_P(0)
     {
         fundo.setPosition(0.0f, 0.0f);
         textura.loadFromFile("Texturas/testeFundo1.png");
@@ -26,40 +26,38 @@ namespace Fases
         criarMapa();
         //, maxOgros(2)
 
-        vetorDurahan.clear();
+        vetorOgro.clear();
     }
 
     Castelo_Assombrado::~Castelo_Assombrado()
     {
-        for (std::vector<Entidades::Inimigos::Durahan *>::iterator it = vetorDurahan.begin(); it != vetorDurahan.end(); ++it)
+        for (std::vector<Entidades::Inimigos::Ogro *>::iterator it = vetorOgro.begin(); it != vetorOgro.end(); ++it)
         {
             delete *it;
         }
-        vetorDurahan.clear();
+        vetorOgro.clear();
     }
 
     void Castelo_Assombrado::criarInimDificil(const sf::Vector2f posicao)
     {
         it_Ogros++;
-        Entidades::Inimigos::Durahan *durahan = static_cast<Entidades::Inimigos::Durahan*>(factory.create(IDDURAHAN, posicao));
+        Entidades::Inimigos::Ogro *ogro = static_cast<Entidades::Inimigos::Ogro*>(factory.create(IDOGRO, posicao));
         
-        if (durahan != nullptr)
+        if (ogro != nullptr)
         {
-            // pD=durahan;
-            // durahan->setCor(sf::Color::Magenta);
             if (pJogador1 != nullptr)
             {
-                durahan->setJogador1(pJogador1);
+                ogro->setJogador1(pJogador1);
             }
             if (pJogador2 != nullptr)
             {
-                durahan->setJogador2(pJogador2);
+                ogro->setJogador2(pJogador2);
             }
-            vetorDurahan.push_back(durahan);
-            durahan->setMediator(pGerenciadorColisao);
-            listaPersonagens->incluirEntidade(durahan);
-            pGerenciadorColisao->adicionarInimigo(durahan);
-            // num_Durahan++; lemnrando que isso está em fase
+            vetorOgro.push_back(ogro);
+            ogro->setMediator(pGerenciadorColisao);
+            listaPersonagens->incluirEntidade(ogro);
+            pGerenciadorColisao->adicionarInimigo(ogro);
+           
         }
     }
     void Castelo_Assombrado::criarEspinho(const sf::Vector2f posicao)
@@ -105,9 +103,9 @@ namespace Fases
 
         for (int i = 0; i < maxOgros; i++)
         {
-            if (vetorDurahan[i] != nullptr)
+            if (vetorOgro[i] != nullptr)
             {
-                pGerenciadorGrafico->desenharList(vetorDurahan[i]->getListaProjetil());
+                pGerenciadorGrafico->desenharList(vetorOgro[i]->getListaProjetil());
             }
         }
         if (completou == true)

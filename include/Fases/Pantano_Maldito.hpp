@@ -1,7 +1,6 @@
 #include "Fase.hpp"
 #include "stdafx.h"
 #include "Esqueleto.hpp"
-#include "Durahan.hpp" //para teste
 #include <vector>
 
 namespace Fases

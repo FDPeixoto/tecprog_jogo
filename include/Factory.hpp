@@ -5,7 +5,7 @@
 #include "Espinho.hpp"
 #include "Minion.hpp"
 #include "Esqueleto.hpp"
-#include "Durahan.hpp"
+#include "Ogro.hpp"
 
 class Factory{
     public:

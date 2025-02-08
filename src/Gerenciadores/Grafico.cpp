@@ -78,7 +78,7 @@ namespace Gerenciadores
         {
             if (*it != nullptr)
             {
-                /*if (((*it)->getID() == IDJOGADOR) || ((*it)->getID() == IDMINION) || ((*it)->getID() == IDDURAHAN) || ((*it)->getID() == IDESQUELETO))
+                /*if (((*it)->getID() == IDJOGADOR) || ((*it)->getID() == IDMINION) || ((*it)->getID() == IDOGRO) || ((*it)->getID() == IDESQUELETO))
                 {
                     if (((*it)->getVivo()))
                     {

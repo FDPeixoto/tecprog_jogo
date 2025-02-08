@@ -323,9 +323,9 @@ namespace Fases
                         return false;
                     }
                 }
-                if ((*itPersonagem)->getID() == IDDURAHAN)
+                if ((*itPersonagem)->getID() == IDOGRO)
                 {
-                    if (static_cast<Entidades::Inimigos::Durahan *>(*itPersonagem)->getVivo())
+                    if (static_cast<Entidades::Inimigos::Ogro *>(*itPersonagem)->getVivo())
                     {
                         return false;
                     }
