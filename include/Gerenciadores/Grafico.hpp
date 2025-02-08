@@ -46,5 +46,6 @@ namespace Gerenciadores
         void resetarRelogio();
         //void mostrarRanking();
         void setView(sf::View view);
+        sf::Font getFonte();
     };
 }

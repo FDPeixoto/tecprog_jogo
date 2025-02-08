@@ -87,9 +87,9 @@ namespace Gerenciadores
                     else
                     {
                     }
-                }*///else
+                }*/
+                // else
                 desenharEntidade(*it);
-                
             }
         }
     }
@@ -102,6 +102,11 @@ namespace Gerenciadores
     void Grafico::setView(sf::View view)
     {
         janela->setView(view);
+    }
+
+    sf::Font Grafico::getFonte()
+    {
+        return fonte;
     }
 
     void Grafico::desenharList(std::list<Entidades::Entidade *> &list)

@@ -78,6 +78,11 @@ namespace Entidades
     }
   }
 
+  sf::Vector2f Personagem::getVelocidade()
+  {
+    return velocidade;
+  }
+
   void Personagem::checarForaDaJanela()
   {
     if (corpo.getPosition().x < 0.f)

@@ -4,10 +4,10 @@ namespace States
 {
     namespace Menus
     {
-        class PauseState : public MenuState
+        class MenuInicialState : public MenuState
         {
         public:
-            PauseState();
+            MenuInicialState();
         };
     }
 }

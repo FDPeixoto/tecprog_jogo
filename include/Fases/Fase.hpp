@@ -34,12 +34,14 @@ namespace Fases
         Entidades::Jogador *pJogador1;
         Entidades::Jogador *pJogador2;
         int quantidadeJogadores;
+        bool doisJogadores;
         bool completou;
         int pontosJ1;
         int pontosJ2;
 
     public:
         // Fase();
+        Fase(const int idFase, bool temSegundoJogador);
         Fase(const int idFase);
         virtual ~Fase();
         virtual void criarMapa() = 0;
@@ -62,6 +64,5 @@ namespace Fases
         void proximaFase();
         bool completouFase();
         void eliminarPersonagensMortos();
-
     };
 }

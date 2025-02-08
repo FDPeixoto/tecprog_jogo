@@ -1,11 +1,13 @@
 #include "Fase.hpp"
 #include "stdafx.h"
 #include "Esqueleto.hpp"
-#include "Durahan.hpp"//para teste
+#include "Durahan.hpp" //para teste
 #include <vector>
 
-namespace Fases{
-    class Pantano_Maldito: public Fase{
+namespace Fases
+{
+    class Pantano_Maldito: public Fase
+    {
         private:
         int  maxCaixas;
         int it_Caixas;
@@ -19,8 +21,8 @@ namespace Fases{
         sf::RectangleShape fundo;
         sf::Texture textura;
 
-        public:
-        Pantano_Maldito();
+    public:
+        Pantano_Maldito(bool temSegundoJogador);
         ~Pantano_Maldito();
         void criarInimMedio(const sf::Vector2f posicao);
         void criarCaixa(const sf::Vector2f posicao);

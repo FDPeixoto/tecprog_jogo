@@ -38,7 +38,7 @@ namespace Entidades
     void atacar(int dano, Personagem *personagem);
     void tomarDano(int dano);
     virtual void atacar() = 0;
-
+    sf::Vector2f getVelocidade();
     void checarForaDaJanela();
   };
 }

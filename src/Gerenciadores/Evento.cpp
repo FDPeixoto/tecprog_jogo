@@ -14,7 +14,6 @@ namespace Gerenciadores
         // pEstado = nullptr;
         pJog1 = nullptr;
         pJog2 = nullptr;
-
     }
 
     Evento *Evento::getGerenciadorEvento()
@@ -37,77 +36,105 @@ namespace Gerenciadores
 
     void Evento::verificaTeclaPressionada(sf::Keyboard::Key tecla)
     {
-        if (tecla == sf::Keyboard::A)
+        int idEstado = pEstado->getStateAtual()->getIdentificador();
+        if (idEstado == IDMENUINICIALSTATE)
         {
-            if (pJog2 != nullptr)
+            if (tecla == sf::Keyboard::Num1)
             {
-                pJog2->andar(true);
+                pEstado->addState(IDPANTANOMALDITOUM);
+            }
+            else if (tecla == sf::Keyboard::Num2)
+            {
+                pEstado->addState(IDPANTANOMALDITODOIS);
+            }
+            else if (tecla == sf::Keyboard::Num3)
+            {
+                pEstado->addState(IDCASTELOASSOMBRADOUM);
+            }
+            else if (tecla == sf::Keyboard::Num4)
+            {
+                pEstado->addState(IDCASTELOASSOMBRADODOIS);
             }
         }
-        else if (tecla == sf::Keyboard::D)
+
+        if (idEstado == IDFASESTATE)
         {
-            if (pJog2 != nullptr)
+            if (tecla == sf::Keyboard::A)
             {
-                pJog2->andar(false);
+                if (pJog2 != nullptr)
+                {
+                    pJog2->andar(true);
+                }
+            }
+            else if (tecla == sf::Keyboard::D)
+            {
+                if (pJog2 != nullptr)
+                {
+                    pJog2->andar(false);
+                }
+            }
+            else if (tecla == sf::Keyboard::W)
+            {
+                if (pJog2 != nullptr)
+                {
+                    pJog2->pular();
+                }
+            }
+            else if (tecla == sf::Keyboard::Left)
+            {
+                if (pJog1 != nullptr)
+                {
+                    pJog1->andar(true);
+                }
+            }
+            else if (tecla == sf::Keyboard::Right)
+            {
+                if (pJog1 != nullptr)
+                {
+                    pJog1->andar(false);
+                }
+            }
+            else if (tecla == sf::Keyboard::Up)
+            {
+                if (pJog1 != nullptr)
+                {
+                    pJog1->pular();
+                }
+            }
+            else if (tecla == sf::Keyboard::M)
+            {
+                if (pJog1 != nullptr)
+                {
+                    pJog1->atacar();
+                }
+            }
+            else if (tecla == sf::Keyboard::S)
+            {
+                if (pJog2 != nullptr)
+                {
+                    pJog2->atacar();
+                }
+            }
+            else if (tecla == sf::Keyboard::Q)
+            {
+                pGerenciadorGrafico->mostrarRanking();
+            }
+            else if (tecla == sf::Keyboard::Escape)
+            {
+                pEstado->addState(IDPAUSESTATE);
             }
         }
-        else if (tecla == sf::Keyboard::W)
+        if (idEstado == IDPAUSESTATE)
         {
-            if (pJog2 != nullptr)
+            if (tecla == sf::Keyboard::Escape)
             {
-                pJog2->pular();
+                pEstado->removerState();
             }
         }
-        else if (tecla == sf::Keyboard::Left)
-        {
-            if (pJog1 != nullptr)
-            {
-                pJog1->andar(true);
-            }
-        }
-        else if (tecla == sf::Keyboard::Right)
-        {
-            if (pJog1 != nullptr)
-            {
-                pJog1->andar(false);
-            }
-        }
-        else if (tecla == sf::Keyboard::Up)
-        {
-            if (pJog1 != nullptr)
-            {
-                pJog1->pular();
-            }
-        }
-        else if (tecla == sf::Keyboard::M)
-        {
-            if (pJog1 != nullptr)
-            {
-                pJog1->atacar();
-            }
-        }
-        else if (tecla == sf::Keyboard::S)
-        {
-            if (pJog2 != nullptr)
-            {
-                pJog2->atacar();
-            }
-        }
-        else if (tecla == sf::Keyboard::Q)
-        {
-           // pGerenciadorGrafico->mostrarRanking();
-        }
-        else if (tecla == sf::Keyboard::Escape)
+
+        if (tecla == sf::Keyboard::BackSpace)
         {
             pEstado->removerState();
-        }
-        else if (tecla == sf::Keyboard::Num1)
-        {
-            pEstado->addState(IDCASTELOASSOMBRADO);
-        }
-        else if (tecla == sf::Keyboard::Num2)
-        {
-            pEstado->addState(IDPANTANOMALDITO);
         }
     }
 
@@ -147,7 +174,14 @@ namespace Gerenciadores
     {
         int pontuacaoJ1 = 0;
         int pontuacaoJ2 = 0;
-        pFase = pEstado->getStateAtual()->getFase();
+        if (pEstado->getStateAtual()->getIdentificador() == IDFASESTATE)
+        {
+            pFase = pEstado->getStateAtual()->getFase();
+        }
+        else
+        {
+            pFase = nullptr;
+        }
         sf::Event evento;
         while (pGerenciadorGrafico->getJanela()->pollEvent(evento))
         {
@@ -175,9 +209,16 @@ namespace Gerenciadores
                     {
                         // pFase->setNomePartida("Pantano Maldito2");
                         // pFase->salvarRanking("ranking.json");
-                        //pontuacaoJ1 = pFase->getPontosJogador1();
-                        //pontuacaoJ2 = pFase->getPontosJogador2();
-                        pEstado->addState(IDCASTELOASSOMBRADO);
+                        pontuacaoJ1 = pFase->getPontosJogador1();
+                        pontuacaoJ2 = pFase->getPontosJogador2();
+                        if (pJog2 != nullptr)
+                        {
+                            pEstado->addState(IDCASTELOASSOMBRADODOIS);
+                        }
+                        else
+                        {
+                            pEstado->addState(IDCASTELOASSOMBRADOUM);
+                        }
                     }
                     else
                     { // eh o castelo assombrado
@@ -189,37 +230,4 @@ namespace Gerenciadores
             }
         }
     }
-
-    /*void Evento::mostrarRanking(sf::RenderWindow* janela) {
-    std::ifstream arquivo("ranking.json");
-    if (arquivo.is_open()) {
-        json ranking;
-        arquivo >> ranking;
-        arquivo.close();
-
-        sf::Text textoRanking;
-        textoRanking.setFont(fonte);
-        textoRanking.setCharacterSize(18);
-        textoRanking.setFillColor(sf::Color::White);
-
-        int yPos = 50;
-        for (int i = 0; i < ranking.size(); ++i) {
-            std::string texto = "Partida: " + ranking[i]["nomePartida"].get<std::string>();
-            textoRanking.setString(texto);
-            textoRanking.setPosition(50, yPos);
-            pGerenciadorGrafico->desenharTexto(textoRanking);
-            yPos += 40;
-
-            for (const auto& jogador : ranking[i]["jogadores"]) {
-                texto = jogador["nome"].get<std::string>() + " - " +
-                        std::to_string(jogador["pontuacao"].get<int>());
-                textoRanking.setString(texto);
-                textoRanking.setPosition(50, yPos);
-                janela->draw(textoRanking);  // Modificado para usar o ponteiro
-                yPos += 40;
-            }
-            yPos += 20;
-        }
-    }
-    }*/
 }

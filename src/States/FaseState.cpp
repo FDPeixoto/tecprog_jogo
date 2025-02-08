@@ -2,21 +2,36 @@
 #include "Pantano_Maldito.hpp"
 #include "Castelo_Assombrado.hpp"
 
-namespace States{
-    FaseState::FaseState(const int idFase): State(IDFASESTATE){
-        if(idFase == IDPANTANOMALDITO){
-            pFase = new Fases::Pantano_Maldito();
+namespace States
+{
+    FaseState::FaseState(const int idFase) : State(IDFASESTATE)
+    {
+        if (idFase == IDPANTANOMALDITOUM)
+        {
+            pFase = new Fases::Pantano_Maldito(false);
         }
-        else if(idFase == IDCASTELOASSOMBRADO){
-            pFase = new Fases::Castelo_Assombrado();
+        else if (idFase == IDCASTELOASSOMBRADOUM)
+        {
+            pFase = new Fases::Castelo_Assombrado(false);
         }
-        else{
-            //Id de fase nao identificado
+        else if (idFase == IDPANTANOMALDITODOIS)
+        {
+            pFase = new Fases::Pantano_Maldito(true);
+        }
+        else if (idFase == IDCASTELOASSOMBRADODOIS)
+        {
+            pFase = new Fases::Castelo_Assombrado(true);
+        }
+        else
+        {
+            // Id de fase nao identificado
         }
     }
-    FaseState::~FaseState(){
-        if(pFase != nullptr){
-            delete(pFase);
+    FaseState::~FaseState()
+    {
+        if (pFase != nullptr)
+        {
+            delete (pFase);
         }
         pFase = nullptr;
     }

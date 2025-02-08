@@ -12,6 +12,7 @@ namespace Entidades
         private:
             float lado;
             bool noChao;
+            sf::Vector2f velocidade;
 
         public:
             Caixa(const sf::Vector2f posicao);
@@ -24,6 +25,7 @@ namespace Entidades
             virtual void atualizarPosicao(float dt);
             void Obstacular(Entidades::Jogador *pJogador);
             void obstacular(Entidades::Jogador *pJogador);
+            void colisao(Entidade *outraEntidade);
         };
     }
 }
