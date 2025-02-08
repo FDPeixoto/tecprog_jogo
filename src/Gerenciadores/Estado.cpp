@@ -90,11 +90,17 @@ namespace Gerenciadores
         case IDPAUSESTATE:
             estado = new States::Menus::PauseState();
             break;
-        case IDPANTANOMALDITO:
-            estado = new States::FaseState(IDPANTANOMALDITO);
+        case IDPANTANOMALDITOUM:
+            estado = new States::FaseState(IDPANTANOMALDITOUM);
             break;
-        case IDCASTELOASSOMBRADO:
-            estado = new States::FaseState(IDCASTELOASSOMBRADO);
+        case IDCASTELOASSOMBRADOUM:
+            estado = new States::FaseState(IDCASTELOASSOMBRADOUM);
+            break;
+        case IDPANTANOMALDITODOIS:
+            estado = new States::FaseState(IDPANTANOMALDITODOIS);
+            break;
+        case IDCASTELOASSOMBRADODOIS:
+            estado = new States::FaseState(IDCASTELOASSOMBRADODOIS);
             break;
         }
 

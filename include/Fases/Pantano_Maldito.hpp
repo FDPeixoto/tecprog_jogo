@@ -1,20 +1,21 @@
 #include "Fase.hpp"
 #include "stdafx.h"
 #include "Esqueleto.hpp"
-#include "Durahan.hpp"//para teste
+#include "Durahan.hpp" //para teste
 #include <vector>
 
-namespace Fases{
-    class Pantano_Maldito: public Fase{
-        private:
+namespace Fases
+{
+    class Pantano_Maldito : public Fase
+    {
+    private:
         const int maxInimMedios;
         int cont_D;
         int it_D;
         Entidades::Obstaculos::Plataforma fundo;
-        
 
-        public:
-        Pantano_Maldito();
+    public:
+        Pantano_Maldito(bool temSegundoJogador);
         ~Pantano_Maldito();
         void criarInimMedio(const sf::Vector2f posicao);
         const int getMaxInimMedios();
@@ -22,10 +23,9 @@ namespace Fases{
         void criarEntidade(char letra, const sf::Vector2f posicao);
         void executar();
 
-
         void criarInimDificil(const sf::Vector2f posicao);
-        void setpD(Entidades::Inimigos::Durahan* pDurahan);
-        Entidades::Inimigos::Durahan* getpD();
+        void setpD(Entidades::Inimigos::Durahan *pDurahan);
+        Entidades::Inimigos::Durahan *getpD();
 
         void verificarCompletou();
     };

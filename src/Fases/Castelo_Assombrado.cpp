@@ -6,9 +6,9 @@
 
 namespace Fases
 {
-    Castelo_Assombrado::Castelo_Assombrado() : Fase(IDCASTELOASSOMBRADO),fundo(ALTURA_JANELA,LARGURA_JANELA, sf::Vector2f(0.0f, 0.0f), true ), maxChefoes(5), vetorDurahan(), it_D(0), maxEsp(3), it_Esp(0),maxM(3), it_M(0),maxP(3), it_P(0)
+    Castelo_Assombrado::Castelo_Assombrado(bool temSegundoJogador) : Fase(IDCASTELOASSOMBRADO, temSegundoJogador), fundo(ALTURA_JANELA, LARGURA_JANELA, sf::Vector2f(0.0f, 0.0f), true), maxChefoes(5), vetorDurahan(), it_D(0), maxEsp(3), it_Esp(0), maxM(3), it_M(0), maxP(3), it_P(0)
     {
-        //Fase::proximaFase();
+        // Fase::proximaFase();
         srand((unsigned int)time(NULL));
         cont_D = (rand() % (2)) + 3;
         srand((unsigned int)time(NULL));
@@ -18,8 +18,8 @@ namespace Fases
         srand((unsigned int)time(NULL));
         maxP = (rand() % (10)) + 10;
         srand((unsigned int)time(NULL));
-        aleatoriedadeP=(rand() % (3))+1;
-         
+        aleatoriedadeP = (rand() % (3)) + 1;
+
         criarMapa();
         //, cont_D(2)
 
@@ -43,13 +43,13 @@ namespace Fases
         {
             // pD=durahan;
             // durahan->setCor(sf::Color::Magenta);
-            if (Fase::getJogador1() != nullptr)
+            if (pJogador1 != nullptr)
             {
-                durahan->setJogador1(getJogador1());
+                durahan->setJogador1(pJogador1);
             }
-            if (Fase::getJogador2() != nullptr)
+            if (pJogador2 != nullptr)
             {
-                durahan->setJogador2(getJogador2());
+                durahan->setJogador2(pJogador2);
             }
             vetorDurahan.push_back(durahan);
             durahan->setMediator(pGerenciadorColisao);
@@ -69,13 +69,13 @@ namespace Fases
         }
     }
     void Castelo_Assombrado::criarMapa()
-    {           
+    {
         std::ifstream arquivo;
         std::string linha;
         arquivo.open("src/Fases/TesteSegundaFase.txt");
         if (!arquivo.is_open())
         {
-            std::cout << "NAo abriu o arquivo .txt Pantano_Maldito" << std::endl;
+            std::cout << "NAo abriu o arquivo .txt Castelo Assombrado" << std::endl;
             exit(1);
         }
         int j = 0;
@@ -93,7 +93,6 @@ namespace Fases
         arquivo.close();
     }
 
-
     void Castelo_Assombrado::executar()
     {
         pGerenciadorGrafico->desenharEntidade(&fundo);
@@ -106,7 +105,9 @@ namespace Fases
                 pGerenciadorGrafico->desenharList(vetorDurahan[i]->getListaProjetil());
             }
         }
-        if(completou==true){ }
+        if (completou == true)
+        {
+        }
     }
     void Castelo_Assombrado::criarEntidade(char letra, const sf::Vector2f posicao)
     {
@@ -141,8 +142,8 @@ namespace Fases
         break;
         case ('&'):
         {
-            if((it_P<maxP)&&(((it_P+1)%aleatoriedadeP)!=0))
-            criarPlataforma(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f), true);
+            if ((it_P < maxP) && (((it_P + 1) % aleatoriedadeP) != 0))
+                criarPlataforma(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f), true);
             it_P++;
         }
         break;

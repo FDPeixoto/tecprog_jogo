@@ -3,6 +3,32 @@
         "jogadores": [
             {
                 "nome": "1",
+                "pontuacao": 13734
+            },
+            {
+                "nome": "2",
+                "pontuacao": 13734
+            }
+        ],
+        "nomePartida": "Nome da Partida aqui"
+    },
+    {
+        "jogadores": [
+            {
+                "nome": "1",
+                "pontuacao": 8049
+            },
+            {
+                "nome": "2",
+                "pontuacao": 0
+            }
+        ],
+        "nomePartida": "Nome da Partida aqui"
+    },
+    {
+        "jogadores": [
+            {
+                "nome": "1",
                 "pontuacao": 3708
             },
             {
@@ -34,32 +60,6 @@
             {
                 "nome": "2",
                 "pontuacao": 3568
-            }
-        ],
-        "nomePartida": "Nome da Partida aqui"
-    },
-    {
-        "jogadores": [
-            {
-                "nome": "1",
-                "pontuacao": 3567
-            },
-            {
-                "nome": "2",
-                "pontuacao": 3567
-            }
-        ],
-        "nomePartida": "Nome da Partida aqui"
-    },
-    {
-        "jogadores": [
-            {
-                "nome": "1",
-                "pontuacao": 3566
-            },
-            {
-                "nome": "2",
-                "pontuacao": 3566
             }
         ],
         "nomePartida": "Nome da Partida aqui"

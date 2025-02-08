@@ -188,6 +188,7 @@ namespace Entidades
             corpo.setPosition(pos);
 
             corpo.move(velocidade.x * dt, velocidade.y * dt);
+            checarForaDaJanela();
         }
 
         void Inimigo::mover()

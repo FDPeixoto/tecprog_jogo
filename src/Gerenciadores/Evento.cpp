@@ -41,15 +41,23 @@ namespace Gerenciadores
         {
             if (tecla == sf::Keyboard::Num1)
             {
-                pEstado->addState(IDCASTELOASSOMBRADO);
+                pEstado->addState(IDPANTANOMALDITOUM);
             }
             else if (tecla == sf::Keyboard::Num2)
             {
-                pEstado->addState(IDPANTANOMALDITO);
+                pEstado->addState(IDPANTANOMALDITODOIS);
+            }
+            else if (tecla == sf::Keyboard::Num3)
+            {
+                pEstado->addState(IDCASTELOASSOMBRADOUM);
+            }
+            else if (tecla == sf::Keyboard::Num4)
+            {
+                pEstado->addState(IDCASTELOASSOMBRADODOIS);
             }
         }
 
-        if (idEstado == IDCASTELOASSOMBRADO || idEstado == IDPANTANOMALDITO)
+        if (idEstado == IDFASESTATE)
         {
             if (tecla == sf::Keyboard::A)
             {
@@ -166,9 +174,13 @@ namespace Gerenciadores
     {
         int pontuacaoJ1 = 0;
         int pontuacaoJ2 = 0;
-        if (pEstado->getStateAtual()->getIdentificador() == IDCASTELOASSOMBRADO || pEstado->getStateAtual()->getIdentificador() == IDPANTANOMALDITO)
+        if (pEstado->getStateAtual()->getIdentificador() == IDFASESTATE)
         {
             pFase = pEstado->getStateAtual()->getFase();
+        }
+        else
+        {
+            pFase = nullptr;
         }
         sf::Event evento;
         while (pGerenciadorGrafico->getJanela()->pollEvent(evento))
@@ -199,7 +211,14 @@ namespace Gerenciadores
                         // pFase->salvarRanking("ranking.json");
                         pontuacaoJ1 = pFase->getPontosJogador1();
                         pontuacaoJ2 = pFase->getPontosJogador2();
-                        pEstado->addState(IDCASTELOASSOMBRADO);
+                        if (pJog2 != nullptr)
+                        {
+                            pEstado->addState(IDCASTELOASSOMBRADODOIS);
+                        }
+                        else
+                        {
+                            pEstado->addState(IDCASTELOASSOMBRADOUM);
+                        }
                     }
                     else
                     { // eh o castelo assombrado

@@ -27,6 +27,7 @@ namespace Entidades
         Durahan::~Durahan()
         {
             antidoto_mortal = false;
+
             listaProjetil.clear();
         }
         void Durahan::criarProjetil()

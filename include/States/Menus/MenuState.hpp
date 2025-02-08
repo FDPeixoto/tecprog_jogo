@@ -15,15 +15,17 @@ namespace States
         protected:
             std::vector<Botao *> botoes;
             Gerenciadores::Grafico *pGrafico;
+            sf::Text titulo;
+            sf::Font fonte;
+
+            void inicializarTitulo(const std::string &texto, unsigned tamanhoFonte = 40);
 
         public:
             MenuState(int id);
             virtual ~MenuState();
 
-            // Override BOTH desenhar() implementations
             void desenhar() override;
 
-            // Optional: Override executar() from Ente
             void executar() override;
 
             Fases::Fase *getFase();

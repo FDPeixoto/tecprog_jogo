@@ -4,15 +4,23 @@
 
 namespace States
 {
-    FaseState::FaseState(const int idFase) : State(idFase)
+    FaseState::FaseState(const int idFase) : State(IDFASESTATE)
     {
-        if (idFase == IDPANTANOMALDITO)
+        if (idFase == IDPANTANOMALDITOUM)
         {
-            pFase = new Fases::Pantano_Maldito();
+            pFase = new Fases::Pantano_Maldito(false);
         }
-        else if (idFase == IDCASTELOASSOMBRADO)
+        else if (idFase == IDCASTELOASSOMBRADOUM)
         {
-            pFase = new Fases::Castelo_Assombrado();
+            pFase = new Fases::Castelo_Assombrado(false);
+        }
+        else if (idFase == IDPANTANOMALDITODOIS)
+        {
+            pFase = new Fases::Pantano_Maldito(true);
+        }
+        else if (idFase == IDCASTELOASSOMBRADODOIS)
+        {
+            pFase = new Fases::Castelo_Assombrado(true);
         }
         else
         {

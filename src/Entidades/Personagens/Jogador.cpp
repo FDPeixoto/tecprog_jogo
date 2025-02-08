@@ -38,7 +38,7 @@ namespace Entidades
         }
         if (noChao && pulando)
         {
-            velocidade.y = -VELOCIDADE_PULO;
+            velocidade.y = -VELOCIDADE_PULO * 2.4f;
             corpo.move(0.f, velocidade.y * dt);
             pulando = false;
             noChao = false;

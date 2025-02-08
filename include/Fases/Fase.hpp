@@ -34,6 +34,7 @@ namespace Fases
         Entidades::Jogador *pJogador1;
         Entidades::Jogador *pJogador2;
         int quantidadeJogadores;
+        bool doisJogadores;
         bool completou;
         int maxMinio;
         int maxCaixa;
@@ -46,6 +47,7 @@ namespace Fases
     public:
         // Fase();
         Fase(const int idFase);
+        Fase(const int idFase, bool temSegundoJogador);
         ~Fase();
         virtual void criarMapa() = 0;
         void setJogador1(Entidades::Jogador *pJogador);
@@ -62,7 +64,7 @@ namespace Fases
         void criarMinion(const sf::Vector2f posicao);
         void criarPlataforma(const sf::Vector2f posicao, bool Castelo);
         void criarCaixa(const sf::Vector2f posicao);
-        
+
         void desenhar();
         void executar();
         void criarCenario();
@@ -70,6 +72,5 @@ namespace Fases
         void proximaFase();
         bool completouFase();
         void eliminarPersonagensMortos();
-
     };
 }

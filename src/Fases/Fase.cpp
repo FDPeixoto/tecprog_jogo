@@ -1,13 +1,26 @@
 #include "Fase.hpp"
-#include "../../include/nlohmann/json.hpp" 
+#include "../../include/nlohmann/json.hpp"
+#include "Esqueleto.hpp"
 using json = nlohmann::json;
 
 namespace Fases
 {
-    Fase::Fase(const int idFase) : Ente(idFase),listaPersonagens(new Listas::ListaEntidades()),
-    listaObstaculos(new Listas::ListaEntidades()), pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()),
-    pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()), pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
-    pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0), completou(false), pontosJ1(0), pontosJ2(0) 
+    Fase::Fase(const int idFase) : Ente(idFase), listaPersonagens(new Listas::ListaEntidades()),
+                                   listaObstaculos(new Listas::ListaEntidades()), pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()),
+                                   pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()), pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
+                                   pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0), completou(false), pontosJ1(0), pontosJ2(0)
+    {
+        pGerenciadorColisao->setMoveis(listaPersonagens);
+        pGerenciadorColisao->setFixos(listaObstaculos);
+        pGerenciadorColisao->limparListas();
+        doisJogadores = false;
+        fonte.loadFromFile("Fonte/DejaVuSans.ttf");
+    }
+
+    Fase::Fase(const int idFase, bool temSegundoJogador) : Ente(idFase), listaPersonagens(new Listas::ListaEntidades()),
+                                                           listaObstaculos(new Listas::ListaEntidades()), pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()),
+                                                           pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()), pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
+                                                           pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0), completou(false), pontosJ1(0), pontosJ2(0), doisJogadores(temSegundoJogador)
     {
         pGerenciadorColisao->setMoveis(listaPersonagens);
         pGerenciadorColisao->setFixos(listaObstaculos);
@@ -18,8 +31,16 @@ namespace Fases
     Fase::~Fase()
     {
         pGerenciadorGrafico = nullptr;
-        pJogador1 = nullptr;
-        pJogador2 = nullptr;
+        if (pJogador1)
+        {
+            delete pJogador1;
+            pJogador1 = nullptr;
+        }
+        if (pJogador2)
+        {
+            delete pJogador2;
+            pJogador2 = nullptr;
+        }
         quantidadeJogadores = 0;
         delete listaPersonagens;
         delete listaObstaculos;
@@ -76,7 +97,7 @@ namespace Fases
         }
         else
         {
-            ranking = json::array(); 
+            ranking = json::array();
         }
 
         int pontosJogador1 = getPontosJogador1();
@@ -178,7 +199,7 @@ namespace Fases
         if (quantidadeJogadores == 0)
         {
             Entidades::Jogador *jogador = new Entidades::Jogador(posicao, false);
-            jogador->setCor(sf::Color::White); 
+            jogador->setCor(sf::Color::White);
             if (jogador != nullptr)
             {
                 listaPersonagens->incluirEntidade(jogador);
@@ -189,10 +210,10 @@ namespace Fases
             }
             quantidadeJogadores++;
         }
-        else if (quantidadeJogadores == 1)
+        else if ((quantidadeJogadores == 1) && (doisJogadores))
         {
             Entidades::Jogador *jogador = new Entidades::Jogador(posicao, true);
-            jogador->setCor(sf::Color::White); 
+            jogador->setCor(sf::Color::White);
             if (jogador != nullptr)
             {
                 listaPersonagens->incluirEntidade(jogador);
@@ -276,9 +297,15 @@ namespace Fases
         float variacaoTempo = pGerenciadorGrafico->getRelogio()->getElapsedTime().asSeconds();
         listaPersonagens->atualizar(variacaoTempo);
         pGerenciadorGrafico->resetarRelogio();
-        pGerenciadorGrafico->desenharTexto(pJogador1->getTextoVida(), sf::Vector2f(0.f, 10.f));
-        pGerenciadorGrafico->desenharTexto(pJogador2->getTextoVida(), sf::Vector2f(200.f, 10.f));
-        
+        if (pJogador1 != nullptr)
+        {
+            pGerenciadorGrafico->desenharTexto(pJogador1->getTextoVida(), sf::Vector2f(0.f, 10.f));
+        }
+        if (pJogador2 != nullptr)
+        {
+            pGerenciadorGrafico->desenharTexto(pJogador2->getTextoVida(), sf::Vector2f(200.f, 10.f));
+        }
+
         desenhar();
     }
     void Fase::proximaFase()
@@ -289,34 +316,44 @@ namespace Fases
     }
     bool Fase::completouFase()
     {
-        if ((pJogador1 != nullptr))
-        {
-            sf::Vector2f posJ1 = pJogador1->getCorpo().getPosition();
-            if (posJ1.x >= (LARGURA_JANELA / 2))
+
+        for (auto itPersonagem = listaPersonagens->getListaEnt().inicio(); itPersonagem != listaPersonagens->getListaEnt().fim(); itPersonagem++)
+            if (*itPersonagem)
             {
-                return false;
+                if ((*itPersonagem)->getID() == IDMINION)
+                {
+                    if (static_cast<Entidades::Inimigos::Minion *>(*itPersonagem)->getVivo())
+                    {
+                        return false;
+                    }
+                }
+                if ((*itPersonagem)->getID() == IDESQUELETO)
+                {
+                    if (static_cast<Entidades::Inimigos::Esqueleto *>(*itPersonagem)->getVivo())
+                    {
+                        return false;
+                    }
+                }
+                if ((*itPersonagem)->getID() == IDDURAHAN)
+                {
+                    if (static_cast<Entidades::Inimigos::Durahan *>(*itPersonagem)->getVivo())
+                    {
+                        return false;
+                    }
+                }
             }
-        }
-        else if (pJogador2 != nullptr)
-        {
-            sf::Vector2f posJ2 = pJogador2->getCorpo().getPosition();
-            if (posJ2.x >= (LARGURA_JANELA / 2))
-            {
-                return false;
-            }
-        }
-        return false;
+        return true;
     }
 
     void Fase::eliminarPersonagensMortos()
     {
-       /* for (auto itPersonagem = listaPersonagens->getListaEnt().inicio(); itPersonagem != listaPersonagens->getListaEnt().fim(); itPersonagem++)
-        {
-            if (!(*itPersonagem)->getVivo())
-            {
-                listaPersonagens->removerEntidade((*itPersonagem));
-                pGerenciadorColisao->removerEntidade(*itPersonagem);
-            }
-        }*/
+        /* for (auto itPersonagem = listaPersonagens->getListaEnt().inicio(); itPersonagem != listaPersonagens->getListaEnt().fim(); itPersonagem++)
+         {
+             if (!(*itPersonagem)->getVivo())
+             {
+                 listaPersonagens->removerEntidade((*itPersonagem));
+                 pGerenciadorColisao->removerEntidade(*itPersonagem);
+             }
+         }*/
     }
 }
