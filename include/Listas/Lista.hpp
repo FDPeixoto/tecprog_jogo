@@ -120,7 +120,7 @@ namespace Listas
     {
       if (pElemento == nullptr || pPrimeiro == nullptr)
       {
-        return; // Early return if the element is null or the list is empty
+        return;
       }
 
       Elemento<TL> *aux = pPrimeiro;
@@ -134,34 +134,26 @@ namespace Listas
         return; // Element not found
       }
 
-      if (aux == pPrimeiro)
+      // Update previous and next pointers
+      Elemento<TL> *ante = aux->getAnte();
+      Elemento<TL> *prox = aux->getProx();
+
+      if (ante != nullptr)
       {
-        pPrimeiro = pPrimeiro->getProx();
-        if (pPrimeiro != nullptr)
-        {
-          pPrimeiro->setAnte(nullptr);
-        }
-        else
-        {
-          pUltimo = nullptr; // List is now empty
-        }
-      }
-      else if (aux == pUltimo)
-      {
-        pUltimo = pUltimo->getAnte();
-        if (pUltimo != nullptr)
-        {
-          pUltimo->setProx(nullptr);
-        }
-        else
-        {
-          pPrimeiro = nullptr; // List is now empty
-        }
+        ante->setProx(prox);
       }
       else
       {
-        aux->getAnte()->setProx(aux->getProx());
-        aux->getProx()->setAnte(aux->getAnte());
+        pPrimeiro = prox; // Removing the first element
+      }
+
+      if (prox != nullptr)
+      {
+        prox->setAnte(ante);
+      }
+      else
+      {
+        pUltimo = ante; // Removing the last element
       }
 
       delete aux;

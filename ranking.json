@@ -42,11 +42,11 @@
         "jogadores": [
             {
                 "nome": "1",
-                "pontuacao": 3708
+                "pontuacao": 5548
             },
             {
                 "nome": "2",
-                "pontuacao": 3708
+                "pontuacao": 0
             }
         ],
         "nomePartida": "Nome da Partida aqui"
@@ -55,11 +55,11 @@
         "jogadores": [
             {
                 "nome": "1",
-                "pontuacao": 3569
+                "pontuacao": 4758
             },
             {
                 "nome": "2",
-                "pontuacao": 3569
+                "pontuacao": 0
             }
         ],
         "nomePartida": "Nome da Partida aqui"

@@ -26,7 +26,7 @@ namespace Listas
             {
                 if (*it == pEnte)
                 {
-                    // listaEnt.removerElemento(pEnte);
+                    listaEnt.removerElemento(pEnte);
                     break;
                 }
             }

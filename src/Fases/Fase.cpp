@@ -318,6 +318,8 @@ namespace Fases
     bool Fase::completouFase()
     {
 
+        gameOver = true;
+
         for (auto itPersonagem = listaPersonagens->getListaEnt().inicio(); itPersonagem != listaPersonagens->getListaEnt().fim(); itPersonagem++)
             if (*itPersonagem)
             {
@@ -342,19 +344,31 @@ namespace Fases
                         return false;
                     }
                 }
+
+                if ((*itPersonagem)->getID() == IDJOGADOR)
+                {
+                    if (static_cast<Entidades::Jogador *>(*itPersonagem)->getVivo())
+                    {
+                        gameOver = false;
+                    }
+                }
             }
         return true;
     }
 
     void Fase::eliminarPersonagensMortos()
     {
-        /* for (auto itPersonagem = listaPersonagens->getListaEnt().inicio(); itPersonagem != listaPersonagens->getListaEnt().fim(); itPersonagem++)
-         {
-             if (!(*itPersonagem)->getVivo())
-             {
-                 listaPersonagens->removerEntidade((*itPersonagem));
-                 pGerenciadorColisao->removerEntidade(*itPersonagem);
-             }
-         }*/
+        for (auto itPersonagem = listaPersonagens->getListaEnt().inicio(); itPersonagem != listaPersonagens->getListaEnt().fim(); itPersonagem++)
+        {
+            if (!(static_cast<Entidades::Personagem *>(*itPersonagem))->getVivo())
+            {
+                // listaPersonagens->removerEntidade((*itPersonagem));
+                pGerenciadorColisao->removerEntidade(*itPersonagem);
+            }
+        }
+    }
+    bool Fase::getGameOver()
+    {
+        return gameOver;
     }
 }

@@ -1,6 +1,5 @@
 #pragma once
 #include <Jogador.hpp>
-
 namespace Entidades
 {
     namespace Obstaculos

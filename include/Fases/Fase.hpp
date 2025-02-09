@@ -43,6 +43,7 @@ namespace Fases
         sf::Font fonte;
         int pontosJ1;
         int pontosJ2;
+        bool gameOver;
 
     public:
         // Fase();
@@ -72,5 +73,6 @@ namespace Fases
         void proximaFase();
         bool completouFase();
         void eliminarPersonagensMortos();
+        bool getGameOver();
     };
 }

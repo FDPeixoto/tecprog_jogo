@@ -18,6 +18,7 @@ namespace Entidades
     bool paraEsquerda;
     bool ehJogador2;
     sf::Texture textura;
+    float tempoDesteUltimoDano;
 
   public:
     Jogador(const sf::Vector2f posicao, bool jogador2);
@@ -40,5 +41,7 @@ namespace Entidades
     void setPontos(int p);
     void atacar();
     void sofrerObstacular(int ID);
+    void setUltimoDano(float ultimoSofrido);
+    float getUltimoDano();
   };
 }

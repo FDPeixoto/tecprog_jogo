@@ -25,7 +25,9 @@ namespace Entidades
             virtual void atualizarPosicao(float dt);
             void Obstacular(Entidades::Jogador *pJogador);
             void obstacular(Entidades::Jogador *pJogador);
-            void colisao(Entidade *outraEntidade);
+            // void colisao(Entidade *outraEntidade) override;
+            void setNoChao(bool chao);
+            void setVelocidade(sf::Vector2f vel);
         };
     }
 }

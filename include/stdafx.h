@@ -3,7 +3,9 @@
 
 #pragma once
 
-#define GRAVIDADE 500.f
+#define GRAVIDADE 5.f
+#define FNORMAL -5.f
+#define VELOCIDADETERIMNAL 300.f
 #define NoChaoAZUL false
 #define NoChaoAMARELO false
 #define DELTATIME 300.0f
@@ -76,8 +78,8 @@
 #define RAIO_ATAQUE 100.0f
 #define ALTURACAIXA 100.0f
 
-#define LARGURA_JANELA 1280
-#define ALTURA_JANELA 708
+#define LARGURA_JANELA 1536
+#define ALTURA_JANELA 704
 
 #define IDPANTANOMALDITOUM 32
 #define IDPANTANOMALDITODOIS 33

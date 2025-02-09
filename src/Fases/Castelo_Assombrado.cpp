@@ -60,12 +60,12 @@ namespace Fases
     }
     void Castelo_Assombrado::criarEspinho(const sf::Vector2f posicao)
     {
-        Entidades::Obstaculos::Espinho *plataforma = new Entidades::Obstaculos::Espinho(posicao);
-        if (plataforma != nullptr)
+        Entidades::Obstaculos::Espinho *espinho = new Entidades::Obstaculos::Espinho(posicao);
+        if (espinho != nullptr)
         {
-            plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
-            listaObstaculos->incluirEntidade(plataforma);
-            pGerenciadorColisao->adicionarObstaculo(plataforma);
+            espinho->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
+            listaObstaculos->incluirEntidade(espinho);
+            pGerenciadorColisao->adicionarObstaculo(espinho);
         }
     }
     void Castelo_Assombrado::criarMapa()
@@ -98,7 +98,7 @@ namespace Fases
         pGerenciadorGrafico->desenharEntidade(&fundo);
         Fase::executar();
 
-        for (int i = 0; i < cont_D; i++)
+        for (size_t i = 0; i < vetorDurahan.size(); i++)
         {
             if (vetorDurahan[i] != nullptr)
             {

@@ -92,7 +92,9 @@ namespace Entidades
         }
         void Plataforma::atualizar(float dt)
         {
-            return;
+            float velocidadeY = GRAVIDADE;
+            velocidadeY += FNORMAL;
+            corpo.move(0.f, velocidadeY);
         }
         void Plataforma::inicializar()
         {
