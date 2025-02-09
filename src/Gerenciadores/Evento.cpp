@@ -207,8 +207,8 @@ namespace Gerenciadores
 
                     if (pFase->getID() == IDPANTANOMALDITO)
                     {
-                        // pFase->setNomePartida("Pantano Maldito2");
-                        // pFase->salvarRanking("ranking.json");
+                        //pFase->setNomePartida("Pantano Maldito2");
+                         //pFase->salvarRanking("ranking.json");
                         pontuacaoJ1 = pFase->getPontosJogador1();
                         pontuacaoJ2 = pFase->getPontosJogador2();
                         if (pJog2 != nullptr)
@@ -222,8 +222,8 @@ namespace Gerenciadores
                     }
                     else
                     { // eh o castelo assombrado
-                        //pFase->setNomePartida("Nome da Partida aqui");
-                        //pFase->salvarRanking("ranking.json", pontuacaoJ1, pontuacaoJ2);
+                        pFase->setNomePartida("Nome da Partida aqui");
+                        pFase->salvarRanking("ranking.json", pontuacaoJ1, pontuacaoJ2);
                         pGerenciadorGrafico->fecharJanela();
                     }
                 }

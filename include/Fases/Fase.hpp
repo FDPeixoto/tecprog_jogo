@@ -34,6 +34,7 @@ namespace Fases
         Listas::ListaEntidades *listaObstaculos;
         Entidades::Jogador *pJogador1;
         Entidades::Jogador *pJogador2;
+        std::string nomePartida;
         int quantidadeJogadores;
         bool doisJogadores;
         bool completou;
@@ -52,10 +53,10 @@ namespace Fases
         void setJogador2(Entidades::Jogador *pJogador);
         Entidades::Jogador *getJogador2();
         bool getCompletou();
-        //void salvarRanking(const std::string &arquivo, int pJ1, int pJ2);
+        void setNomePartida(const std::string nome);
+        void salvarRanking(const std::string &arquivo, int pJ1, int pJ2);
         int getPontosJogador1() const;
         int getPontosJogador2() const;
-        //void setNomePartida(const std::string nome);
 
         void criarJogador(const sf::Vector2f posicao);
         void criarMinion(const sf::Vector2f posicao);

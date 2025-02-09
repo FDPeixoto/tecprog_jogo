@@ -73,7 +73,7 @@ namespace Fases
     {
         return completou;
     }
-   /* void Fase::setNomePartida(const std::string nome)
+    void Fase::setNomePartida(const std::string nome)
     {
         nomePartida = nome;
     }
@@ -158,7 +158,7 @@ namespace Fases
         arquivoSaida.close();
 
         // mostrarRanking(pGerenciadorGrafico->getJanela());
-    }*/
+    }
 
     /*void Fase::mostrarRanking(sf::RenderWindow* janela) {
     std::ifstream arquivo("ranking.json");
