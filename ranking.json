@@ -16,6 +16,19 @@
         "jogadores": [
             {
                 "nome": "1",
+                "pontuacao": 10636
+            },
+            {
+                "nome": "2",
+                "pontuacao": 0
+            }
+        ],
+        "nomePartida": "Nome da Partida aqui"
+    },
+    {
+        "jogadores": [
+            {
+                "nome": "1",
                 "pontuacao": 8997
             },
             {
@@ -43,19 +56,6 @@
             {
                 "nome": "1",
                 "pontuacao": 5548
-            },
-            {
-                "nome": "2",
-                "pontuacao": 0
-            }
-        ],
-        "nomePartida": "Nome da Partida aqui"
-    },
-    {
-        "jogadores": [
-            {
-                "nome": "1",
-                "pontuacao": 4758
             },
             {
                 "nome": "2",
