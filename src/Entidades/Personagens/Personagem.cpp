@@ -64,6 +64,7 @@ namespace Entidades
     personagem->setNumVidas(getNumVidas() - dano);
     if (personagem->getNumVidas() <= 0)
     {
+      personagem->setNumVidas(0);
       personagem->setVivo(false);
     }
   }
@@ -102,4 +103,10 @@ namespace Entidades
       setPos(sf::Vector2f(pos.x, ALTURA_JANELA - tam.y));
     }
   }
+
+  void Personagem::setNoChao(bool chao)
+  {
+    noChao = chao;
+  }
+
 }

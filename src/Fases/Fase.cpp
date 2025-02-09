@@ -296,6 +296,7 @@ namespace Fases
 
         float variacaoTempo = pGerenciadorGrafico->getRelogio()->getElapsedTime().asSeconds();
         listaPersonagens->atualizar(variacaoTempo);
+        listaObstaculos->atualizar(variacaoTempo);
         pGerenciadorGrafico->resetarRelogio();
         if (pJogador1 != nullptr)
         {
