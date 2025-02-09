@@ -62,9 +62,9 @@ namespace Fases
     }
     void Castelo_Assombrado::criarEspinho(const sf::Vector2f posicao)
     {
-        Entidades::Obstaculos::Espinho *plataforma = static_cast<Entidades::Obstaculos::Espinho*>(factory.create(IDESPINHO, posicao));
+        Entidades::Obstaculos::Espinho *espinho = static_cast<Entidades::Obstaculos::Espinho*>(factory.create(IDESPINHO, posicao));
        
-        if (plataforma != nullptr)
+        if (espinho!= nullptr)
         {
             espinho->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
             listaObstaculos->incluirEntidade(espinho);
