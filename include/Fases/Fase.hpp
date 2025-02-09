@@ -7,13 +7,14 @@
 #include "Minion.hpp"
 #include "Plataforma.hpp"
 #include "Evento.hpp"
-#include "Durahan.hpp"
+#include "Ogro.hpp"
 #include "Colisao.hpp"
 #include "Espinho.hpp"
 #include "Caixa.hpp"
 #include <fstream>
 #include <vector>
 #include <string>
+#include "Factory.hpp"
 
 namespace Gerenciadores
 {
@@ -33,46 +34,42 @@ namespace Fases
         Listas::ListaEntidades *listaObstaculos;
         Entidades::Jogador *pJogador1;
         Entidades::Jogador *pJogador2;
+        std::string nomePartida;
         int quantidadeJogadores;
         bool doisJogadores;
         bool completou;
-        int maxMinio;
-        int maxCaixa;
-        int maxEspinho;
-        std::string nomePartida;
-        sf::Font fonte;
         int pontosJ1;
         int pontosJ2;
+        Factory factory;
         bool gameOver;
 
     public:
         // Fase();
-        Fase(const int idFase);
         Fase(const int idFase, bool temSegundoJogador);
-        ~Fase();
+        Fase(const int idFase);
+        virtual ~Fase();
         virtual void criarMapa() = 0;
         void setJogador1(Entidades::Jogador *pJogador);
         Entidades::Jogador *getJogador1();
         void setJogador2(Entidades::Jogador *pJogador);
         Entidades::Jogador *getJogador2();
         bool getCompletou();
+        void setNomePartida(const std::string nome);
         void salvarRanking(const std::string &arquivo, int pJ1, int pJ2);
         int getPontosJogador1() const;
         int getPontosJogador2() const;
-        void setNomePartida(const std::string nome);
 
         void criarJogador(const sf::Vector2f posicao);
         void criarMinion(const sf::Vector2f posicao);
         void criarPlataforma(const sf::Vector2f posicao, bool Castelo);
-        void criarCaixa(const sf::Vector2f posicao);
 
         void desenhar();
         void executar();
-        void criarCenario();
-
         void proximaFase();
         bool completouFase();
         void eliminarPersonagensMortos();
         bool getGameOver();
     };
 }
+
+

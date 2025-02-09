@@ -7,7 +7,7 @@
 
 namespace Entidades{
     namespace Inimigos{
-        class Durahan:public Inimigo{
+        class Ogro:public Inimigo{
             private:
                 bool antidoto_mortal;
                 std::list<Entidades::Entidade*> listaProjetil;
@@ -16,9 +16,9 @@ namespace Entidades{
                 int aleatorio;
                 bool jaAtirou;
             public:
-                Durahan();
-                Durahan(const sf::Vector2f posicao);
-                ~Durahan();
+                Ogro();
+                Ogro(const sf::Vector2f posicao);
+                ~Ogro();
                 void salvar();
                 void salvarDataBuffer();
                 void executar();

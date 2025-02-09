@@ -5,7 +5,9 @@
 
 Medievo::Medievo() : pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGrafico()),
                      pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()),
-                     pGerenciadorEstado(pGerenciadorEstado->getGerenciadorEstado())
+                     pGerenciadorEstado(pGerenciadorEstado->getGerenciadorEstado()),
+                     pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao())
+
 
 {
     executar();
@@ -13,7 +15,7 @@ Medievo::Medievo() : pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGraf
 
 Medievo::~Medievo()
 {
-    // pGerenciadorColisao = nullptr;
+     pGerenciadorColisao = nullptr;
     pGerenciadorGrafico = nullptr;
     pGerenciadorEvento = nullptr;
 }

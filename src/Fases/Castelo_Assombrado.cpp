@@ -6,61 +6,63 @@
 
 namespace Fases
 {
-    Castelo_Assombrado::Castelo_Assombrado(bool temSegundoJogador) : Fase(IDCASTELOASSOMBRADO, temSegundoJogador), fundo(ALTURA_JANELA, LARGURA_JANELA, sf::Vector2f(0.0f, 0.0f), true), maxChefoes(5), vetorDurahan(), it_D(0), maxEsp(3), it_Esp(0), maxM(3), it_M(0), maxP(3), it_P(0)
+    Castelo_Assombrado::Castelo_Assombrado(bool temSegundoJogador) : Fase(IDCASTELOASSOMBRADO, temSegundoJogador), fundo(sf::Vector2f(LARGURA_JANELA, ALTURA_JANELA)), vetorOgro(), it_Ogros(0), maxEsp(3), it_Esp(0), maxM(3), it_M(0), maxP(3), it_P(0)
     {
+        fundo.setPosition(0.0f, 0.0f);
+        textura.loadFromFile("Texturas/testeFundo1.png");
+        fundo.setTexture(&textura);
         // Fase::proximaFase();
         srand((unsigned int)time(NULL));
-        cont_D = (rand() % (2)) + 3;
+        maxEsp = (rand() % (3)) + 3;
         srand((unsigned int)time(NULL));
-        maxM = (rand() % (2)) + 3;
+        maxOgros = (rand() % (3)) + 3;
         srand((unsigned int)time(NULL));
-        maxEsp = (rand() % (2)) + 3;
+        maxM = (rand() % (3)) + 3;
         srand((unsigned int)time(NULL));
         maxP = (rand() % (10)) + 10;
         srand((unsigned int)time(NULL));
         aleatoriedadeP = (rand() % (3)) + 1;
 
         criarMapa();
-        //, cont_D(2)
+        //, maxOgros(2)
 
-        vetorDurahan.clear();
+        vetorOgro.clear();
     }
 
     Castelo_Assombrado::~Castelo_Assombrado()
     {
-        for (std::vector<Entidades::Inimigos::Durahan *>::iterator it = vetorDurahan.begin(); it != vetorDurahan.end(); ++it)
+        for (std::vector<Entidades::Inimigos::Ogro *>::iterator it = vetorOgro.begin(); it != vetorOgro.end(); ++it)
         {
             delete *it;
         }
-        vetorDurahan.clear();
+        vetorOgro.clear();
     }
 
     void Castelo_Assombrado::criarInimDificil(const sf::Vector2f posicao)
     {
-        it_D++;
-        Entidades::Inimigos::Durahan *durahan = new Entidades::Inimigos::Durahan(posicao);
-        if (durahan != nullptr)
+        it_Ogros++;
+        Entidades::Inimigos::Ogro *ogro = static_cast<Entidades::Inimigos::Ogro *>(factory.create(IDOGRO, posicao));
+
+        if (ogro != nullptr)
         {
-            // pD=durahan;
-            // durahan->setCor(sf::Color::Magenta);
             if (pJogador1 != nullptr)
             {
-                durahan->setJogador1(pJogador1);
+                ogro->setJogador1(pJogador1);
             }
             if (pJogador2 != nullptr)
             {
-                durahan->setJogador2(pJogador2);
+                ogro->setJogador2(pJogador2);
             }
-            vetorDurahan.push_back(durahan);
-            durahan->setMediator(pGerenciadorColisao);
-            listaPersonagens->incluirEntidade(durahan);
-            pGerenciadorColisao->adicionarInimigo(durahan);
-            // num_Durahan++; lemnrando que isso está em fase
+            vetorOgro.push_back(ogro);
+            ogro->setMediator(pGerenciadorColisao);
+            listaPersonagens->incluirEntidade(ogro);
+            pGerenciadorColisao->adicionarInimigo(ogro);
         }
     }
     void Castelo_Assombrado::criarEspinho(const sf::Vector2f posicao)
     {
-        Entidades::Obstaculos::Espinho *espinho = new Entidades::Obstaculos::Espinho(posicao);
+        Entidades::Obstaculos::Espinho *espinho = static_cast<Entidades::Obstaculos::Espinho *>(factory.create(IDESPINHO, posicao));
+
         if (espinho != nullptr)
         {
             espinho->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
@@ -72,39 +74,50 @@ namespace Fases
     {
         std::ifstream arquivo;
         std::string linha;
-        arquivo.open("src/Fases/TesteSegundaFase.txt");
-        if (!arquivo.is_open())
+
+        try
         {
-            std::cout << "NAo abriu o arquivo .txt Castelo Assombrado" << std::endl;
-            exit(1);
-        }
-        int j = 0;
-        while (std::getline(arquivo, linha))
-        {
-            for (int i = 0; i < linha.size(); i++)
+            arquivo.open("src/Fases/TesteSegundaFase.txt");
+
+            int j = 0;
+            while (std::getline(arquivo, linha))
             {
-                if (linha[i] != ' ')
+                for (int i = 0; i < linha.size(); i++)
                 {
-                    criarEntidade(linha[i], sf::Vector2f(i, j));
+                    if (linha[i] != ' ')
+                    {
+                        criarEntidade(linha[i], sf::Vector2f(i, j));
+                    }
                 }
+                j++;
             }
-            j++;
+
+            arquivo.close();
         }
-        arquivo.close();
+        catch (const std::exception &e)
+        {
+            return;
+        }
     }
 
     void Castelo_Assombrado::executar()
     {
-        pGerenciadorGrafico->desenharEntidade(&fundo);
+        pGerenciadorGrafico->desenharCorpo(fundo);
+        Fase::executar();
 
-        for (int i = 0; i < vetorDurahan.size(); i++)
+        for (int i = 0; i < maxOgros; i++)
         {
-            pGerenciadorGrafico->desenharList(vetorDurahan[i]->getListaProjetil());
+            if (vetorOgro[i] != nullptr)
+            {
+                pGerenciadorGrafico->desenharList(vetorOgro[i]->getListaProjetil());
+            }
         }
         Fase::executar();
     }
     void Castelo_Assombrado::criarEntidade(char letra, const sf::Vector2f posicao)
     {
+        srand((unsigned int)time(NULL));
+        int mudancaPos = (rand() % (4)) * 16;
         switch (letra)
         {
         case ('j'):
@@ -114,15 +127,24 @@ namespace Fases
         break;
         case ('m'):
         {
-            criarMinion(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
+            if (it_M < maxM)
+            {
+                criarMinion(sf::Vector2f((posicao.x * 64.f) + mudancaPos, posicao.y * 64.f));
+                srand((unsigned int)time(NULL));
+                mudancaPos = (rand() % (4)) * 16;
+                it_M++;
+            }
         }
         break;
 
         case ('d'):
         {
-            if (it_D < cont_D)
+            if (it_Ogros < maxOgros)
             {
-                criarInimDificil(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
+                criarInimDificil(sf::Vector2f((posicao.x * 64.f) + mudancaPos, posicao.y * 64.f));
+                srand((unsigned int)time(NULL));
+                mudancaPos = (rand() % (4)) * 16;
+                // O it_Ogros++, está dentro da função
             }
             else
             {
@@ -131,7 +153,13 @@ namespace Fases
         break;
         case ('s'):
         {
-            criarEspinho(sf::Vector2f(posicao.x * 64.f, posicao.y * 64.f));
+            if (it_Esp < maxEsp)
+            {
+                criarEspinho(sf::Vector2f((posicao.x * 64.f) + mudancaPos, posicao.y * 64.f));
+                it_Esp++;
+                srand((unsigned int)time(NULL));
+                mudancaPos = (rand() % (4)) * 16;
+            }
         }
         break;
         case ('&'):

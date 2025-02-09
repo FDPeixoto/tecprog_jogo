@@ -31,10 +31,10 @@ namespace Entidades
     void setNumVidas(int n);
     const int getNumVidas();
     // void mostrarNumVidas();
+    void setVivo(bool v);
+    bool getVivo();
     void setPosTexto(int x, int y);
     sf::Text getTextoVida();
-    bool getVivo();
-    void setVivo(bool v);
     void atacar(int dano, Personagem *personagem);
     void tomarDano(int dano);
     virtual void atacar() = 0;
