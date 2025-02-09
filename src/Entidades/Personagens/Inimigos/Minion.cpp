@@ -5,8 +5,14 @@ namespace Entidades
 {
     namespace Inimigos
     {
-        Minion::Minion(const sf::Vector2f posicao) : Inimigo(sf::Vector2f(LARGURAMINION, ALTURAMINION), posicao, IDMINION)
+        Minion::Minion(const sf::Vector2f posicao) : Inimigo(sf::Vector2f(LARGURAMINION, ALTURAMINION), posicao, IDMINION), super(false)
         {
+            srand((unsigned int)time(NULL));
+            int s = (rand() % (3));
+            if(s==0){
+                super=true;
+                setNumVidas(2);
+            }
             setVelocidade(sf::Vector2f(50.f, 0.f));
             setCor(sf::Color::White);
             textura.loadFromFile("Texturas/minion1.png");
@@ -24,13 +30,7 @@ namespace Entidades
 
         void Minion::salvarDataBuffer()
         {
-        }
-
-        int Minion::get_tam_grupo()
-        {
-            return tam_grupo;
-        }
-
-        int Minion::tam_grupo = 1;
+        }   
+       
     }
 }

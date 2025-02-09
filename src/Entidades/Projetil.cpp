@@ -14,7 +14,7 @@ namespace Entidades
     }
     void Projetil::atirar(const sf::Vector2f posicaoInimigo, bool direita)
     {
-        setPos(posicaoInimigo); // O projétil começa na posição do inimigo (Durahan)
+        setPos(posicaoInimigo); // O projétil começa na posição do inimigo (Ogro)
         if (direita == true)
         {
             setVelocidade(sf::Vector2f(VEL_X_P, 0.f));

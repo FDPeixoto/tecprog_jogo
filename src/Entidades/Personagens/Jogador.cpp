@@ -117,8 +117,10 @@ namespace Entidades
         /*std::string vidaStr = "Vida: " + std::to_string(num_vidas);  // Concatena a string
         textoVida.setString(vidaStr);
         return (textoVida);*/
-        // atualizarSprite();
         pontos = pontos + 1;
+        if(getNumVidas()<0){
+            setNumVidas(0);
+        }
     }
 
     void Jogador::salvar() {}
@@ -137,7 +139,7 @@ namespace Entidades
         float overlapY = std::min(pos1.y + tam1.y, pos2.y + tam2.y) - std::max(pos1.y, pos2.y);
 
         int ID = outraEntidade->getID();
-        if (ID == IDMINION || ID == IDESQUELETO || ID == IDDURAHAN || ID == IDCAIXA)
+        if (ID == IDMINION || ID == IDESQUELETO || ID == IDOGRO || ID == IDCAIXA)
         {
             // Determine the axis of least penetration
             if (overlapX < overlapY)
