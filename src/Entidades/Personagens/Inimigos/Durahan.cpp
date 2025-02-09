@@ -67,50 +67,47 @@ namespace Entidades
         }
         void Durahan::atirar()
         {
-            if (podeAtacar)
+            bool dir = false;
+            sf::Vector2f posInimigo = corpo.getPosition();
+
+            // Determine target direction (existing code)
+            if ((pJogador1 != nullptr) && (pJogador2 != nullptr))
             {
-                bool dir = false;
-                sf::Vector2f posInimigo = corpo.getPosition();
+                sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
+                sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
 
-                // Determine target direction (existing code)
-                if ((pJogador1 != nullptr) && (pJogador2 != nullptr))
+                float distx1 = fabs(posJogador1.x - posInimigo.x);
+                float distx2 = fabs(posJogador2.x - posInimigo.x);
+
+                if (distx1 <= distx2)
                 {
-                    sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
-                    sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
-
-                    float distx1 = fabs(posJogador1.x - posInimigo.x);
-                    float distx2 = fabs(posJogador2.x - posInimigo.x);
-
-                    if (distx1 <= distx2)
-                    {
-                        dir = (posJogador1.x - posInimigo.x) >= 0;
-                    }
-                    else
-                    {
-                        dir = (posJogador2.x - posInimigo.x) >= 0;
-                    }
-                }
-                else if (pJogador1 != nullptr)
-                {
-                    sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
                     dir = (posJogador1.x - posInimigo.x) >= 0;
                 }
-                else if (pJogador2 != nullptr)
+                else
                 {
-                    sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
                     dir = (posJogador2.x - posInimigo.x) >= 0;
                 }
+            }
+            else if (pJogador1 != nullptr)
+            {
+                sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
+                dir = (posJogador1.x - posInimigo.x) >= 0;
+            }
+            else if (pJogador2 != nullptr)
+            {
+                sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
+                dir = (posJogador2.x - posInimigo.x) >= 0;
+            }
 
-                // Find and fire the first inactive projectile
-                for (auto &proj : listaProjetil)
+            // Find and fire the first inactive projectile
+            for (auto &proj : listaProjetil)
+            {
+                if (proj != nullptr && !proj->getAtivo())
                 {
-                    if (proj != nullptr && !proj->getAtivo())
-                    {
-                        proj->setAtivo(true);
-                        proj->atirar(posInimigo, dir);
-                        proj->executar();
-                        break; // Fire only one projectile per attack
-                    }
+                    proj->setAtivo(true);
+                    proj->atirar(posInimigo, dir);
+                    proj->executar();
+                    break; // Fire only one projectile per attack
                 }
             }
         }

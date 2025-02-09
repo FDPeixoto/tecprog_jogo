@@ -18,7 +18,7 @@ namespace Entidades
         if (direita == true)
         {
             setVelocidade(sf::Vector2f(VEL_X_P, 0.f));
-            setCor(sf::Color::White);
+            // setCor(sf::Color::White);
             if (!textura.loadFromFile("Texturas/proj-Dir.png"))
             {
             }
@@ -26,14 +26,14 @@ namespace Entidades
         }
         else
         {
-            setCor(sf::Color::White);
+            // setCor(sf::Color::White);
             if (!textura.loadFromFile("Texturas/proj-Esq.png"))
             {
             }
             Entidade::carregarTextura(&textura);
             setVelocidade(sf::Vector2f(-VEL_X_P, 0.f));
         }
-        setCor(sf::Color::Red);
+        // setCor(sf::Color::Red);
     }
     void Projetil::executar()
     {

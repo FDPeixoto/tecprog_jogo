@@ -82,23 +82,22 @@ namespace Entidades
         {
             velocidade = vel;
         }
-        /*
         void Caixa::colisao(Entidade *outraEntidade)
         {
             Obstaculo::colisao(outraEntidade);
-            /*
-            sf::Vector2f pos1 = getCorpo().getPosition();
-            sf::Vector2f pos2 = outraEntidade->getCorpo().getPosition();
 
-            sf::Vector2f tam1 = getCorpo().getSize();
-            sf::Vector2f tam2 = outraEntidade->getCorpo().getSize();
-
-            sf::Vector2f distancia(fabs((pos1.x + tam1.x / 2.0f) - (pos2.x + tam2.x / 2.0f)), fabs((pos1.y + tam1.y / 2.0f) - (pos2.y + tam2.y / 2.0f)));
-
-            float overlapX = std::min(pos1.x + tam1.x, pos2.x + tam2.x) - std::max(pos1.x, pos2.x);
-            float overlapY = std::min(pos1.y + tam1.y, pos2.y + tam2.y) - std::max(pos1.y, pos2.y);
-            if (outraEntidade->getID() == IDPLATAFORMA)
+            if ((outraEntidade->getID() == IDPLATAFORMA) || (outraEntidade->getID() == IDESPINHO))
             {
+                sf::Vector2f pos1 = getCorpo().getPosition();
+                sf::Vector2f pos2 = outraEntidade->getCorpo().getPosition();
+
+                sf::Vector2f tam1 = getCorpo().getSize();
+                sf::Vector2f tam2 = outraEntidade->getCorpo().getSize();
+
+                sf::Vector2f distancia(fabs((pos1.x + tam1.x / 2.0f) - (pos2.x + tam2.x / 2.0f)), fabs((pos1.y + tam1.y / 2.0f) - (pos2.y + tam2.y / 2.0f)));
+
+                float overlapX = std::min(pos1.x + tam1.x, pos2.x + tam2.x) - std::max(pos1.x, pos2.x);
+                float overlapY = std::min(pos1.y + tam1.y, pos2.y + tam2.y) - std::max(pos1.y, pos2.y);
                 // Calculate the intersection depth on both axes
 
                 // Determine the axis of least penetration
@@ -119,21 +118,71 @@ namespace Entidades
                 else
                 {
                     // Vertical collision
-                    if (pos1.y + tam1.y < pos2.y)
+                    if (pos1.y < pos2.y)
                     {
                         // Player is above the platform
                         setPos(sf::Vector2f(pos1.x, pos2.y - tam1.y));
-                        velocidade.y = 0; // Stop vertical movement
-                        noChao = true;    // Player is on the ground
+                        // velocidade.y = 0; // Stop vertical movement
+                        setNoChao(true);
                     }
                     else
                     {
                         // Player is below the platform
                         setPos(sf::Vector2f(pos1.x, pos2.y + tam2.y));
-                        velocidade.y = 0; // Stop vertical movement
+                        // velocidade.y = 0; // Stop vertical movement
                     }
                 }
             }
-        }*/
+            else if (outraEntidade->getID() == IDCAIXA)
+            {
+                sf::Vector2f pos1 = getCorpo().getPosition();
+                sf::Vector2f pos2 = outraEntidade->getCorpo().getPosition();
+
+                sf::Vector2f tam1 = getCorpo().getSize();
+                sf::Vector2f tam2 = outraEntidade->getCorpo().getSize();
+
+                sf::Vector2f distancia(fabs((pos1.x + tam1.x / 2.0f) - (pos2.x + tam2.x / 2.0f)), fabs((pos1.y + tam1.y / 2.0f) - (pos2.y + tam2.y / 2.0f)));
+
+                float overlapX = std::min(pos1.x + tam1.x, pos2.x + tam2.x) - std::max(pos1.x, pos2.x);
+                float overlapY = std::min(pos1.y + tam1.y, pos2.y + tam2.y) - std::max(pos1.y, pos2.y);
+                if (overlapX < overlapY)
+                {
+                    // Horizontal collision
+                    if (pos1.x < pos2.x)
+                    {
+                        // Player is to the left of the minion
+                        setPos(sf::Vector2f(pos2.x - tam1.x, pos1.y));
+                        if (velocidade.x != 0.f)
+                        {
+                            outraEntidade->setPos(sf::Vector2f(pos2.x + overlapX, pos2.y));
+                        }
+                    }
+                    else
+                    {
+                        // Player is to the right of the minion
+                        setPos(sf::Vector2f(pos2.x + tam2.x, pos1.y));
+                        if (velocidade.x != 0)
+                        {
+                            outraEntidade->setPos(sf::Vector2f(pos2.x - overlapX, pos2.y));
+                        }
+                    }
+                }
+                else
+                {
+                    // Vertical collision
+                    if (pos1.y < pos2.y)
+                    {
+                        // Player is above the minion
+                        setPos(sf::Vector2f(pos1.x, pos2.y - tam1.y));
+                        noChao = true;
+                    }
+                    else
+                    {
+                        // Player is below the minion
+                        setPos(sf::Vector2f(pos1.x, pos2.y + tam2.y));
+                    }
+                }
+            }
+        }
     }
 }

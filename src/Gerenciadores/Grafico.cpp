@@ -78,17 +78,6 @@ namespace Gerenciadores
         {
             if (*it != nullptr)
             {
-                /*if (((*it)->getID() == IDJOGADOR) || ((*it)->getID() == IDMINION) || ((*it)->getID() == IDDURAHAN) || ((*it)->getID() == IDESQUELETO))
-                {
-                    if (((*it)->getVivo()))
-                    {
-                        desenharEntidade(*it);
-                    }
-                    else
-                    {
-                    }
-                }*/
-                // else
                 desenharEntidade(*it);
             }
         }
@@ -114,7 +103,7 @@ namespace Gerenciadores
         for (std::list<Entidades::Entidade *>::iterator it = list.begin(); it != list.end(); it++)
         {
             desenharEntidade((*it));
-            // desenharCorpo(it->getCorpo()); Esse funciona tambem so escolher qual voce prefere;
+            // desenharCorpo((*it)->getCorpo()); // Esse funciona tambem so escolher qual voce prefere;
         }
     }
 

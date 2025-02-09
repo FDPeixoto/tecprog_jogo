@@ -96,18 +96,12 @@ namespace Fases
     void Castelo_Assombrado::executar()
     {
         pGerenciadorGrafico->desenharEntidade(&fundo);
-        Fase::executar();
 
-        for (size_t i = 0; i < vetorDurahan.size(); i++)
+        for (int i = 0; i < vetorDurahan.size(); i++)
         {
-            if (vetorDurahan[i] != nullptr)
-            {
-                pGerenciadorGrafico->desenharList(vetorDurahan[i]->getListaProjetil());
-            }
+            pGerenciadorGrafico->desenharList(vetorDurahan[i]->getListaProjetil());
         }
-        if (completou == true)
-        {
-        }
+        Fase::executar();
     }
     void Castelo_Assombrado::criarEntidade(char letra, const sf::Vector2f posicao)
     {
@@ -154,5 +148,4 @@ namespace Fases
         break;
         }
     }
-
 }
