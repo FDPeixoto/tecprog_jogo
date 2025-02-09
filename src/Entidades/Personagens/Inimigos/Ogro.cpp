@@ -35,7 +35,7 @@ namespace Entidades
 
             for (int i = 0; i < TAM_MAX_P; i++)
             {
-                Entidades::Projetil *proj = new Entidades::Projetil(sf::Vector2f(1150.0f, 0.0f)); // posicão
+                Entidades::Projetil *proj = new Entidades::Projetil(sf::Vector2f(1350.0f, 0.0f)); // posicão
                 if (proj != nullptr)
                 {
                     proj->setCor(sf::Color::White);

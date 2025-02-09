@@ -28,7 +28,7 @@ namespace Entidades
             MovementState currentState;
             float stateTimer;
             float stateDuration;
-            bool perseguindo; // Add this to the class definition
+            bool perseguindo; 
 
         public:
             Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
