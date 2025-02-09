@@ -114,8 +114,22 @@ namespace Entidades{
   void Entidade::mudarLargura(int l){
     corpo.setSize(sf::Vector2f(200.f, 50.f));
   }
+  void carregarTextura(){
+    return;
+  }
   void Entidade::carregarTextura(sf::Texture* text) {
+    /*if (!text.getSize().x || !text.getSize().y) {
+        //erro
+    }
+    sprite.setTexture(text); */
     corpo.setTexture(text);
+}
+sf::Sprite& Entidade::getSprite() {
+    return sprite;  // Retorna o sprite por referência
+}
+
+void Entidade::atualizarSprite(){
+  sprite.setPosition(getPos());
 }
 
 

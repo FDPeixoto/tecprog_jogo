@@ -13,10 +13,13 @@
 class Medievo {
     private:
     Gerenciadores::Grafico* pGerenciadorGrafico;
-    Gerenciadores::Colisao* pGerenciadorColisao;
+    //Gerenciadores::Colisao* pGerenciadorColisao;
     Gerenciadores::Evento* pGerenciadorEvento;
     Gerenciadores::Estado* pGerenciadorEstado;
-    sf::Clock clock;    
+    //Fases::Pantano_Maldito primeiraFase;
+    sf::Clock clock;
+    bool capturandoNome;
+    
 
     public:
     Medievo();

@@ -33,7 +33,7 @@ namespace Entidades
 
         public:
             Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
-            virtual ~Inimigo();
+            ~Inimigo();
             void setJogador1(Entidades::Jogador *pJogador);
             Entidades::Jogador *getJogador1();
             void setJogador2(Entidades::Jogador *pJogador);

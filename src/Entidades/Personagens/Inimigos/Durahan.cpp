@@ -1,4 +1,4 @@
-#include "Ogro.hpp"
+#include "Durahan.hpp"
 #include "Colisao.hpp"
 #define ALCANCEOGRO 50.f
 
@@ -6,8 +6,8 @@ namespace Entidades
 {
     namespace Inimigos
     {
-        Ogro::Ogro(const sf::Vector2f posicao)
-            : Inimigo(sf::Vector2f(OGROLARGURA, OGROALTURA), posicao, IDOGRO),
+        Durahan::Durahan(const sf::Vector2f posicao)
+            : Inimigo(sf::Vector2f(DURAHANLARGURA, DURAHANALTURA), posicao, IDDURAHAN),
               listaProjetil(),
               jaAtirou(false)
         {
@@ -26,18 +26,18 @@ namespace Entidades
             setCor(sf::Color::White);
             Entidade::carregarTextura(&textura);
         }
-        Ogro::~Ogro()
+        Durahan::~Durahan()
         {
             antidoto_mortal = false;
 
             listaProjetil.clear();
         }
-        void Ogro::criarProjetil()
+        void Durahan::criarProjetil()
         {
 
             for (int i = 0; i < TAM_MAX_P; i++)
             {
-                Entidades::Projetil *proj = new Entidades::Projetil(sf::Vector2f(1350.0f, 0.0f)); // posicão
+                Entidades::Projetil *proj = new Entidades::Projetil(sf::Vector2f(1150.0f, 0.0f)); // posicão
                 if (proj != nullptr)
                 {
                     proj->setCor(sf::Color::White);
@@ -47,7 +47,7 @@ namespace Entidades
             }
         }
 
-        void Ogro::atualizarListP(float dt)
+        void Durahan::atualizarListP(float dt)
         {
             for (std::list<Entidades::Entidade *>::iterator it = listaProjetil.begin(); it != listaProjetil.end(); ++it)
             {
@@ -60,12 +60,12 @@ namespace Entidades
                 }
             }
         }
-        void Ogro::atualizar(float dt)
+        void Durahan::atualizar(float dt)
         {
             Inimigo::atualizar(dt);
             atualizarListP(dt);
         }
-        void Ogro::atirar()
+        void Durahan::atirar()
         {
             bool dir = false;
             sf::Vector2f posInimigo = corpo.getPosition();
@@ -111,9 +111,9 @@ namespace Entidades
                 }
             }
         }
-        void Ogro::salvar() {}
-        void Ogro::salvarDataBuffer() {}
-        void Ogro::executar()
+        void Durahan::salvar() {}
+        void Durahan::salvarDataBuffer() {}
+        void Durahan::executar()
         {
             Inimigo::executar();
             it++;
@@ -131,14 +131,14 @@ namespace Entidades
                 // setCor(sf::Color::Magenta);
             }
         }
-        void Ogro::danificar(Entidades::Jogador *pJogador) {}
-        void Ogro::golpeMortal() {}
-        void Ogro::setAntidotoMortal(bool flg)
+        void Durahan::danificar(Entidades::Jogador *pJogador) {}
+        void Durahan::golpeMortal() {}
+        void Durahan::setAntidotoMortal(bool flg)
         {
             antidoto_mortal = flg;
         }
-        // void Ogro::colisao(Entidade *outraEntidade){}
-        std::list<Entidades::Entidade *> &Ogro::getListaProjetil()
+        // void Durahan::colisao(Entidade *outraEntidade){}
+        std::list<Entidades::Entidade *> &Durahan::getListaProjetil()
         {
             return listaProjetil;
         }

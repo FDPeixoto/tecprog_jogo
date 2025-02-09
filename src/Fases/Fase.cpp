@@ -14,7 +14,7 @@ namespace Fases
         pGerenciadorColisao->setFixos(listaObstaculos);
         pGerenciadorColisao->limparListas();
         doisJogadores = false;
-        //fonte.loadFromFile("Fonte/DejaVuSans.ttf");
+        fonte.loadFromFile("Fonte/DejaVuSans.ttf");
     }
 
     Fase::Fase(const int idFase, bool temSegundoJogador) : Ente(idFase), listaPersonagens(new Listas::ListaEntidades()),
@@ -25,6 +25,7 @@ namespace Fases
         pGerenciadorColisao->setMoveis(listaPersonagens);
         pGerenciadorColisao->setFixos(listaObstaculos);
         pGerenciadorColisao->limparListas();
+        fonte.loadFromFile("Fonte/DejaVuSans.ttf");
     }
 
     Fase::~Fase()
@@ -228,8 +229,8 @@ namespace Fases
 
     void Fase::criarMinion(const sf::Vector2f posicao)
     {
-        Entidades::Inimigos::Minion *minion = static_cast<Entidades::Inimigos::Minion*>(factory.create(IDMINION, posicao));
-        
+        Entidades::Inimigos::Minion *minion = new Entidades::Inimigos::Minion(posicao);
+        minion->setCor(sf::Color::Red);
         if (minion != nullptr)
         {
             minion->setCor(sf::Color::Red);
@@ -249,7 +250,7 @@ namespace Fases
 
     void Fase::criarPlataforma(const sf::Vector2f posicao, bool Castelo)
     {
-        Entidades::Obstaculos::Plataforma *plataforma = static_cast<Entidades::Obstaculos::Plataforma*>(factory.create(IDPLATAFORMA, posicao));
+        Entidades::Obstaculos::Plataforma *plataforma = new Entidades::Obstaculos::Plataforma(posicao, Castelo); // a plaforma era 100.0f e 100.0f
         if (plataforma != nullptr)
         {
             plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
@@ -258,6 +259,16 @@ namespace Fases
         }
     }
 
+    void Fase::criarCaixa(const sf::Vector2f posicao)
+    {
+        Entidades::Obstaculos::Caixa *caixa = new Entidades::Obstaculos::Caixa(posicao + sf::Vector2f(0.f, 16.f));
+        if (caixa != nullptr)
+        {
+            caixa->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
+            listaObstaculos->incluirEntidade(caixa);
+            pGerenciadorColisao->adicionarObstaculo(caixa);
+        }
+    }
 
     void Fase::desenhar()
     {
@@ -268,8 +279,8 @@ namespace Fases
     void Fase::executar()
     {
         eliminarPersonagensMortos();
-        //pontosJ1 = getPontosJogador1();
-        //pontosJ2 = getPontosJogador2();
+        pontosJ1 = getPontosJogador1();
+        pontosJ2 = getPontosJogador2();
 
         if (pGerenciadorColisao->getListaMoveis() != listaPersonagens)
         {
@@ -326,9 +337,9 @@ namespace Fases
                         return false;
                     }
                 }
-                if ((*itPersonagem)->getID() == IDOGRO)
+                if ((*itPersonagem)->getID() == IDDURAHAN)
                 {
-                    if (static_cast<Entidades::Inimigos::Ogro *>(*itPersonagem)->getVivo())
+                    if (static_cast<Entidades::Inimigos::Durahan *>(*itPersonagem)->getVivo())
                     {
                         return false;
                     }
