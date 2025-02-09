@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <SFML/Graphics.hpp>
+#include <exception>
 
 namespace Fases
 {
@@ -66,24 +67,30 @@ namespace Fases
     {
         std::ifstream arquivo;
         std::string linha;
-        arquivo.open("src/Fases/TestePrimeiraFase.txt");
-        if (!arquivo.is_open())
+        
+        try
         {
-            exit(1);
-        }
-        int j = 0;
-        while (std::getline(arquivo, linha))
-        {
-            for (int i = 0; i < linha.size(); i++)
+            arquivo.open("src/Fases/TestePrimeiraFase.txt");
+ 
+            int j = 0;
+            while (std::getline(arquivo, linha))
             {
-                if (linha[i] != ' ')
+                for (int i = 0; i < linha.size(); i++)
                 {
-                    criarEntidade(linha[i], sf::Vector2f(i, j));
+                    if (linha[i] != ' ')
+                    {
+                        criarEntidade(linha[i], sf::Vector2f(i, j));
+                    }
                 }
+                j++;
             }
-            j++;
+            
+            arquivo.close();
         }
-        arquivo.close();
+        catch (const std::exception &e)
+        {
+            return;
+        }
     }
     void Pantano_Maldito::executar()
     {

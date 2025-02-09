@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "Esqueleto.hpp"
 #include <vector>
+#include <stdexcept>
 
 namespace Fases
 {

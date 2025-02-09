@@ -75,25 +75,30 @@ namespace Fases
     {
         std::ifstream arquivo;
         std::string linha;
-        arquivo.open("src/Fases/TesteSegundaFase.txt");
-        if (!arquivo.is_open())
+        
+        try
         {
-            std::cout << "NAo abriu o arquivo .txt Castelo Assombrado" << std::endl;
-            exit(1);
-        }
-        int j = 0;
-        while (std::getline(arquivo, linha))
-        {
-            for (int i = 0; i < linha.size(); i++)
+            arquivo.open("src/Fases/TesteSegundaFase.txt");
+
+            int j = 0;
+            while (std::getline(arquivo, linha))
             {
-                if (linha[i] != ' ')
+                for (int i = 0; i < linha.size(); i++)
                 {
-                    criarEntidade(linha[i], sf::Vector2f(i, j));
+                    if (linha[i] != ' ')
+                    {
+                        criarEntidade(linha[i], sf::Vector2f(i, j));
+                    }
                 }
+                j++;
             }
-            j++;
+            
+            arquivo.close();
         }
-        arquivo.close();
+        catch (const std::exception &e)
+        {
+            return;
+        }
     }
 
     void Castelo_Assombrado::executar()
