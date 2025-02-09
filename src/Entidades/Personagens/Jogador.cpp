@@ -22,6 +22,7 @@ namespace Entidades
             Entidade::carregarTextura(&textura);
         }
         setVelocidade(sf::Vector2f(0.f, 0.f));
+        setNumVidas(10);
     }
 
     Jogador::~Jogador() {}
@@ -31,6 +32,7 @@ namespace Entidades
         // verificarColisao();
 
         tempoDesdeUltimoAtaque += dt;
+        tempoDesteUltimoDano += dt;
         if (tempoDesdeUltimoAtaque >= cooldownAtaque)
         {
             podeAtacar = true;
@@ -260,5 +262,13 @@ namespace Entidades
             podeAtacar = false;
         }
         atacando = true;
+    }
+    void Jogador::setUltimoDano(float ultimoSofrido)
+    {
+        tempoDesteUltimoDano = ultimoSofrido;
+    }
+    float Jogador::getUltimoDano()
+    {
+        return tempoDesteUltimoDano;
     }
 }

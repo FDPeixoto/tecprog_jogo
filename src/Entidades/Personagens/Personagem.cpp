@@ -64,6 +64,7 @@ namespace Entidades
     personagem->setNumVidas(getNumVidas() - dano);
     if (personagem->getNumVidas() <= 0)
     {
+      personagem->setNumVidas(0);
       personagem->setVivo(false);
     }
   }
@@ -73,6 +74,7 @@ namespace Entidades
     setNumVidas(getNumVidas() - dano);
     if (getNumVidas() <= 0)
     {
+      setNumVidas(0);
       setVivo(false);
       setPos(sf::Vector2f(0.f, 10000.f));
     }
@@ -85,21 +87,34 @@ namespace Entidades
 
   void Personagem::checarForaDaJanela()
   {
-    if (corpo.getPosition().x < 0.f)
+    sf::Vector2f posicao = corpo.getPosition();
+    sf::Vector2f tamanho = corpo.getSize();
+
+    if (posicao.x < 0.f)
     {
-      setPos(sf::Vector2f(0.f, pos.y));
+      posicao.x = 0.f;
     }
-    else if (corpo.getPosition().x + tam.x > LARGURA_JANELA)
+    else if (posicao.x + tamanho.x > LARGURA_JANELA)
     {
-      setPos(sf::Vector2f(LARGURA_JANELA - tam.x, pos.y));
+      posicao.x = LARGURA_JANELA - tamanho.x;
     }
-    if (corpo.getPosition().y < 0.f)
+
+    if (posicao.y < 0.f)
     {
-      setPos(sf::Vector2f(pos.x, 0.f));
+      posicao.y = 0.f;
+      velocidade.y = 0.f;
     }
-    else if (corpo.getPosition().y + tam.y > ALTURA_JANELA)
+    else if (posicao.y + tamanho.y > ALTURA_JANELA)
     {
-      setPos(sf::Vector2f(pos.x, ALTURA_JANELA - tam.y));
+      posicao.y = ALTURA_JANELA - tamanho.y;
     }
+
+    setPos(posicao);
   }
+
+  void Personagem::setNoChao(bool chao)
+  {
+    noChao = chao;
+  }
+
 }

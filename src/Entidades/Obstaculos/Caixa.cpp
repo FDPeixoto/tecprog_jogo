@@ -10,6 +10,7 @@ namespace Entidades
             textura.loadFromFile("Texturas/caixa.png");
             setCor(sf::Color::White); // cor anterior: (6, 64, 43)
             Entidade::carregarTextura(&textura);
+            noChao = false;
         }
         Caixa::~Caixa() {}
         float Caixa::getLado()
@@ -28,21 +29,20 @@ namespace Entidades
         void Caixa::atualizar(float dt)
         {
             // Apply horizontal velocidade
-            setPos(sf::Vector2f(pos.x + velocidade.x * dt, pos.y));
-
             // Apply gravity if not on the ground
-            if (!noChao)
+            velocidade.y += GRAVIDADE;
+            if (velocidade.y > VELOCIDADETERIMNAL)
             {
-                velocidade.y += 400.f * dt; // Simulate gravity
-                setPos(sf::Vector2f(pos.x, pos.y + velocidade.y * dt));
+                velocidade.y = VELOCIDADETERIMNAL;
             }
-            else
+
+            if (noChao)
             {
-                velocidade.y = 0.f; // Reset vertical velocidade when grounded
+                velocidade.y += FNORMAL;
             }
 
             // Optional: Add friction to stop horizontal movement over time
-            velocidade.x *= 0.9f;
+            corpo.move(velocidade.x * dt, velocidade.y * dt);
             noChao = false;
         }
 
@@ -63,13 +63,77 @@ namespace Entidades
             // Get player's movement direction (e.g., from player input)
             float playerDirX = pJogador->getVelocidade().x; // Assume getDirecao() returns movement input
 
+            if (playerDirX > 0)
+            {
+                velocidade.x = 50.f;
+            }
+            else
+            {
+                velocidade.x = 50.f;
+            }
             // Apply a push force to the box based on player direction
-            velocidade.x = 200.f; // Adjust 200.f to control push strength
+            velocidade.x = 0.f; // Adjust 200.f to control push strength
         }
+        void Caixa::setNoChao(bool chao)
+        {
+            noChao = chao;
+        }
+        void Caixa::setVelocidade(sf::Vector2f vel)
+        {
+            velocidade = vel;
+        }
+        /*
         void Caixa::colisao(Entidade *outraEntidade)
         {
             Obstaculo::colisao(outraEntidade);
-        }
+            /*
+            sf::Vector2f pos1 = getCorpo().getPosition();
+            sf::Vector2f pos2 = outraEntidade->getCorpo().getPosition();
 
+            sf::Vector2f tam1 = getCorpo().getSize();
+            sf::Vector2f tam2 = outraEntidade->getCorpo().getSize();
+
+            sf::Vector2f distancia(fabs((pos1.x + tam1.x / 2.0f) - (pos2.x + tam2.x / 2.0f)), fabs((pos1.y + tam1.y / 2.0f) - (pos2.y + tam2.y / 2.0f)));
+
+            float overlapX = std::min(pos1.x + tam1.x, pos2.x + tam2.x) - std::max(pos1.x, pos2.x);
+            float overlapY = std::min(pos1.y + tam1.y, pos2.y + tam2.y) - std::max(pos1.y, pos2.y);
+            if (outraEntidade->getID() == IDPLATAFORMA)
+            {
+                // Calculate the intersection depth on both axes
+
+                // Determine the axis of least penetration
+                if (overlapX < overlapY)
+                {
+                    // Horizontal collision
+                    if (pos1.x < pos2.x)
+                    {
+                        // Player is to the left of the platform
+                        setPos(sf::Vector2f(pos2.x - tam1.x, pos1.y));
+                    }
+                    else
+                    {
+                        // Player is to the right of the platform
+                        setPos(sf::Vector2f(pos2.x + tam2.x, pos1.y));
+                    }
+                }
+                else
+                {
+                    // Vertical collision
+                    if (pos1.y + tam1.y < pos2.y)
+                    {
+                        // Player is above the platform
+                        setPos(sf::Vector2f(pos1.x, pos2.y - tam1.y));
+                        velocidade.y = 0; // Stop vertical movement
+                        noChao = true;    // Player is on the ground
+                    }
+                    else
+                    {
+                        // Player is below the platform
+                        setPos(sf::Vector2f(pos1.x, pos2.y + tam2.y));
+                        velocidade.y = 0; // Stop vertical movement
+                    }
+                }
+            }
+        }*/
     }
 }

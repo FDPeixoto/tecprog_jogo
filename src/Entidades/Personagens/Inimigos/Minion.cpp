@@ -1,4 +1,5 @@
 #include <Minion.hpp>
+#define ALCANCEMINION 40.f
 
 namespace Entidades
 {
@@ -17,6 +18,7 @@ namespace Entidades
             textura.loadFromFile("Texturas/minion1.png");
             Entidade::carregarTextura(&textura);
             setNumVidas(1);
+            setAlcance(ALCANCEMINION);
         }
 
         Minion::~Minion()

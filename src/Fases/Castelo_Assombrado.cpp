@@ -66,9 +66,9 @@ namespace Fases
        
         if (plataforma != nullptr)
         {
-            plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
-            listaObstaculos->incluirEntidade(plataforma);
-            pGerenciadorColisao->adicionarObstaculo(plataforma);
+            espinho->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
+            listaObstaculos->incluirEntidade(espinho);
+            pGerenciadorColisao->adicionarObstaculo(espinho);
         }
     }
     void Castelo_Assombrado::criarMapa()

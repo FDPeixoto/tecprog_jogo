@@ -16,20 +16,20 @@ namespace Entidades
             pJogador1 = nullptr;
             pJogador2 = nullptr;
 
-            stateTimer = 0.0f;
-            stateDuration = 0.0f;
+            timerEstado = 0.0f;
+            duracaoEstado = 0.0f;
             srand(static_cast<unsigned int>(time(NULL))); // Seed the random number generator
-            int randomState = rand() % 3;                 // 0: IDLE, 1: WALKING_LEFT, 2: WALKING_RIGHT
-            switch (randomState)
+            int estadoInicial = rand() % 3;               // 0: PARADO, 1: ANDANDO_ESQUERDA, 2: ANDANDO_DIREITA
+            switch (estadoInicial)
             {
             case 0:
-                currentState = MovementState::IDLE; // Idle for 1-3 seconds
+                estadoAtual = EstadoMovimento::PARADO; // PARADO for 1-3 seconds
                 break;
             case 1:
-                currentState = MovementState::WALKING_LEFT; // Walk left for 2-6 seconds
+                estadoAtual = EstadoMovimento::ANDANDO_ESQUERDA; // Walk left for 2-6 seconds
                 break;
             case 2:
-                currentState = MovementState::WALKING_RIGHT; // Walk right for 2-6 seconds
+                estadoAtual = EstadoMovimento::ANDANDO_DIREITA; // Walk right for 2-6 seconds
                 break;
             }
         }
@@ -102,9 +102,9 @@ namespace Entidades
             if (pJogador1 != nullptr)
             {
                 sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
-                float distancia1 = fabs(posJogador1.x - posInimigo.x);
+                float distancia = fabs(posJogador1.x - posInimigo.x);
 
-                if (distancia1 <= 10.f) // Define RAIO_ATAQUE_X as needed
+                if (distancia <= getAlcance()) // Define RAIO_ATAQUE_X as needed
                 {
                     jogadorProximo = true;
                 }
@@ -113,9 +113,9 @@ namespace Entidades
             if (pJogador2 != nullptr)
             {
                 sf::Vector2f posJogador2 = pJogador2->getCorpo().getPosition();
-                float distancia2 = fabs(posJogador2.x - posInimigo.x);
+                float distancia = fabs(posJogador2.x - posInimigo.x);
 
-                if (distancia2 <= 10.f)
+                if (distancia <= getAlcance())
                 {
                     jogadorProximo = true;
                 }
@@ -145,22 +145,22 @@ namespace Entidades
             // Update movement state
             if (!perseguindo)
             {
-                stateTimer += dt;
-                if (stateTimer >= stateDuration)
+                timerEstado += dt;
+                if (timerEstado >= duracaoEstado)
                 {
                     changeState();
                 }
 
                 // Move the enemy based on the current state
-                switch (currentState)
+                switch (estadoAtual)
                 {
-                case MovementState::WALKING_LEFT:
+                case EstadoMovimento::ANDANDO_ESQUERDA:
                     velocidade.x = -VELOCIDADEX_DU; // Move left
                     break;
-                case MovementState::WALKING_RIGHT:
+                case EstadoMovimento::ANDANDO_DIREITA:
                     velocidade.x = VELOCIDADEX_DU; // Move right
                     break;
-                case MovementState::IDLE:
+                case EstadoMovimento::PARADO:
                     velocidade.x = 0; // Stop moving
                     break;
                 }
@@ -268,25 +268,25 @@ namespace Entidades
         void Inimigo::changeState()
         {
             // Randomly choose a new state
-            int randomState = rand() % 3; // 0: IDLE, 1: WALKING_LEFT, 2: WALKING_RIGHT
+            int randomState = rand() % 3; // 0: PARADO, 1: ANDANDO_ESQUERDA, 2: ANDANDO_DIREITA
             switch (randomState)
             {
             case 0:
-                currentState = MovementState::IDLE;
-                stateDuration = 1.0f + (rand() % 3); // Idle for 1-3 seconds
+                estadoAtual = EstadoMovimento::PARADO;
+                duracaoEstado = 1.0f + (rand() % 3); // PARADO for 1-3 seconds
                 break;
             case 1:
-                currentState = MovementState::WALKING_LEFT;
-                stateDuration = 1.0f + (rand() % 3); // Walk left for 2-6 seconds
+                estadoAtual = EstadoMovimento::ANDANDO_ESQUERDA;
+                duracaoEstado = 1.0f + (rand() % 3); // Walk left for 2-6 seconds
                 break;
             case 2:
-                currentState = MovementState::WALKING_RIGHT;
-                stateDuration = 1.0f + (rand() % 3); // Walk right for 2-6 seconds
+                estadoAtual = EstadoMovimento::ANDANDO_DIREITA;
+                duracaoEstado = 1.0f + (rand() % 3); // Walk right for 2-6 seconds
                 break;
             }
 
             // Reset the state timer
-            stateTimer = 0.0f;
+            timerEstado = 0.0f;
         }
 
         void Inimigo::moverAleatorio()
@@ -306,7 +306,7 @@ namespace Entidades
             float overlapY = std::min(pos1.y + tam1.y, pos2.y + tam2.y) - std::max(pos1.y, pos2.y);
 
             int ID = outraEntidade->getID();
-            if (ID == IDPLATAFORMA || ID == IDESPINHO || ID == IDCANHAO)
+            if (ID == IDPLATAFORMA || ID == IDESPINHO || ID == IDCAIXA)
             {
                 if (overlapX < overlapY)
                 {
@@ -332,6 +332,14 @@ namespace Entidades
                     }
                 }
             }
+        }
+        float Inimigo::getAlcance()
+        {
+            return alcance;
+        }
+        void Inimigo::setAlcance(float distancia)
+        {
+            alcance = distancia;
         }
     }
 }

@@ -3,11 +3,11 @@
 #include "Personagem.hpp"
 #include "stdafx.h"
 
-enum class MovementState
+enum class EstadoMovimento
 {
-    IDLE,
-    WALKING_LEFT,
-    WALKING_RIGHT
+    PARADO,
+    ANDANDO_ESQUERDA,
+    ANDANDO_DIREITA
 };
 
 namespace Entidades
@@ -25,10 +25,11 @@ namespace Entidades
             int iteracoes;
             float tempoMudancaDirecao;
             float intervaloMudancaDirecao;
-            MovementState currentState;
-            float stateTimer;
-            float stateDuration;
-            bool perseguindo; 
+            EstadoMovimento estadoAtual;
+            float timerEstado;
+            float duracaoEstado;
+            bool perseguindo; // Add this to the class definition
+            float alcance;
 
         public:
             Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
@@ -54,6 +55,8 @@ namespace Entidades
             // void andar():
             virtual void moverAleatorio();
             void colisao(Entidade *outraEntidade);
+            float getAlcance();
+            void setAlcance(float distancia);
         };
     }
 }

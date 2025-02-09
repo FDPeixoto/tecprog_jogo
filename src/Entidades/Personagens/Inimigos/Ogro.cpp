@@ -1,5 +1,6 @@
 #include "Ogro.hpp"
 #include "Colisao.hpp"
+#define ALCANCEOGRO 50.f
 
 namespace Entidades
 {
@@ -17,6 +18,7 @@ namespace Entidades
             srand(static_cast<unsigned int>(time(nullptr)));
             aleatorio = rand() % (FAIXA_ALEATORIO * 5);
             criarProjetil();
+            setAlcance(ALCANCEOGRO);
             if (!textura.loadFromFile("Texturas/Durahan2.png"))
             {
                 // Handle error

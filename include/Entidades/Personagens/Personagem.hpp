@@ -40,5 +40,6 @@ namespace Entidades
     virtual void atacar() = 0;
     sf::Vector2f getVelocidade();
     void checarForaDaJanela();
+    void setNoChao(bool chao);
   };
 }

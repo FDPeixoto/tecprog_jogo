@@ -64,6 +64,7 @@ namespace Entidades
         else if (ID == IDPLATAFORMA || ID == IDCAIXA || ID == IDESPINHO)
         {
             setAtivo(false);
+            setPos(sf::Vector2f(0.f, 10000.f));
         }
     }
     void Projetil::salvar() {}

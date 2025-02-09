@@ -227,6 +227,13 @@ namespace Gerenciadores
                         pGerenciadorGrafico->fecharJanela();
                     }
                 }
+
+                else if (pFase->getGameOver())
+                {
+                    pFase->setNomePartida("Nome da Partida aqui");
+                    pFase->salvarRanking("ranking.json", pontuacaoJ1, pontuacaoJ2);
+                    pGerenciadorGrafico->fecharJanela();
+                }
             }
         }
     }

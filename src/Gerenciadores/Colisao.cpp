@@ -113,6 +113,11 @@ namespace Gerenciadores
             {
                 (*entidade)->verificarColisao();
             }
+
+            if ((*entidade)->getID() == IDCAIXA)
+            {
+                (*entidade)->verificarColisao();
+            }
         }
     }
 
@@ -144,7 +149,7 @@ namespace Gerenciadores
             {
                 if (*itInimigo != nullptr)
                 {
-                    if (calculaDistancia(sender, *itInimigo) < 100.f)
+                    if (calculaDistancia(sender, *itInimigo) < 96.f)
                     {
                         (*itInimigo)->tomarDano(2);
                     }
@@ -157,7 +162,7 @@ namespace Gerenciadores
             {
                 if (*itJogador != nullptr)
                 {
-                    if (calculaDistancia(sender, *itJogador) < 100.f)
+                    if ((*itJogador)->getUltimoDano() > 2.0f && calculaDistancia(*itJogador, sender) < static_cast<Entidades::Inimigos::Inimigo *>(sender)->getAlcance())
                     {
                         switch (sender->getID())
                         {
@@ -171,6 +176,7 @@ namespace Gerenciadores
                             (*itJogador)->tomarDano(3);
                             break;
                         }
+                        (*itJogador)->setUltimoDano(0.f);
                     }
                 }
             }
