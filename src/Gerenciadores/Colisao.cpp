@@ -152,6 +152,21 @@ namespace Gerenciadores
                     if (calculaDistancia(sender, *itInimigo) < 96.f)
                     {
                         (*itInimigo)->tomarDano(2);
+                        if (!(*itInimigo)->getVivo())
+                        {
+                            if ((*itInimigo)->getID() == IDMINION)
+                            {
+                                static_cast<Entidades::Jogador *>(sender)->setPontos(static_cast<Entidades::Jogador *>(sender)->getPontos() + 1);
+                            }
+                            else if ((*itInimigo)->getID() == IDESQUELETO)
+                            {
+                                static_cast<Entidades::Jogador *>(sender)->setPontos(static_cast<Entidades::Jogador *>(sender)->getPontos() + 2);
+                            }
+                            else if ((*itInimigo)->getID() == IDOGRO)
+                            {
+                                static_cast<Entidades::Jogador *>(sender)->setPontos(static_cast<Entidades::Jogador *>(sender)->getPontos() + 3);
+                            }
+                        }
                     }
                 }
             }

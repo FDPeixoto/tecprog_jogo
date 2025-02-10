@@ -23,7 +23,6 @@ namespace Entidades
   public:
     Jogador(const sf::Vector2f posicao, bool jogador2);
     ~Jogador();
-    void atualizar(float deltaTime, bool &noChao, sf::RectangleShape &plataforma, float gravidade);
     void salvar();
     void salvarDataBuffer();
     void executar();
@@ -39,7 +38,6 @@ namespace Entidades
     bool getAtacando();
     int getPontos();
     void setPontos(int p);
-    void sofrerObstacular(int ID);
     void setUltimoDano(float ultimoSofrido);
     float getUltimoDano();
   };

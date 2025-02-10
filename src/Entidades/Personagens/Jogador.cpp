@@ -117,8 +117,9 @@ namespace Entidades
         /*std::string vidaStr = "Vida: " + std::to_string(num_vidas);  // Concatena a string
         textoVida.setString(vidaStr);
         return (textoVida);*/
-        pontos = pontos + 1;
-        if(getNumVidas()<0){
+        // pontos = pontos + 1;
+        if (getNumVidas() < 0)
+        {
             setNumVidas(0);
         }
     }
