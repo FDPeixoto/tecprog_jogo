@@ -11,7 +11,7 @@ namespace Entidades
             setCor(sf::Color::White); // Laranja (255, 165, 0)
             float alcanceExtra = 1.0f + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (10.0f - 1.0f)));
             setAlcance(ALCANCEESQUELETO + alcanceExtra);
-            if (!textura.loadFromFile("Texturas/esqueleto6.png"))
+            if (!textura.loadFromFile("Texturas/Esqueleto.png"))
             {
             }
             Entidade::carregarTextura(&textura);

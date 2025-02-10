@@ -135,7 +135,7 @@ namespace Gerenciadores
                 {
                     if (calculaDistancia(sender, *itInimigo) < 96.f)
                     {
-                        (*itInimigo)->tomarDano(2);
+                        (*itInimigo)->tomarDano(100);
                         if (!(*itInimigo)->getVivo())
                         {
                             if ((*itInimigo)->getID() == IDMINION)

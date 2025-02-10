@@ -18,7 +18,7 @@ namespace Entidades
             aleatorio = rand() % (FAIXA_ALEATORIO * 5);
             criarProjetil();
             setAlcance(ALCANCEOGRO);
-            if (!textura.loadFromFile("Texturas/Durahan2.png"))
+            if (!textura.loadFromFile("Texturas/Ogro.png"))
             {
                 // Handle error
             }
