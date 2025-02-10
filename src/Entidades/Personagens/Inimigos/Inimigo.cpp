@@ -234,8 +234,6 @@ namespace Entidades
                     perseguindo = true;
                 }
             }
-
-            // Only flip if changing direction
         }
 
         void Inimigo::atacar()

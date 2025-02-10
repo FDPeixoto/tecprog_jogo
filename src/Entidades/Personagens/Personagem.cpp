@@ -76,7 +76,7 @@ namespace Entidades
     {
       setNumVidas(0);
       setVivo(false);
-      setPos(sf::Vector2f(0.f, 10000.f));
+      setPos(sf::Vector2f(2000.f, 2000.f));
     }
   }
 

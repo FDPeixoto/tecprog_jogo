@@ -78,18 +78,20 @@ namespace Gerenciadores
         {
             if (*it != nullptr)
             {
-                /*if (((*it)->getID() == IDJOGADOR) || ((*it)->getID() == IDMINION) || ((*it)->getID() == IDOGRO) || ((*it)->getID() == IDESQUELETO))
+                if (((*it)->getID() == IDJOGADOR) || ((*it)->getID() == IDMINION) || ((*it)->getID() == IDOGRO) || ((*it)->getID() == IDESQUELETO))
                 {
-                    if (((*it)->getVivo()))
+                    if (static_cast<Entidades::Personagem *>((*it))->getVivo())
                     {
                         desenharEntidade(*it);
                     }
                     else
                     {
                     }
-                }*/
-                // else
-                desenharEntidade(*it);
+                }
+                else
+                {
+                    desenharEntidade(*it);
+                }
             }
         }
     }
