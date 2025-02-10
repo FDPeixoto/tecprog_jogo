@@ -29,7 +29,6 @@ namespace Entidades
 
     void Jogador::atualizar(float dt)
     {
-        // verificarColisao();
 
         tempoDesdeUltimoAtaque += dt;
         tempoDesteUltimoDano += dt;
@@ -45,8 +44,6 @@ namespace Entidades
             pulando = false;
             noChao = false;
         }
-        // ou float dt=relogio.getElapsedTime().asSeconds();
-        // Andando só na horizontal por enquanto
 
         if (!noChao)
         {
@@ -63,7 +60,6 @@ namespace Entidades
         noChao = false;
         corpo.move(velocidade.x * dt, velocidade.y * dt);
         checarForaDaJanela();
-        // setPos(sf::Vector2f(corpo.getPosition().x + velocidade.x * dt, corpo.getPosition().y + velocidade.y * dt));
     }
 
     void Jogador::andar(const bool ehEsquerda)
@@ -71,32 +67,28 @@ namespace Entidades
         atacando = false;
         andando = true;
 
-        // Update velocity
         velocidade.x = ehEsquerda ? -300.0f : 300.0f;
 
-        // Only flip if changing direction
         if (paraEsquerda != ehEsquerda)
         {
             paraEsquerda = ehEsquerda;
 
-            // Get current position and bounds
             sf::Vector2f pos = corpo.getPosition();
             sf::FloatRect bounds = corpo.getLocalBounds();
 
             if (paraEsquerda)
             {
-                // Move origin to the right side before flipping
+
                 corpo.setOrigin(bounds.width, 0);
                 corpo.setScale(-1.f, 1.f);
             }
             else
             {
-                // Move origin back to the left side before flipping back
+
                 corpo.setOrigin(0, 0);
                 corpo.setScale(1.f, 1.f);
             }
 
-            // Keep the position the same
             corpo.setPosition(pos);
         }
     }
@@ -114,10 +106,6 @@ namespace Entidades
 
     void Jogador::executar()
     {
-        /*std::string vidaStr = "Vida: " + std::to_string(num_vidas);  // Concatena a string
-        textoVida.setString(vidaStr);
-        return (textoVida);*/
-        // pontos = pontos + 1;
         if (getNumVidas() < 0)
         {
             setNumVidas(0);
@@ -142,13 +130,13 @@ namespace Entidades
         int ID = outraEntidade->getID();
         if (ID == IDMINION || ID == IDESQUELETO || ID == IDOGRO || ID == IDCAIXA)
         {
-            // Determine the axis of least penetration
+
             if (overlapX < overlapY)
             {
-                // Horizontal collision
+
                 if (pos1.x < pos2.x)
                 {
-                    // Player is to the left of the minion
+
                     setPos(sf::Vector2f(pos2.x - tam1.x, pos1.y));
                     if (getAndando())
                     {
@@ -157,7 +145,7 @@ namespace Entidades
                 }
                 else
                 {
-                    // Player is to the right of the minion
+
                     setPos(sf::Vector2f(pos2.x + tam2.x, pos1.y));
                     if (getAndando())
                     {
@@ -167,54 +155,52 @@ namespace Entidades
             }
             else
             {
-                // Vertical collision
+
                 if (pos1.y < pos2.y)
                 {
-                    // Player is above the minion
+
                     setPos(sf::Vector2f(pos1.x, pos2.y - tam1.y));
                     noChao = true;
                 }
                 else
                 {
-                    // Player is below the minion
+
                     setPos(sf::Vector2f(pos1.x, pos2.y + tam2.y));
                 }
             }
         }
         if (ID == IDPLATAFORMA || ID == IDESPINHO || ID == IDCANHAO)
         {
-            // Calculate the intersection depth on both axes
 
-            // Determine the axis of least penetration
             if (overlapX < overlapY)
             {
-                // Horizontal collision
+
                 if (pos1.x < pos2.x)
                 {
-                    // Player is to the left of the platform
+
                     setPos(sf::Vector2f(pos2.x - tam1.x, pos1.y));
                 }
                 else
                 {
-                    // Player is to the right of the platform
+
                     setPos(sf::Vector2f(pos2.x + tam2.x, pos1.y));
                 }
             }
             else
             {
-                // Vertical collision
+
                 if (pos1.y < pos2.y)
                 {
-                    // Player is above the platform
+
                     setPos(sf::Vector2f(pos1.x, pos2.y - tam1.y));
-                    velocidade.y = 0; // Stop vertical movement
-                    noChao = true;    // Player is on the ground
+                    velocidade.y = 0;
+                    noChao = true;
                 }
                 else
                 {
-                    // Player is below the platform
+
                     setPos(sf::Vector2f(pos1.x, pos2.y + tam2.y));
-                    velocidade.y = 0; // Stop vertical movement
+                    velocidade.y = 0;
                 }
             }
         }

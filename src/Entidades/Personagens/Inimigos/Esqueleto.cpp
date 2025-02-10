@@ -25,13 +25,7 @@ namespace Entidades
         {
             Inimigo::executar();
         }
-        void Esqueleto::danificar(Entidades::Jogador *pJogador)
-        {
-        }
-        bool Esqueleto::foraPantano()
-        {
-            return false;
-        }
+
         void Esqueleto::salvar() {}
         void Esqueleto::salvarDataBuffer() {}
     }

@@ -21,22 +21,6 @@ namespace Gerenciadores
         }
         return pColisao;
     }
-    void Colisao::setMoveis(Listas::ListaEntidades *moveis)
-    {
-        listaMoveis = moveis;
-    }
-    Listas::ListaEntidades *Colisao::getListaMoveis()
-    {
-        return listaMoveis;
-    }
-    Listas::ListaEntidades *Colisao::getListaFixos()
-    {
-        return listaFixos;
-    }
-    void Colisao::setFixos(Listas::ListaEntidades *fixos)
-    {
-        listaFixos = fixos;
-    }
     const sf::Vector2f Colisao::calculaColisao(Entidades::Entidade *entidade1, Entidades::Entidade *entidade2)
     {
         sf::Vector2f pos1 = entidade1->getPos();

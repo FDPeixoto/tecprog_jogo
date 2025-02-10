@@ -233,7 +233,7 @@ namespace Gerenciadores
                 {
                     pFase->setNomePartida("Nome da Partida aqui");
                     pFase->salvarRanking("ranking.json", pontuacaoJ1, pontuacaoJ2);
-                    // pGerenciadorGrafico->fecharJanela();
+                    pGerenciadorGrafico->fecharJanela();
                 }
             }
         }

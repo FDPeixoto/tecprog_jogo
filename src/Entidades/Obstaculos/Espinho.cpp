@@ -39,9 +39,5 @@ namespace Entidades
         void Espinho::inicializar()
         {
         }
-        void Espinho::Obstacular(Entidades::Jogador *pJogador)
-        {
-            pJogador->tomarDano(pJogador->getNumVidas());
-        }
     }
 }

@@ -14,8 +14,6 @@ namespace Gerenciadores
     class Colisao : public Mediator
     {
     private:
-        Listas::ListaEntidades *listaMoveis;
-        Listas::ListaEntidades *listaFixos;
         std::vector<Entidades::Entidade *> vectorEntidades;
         std::list<Entidades::Jogador *> listJogadores;
         std::list<Entidades::Inimigos::Inimigo *> listInimigos;
@@ -27,10 +25,6 @@ namespace Gerenciadores
     public:
         ~Colisao();
         static Colisao *getGerenciadorColisao();
-        void setMoveis(Listas::ListaEntidades *moveis);
-        void setFixos(Listas::ListaEntidades *fixos);
-        Listas::ListaEntidades *getListaMoveis();
-        Listas::ListaEntidades *getListaFixos();
         const sf::Vector2f calculaColisao(Entidades::Entidade *entidade1, Entidades::Entidade *entidade2);
         bool checarColisao(Entidades::Entidade *entidade1, Entidades::Entidade *entidade2);
         void executar();

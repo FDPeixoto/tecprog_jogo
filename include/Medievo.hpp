@@ -10,15 +10,15 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 
-class Medievo {
-    private:
-    Gerenciadores::Grafico* pGerenciadorGrafico;
-    Gerenciadores::Colisao* pGerenciadorColisao;
-    Gerenciadores::Evento* pGerenciadorEvento;
-    Gerenciadores::Estado* pGerenciadorEstado;
-    sf::Clock clock;    
+class Medievo
+{
+private:
+    Gerenciadores::Grafico *pGerenciadorGrafico;
+    Gerenciadores::Colisao *pGerenciadorColisao;
+    Gerenciadores::Evento *pGerenciadorEvento;
+    Gerenciadores::Estado *pGerenciadorEstado;
 
-    public:
+public:
     Medievo();
     ~Medievo();
     void executar();

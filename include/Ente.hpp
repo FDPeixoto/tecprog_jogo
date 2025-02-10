@@ -1,9 +1,10 @@
 #pragma once
 
-class Ente{
+class Ente
+{
 protected:
   int id;
-  //static *Gerenciador_Grafico pGG;
+  // static *Gerenciador_Grafico pGG;
   //*Figura pFig;
 
 public:
@@ -11,8 +12,8 @@ public:
   Ente();
   Ente(int ID);
   virtual ~Ente();
-  //void setID();
-  virtual void executar();
+  // void setID();
+  virtual void executar() = 0;
   void desenhar();
   const int getID();
 };

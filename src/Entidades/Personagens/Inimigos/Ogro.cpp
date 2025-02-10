@@ -13,7 +13,6 @@ namespace Entidades
         {
             velocidade = sf::Vector2f(VELOCIDADEX_DU, VELOCIDADEY_DU);
             setVivo(true);
-            antidoto_mortal = false;
             // Remove tiros initialization
             srand(static_cast<unsigned int>(time(nullptr)));
             aleatorio = rand() % (FAIXA_ALEATORIO * 5);
@@ -28,7 +27,6 @@ namespace Entidades
         }
         Ogro::~Ogro()
         {
-            antidoto_mortal = false;
 
             listaProjetil.clear();
         }
@@ -130,12 +128,6 @@ namespace Entidades
                 jaAtirou = false;
                 // setCor(sf::Color::Magenta);
             }
-        }
-        void Ogro::danificar(Entidades::Jogador *pJogador) {}
-        void Ogro::golpeMortal() {}
-        void Ogro::setAntidotoMortal(bool flg)
-        {
-            antidoto_mortal = flg;
         }
         // void Ogro::colisao(Entidade *outraEntidade){}
         std::list<Entidades::Entidade *> &Ogro::getListaProjetil()

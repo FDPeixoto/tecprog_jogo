@@ -9,8 +9,9 @@ namespace Entidades
         {
             srand((unsigned int)time(NULL));
             int s = (rand() % (3));
-            if(s==0){
-                super=true;
+            if (s == 0)
+            {
+                super = true;
                 setNumVidas(2);
             }
             setVelocidade(sf::Vector2f(50.f, 0.f));
@@ -30,7 +31,7 @@ namespace Entidades
 
         void Minion::salvarDataBuffer()
         {
-        }   
-       
+        }
+
     }
 }

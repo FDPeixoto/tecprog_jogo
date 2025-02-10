@@ -10,11 +10,9 @@ namespace Fases
                                    pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()), pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
                                    pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0), completou(false), pontosJ1(0), pontosJ2(0)
     {
-        pGerenciadorColisao->setMoveis(listaPersonagens);
-        pGerenciadorColisao->setFixos(listaObstaculos);
         pGerenciadorColisao->limparListas();
         doisJogadores = false;
-        //fonte.loadFromFile("Fonte/DejaVuSans.ttf");
+        // fonte.loadFromFile("Fonte/DejaVuSans.ttf");
     }
 
     Fase::Fase(const int idFase, bool temSegundoJogador) : Ente(idFase), listaPersonagens(new Listas::ListaEntidades()),
@@ -22,8 +20,6 @@ namespace Fases
                                                            pGerenciadorEvento(pGerenciadorEvento->getGerenciadorEvento()), pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao()),
                                                            pJogador1(nullptr), pJogador2(nullptr), quantidadeJogadores(0), completou(false), pontosJ1(0), pontosJ2(0), doisJogadores(temSegundoJogador)
     {
-        pGerenciadorColisao->setMoveis(listaPersonagens);
-        pGerenciadorColisao->setFixos(listaObstaculos);
         pGerenciadorColisao->limparListas();
     }
 
@@ -228,8 +224,8 @@ namespace Fases
 
     void Fase::criarMinion(const sf::Vector2f posicao)
     {
-        Entidades::Inimigos::Minion *minion = static_cast<Entidades::Inimigos::Minion*>(factory.create(IDMINION, posicao));
-        
+        Entidades::Inimigos::Minion *minion = static_cast<Entidades::Inimigos::Minion *>(factory.create(IDMINION, posicao));
+
         if (minion != nullptr)
         {
             minion->setCor(sf::Color::Red);
@@ -249,7 +245,7 @@ namespace Fases
 
     void Fase::criarPlataforma(const sf::Vector2f posicao, bool Castelo)
     {
-        Entidades::Obstaculos::Plataforma *plataforma = static_cast<Entidades::Obstaculos::Plataforma*>(factory.create(IDPLATAFORMA, posicao));
+        Entidades::Obstaculos::Plataforma *plataforma = static_cast<Entidades::Obstaculos::Plataforma *>(factory.create(IDPLATAFORMA, posicao));
         if (plataforma != nullptr)
         {
             plataforma->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
@@ -257,7 +253,6 @@ namespace Fases
             pGerenciadorColisao->adicionarObstaculo(plataforma);
         }
     }
-
 
     void Fase::desenhar()
     {
@@ -268,17 +263,9 @@ namespace Fases
     void Fase::executar()
     {
         eliminarPersonagensMortos();
-        //pontosJ1 = getPontosJogador1();
-        //pontosJ2 = getPontosJogador2();
+        // pontosJ1 = getPontosJogador1();
+        // pontosJ2 = getPontosJogador2();
 
-        if (pGerenciadorColisao->getListaMoveis() != listaPersonagens)
-        {
-            pGerenciadorColisao->setMoveis(listaPersonagens);
-        }
-        if (pGerenciadorColisao->getListaFixos() != listaObstaculos)
-        {
-            pGerenciadorColisao->setFixos(listaObstaculos);
-        }
         listaObstaculos->executar();
         listaPersonagens->executar();
         pGerenciadorColisao->executar();

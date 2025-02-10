@@ -17,7 +17,6 @@ namespace Entidades
             ~Espinho();
             bool getMortal();
             void executar();
-            void Obstacular(Entidades::Jogador *pJogador);
             void obstacular(Entidades::Jogador *pJogador);
             void salvar();
             void atualizar(float dt);
