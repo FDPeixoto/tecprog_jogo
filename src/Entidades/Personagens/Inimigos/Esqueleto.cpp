@@ -8,7 +8,7 @@ namespace Entidades
         Esqueleto::Esqueleto(const sf::Vector2f posicao) : Inimigo(sf::Vector2f(ESQUELETOLARGURA, ESQUELETOALTURA), posicao, IDESQUELETO)
         {
             velocidade = sf::Vector2f(VELOCIDADEX_ESQ, VELOCIDADEY_ESQ);
-            setCor(sf::Color::White); // Laranja (255, 165, 0)
+            setCor(sf::Color::White);
             float alcanceExtra = 1.0f + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (10.0f - 1.0f)));
             setAlcance(ALCANCEESQUELETO + alcanceExtra);
             if (!textura.loadFromFile("Texturas/Esqueleto.png"))

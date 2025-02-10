@@ -6,14 +6,13 @@ namespace Entidades
   {
     if (!font.loadFromFile("Fonte/DejaVuSans.ttf"))
     {
-      // Erro ao carregar a fonte
     }
     textoVida.setFont(font);
-    textoVida.setCharacterSize(40);           // Tamanho da fonte
-    textoVida.setFillColor(sf::Color::White); // Cor do texto
-    textoVida.setPosition(100.f, 100.f);      // Posição do texto na janela
+    textoVida.setCharacterSize(40);
+    textoVida.setFillColor(sf::Color::White);
+    textoVida.setPosition(100.f, 100.f);
     textoVida.setString("Vida: " + std::to_string(num_vidas));
-    cooldownAtaque = 1.0f; // precisa de 3 segundos para aacar novamente;
+    cooldownAtaque = 1.0f;
     tempoDesdeUltimoAtaque = 0.f;
     podeAtacar = true;
   }
@@ -26,10 +25,8 @@ namespace Entidades
 
   void Personagem::atualizarPosicao(float dt)
   {
-    /*float ds = velocidade.x * dt;//ou velocidadeFinal.x
+    /*float ds = velocidade.x * dt;
     corpo.move(ds, 0.f);*/
-
-    // return; estava no peixoto
   }
   void Personagem::setNumVidas(int n)
   {
@@ -41,7 +38,7 @@ namespace Entidades
   }
   sf::Text Personagem::getTextoVida()
   {
-    std::string vidaStr = "Vida: " + std::to_string(num_vidas); // Concatena a string
+    std::string vidaStr = "Vida: " + std::to_string(num_vidas);
     textoVida.setString(vidaStr);
     textoVida.setPosition(sf::Vector2f(50.f, 50.f));
     return (textoVida);

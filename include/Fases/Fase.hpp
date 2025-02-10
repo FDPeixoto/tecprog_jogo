@@ -44,8 +44,7 @@ namespace Fases
         bool gameOver;
 
     public:
-        // Fase();
-        Fase(const int idFase, bool temSegundoJogador);
+                Fase(const int idFase, bool temSegundoJogador);
         Fase(const int idFase);
         virtual ~Fase();
         virtual void criarMapa() = 0;
@@ -71,5 +70,3 @@ namespace Fases
         bool getGameOver();
     };
 }
-
-

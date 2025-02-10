@@ -17,7 +17,6 @@ namespace Entidades
             void salvar();
             void salvarDataBuffer();
             void executar();
-            // void colisao(Entidade *outraEntidade);
         };
     }
 }

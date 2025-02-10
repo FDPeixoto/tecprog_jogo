@@ -11,7 +11,7 @@ namespace Fases
         fundo.setPosition(0.0f, 0.0f);
         textura.loadFromFile("Texturas/testeFundo1.png");
         fundo.setTexture(&textura);
-        // Fase::proximaFase();
+
         srand((unsigned int)time(NULL));
         maxEsp = (rand() % (3)) + 3;
         srand((unsigned int)time(NULL));
@@ -24,7 +24,6 @@ namespace Fases
         aleatoriedadeP = (rand() % (3)) + 1;
 
         criarMapa();
-        //, maxOgros(2)
 
         vetorOgro.clear();
     }
@@ -144,7 +143,6 @@ namespace Fases
                 criarInimDificil(sf::Vector2f((posicao.x * 64.f) + mudancaPos, posicao.y * 64.f));
                 srand((unsigned int)time(NULL));
                 mudancaPos = (rand() % (4)) * 16;
-                // O it_Ogros++, está dentro da função
             }
             else
             {

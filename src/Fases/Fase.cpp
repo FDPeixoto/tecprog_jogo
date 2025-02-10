@@ -12,7 +12,6 @@ namespace Fases
     {
         pGerenciadorColisao->limparListas();
         doisJogadores = false;
-        // fonte.loadFromFile("Fonte/DejaVuSans.ttf");
     }
 
     Fase::Fase(const int idFase, bool temSegundoJogador) : Ente(idFase), listaPersonagens(new Listas::ListaEntidades()),
@@ -100,24 +99,22 @@ namespace Fases
         pontosJogador1 = pontosJogador1 + pJ1;
         pontosJogador2 = pontosJogador2 + pJ2;
 
-        // 🔹 3. Verifica se a partida já existe no ranking
         bool partidaExistente = false;
         for (auto &jogo : ranking)
         {
-            // Verifica se o nome da partida já está no ranking
+
             if (jogo["nomePartida"] == nomePartida)
             {
-                // Se o nome da partida já existe, verifica se a pontuação é a mesma
+
                 int pontuacaoJogador1Existente = std::max(jogo["jogadores"][0]["pontuacao"], jogo["jogadores"][1]["pontuacao"]);
                 if (pontuacaoJogador1Existente == std::max(pontosJogador1, pontosJogador2))
                 {
-                    partidaExistente = true; // A partida existe e a pontuação é a mesma, não adiciona
+                    partidaExistente = true;
                     return;
                 }
             }
         }
 
-        // 🔹 4. Se a partida não existe ou a pontuação for diferente, adiciona ao ranking
         if (!partidaExistente)
         {
             json jogo;
@@ -126,34 +123,27 @@ namespace Fases
                 {{"nome", "1"}, {"pontuacao", pontosJogador1}},
                 {{"nome", "2"}, {"pontuacao", pontosJogador2}}};
 
-            // 🔹 5. Adiciona a nova partida ao ranking
             ranking.push_back(jogo);
 
-            // 🔹 6. Ordena todas as partidas pela **melhor pontuação geral**
             std::sort(ranking.begin(), ranking.end(), [](const json &a, const json &b)
                       {
                           int maxA = std::max(a["jogadores"][0]["pontuacao"], a["jogadores"][1]["pontuacao"]);
                           int maxB = std::max(b["jogadores"][0]["pontuacao"], b["jogadores"][1]["pontuacao"]);
-                          return maxA > maxB; // Ordem decrescente
-                      });
+                          return maxA > maxB; });
 
-            // 🔹 7. Mantém apenas os 5 melhores registros
             if (ranking.size() > 5)
             {
                 ranking.erase(ranking.begin() + 5, ranking.end());
             }
         }
 
-        // 🔹 8. Salva o ranking atualizado no arquivo
         std::ofstream arquivoSaida(arquivo);
         if (!arquivoSaida)
         {
             return;
         }
-        arquivoSaida << ranking.dump(4); // Formatação bonita
+        arquivoSaida << ranking.dump(4);
         arquivoSaida.close();
-
-        // mostrarRanking(pGerenciadorGrafico->getJanela());
     }
 
     /*void Fase::mostrarRanking(sf::RenderWindow* janela) {
@@ -173,7 +163,7 @@ namespace Fases
             std::string texto = "Partida: " + ranking[i]["nomePartida"].get<std::string>();
             textoRanking.setString(texto);
             textoRanking.setPosition(50, yPos);
-            janela->draw(textoRanking);  // Modificado para usar o ponteiro
+            janela->draw(textoRanking);
             yPos += 30;
 
             for (const auto& jogador : ranking[i]["jogadores"]) {
@@ -181,7 +171,7 @@ namespace Fases
                         std::to_string(jogador["pontuacao"].get<int>());
                 textoRanking.setString(texto);
                 textoRanking.setPosition(50, yPos);
-                janela->draw(textoRanking);  // Modificado para usar o ponteiro
+                janela->draw(textoRanking);
                 yPos += 40;
             }
             yPos += 20;
@@ -216,7 +206,6 @@ namespace Fases
                 pGerenciadorEvento->setJogador2(jogador);
                 pGerenciadorColisao->adicionarJogador(jogador);
                 jogador->setMediator(pGerenciadorColisao);
-                //  jogador->setMediator(dynamic_cast<Gerenciadores::Mediator*> (pGerenciadorColisao));
             }
             quantidadeJogadores++;
         }
@@ -263,8 +252,6 @@ namespace Fases
     void Fase::executar()
     {
         eliminarPersonagensMortos();
-        // pontosJ1 = getPontosJogador1();
-        // pontosJ2 = getPontosJogador2();
 
         listaObstaculos->executar();
         listaPersonagens->executar();
@@ -338,7 +325,7 @@ namespace Fases
         {
             if (!(static_cast<Entidades::Personagem *>(*itPersonagem))->getVivo())
             {
-                // listaPersonagens->removerEntidade((*itPersonagem));
+
                 pGerenciadorColisao->removerEntidade(*itPersonagem);
             }
         }

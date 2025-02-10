@@ -3,7 +3,7 @@
 #include "Ente.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include <sstream> // Incluindo sstream para o uso de std::ostringstream
+#include <sstream>
 #include <Mediator.hpp>
 #include <stdafx.h>
 
@@ -12,14 +12,14 @@ namespace Entidades
   class Entidade : public Ente
   {
 
-    protected:
-      std::ostringstream buffer;  // Usando std::ostringstream em vez de std::ostream
-      sf::RectangleShape corpo;
-      sf::Vector2f pos;
-      sf::Vector2f tam;
-      Gerenciadores::Mediator* pMediator;
-      bool ativo;
-      sf::Texture textura;
+  protected:
+    std::ostringstream buffer;
+    sf::RectangleShape corpo;
+    sf::Vector2f pos;
+    sf::Vector2f tam;
+    Gerenciadores::Mediator *pMediator;
+    bool ativo;
+    sf::Texture textura;
 
   public:
     Entidade(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID);
@@ -45,13 +45,11 @@ namespace Entidades
     bool getAtivo();
     virtual void atirar(const sf::Vector2f posInimigo, bool direita);
     void mover(sf::Vector2f posicao);
-    //virtual bool getVivo();
-    //virtual void setVivo(bool v);
-    virtual void setAtacando(bool v);
-      virtual bool getAtacando();
-      void mudarLargura(int l);
-      virtual void carregarTextura(sf::Texture* text);//Era para ver puro
 
+    virtual void setAtacando(bool v);
+    virtual bool getAtacando();
+    void mudarLargura(int l);
+    virtual void carregarTextura(sf::Texture *text);
   };
 
 }

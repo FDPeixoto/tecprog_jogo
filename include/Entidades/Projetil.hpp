@@ -2,17 +2,19 @@
 #include "Entidade.hpp"
 #include "stdafx.h"
 
-namespace Entidades{
-    class Projetil: public Entidade{
-        private:
+namespace Entidades
+{
+    class Projetil : public Entidade
+    {
+    private:
         float vxP;
         sf::Vector2f velocidade;
 
-        public:
+    public:
         Projetil();
         Projetil(const sf::Vector2f posicao);
         ~Projetil();
-        //void atirar(Jogador* pAlvo);
+
         void atirar(const sf::Vector2f posInimigo, bool direita);
         void executar();
         void atualizar(float dt);

@@ -25,13 +25,11 @@ namespace Entidades
             void salvarDataBuffer();
             void executar();
             void atirar();
-            // bool getVivo();, pega direto de personagem mesmo
-            // void colisao(Entidade *outraEntidade);
+
             std::list<Entidades::Entidade *> &getListaProjetil();
             void criarProjetil();
             void atualizarListP(float dt);
             void atualizar(float dt);
-            // DÁ PARA DEIXAR O PERSEGUIR DO INIMIGO MAIS GERAL E CHAMAR A FUNÇÃO PARA O DURRAHAN, MAS NO MOMENTO COPIEI MESMO
         };
     }
 }

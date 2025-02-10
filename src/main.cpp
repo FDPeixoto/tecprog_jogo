@@ -1,6 +1,7 @@
 #include "Medievo.hpp"
 
-int main() {
+int main()
+{
     Medievo medievo;
 
     return 0;

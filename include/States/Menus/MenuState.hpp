@@ -1,4 +1,4 @@
-// MenuState.hpp
+
 #pragma once
 #include "State.hpp"
 #include "Ente.hpp"

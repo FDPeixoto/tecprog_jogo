@@ -10,7 +10,7 @@ namespace Entidades
 {
     namespace Inimigos
     {
-        // Movement states
+
         Inimigo::Inimigo(const sf::Vector2f tamanho, const sf::Vector2f posicao, const int ID) : Personagem(tamanho, posicao, ID), nivel_maldade(0)
         {
             pJogador1 = nullptr;
@@ -18,18 +18,18 @@ namespace Entidades
 
             timerEstado = 0.0f;
             duracaoEstado = 0.0f;
-            srand(static_cast<unsigned int>(time(NULL))); // Seed the random number generator
-            int estadoInicial = rand() % 3;               // 0: PARADO, 1: ANDANDO_ESQUERDA, 2: ANDANDO_DIREITA
+            srand(static_cast<unsigned int>(time(NULL)));
+            int estadoInicial = rand() % 3;
             switch (estadoInicial)
             {
             case 0:
-                estadoAtual = EstadoMovimento::PARADO; // PARADO for 1-3 seconds
+                estadoAtual = EstadoMovimento::PARADO;
                 break;
             case 1:
-                estadoAtual = EstadoMovimento::ANDANDO_ESQUERDA; // Walk left for 2-6 seconds
+                estadoAtual = EstadoMovimento::ANDANDO_ESQUERDA;
                 break;
             case 2:
-                estadoAtual = EstadoMovimento::ANDANDO_DIREITA; // Walk right for 2-6 seconds
+                estadoAtual = EstadoMovimento::ANDANDO_DIREITA;
                 break;
             }
         }
@@ -96,7 +96,6 @@ namespace Entidades
 
             sf::Vector2f posInimigo = corpo.getPosition();
 
-            // Check distance to players
             bool jogadorProximo = false;
 
             if (pJogador1 != nullptr)
@@ -104,7 +103,7 @@ namespace Entidades
                 sf::Vector2f posJogador1 = pJogador1->getCorpo().getPosition();
                 float distancia = fabs(posJogador1.x - posInimigo.x);
 
-                if (distancia <= getAlcance()) // Define RAIO_ATAQUE_X as needed
+                if (distancia <= getAlcance())
                 {
                     jogadorProximo = true;
                 }
@@ -121,28 +120,25 @@ namespace Entidades
                 }
             }
 
-            // Attack if a player is nearby
             if (jogadorProximo)
             {
                 atacar();
             }
 
-            // Apply gravity
             if (!noChao)
             {
-                velocidade.y += 5.0f; // Apply gravity scaled by dt
+                velocidade.y += 5.0f;
                 if (velocidade.y > 100.f)
                 {
-                    velocidade.y = 100.f; // Limit falling speed
+                    velocidade.y = 100.f;
                 }
             }
             else
             {
-                velocidade.y = 0; // Stop vertical movement when on the ground
+                velocidade.y = 0;
                 noChao = false;
             }
 
-            // Update movement state
             if (!perseguindo)
             {
                 timerEstado += dt;
@@ -151,40 +147,37 @@ namespace Entidades
                     changeState();
                 }
 
-                // Move the enemy based on the current state
                 switch (estadoAtual)
                 {
                 case EstadoMovimento::ANDANDO_ESQUERDA:
-                    velocidade.x = -VELOCIDADEX_DU; // Move left
+                    velocidade.x = -VELOCIDADEX_DU;
                     break;
                 case EstadoMovimento::ANDANDO_DIREITA:
-                    velocidade.x = VELOCIDADEX_DU; // Move right
+                    velocidade.x = VELOCIDADEX_DU;
                     break;
                 case EstadoMovimento::PARADO:
-                    velocidade.x = 0; // Stop moving
+                    velocidade.x = 0;
                     break;
                 }
             }
             perseguindo = false;
 
-            // Get current position and bounds
             sf::Vector2f pos = corpo.getPosition();
             sf::FloatRect bounds = corpo.getLocalBounds();
 
             if (velocidade.x < 0.f)
             {
-                // Move origin to the right side before flipping
+
                 corpo.setOrigin(bounds.width, 0);
                 corpo.setScale(-1.f, 1.f);
             }
             else
             {
-                // Move origin back to the left side before flipping back
+
                 corpo.setOrigin(0, 0);
                 corpo.setScale(1.f, 1.f);
             }
 
-            // Keep the position the same
             corpo.setPosition(pos);
 
             corpo.move(velocidade.x * dt, velocidade.y * dt);
@@ -252,38 +245,36 @@ namespace Entidades
         {
             float deltaX = posJogador.x - posInimigo.x;
 
-            // Smoothly adjust velocity towards the player
             if (deltaX < 0)
             {
-                velocidade.x = -VELOCIDADEX_DU; // Move left
+                velocidade.x = -VELOCIDADEX_DU;
             }
             else
             {
-                velocidade.x = VELOCIDADEX_DU; // Move right
+                velocidade.x = VELOCIDADEX_DU;
             }
         }
 
         void Inimigo::changeState()
         {
-            // Randomly choose a new state
-            int randomState = rand() % 3; // 0: PARADO, 1: ANDANDO_ESQUERDA, 2: ANDANDO_DIREITA
+
+            int randomState = rand() % 3;
             switch (randomState)
             {
             case 0:
                 estadoAtual = EstadoMovimento::PARADO;
-                duracaoEstado = 1.0f + (rand() % 3); // PARADO for 1-3 seconds
+                duracaoEstado = 1.0f + (rand() % 3);
                 break;
             case 1:
                 estadoAtual = EstadoMovimento::ANDANDO_ESQUERDA;
-                duracaoEstado = 1.0f + (rand() % 3); // Walk left for 2-6 seconds
+                duracaoEstado = 1.0f + (rand() % 3);
                 break;
             case 2:
                 estadoAtual = EstadoMovimento::ANDANDO_DIREITA;
-                duracaoEstado = 1.0f + (rand() % 3); // Walk right for 2-6 seconds
+                duracaoEstado = 1.0f + (rand() % 3);
                 break;
             }
 
-            // Reset the state timer
             timerEstado = 0.0f;
         }
 

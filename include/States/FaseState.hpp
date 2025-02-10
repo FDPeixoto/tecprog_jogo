@@ -21,6 +21,5 @@ namespace States
         ~FaseState();
         Fases::Fase *getFase();
         void executar();
-        // void mudarEstadoObservador();
-    };
+        };
 }

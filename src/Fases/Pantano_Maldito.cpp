@@ -13,7 +13,7 @@ namespace Fases
         fundo.setPosition(0.0f, 0.0f);
         textura.loadFromFile("Texturas/PantanoMaldito.png");
         fundo.setTexture(&textura);
-        // Fase::proximaFase();
+
         srand((unsigned int)time(NULL));
         maxCaixas = (rand() % (3)) + 3;
         srand((unsigned int)time(NULL));
@@ -54,7 +54,7 @@ namespace Fases
     void Pantano_Maldito::criarCaixa(const sf::Vector2f posicao)
     {
         Entidades::Obstaculos::Caixa *caixa = static_cast<Entidades::Obstaculos::Caixa *>(factory.create(IDCAIXA, posicao));
-        // chamava a construtora assim (posicao + sf::Vector2f(0.f, 16.f))
+
         if (caixa != nullptr)
         {
             caixa->setMediator(dynamic_cast<Gerenciadores::Mediator *>(pGerenciadorColisao));
@@ -176,8 +176,6 @@ namespace Fases
                 completou = true;
             }
         }
-
-        // return false;
     }
 
 }

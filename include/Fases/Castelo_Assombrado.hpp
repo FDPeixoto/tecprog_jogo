@@ -15,7 +15,7 @@ namespace Fases
         int it_M;
         int maxP;
         int it_P;
-        std::vector<Entidades::Inimigos::Ogro*> vetorOgro;
+        std::vector<Entidades::Inimigos::Ogro *> vetorOgro;
         int maxOgros;
         int it_Ogros;
         int aleatoriedadeP;

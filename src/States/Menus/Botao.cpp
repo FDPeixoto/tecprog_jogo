@@ -8,23 +8,19 @@ namespace States
             : Ente(id), label(textStr), onClick(action), isSelected(false)
         {
 
-            // Load font (Ensure font file exists in the project directory)
             fonte.loadFromFile("Fonte/DejaVuSans.ttf");
 
-            // Set up the button corpo
             corpo.setSize(size);
             corpo.setPosition(position);
-            corpo.setFillColor(sf::Color::White); // Default color
+            corpo.setFillColor(sf::Color::White);
             corpo.setOutlineColor(sf::Color::Black);
             corpo.setOutlineThickness(2.0f);
 
-            // Set up the text
             texto.setFont(fonte);
             texto.setString(label);
             texto.setCharacterSize(20);
             texto.setFillColor(sf::Color::Black);
 
-            // Center text inside button
             sf::FloatRect textBounds = texto.getLocalBounds();
             texto.setPosition(
                 position.x + (size.x - textBounds.width) / 2.0f,

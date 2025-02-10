@@ -8,14 +8,13 @@ Medievo::Medievo() : pGerenciadorGrafico(pGerenciadorGrafico->getGerenciadorGraf
                      pGerenciadorEstado(pGerenciadorEstado->getGerenciadorEstado()),
                      pGerenciadorColisao(pGerenciadorColisao->getGerenciadorColisao())
 
-
 {
     executar();
 }
 
 Medievo::~Medievo()
 {
-     pGerenciadorColisao = nullptr;
+    pGerenciadorColisao = nullptr;
     pGerenciadorGrafico = nullptr;
     pGerenciadorEvento = nullptr;
 }

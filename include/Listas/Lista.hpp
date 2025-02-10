@@ -1,5 +1,5 @@
-// O código do Giovani foi tulizado como inspiração: https://github.com/Giovanenero/JogoPlataforma2D-Jungle/blob/main/Jungle%2B%2B/include/Lista/Lista.hpp
-// O codigo do professor Jean Simao tambem foi utilizado como inspiracao
+
+
 #pragma once
 #include <iostream>
 
@@ -10,7 +10,6 @@ namespace Listas
   class Lista
   {
   public:
-    // Classe elemento eh aninhada
     template <class TE>
     class Elemento
     {
@@ -131,10 +130,9 @@ namespace Listas
 
       if (aux == nullptr)
       {
-        return; // Element not found
+        return;
       }
 
-      // Update previous and next pointers
       Elemento<TL> *ante = aux->getAnte();
       Elemento<TL> *prox = aux->getProx();
 
@@ -144,7 +142,7 @@ namespace Listas
       }
       else
       {
-        pPrimeiro = prox; // Removing the first element
+        pPrimeiro = prox;
       }
 
       if (prox != nullptr)
@@ -153,7 +151,7 @@ namespace Listas
       }
       else
       {
-        pUltimo = ante; // Removing the last element
+        pUltimo = ante;
       }
 
       delete aux;

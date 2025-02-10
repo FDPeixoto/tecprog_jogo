@@ -10,7 +10,7 @@ namespace Entidades
         Obstaculo::~Obstaculo() {}
         void Obstaculo::atualizarPosicao(float dt)
         {
-            return; // não faz nada
+            return;
         }
         void Obstaculo::colisao(Entidade *outraEntidade)
         {

@@ -28,7 +28,7 @@ namespace Entidades
             EstadoMovimento estadoAtual;
             float timerEstado;
             float duracaoEstado;
-            bool perseguindo; // Add this to the class definition
+            bool perseguindo;
             float alcance;
 
         public:
@@ -40,19 +40,18 @@ namespace Entidades
             Entidades::Jogador *getJogador2();
 
             void salvarDataBuffer();
-            // virtual void executar()=0;
-            // virtual void danificar(Jogador* p);
+
             void perseguir(sf::Vector2f posJogador, sf::Vector2f posInimigo);
             void changeState();
             void set_nivel_maldade(int n);
             const int get_nivel_maldade();
-            // virtual void executar()=0;
+
             void executar();
             virtual void atualizar(float dt);
             void inicializar();
             void mover();
             void atacar();
-            // void andar():
+
             virtual void moverAleatorio();
             void colisao(Entidade *outraEntidade);
             float getAlcance();

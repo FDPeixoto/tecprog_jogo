@@ -6,10 +6,10 @@
 
 namespace Fases
 {
-    class Pantano_Maldito: public Fase
+    class Pantano_Maldito : public Fase
     {
-        private:
-        int  maxCaixas;
+    private:
+        int maxCaixas;
         int it_Caixas;
         int maxM;
         int it_M;

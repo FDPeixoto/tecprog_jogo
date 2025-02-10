@@ -24,8 +24,7 @@ namespace States
         }
         else
         {
-            // Id de fase nao identificado
-        }
+                }
     }
     FaseState::~FaseState()
     {
@@ -45,7 +44,7 @@ namespace States
     {
         pFase->executar();
         /*if(pFase->getCompletou()==true){
-            if(IDPANTANOMALDITO){//vAI PARA A SEGUNDA FASE
+            if(IDPANTANOMALDITO){
                 Fase::Fase* Aux=pFase;
                 pFase = new Fases::Castelo_Assombrado();
                 delete aux

@@ -1,4 +1,4 @@
-// MenuState.cpp
+
 #include "MenuState.hpp"
 
 namespace States
@@ -6,17 +6,17 @@ namespace States
     namespace Menus
     {
         MenuState::MenuState(int id)
-            : State(id), // Initialize State with ID
-              Ente(id),  // Initialize Ente with same ID
+            : State(id),
+              Ente(id),
               pGrafico(pGrafico->getGerenciadorGrafico())
         {
         }
 
         MenuState::~MenuState()
         {
-            for (auto &element : botoes)
+            for (std::vector<Botao *>::iterator iterator = botoes.begin(); iterator != botoes.end(); iterator++)
             {
-                delete element;
+                delete (*iterator);
             }
         }
 
@@ -36,7 +36,6 @@ namespace States
                 titulo.setCharacterSize(tamanhoFonte);
                 titulo.setFillColor(sf::Color::White);
 
-                // Center title horizontally
                 sf::FloatRect bounds = titulo.getLocalBounds();
                 titulo.setOrigin(bounds.width / 2, bounds.height / 2);
                 titulo.setPosition(pGrafico->getJanela()->getSize().x / 2.0f, 100.0f);
@@ -45,10 +44,9 @@ namespace States
 
         void MenuState::desenhar()
         {
-            // 1. Draw Ente's base properties (if needed)
-            // sf::RectangleShape quadrado(sf::Vector2f(100.f, 100.f), sf::Vector2f(100.f, 100.f));
-            // 2. Draw all UI elements
+
             pGrafico->getJanela()->draw(titulo);
+
             for (auto &botao : botoes)
             {
 

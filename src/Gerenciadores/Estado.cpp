@@ -72,9 +72,7 @@ namespace Gerenciadores
         {
         case IDCARREGARSAVESTATE:
             break;
-            // case IDFASESTATE:
 
-            // break;
         case IDLEADERBOARDSTATE:
 
             break;

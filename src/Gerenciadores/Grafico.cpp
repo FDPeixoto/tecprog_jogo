@@ -6,7 +6,7 @@
 #include "../../include/Listas/Lista.hpp"
 #include "Grafico.hpp"
 #include "stdafx.h"
-#include "../../include/nlohmann/json.hpp" // Incluindo a biblioteca JSON
+#include "../../include/nlohmann/json.hpp"
 using json = nlohmann::json;
 
 namespace Gerenciadores
@@ -116,7 +116,6 @@ namespace Gerenciadores
         for (std::list<Entidades::Entidade *>::iterator it = list.begin(); it != list.end(); it++)
         {
             desenharEntidade((*it));
-            // desenharCorpo((*it)->getCorpo()); // Esse funciona tambem so escolher qual voce prefere;
         }
     }
 
@@ -144,7 +143,7 @@ namespace Gerenciadores
                 std::string texto = "Partida: " + ranking[i]["nomePartida"].get<std::string>();
                 textoRanking.setString(texto);
                 textoRanking.setPosition(50, yPos);
-                janela->draw(textoRanking); // Modificado para usar o ponteiro
+                janela->draw(textoRanking);
                 yPos += 30;
 
                 for (const auto &jogador : ranking[i]["jogadores"])
@@ -153,7 +152,7 @@ namespace Gerenciadores
                             std::to_string(jogador["pontuacao"].get<int>());
                     textoRanking.setString(texto);
                     textoRanking.setPosition(50, yPos);
-                    janela->draw(textoRanking); // Modificado para usar o ponteiro
+                    janela->draw(textoRanking);
                     yPos += 40;
                 }
                 yPos += 20;

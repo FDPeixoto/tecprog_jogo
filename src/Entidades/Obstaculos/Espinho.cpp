@@ -10,7 +10,7 @@ namespace Entidades
             setCor(sf::Color::White);
             Entidade::carregarTextura(&textura);
             srand((unsigned int)time(NULL));
-            mortal = (rand() % 10 == 0); // So mortal 10% das vezes
+            mortal = (rand() % 10 == 0);
         }
         Espinho::~Espinho() {}
         bool Espinho::getMortal() { return mortal; }

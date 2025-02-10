@@ -1,6 +1,5 @@
 #include "Colisao.hpp"
 
-/*Codigo dos gerenciadores foi inspirado pelo monitor Giovani https://github.com/Giovanenero/JogoPlataforma2D-Jungle/blob/main/Jungle%2B%2B/src/Gerenciador/GerenciadorColisao.cpp */
 namespace Gerenciadores
 {
     Colisao *Colisao::pColisao = nullptr;
@@ -49,10 +48,8 @@ namespace Gerenciadores
         sf::Vector2f tam1 = entidade1->getTam();
         sf::Vector2f tam2 = entidade2->getTam();
 
-        // Calculate the center of the first rectangle
         sf::Vector2f center1(pos1.x + tam1.x / 2.f, pos1.y + tam1.y / 2.f);
 
-        // Calculate the center of the second rectangle
         sf::Vector2f center2(pos2.x + tam2.x / 2.f, pos2.y + tam2.y / 2.f);
 
         float dx = center2.x - center1.x;
@@ -135,7 +132,7 @@ namespace Gerenciadores
                 {
                     if (calculaDistancia(sender, *itInimigo) < 96.f)
                     {
-                        (*itInimigo)->tomarDano(100);
+                        (*itInimigo)->tomarDano(1);
                         if (!(*itInimigo)->getVivo())
                         {
                             if ((*itInimigo)->getID() == IDMINION)

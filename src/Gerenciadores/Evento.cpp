@@ -1,6 +1,6 @@
 #include "Evento.hpp"
 #include "FaseState.hpp"
-#include "../../include/nlohmann/json.hpp" // Incluindo a biblioteca JSON
+#include "../../include/nlohmann/json.hpp"
 using json = nlohmann::json;
 
 namespace Gerenciadores
@@ -11,7 +11,7 @@ namespace Gerenciadores
     Evento::~Evento()
     {
         pGerenciadorGrafico = nullptr;
-        // pEstado = nullptr;
+
         pJog1 = nullptr;
         pJog2 = nullptr;
     }
@@ -199,7 +199,6 @@ namespace Gerenciadores
             {
                 pGerenciadorGrafico->fecharJanela();
             }
-            // salvarNaFase();
 
             if (pFase != nullptr)
             {
@@ -208,8 +207,7 @@ namespace Gerenciadores
 
                     if (pFase->getID() == IDPANTANOMALDITO)
                     {
-                        // pFase->setNomePartida("Pantano Maldito2");
-                        // pFase->salvarRanking("ranking.json");
+
                         pontuacaoJ1 = pFase->getPontosJogador1();
                         pontuacaoJ2 = pFase->getPontosJogador2();
                         if (pJog2 != nullptr)
@@ -222,7 +220,7 @@ namespace Gerenciadores
                         }
                     }
                     else
-                    { // eh o castelo assombrado
+                    {
                         pFase->setNomePartida("Nome da Partida aqui");
                         pFase->salvarRanking("ranking.json", pontuacaoJ1, pontuacaoJ2);
                         pGerenciadorGrafico->fecharJanela();

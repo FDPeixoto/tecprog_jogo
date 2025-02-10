@@ -7,18 +7,18 @@ namespace Entidades
     {
     }
     Projetil::~Projetil() {}
-    // void Projetil::atirar(Jogador* pAlvo){}
+
     void Projetil::setVelocidade(sf::Vector2f vel)
     {
         velocidade = vel;
     }
     void Projetil::atirar(const sf::Vector2f posicaoInimigo, bool direita)
     {
-        setPos(posicaoInimigo); // O projétil começa na posição do inimigo (Ogro)
+        setPos(posicaoInimigo);
         if (direita == true)
         {
             setVelocidade(sf::Vector2f(VEL_X_P, 0.f));
-            // setCor(sf::Color::White);
+
             if (!textura.loadFromFile("Texturas/proj-Dir.png"))
             {
             }
@@ -26,14 +26,13 @@ namespace Entidades
         }
         else
         {
-            // setCor(sf::Color::White);
+
             if (!textura.loadFromFile("Texturas/proj-Esq.png"))
             {
             }
             Entidade::carregarTextura(&textura);
             setVelocidade(sf::Vector2f(-VEL_X_P, 0.f));
         }
-        // setCor(sf::Color::Red);
     }
     void Projetil::executar()
     {
@@ -45,7 +44,7 @@ namespace Entidades
     }
     void Projetil::atualizar(float dt)
     {
-        float ds = velocidade.x * dt; // ou velocidadeFinal.x
+        float ds = velocidade.x * dt;
         corpo.move(ds, 0.05f);
         return;
     }

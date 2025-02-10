@@ -24,7 +24,6 @@ namespace Gerenciadores
         sf::Clock relogio;
         sf::Font fonte;
 
-        // Singleton
         static Grafico *pGrafico;
         Grafico();
 
