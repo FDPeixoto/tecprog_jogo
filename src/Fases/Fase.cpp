@@ -283,7 +283,7 @@ namespace Fases
 
         gameOver = true;
 
-        for (auto itPersonagem = listaPersonagens->getListaEnt().inicio(); itPersonagem != listaPersonagens->getListaEnt().fim(); itPersonagem++)
+        for (Listas::Lista<Entidades::Entidade>::Iterator itPersonagem = listaPersonagens->getListaEnt().inicio(); itPersonagem != listaPersonagens->getListaEnt().fim(); itPersonagem++)
             if (*itPersonagem)
             {
                 if ((*itPersonagem)->getID() == IDMINION)
@@ -321,7 +321,7 @@ namespace Fases
 
     void Fase::eliminarPersonagensMortos()
     {
-        for (auto itPersonagem = listaPersonagens->getListaEnt().inicio(); itPersonagem != listaPersonagens->getListaEnt().fim(); itPersonagem++)
+        for (Listas::Lista<Entidades::Entidade>::Iterator itPersonagem = listaPersonagens->getListaEnt().inicio(); itPersonagem != listaPersonagens->getListaEnt().fim(); itPersonagem++)
         {
             if (!(static_cast<Entidades::Personagem *>(*itPersonagem))->getVivo())
             {

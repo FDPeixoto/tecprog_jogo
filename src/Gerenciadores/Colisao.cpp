@@ -1,4 +1,5 @@
 #include "Colisao.hpp"
+// O colisao tem como inspiracao o video tutorial: https://www.youtube.com/watch?v=l2iCYCLi6MU&t=945s,; Canal: Hilze Vonck, Título: SFML 2.4 For Beginners - 12: Collision Detection (AABB).
 
 namespace Gerenciadores
 {
@@ -78,14 +79,14 @@ namespace Gerenciadores
 
     void Colisao::executar()
     {
-        for (auto jogador : listJogadores)
+        for (std::list<Entidades::Jogador *>::iterator itJogador = listJogadores.begin(); itJogador != listJogadores.end(); itJogador++)
         {
-            jogador->verificarColisao();
+            (*itJogador)->verificarColisao();
         }
 
-        for (auto inimigo : listInimigos)
+        for (std::list<Entidades::Inimigos::Inimigo *>::iterator itInimigo = listInimigos.begin(); itInimigo != listInimigos.end(); itInimigo++)
         {
-            inimigo->verificarColisao();
+            (*itInimigo)->verificarColisao();
         }
 
         for (Listas::Lista<Entidades::Entidade>::Iterator entidade = todasEntidades->getListaEnt().inicio(); entidade != todasEntidades->getListaEnt().fim(); entidade++)

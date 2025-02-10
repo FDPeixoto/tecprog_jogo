@@ -95,13 +95,13 @@ namespace Entidades
                 dir = (posJogador2.x - posInimigo.x) >= 0;
             }
 
-            for (auto &proj : listaProjetil)
+            for (std::list<Entidades::Entidade *>::iterator proj = listaProjetil.begin(); proj != listaProjetil.end(); proj++)
             {
-                if (proj != nullptr && !proj->getAtivo())
+                if ((*proj) != nullptr && !(*proj)->getAtivo())
                 {
-                    proj->setAtivo(true);
-                    proj->atirar(posInimigo, dir);
-                    proj->executar();
+                    (*proj)->setAtivo(true);
+                    (*proj)->atirar(posInimigo, dir);
+                    (*proj)->executar();
                     break;
                 }
             }

@@ -1,5 +1,6 @@
 #include "Estado.hpp"
-
+// O gerenciador de Estados tem como base o gerenciador apresentado pelo Antigo Monitor Giovani: https://github.com/Giovanenero/JogoPlataforma2D-Jungle/blob/main/Jungle%2B%2B/src/
+//  Gerenciador/GerenciadorEstado.cpp
 namespace Gerenciadores
 {
     Estado *Estado::pEstado = nullptr;

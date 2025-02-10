@@ -2,7 +2,8 @@
 
 #pragma once
 #include <iostream>
-
+// A lista tem como base a Lista Template explicada pelo professor Dr. Jean M. Simao: https://pessoal.dainf.ct.utfpr.edu.br/jeansimao/Fundamentos2/LinguagemC++UML/Funda
+// mentos2-SlidesC++10B-2020-07-20.pdf
 namespace Listas
 {
 

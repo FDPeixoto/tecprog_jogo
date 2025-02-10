@@ -47,19 +47,18 @@ namespace States
 
             pGrafico->getJanela()->draw(titulo);
 
-            for (auto &botao : botoes)
+            for (std::vector<Botao *>::iterator iterador = botoes.begin(); iterador != botoes.end(); iterador++)
             {
-
-                botao->desenhar(pGrafico->getJanela());
+                (*iterador)->desenhar(pGrafico->getJanela());
             }
         }
 
         void MenuState::executar()
         {
             desenhar();
-            for (auto &element : botoes)
+            for (std::vector<Botao *>::iterator iterador = botoes.begin(); iterador != botoes.end(); iterador++)
             {
-                element->executar();
+                (*iterador)->executar();
             }
         }
         Fases::Fase *MenuState::getFase()
